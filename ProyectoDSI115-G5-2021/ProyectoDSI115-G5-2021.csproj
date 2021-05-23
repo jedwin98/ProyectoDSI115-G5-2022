@@ -146,10 +146,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\694704.png" />
+    <Resource Include="agregar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="agregar.png" />
+    <Folder Include="images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

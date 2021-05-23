@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
     /// </summary>
     public partial class GestionClientes : Window
     {
-        List<Cliente> cli = new List<Cliente>();
+        DataTable dt = new DataTable();
+        ControlBD control = new ControlBD();
         public GestionClientes()
         {
             InitializeComponent();
@@ -33,9 +35,8 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         }
         public void cargarTabla()
         {
-            ControlBD control = new ControlBD();
-            cli = control.consultarClientes();
-            dataClientes.ItemsSource = cli;
+            dt = control.consultarClientes();
+           dataClientes.ItemsSource = dt.DefaultView;
         }
     }
 }
