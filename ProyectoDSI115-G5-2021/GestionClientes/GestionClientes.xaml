@@ -16,8 +16,8 @@
 
         <Button x:Name="btnBuscar" Content="Buscar"   HorizontalAlignment="Left" Margin="670,120,0,0" VerticalAlignment="Top"  Width="88"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30"/>
         <TextBox TextWrapping="Wrap" Text="" Margin="266,120,140,275"/>
-        <DataGrid x:Name="dataClientes" HorizontalAlignment="Left" Height="190" Margin="250,176,0,0" VerticalAlignment="Top" Width="508" >
-          
+        <DataGrid x:Name="dataClientes" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" HorizontalAlignment="Left" Height="190" Margin="250,176,0,0" VerticalAlignment="Top" Width="508" >
+            
         </DataGrid>
         <Button x:Name="btnGenerar"  Content="Generar Reporte" HorizontalAlignment="Left" Margin="593,379,0,0" VerticalAlignment="Top" Width="138" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7"/>
 

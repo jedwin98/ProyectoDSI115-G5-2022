@@ -26,5 +26,10 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         {
 
         }
+        public override string ToString()
+        {
+            return string.Format(" {0} - {1} - {2} - {3}-{4}", codigo, nombres, apellidos,empresa,codservicio );
+        }
     }
+    
 }
