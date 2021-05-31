@@ -120,6 +120,7 @@
     <Compile Include="GestionClientes\GestionClientes.xaml.cs">
       <DependentUpon>GestionClientes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GestionClientes\TipoServicio.cs" />
     <Compile Include="GestionUsuarios\GestionUsuarios.xaml.cs">
       <DependentUpon>GestionUsuarios.xaml</DependentUpon>
     </Compile>
@@ -161,10 +162,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="basura.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="agregar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
+    <Resource Include="editar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ProyectoDSI115_G5_2021.GestionClientes
 {
@@ -19,9 +11,59 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
     /// </summary>
     public partial class AgregarCliente : Window
     {
+        List<TipoServicio> ts = new List<TipoServicio>();
+        ControlBD control = new ControlBD();
         public AgregarCliente()
         {
             InitializeComponent();
+          //  llenarComboBox();
+        }
+
+        private void BtnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNombre.Text == "" || txtApellido.Text == "" || txtTelefono.Text == "")
+            {
+                MessageBox.Show("Debe de llenar todos los campos", "Campos vacios", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                Cliente cliente = new Cliente();
+                //   TipoServicio selecteditem = (TipoServicio)cmbServicio.SelectedItem;
+                string respuesta;
+                cliente.codigo = txtId.Text;
+                cliente.nombres = txtNombre.Text;
+                cliente.apellidos = txtApellido.Text;
+                cliente.empresa = txtEmpresa.Text;
+                cliente.telefono = txtTelefono.Text;
+                cliente.estado = txtEstado.Text;
+                respuesta = control.agregarCliente(cliente);
+                MessageBox.Show(respuesta);
+
+            }
+        
+          
+
+         }
+      /*  public void llenarComboBox()
+        {
+            ts = control.consultarTipoServicio();
+            cmbServicio.ItemsSource = ts;
+        }*/
+
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            GestionClientes nueva = new GestionClientes();
+            nueva.Show();
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //clean up code
+            GestionClientes nueva = new GestionClientes();
+            nueva.Show();
+            this.Hide();
+
         }
     }
 }
