@@ -6,35 +6,49 @@
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
         Title="Gestion de Clientes" Height="464" Width="800">
-    <Grid>
-        <Rectangle Fill="#FFC91029" HorizontalAlignment="Left" Height="61" Stroke="Black" VerticalAlignment="Top" Width="792"/>
-        <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Label Content="Gestion de Clientes" HorizontalAlignment="Left" Margin="20,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
-        <Label Content="Elige la Opción que deseas realizar" HorizontalAlignment="Left" Margin="472,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
-        <Rectangle HorizontalAlignment="Left" Height="321" Margin="234,102,0,0" Stroke="Black" VerticalAlignment="Top" Width="535"/>
+    <Grid >
 
 
-        <Button x:Name="btnBuscar" Content="Buscar"   HorizontalAlignment="Left" Margin="670,120,0,0" VerticalAlignment="Top"  Width="88"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30"/>
-        <TextBox TextWrapping="Wrap" Text="" Margin="266,120,140,275"/>
-        <DataGrid x:Name="dataClientes" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" HorizontalAlignment="Left" Height="190" Margin="250,176,0,0" VerticalAlignment="Top" Width="508" >
-            
+        <Rectangle  Fill="#FFC91029"  Height="61" Stroke="Black"  Width="792" Margin="0,1,0,371" />
+
+        <Label  Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
+        <Label  Content="Gestion de Clientes" HorizontalAlignment="Left" Margin="20,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Label  Content="Elige la Opción que deseas realizar" HorizontalAlignment="Left" Margin="472,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Rectangle   HorizontalAlignment="Left"  Height="321" Margin="234,102,0,0" Stroke="Black" VerticalAlignment="Top" Width="535"/>
+
+
+        <Button  x:Name="btnBuscar" Content="Buscar"    HorizontalAlignment="Left" Margin="670,120,0,0" VerticalAlignment="Top"  Width="88"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30"/>
+        <TextBox  Text="" Margin="263,120,143,283" Height="30"/>
+        <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" HorizontalAlignment="Left" Height="190" Margin="250,176,0,0" VerticalAlignment="Top" Width="508" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Codigo"  Binding="{Binding COD_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="110" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="110" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100" Header="Empresa"  Binding="{Binding EMPRESA_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100" Header="Telefono"  Binding="{Binding TELEFONO_CLIENTE}"/>
+                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding ESTADO_CLIENTE}"/>
+            </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnGenerar"  Content="Generar Reporte" HorizontalAlignment="Left" Margin="593,379,0,0" VerticalAlignment="Top" Width="138" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7"/>
 
 
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="246" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
-        <Button x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="65">
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="246" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
+        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnAgregar_Click">
             <DockPanel>
-                <Image Source="agregar.png" Height="40" Width="54"></Image>
-                <TextBlock HorizontalAlignment="Stretch">Guar</TextBlock>
+                <Image Source="agregar.png" Height="60" Width="74"></Image>
             </DockPanel>
-
-
         </Button>
-        <Button x:Name="btnBorrar" Content="Borrar" HorizontalAlignment="Left" Margin="69,196,0,0" VerticalAlignment="Top" Width="85" Height="65"/>
-        <Button x:Name="btnEditar" Content="Editar" HorizontalAlignment="Left" Margin="69,275,0,0" VerticalAlignment="Top" Width="85" Height="65"/>
-
-        <Label Content="Consultar Clientes" HorizontalAlignment="Left" Margin="250,84,0,0" VerticalAlignment="Top" Background="White"/>
+        <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="69,196,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnBorrar_Click">
+            <DockPanel>
+                <Image Source="basura.png" Height="60" Width="74"></Image>
+            </DockPanel>
+        </Button>
+        <Button  x:Name="btnEditar" Background="#FFF1EBEC" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="69,261,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnEditar_Click">
+            <DockPanel>
+                <Image Source="editar.png" Height="60" Width="74"></Image>
+            </DockPanel>
+        </Button>
+        <Label  Content="Consultar Clientes" HorizontalAlignment="Left" Margin="250,84,0,0" VerticalAlignment="Top" Background="White"/>
         <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,379,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7"/>
     </Grid>
 </Window>

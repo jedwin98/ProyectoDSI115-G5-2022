@@ -18,10 +18,58 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
     /// Lógica de interacción para ActualizarCliente.xaml
     /// </summary>
     public partial class ActualizarCliente : Window
+
     {
+
+        ControlBD control = new ControlBD();
         public ActualizarCliente()
         {
             InitializeComponent();
+           
+        }
+
+        
+
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNombre.Text == "" || txtApellido.Text == "" || txtTelefono.Text == "")
+            {
+                MessageBox.Show("Debe de llenar todos los campos", "Campos vacios", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                Cliente clien = new Cliente();
+                clien.codigo = txtId.Text;
+                clien.nombres = txtNombre.Text;
+                clien.apellidos = txtApellido.Text;
+                clien.empresa = txtEmpresa.Text;
+                clien.telefono = txtTelefono.Text;
+
+                String resultaod = control.actualizarCliente(clien);
+                MessageBox.Show(resultaod, "Resultado de la actualizacion", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+           
+
+
+        }
+
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+
+            GestionClientes nueva = new GestionClientes();
+            nueva.Show();
+            this.Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //clean up code
+            GestionClientes nueva = new GestionClientes();
+            this.Hide();
+            nueva.Show();
+            
+
         }
     }
 }

@@ -18,10 +18,42 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
     /// Lógica de interacción para EliminarCliente.xaml
     /// </summary>
     public partial class EliminarCliente : Window
+
     {
+        ControlBD control = new ControlBD();
         public EliminarCliente()
         {
             InitializeComponent();
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+           MessageBoxResult result= MessageBox.Show("¿Está seguro que desea eliminar este cliente?", "Confirmación de eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result== MessageBoxResult.Yes)
+            {
+                string respuesta = control.eliminarCliente(txtId.Text);
+                MessageBox.Show(respuesta);
+            }
+          
+
+        }
+
+       
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //clean up code
+            GestionClientes nueva = new GestionClientes();
+            nueva.Show();
+            this.Hide();
+
+        }
+
+        private void BtnVolver_Click_1(object sender, RoutedEventArgs e)
+        {
+            GestionClientes nueva = new GestionClientes();
+            nueva.Show();
+
+            this.Close();
         }
     }
 }
