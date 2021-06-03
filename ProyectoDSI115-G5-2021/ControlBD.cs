@@ -20,7 +20,7 @@ namespace ProyectoDSI115_G5_2021
 
         public ControlBD()
         {
-            cn = new SQLiteConnection("data source=C:/Users/Gabri/Desktop/dsi/v2/ProyectoDSI115-G5-2021/ProyectoDSI115-G5-2021/FYSIEX.db");
+            cn = new SQLiteConnection("data source=C:/Users/Gabri/Desktop/dsi/v3/ProyectoDSI115-G5-2021/ProyectoDSI115-G5-2021/FYSIEX.db");
         }
      
 
