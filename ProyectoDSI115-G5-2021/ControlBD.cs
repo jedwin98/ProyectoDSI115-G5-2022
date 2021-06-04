@@ -21,7 +21,9 @@ namespace ProyectoDSI115_G5_2021
 
         public ControlBD()
         {
+
             cn = new SQLiteConnection("data source=D:/FYSIEX.db");
+
         }
      
 

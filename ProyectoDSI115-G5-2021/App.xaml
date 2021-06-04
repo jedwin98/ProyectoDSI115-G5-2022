@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
              StartupUri="Login.xaml">
+
     <Application.Resources>
          
     </Application.Resources>
