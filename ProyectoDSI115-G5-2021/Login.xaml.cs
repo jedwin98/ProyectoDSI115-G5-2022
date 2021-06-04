@@ -35,7 +35,7 @@ namespace ProyectoDSI115_G5_2021
             labelRestaurarContrasena.Visibility = Visibility.Visible;
             cuadroRestaurarContrasena.Visibility = Visibility.Visible;
             botonRestaurarContrasena.Visibility = Visibility.Visible;
-            labelBienvenido.Content = "Ingrese su nueva contraseña.\nDespués de confirmar,\nguarde su contraseña en un lugar seguro.";
+            labelBienvenido.Content = "Ingrese su nueva contraseña.\nUse al menos 6 caracteres.";
             botonVolver.Visibility = Visibility.Visible;
         }
 
@@ -48,18 +48,19 @@ namespace ProyectoDSI115_G5_2021
                 //Comprobar que las contraseñas coincidan.
                 if (cuadroRestaurarContrasena.Password.ToString().Equals(nuevaContra))
                 {
-                    labelBienvenido.Content = "Contraseña reestablecida.";
+                    //¿Cómo se va a asegurar que el usuario específico quiso recuperar su contraseña?
+                    MessageBox.Show("Contraseña recuperada.", "Recuperar contraseña", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 else
                 {
-                    labelBienvenido.Content = "Las contraseñas no son iguales.";
+                    MessageBox.Show("Las contraseñas no coinciden. Intente de nuevo.", "Error al recuperar contraseña", MessageBoxButton.OK, MessageBoxImage.Error);
                     cuadroNuevaContrasena.Clear();
                     cuadroRestaurarContrasena.Clear();
                 }
             }
             else
             {
-                labelBienvenido.Content = "La contraseña es muy corta.";
+                labelBienvenido.Content = "La contraseña es muy corta.\nIntente de nuevo.";
                 cuadroNuevaContrasena.Clear();
                 cuadroRestaurarContrasena.Clear();
             }
@@ -78,6 +79,35 @@ namespace ProyectoDSI115_G5_2021
             botonRestaurarContrasena.Visibility = Visibility.Hidden;
             labelBienvenido.Content = "Para acceder, ingrese sus credenciales.";
             botonVolver.Visibility = Visibility.Hidden;
+        }
+
+        private void BotonInicioSesion_Click(object sender, RoutedEventArgs e)
+        {
+            //Estos valores son temporales. Al implementar la conexión a BD, borrar credenciales temporales.
+            String contrasenaTemp = "0xFE59AC",
+                   contrasenaBox = cuadroContrasena.Password.ToString(),
+                   usuarioTemp = "Administrador";
+            if (contrasenaBox.Equals(contrasenaTemp))
+            {
+                //Si la contraseña es correcta
+                MainWindow mw = new MainWindow();
+                //TODO: Implementar recuperación de información del usuario
+                mw.Title += usuarioTemp;
+                mw.Show();
+                this.Close();
+            }
+            else
+            {
+                //Si la contraseña no es correcta
+                MessageBox.Show("Las credenciales son incorrectas. Intente de nuevo o recupere su contraseña.", "Error al iniciar sesión", MessageBoxButton.OK, MessageBoxImage.Error);
+                cuadroEmail.Clear();
+                cuadroContrasena.Clear();
+            }
+        }
+
+        private void BotonSalir_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

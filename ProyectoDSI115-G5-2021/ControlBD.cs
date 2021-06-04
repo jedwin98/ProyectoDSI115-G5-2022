@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Windows;
 using System.Data;
+using System.Windows.Controls;
 
 namespace ProyectoDSI115_G5_2021
 {
@@ -20,7 +21,9 @@ namespace ProyectoDSI115_G5_2021
 
         public ControlBD()
         {
-            cn = new SQLiteConnection("data source=C:/Users/Gabri/Desktop/dsi/v3/ProyectoDSI115-G5-2021/ProyectoDSI115-G5-2021/FYSIEX.db");
+
+            cn = new SQLiteConnection("data source=D:/FYSIEX.db");
+
         }
      
 
@@ -120,10 +123,20 @@ namespace ProyectoDSI115_G5_2021
             return "Cliente Actualizado correctamente";
         }
 
-
-
-
-
+        public ComboBox ConsultarTipoUsuario(ComboBox cbx)
+        {
+            //Usar SELECT cod_tipousuario,nombre_tipousuario FROM tipo_usuario
+            string comandoString = "SELECT cod_tipousuario,nombre_tipousuario FROM tipo_usuario";
+            SQLiteCommand sqlCmd = new SQLiteCommand(comandoString, cn);
+            cn.Open();
+            SQLiteDataReader sqlReader = sqlCmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                cbx.Items.Add(sqlReader["nombre_tipousuario"].ToString());
+            }
+            sqlReader.Close();
+            return cbx;
+        }
 
         /*
 
