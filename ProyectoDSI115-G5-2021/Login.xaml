@@ -12,9 +12,9 @@
         <TextBox x:Name="cuadroEmail" HorizontalAlignment="Left" Height="26" Margin="440,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="14" IsTabStop="False" MaxLength="50"/>
         <Label x:Name="labelContrasena" Content="Contraseña" HorizontalAlignment="Right" Margin="0,0,362,65" VerticalAlignment="Bottom" FontSize="14" Width="80"/>
         <PasswordBox x:Name="cuadroContrasena" HorizontalAlignment="Left" Margin="440,320,0,0" VerticalAlignment="Top" Width="150" Height="26" FontSize="14" MaxLength="50"/>
-        <Button x:Name="botonInicioSesion" Content="Iniciar Sesión" HorizontalAlignment="Left" Margin="640,320,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="26" Background="#FFC91029" Foreground="#FFF7F7F7"/>
+        <Button x:Name="botonInicioSesion" Content="Iniciar Sesión" HorizontalAlignment="Left" Margin="640,320,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="26" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BotonInicioSesion_Click"/>
         <Button x:Name="botonOlvide" Content="¿Olvidó su contraseña?" HorizontalAlignment="Left" Margin="440,377,0,0" VerticalAlignment="Top" Width="150" Height="26" FontSize="14" Click="OlvideButton_Click"/>
-        <Button x:Name="botonSalir" Content="Salir" HorizontalAlignment="Left" Height="26" Margin="60,377,0,0" VerticalAlignment="Top" Width="56" FontSize="14" RenderTransformOrigin="2.02,0.564"/>
+        <Button x:Name="botonSalir" Content="Salir" HorizontalAlignment="Left" Height="26" Margin="60,377,0,0" VerticalAlignment="Top" Width="56" FontSize="14" RenderTransformOrigin="2.02,0.564" Click="BotonSalir_Click"/>
         <Label x:Name="labelNuevaContrasena" Content="Nueva contraseña" HorizontalAlignment="Left" Margin="309,316,0,0" VerticalAlignment="Top" FontSize="14" Visibility="Hidden"/>
         <PasswordBox x:Name="cuadroNuevaContrasena" HorizontalAlignment="Left" Margin="440,320,0,0" VerticalAlignment="Top" Width="150" Height="26" FontSize="14" IsTabStop="False" Visibility="Hidden" MaxLength="50"/>
         <Button x:Name="botonRestaurarContrasena" Content="Reestablecer contraseña" HorizontalAlignment="Left" Margin="600,377,0,0" VerticalAlignment="Top" Width="160" Height="26" FontSize="14" IsTabStop="False" Click="BotonRestaurarContrasena_Click" Visibility="Hidden"/>

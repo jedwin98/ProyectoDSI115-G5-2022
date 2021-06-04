@@ -124,6 +124,7 @@
     <Compile Include="GestionUsuarios\GestionUsuarios.xaml.cs">
       <DependentUpon>GestionUsuarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GestionUsuarios\TipoUsuario.cs" />
     <Compile Include="GestionUsuarios\Usuario.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

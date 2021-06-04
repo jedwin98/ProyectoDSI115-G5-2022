@@ -31,8 +31,19 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void CargarTabla()
         {
-            // TO DO: Hacer función de carga de usuarios.
+            //TODO: Hacer función de carga de usuarios.
             throw new NotImplementedException();
+        }
+
+        private void LlenarComboTipos()
+        {
+            //Se envía el comboBox y se recibe junto con los tipos de usuario.
+            comboRoles = control.ConsultarTipoUsuario(comboRoles);
+        }
+
+        private void LlenarComboEmpleados()
+        {
+            //Igual que LlenarComboTipos, pero aplicado a empleados 
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
@@ -47,6 +58,9 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             comboEmpleado.SetCurrentValue(IsEnabledProperty, true);
             comboRoles.SetCurrentValue(IsEnabledProperty, true);
             botonGuardar.SetCurrentValue(IsEnabledProperty, true);
+            botonValidar.SetCurrentValue(IsEnabledProperty, true);
+            LlenarComboTipos();
+            //LlenarComboUsuarios();
             // Booleano para determinar el resultado de guardar
             editando = false;
         }
@@ -75,6 +89,32 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             comboRoles.SetCurrentValue(IsEnabledProperty, false);
             comboRoles.Items.Clear();
             botonGuardar.SetCurrentValue(IsEnabledProperty, false);
+            botonValidar.SetCurrentValue(IsEnabledProperty, false);
+        }
+
+        private void BotonValidar_Click(object sender, RoutedEventArgs e)
+        {
+            //Preparar algoritmo para detectar un string de correo válido
+            string mail = cuadroEmail.Text;
+            CorreoValido(mail);
+        }
+
+        private void CorreoValido(string mail)
+        {
+            try
+            {
+                System.Net.Mail.MailAddress mailAddress = new System.Net.Mail.MailAddress(mail);
+                cuadroEmail.Background = Brushes.LightGreen;
+            }
+            catch
+            {
+                cuadroEmail.Background = Brushes.LightPink;
+            }
+        }
+
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -5,36 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionUsuarios"
         mc:Ignorable="d"
-        Title="Administración de Usuarios - FYSIEX" Height="464" Width="800">
+        Title="Administración de Usuarios - FYSIEX" Height="464" Width="800" MinWidth="800" MinHeight="464">
     <Grid>
-        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
-        <Label Content="Administración de Usuarios" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-        <Rectangle Margin="320,79,10,10" Stroke="Black"/>
-        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,99,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Segoe UI" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88"/>
-        <TextBox TextWrapping="Wrap" Text="" Margin="330,99,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="306" MaxLength="50"/>
-        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="330,136,23,172" />
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="275" Margin="19,79,0,0" Stroke="Black" VerticalAlignment="Top" Width="285" StrokeThickness="0"/>
-        <Button x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="81,118,0,0" VerticalAlignment="Top" Width="162" Height="65" Click="BtnAgregar_Click">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="577*"/>
+            <ColumnDefinition Width="130*"/>
+            <ColumnDefinition Width="85*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0" Grid.ColumnSpan="3"/>
+        <Label Content="Administración de Usuarios" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" Height="39" Width="294"/>
+        <Rectangle Fill="#FFF1EBEC" Margin="240,100,10,10" Stroke="Black" StrokeThickness="0" Grid.ColumnSpan="3"/>
+        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Segoe UI" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox TextWrapping="Wrap" Text="" Margin="250,120,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="386" MaxLength="50" BorderThickness="0" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="250,158,23,141" BorderThickness="0" Grid.ColumnSpan="3" >
+            <DataGrid.Columns>
+                <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}"/>
+                <DataGridTextColumn MinWidth="160" Header="Correo Electrónico" Binding="{Binding CORREO_USUARIO}"/>
+                <DataGridTextColumn MinWidth="100" Header="Rol de usuario" Binding="{Binding NOMBRE_TIPOUSUARIO}"/>
+                <DataGridTextColumn Visibility="Hidden" Header="ID Empleado" Binding="{Binding COD_EMPLEADO}"/>
+                <DataGridTextColumn MinWidth="200" Header="Empleado" Binding="{Binding NOMBRE_EMPLEADO}"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Contraseña" Binding="{Binding CONTRASENA_USUARIO}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="244" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="195" StrokeThickness="0"/>
+        <Button x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="37,121,0,0" VerticalAlignment="Top" Width="162" Height="65" Click="BtnAgregar_Click" BorderThickness="0">
             <DockPanel>
                 <Image Source="agregar.png" Height="40" Width="54"></Image>
                 <TextBlock HorizontalAlignment="Stretch" Height="20">Agregar</TextBlock>
             </DockPanel>
         </Button>
-        <Button Name="btnBorrar" Content="Borrar" HorizontalAlignment="Left" Margin="81,196,0,0" VerticalAlignment="Top" Width="162" Height="65"/>
-        <Button Name="btnEditar" Content="Editar" HorizontalAlignment="Left" Margin="81,275,0,0" VerticalAlignment="Top" Width="162" Height="65"/>
-        <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="330,68,0,0" VerticalAlignment="Top" Background="White"/>
-        <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="19,0,0,10" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Segoe UI" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom"/>
-        <Label Content="Usuario" HorizontalAlignment="Left" Margin="330,0,0,141" Height="26" VerticalAlignment="Bottom"/>
-        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="330,0,0,110" Height="26" VerticalAlignment="Bottom"/>
-        <Label Content="Correo electrónico" HorizontalAlignment="Left" Margin="330,0,0,79" Height="26" VerticalAlignment="Bottom"/>
-        <Label Content="Rol de usuario" HorizontalAlignment="Left" Margin="330,0,0,17" Height="26" VerticalAlignment="Bottom"/>
-        <TextBox Name="cuadroUsuario" Margin="470,0,242,141" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="7" Height="26" VerticalAlignment="Bottom"/>
-        <TextBox Name="cuadroEmail" Margin="470,0,23,79" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom"/>
-        <PasswordBox Name="cuadroContrasena" Margin="470,0,23,110" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom"/>
-        <ComboBox Name="comboRoles" Margin="470,0,146,17" FontSize="14" IsEnabled="False" Height="26" VerticalAlignment="Bottom"/>
-        <Button Name="botonGuardar" Content="Guardar" Margin="0,0,23,17" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" Click="BotonGuardar_Click" HorizontalAlignment="Right" Width="88" Height="26" VerticalAlignment="Bottom"/>
-        <Label Content="Elige la Opción que deseas realizar" HorizontalAlignment="Left" Margin="19,79,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI" Foreground="#FF0E0E0E"/>
-        <Label Content="Empleado" HorizontalAlignment="Left" Margin="330,0,0,48" Height="26" VerticalAlignment="Bottom"/>
-        <ComboBox Name="comboEmpleado" Margin="470,0,23,48" IsEnabled="False" Height="26" VerticalAlignment="Bottom"/>
+        <Button Name="btnBorrar" Content="Borrar" HorizontalAlignment="Left" Margin="37,199,0,0" VerticalAlignment="Top" Width="162" Height="65" BorderThickness="0"/>
+        <Button Name="btnEditar" Content="Editar" HorizontalAlignment="Left" Margin="37,278,0,0" VerticalAlignment="Top" Width="162" Height="65" BorderThickness="0"/>
+        <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="250,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,1.038" Height="26" Width="109"/>
+        <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="19,0,0,10" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Segoe UI" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
+        <Label Content="Usuario" HorizontalAlignment="Left" Margin="250,0,0,110" Height="26" VerticalAlignment="Bottom" Width="50"/>
+        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="250,0,0,79" Height="26" VerticalAlignment="Bottom" Width="70"/>
+        <Label Content="Correo electrónico" HorizontalAlignment="Left" Margin="250,0,0,48" Height="26" VerticalAlignment="Bottom" Width="108"/>
+        <Label Content="Rol de usuario" Margin="474,0,0,110" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="86"/>
+        <TextBox Name="cuadroUsuario" Margin="380,0,0,110" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="7" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="80"/>
+        <TextBox Name="cuadroEmail" Margin="380,0,37,48" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <PasswordBox Name="cuadroContrasena" Margin="380,0,18,80" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom"/>
+        <PasswordBox x:Name="cuadroContrasenaConfirmar" Margin="13,0,23,80" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ComboBox Name="comboRoles" Margin="13,0,23,110" FontSize="14" IsEnabled="False" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button Name="botonGuardar" Content="Guardar" Margin="0,0,23,17" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" Click="BotonGuardar_Click" HorizontalAlignment="Right" Width="88" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Label Content="Elige la Opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="285" Grid.ColumnSpan="3" Height="34"/>
+        <Label Content="Empleado" HorizontalAlignment="Left" Margin="250,0,0,17" Height="26" VerticalAlignment="Bottom" Width="63"/>
+        <ComboBox Name="comboEmpleado" Margin="380,0,37,17" IsEnabled="False" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Label  Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="169"/>
+        <Button x:Name="botonValidar" Content="Guardar" Margin="0,0,23,49" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" HorizontalAlignment="Right" Width="88" Height="26" VerticalAlignment="Bottom" Click="BotonValidar_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
     </Grid>
 </Window>
