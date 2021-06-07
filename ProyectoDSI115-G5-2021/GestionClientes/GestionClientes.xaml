@@ -7,8 +7,6 @@
         mc:Ignorable="d"
         Title="Gestion de Clientes" Height="464" Width="800">
     <Grid >
-
-
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,1,0,0" Height="61" VerticalAlignment="Top" />
 
         <Label  Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
@@ -17,8 +15,8 @@
         <Rectangle Margin="234,102,23,10" Stroke="Black"/>
 
 
-        <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,34,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88" Height="30" VerticalAlignment="Top"/>
-        <TextBox  Text="" Margin="263,120,143,0" Height="30" VerticalAlignment="Top"/>
+        <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,34,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click"/>
+        <TextBox x:Name="textBuscar"  Text="" Margin="263,120,143,0" Height="30" VerticalAlignment="Top"/>
         <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,176,34,67" >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Codigo"  Binding="{Binding COD_CLIENTE}"/>
@@ -35,20 +33,21 @@
         <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="246" VerticalAlignment="Top"/>
         <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnAgregar_Click">
             <DockPanel>
-                <Image Source="agregar.png" Height="60" Width="74"></Image>
+                <Image Source="/Images/agregar.png" Height="60" Width="74"></Image>
             </DockPanel>
         </Button>
         <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="69,196,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnBorrar_Click">
             <DockPanel>
-                <Image Source="basura.png" Height="60" Width="74"></Image>
+                <Image Source="/Images/basura.png" Height="60" Width="74"></Image>
             </DockPanel>
         </Button>
         <Button  x:Name="btnEditar" Background="#FFF1EBEC" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="69,261,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnEditar_Click">
             <DockPanel>
-                <Image Source="editar.png" Height="54" Width="58"></Image>
+                <Image Source="/Images/editar.png" Height="54" Width="58"></Image>
             </DockPanel>
         </Button>
         <Label  Content="Consultar Clientes" HorizontalAlignment="Left" Margin="250,84,0,0" Background="White" Height="26" VerticalAlignment="Top"/>
         <Button x:Name="btnVolver" Content="Volver" Margin="69,0,0,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom"/>
     </Grid>
+    
 </Window>

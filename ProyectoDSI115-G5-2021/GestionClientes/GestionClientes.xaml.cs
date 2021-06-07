@@ -24,6 +24,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
     {
         DataTable dt = new DataTable();
         ControlBD control = new ControlBD();
+        List<Cliente> clientes = new List<Cliente>();
         public GestionClientes()
         {
             InitializeComponent();
@@ -49,9 +50,9 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             DataRowView row = dataClientes.SelectedItem as DataRowView;
 
 
-           if (row == null)
+            if (row == null)
             {
-                MessageBox.Show("Seleccione primero un cliente","Seleccione un cliente",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+                MessageBox.Show("Seleccione primero un cliente", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
             else
@@ -84,7 +85,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             DataRowView row = dataClientes.SelectedItem as DataRowView;
             if (row == null)
             {
-                MessageBox.Show("Debe seleccionar un cliente primero","Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Debe seleccionar un cliente primero", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -98,8 +99,16 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 ec.Show();
                 this.Close();
             }
-           
-           
+
+
+
+        }
+
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            dt.Clear();
+            dt = control.BuscarCliente(textBuscar.Text);
+            dataClientes.ItemsSource = dt.DefaultView;
             
         }
     }

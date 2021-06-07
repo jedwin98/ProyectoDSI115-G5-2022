@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
-             StartupUri="Login.xaml">
+            StartupUri="GestionClientes/GestionClientes.xaml">
+    <!--StartupUri="Login.xaml"> -->
+    
 
     <Application.Resources>
          
