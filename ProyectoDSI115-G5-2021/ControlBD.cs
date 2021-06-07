@@ -13,7 +13,7 @@ namespace ProyectoDSI115_G5_2021
     class ControlBD 
     {
         SQLiteConnection cn;
-        List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
+      //  List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
         GestionClientes.Cliente cliente = new GestionClientes.Cliente();
         DataTable dt = new DataTable();
         
@@ -22,7 +22,8 @@ namespace ProyectoDSI115_G5_2021
         public ControlBD()
         {
 
-            cn = new SQLiteConnection("data source=D:/FYSIEX.db");
+        //  cn = new SQLiteConnection("data source=D:/FYSIEX.db");
+            cn = new SQLiteConnection("data source=C:/Users/Gabri/Desktop/dsi/v4/ProyectoDSI115-G5-2021/ProyectoDSI115-G5-2021/FYSIEX.db");
 
         }
      
@@ -63,7 +64,7 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Agregar cliente "+ex.Message.ToString());
                 Console.WriteLine();
                 cn.Close();
                 return "Ha ocurrido un error";
@@ -122,6 +123,59 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return "Cliente Actualizado correctamente";
         }
+        public DataTable BuscarCliente(string nombrecliente)
+        {
+            List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT * from CLIENTE WHERE NOMBRE_CLIENTE LIKE @nombre AND ESTADO_CLIENTE='Activo';", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre",nombrecliente+"%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+                /*   SQLiteDataReader dr = comando.ExecuteReader();
+
+                   while (dr.Read())
+                   {
+                       cliente.codigo = Convert.ToString(dr[0]);
+                       cliente.nombres = Convert.ToString(dr[1]);
+                       cliente.apellidos = Convert.ToString(dr[2]);
+                       cliente.empresa = Convert.ToString(dr[3]);
+                       cliente.telefono = Convert.ToString(dr[4]);
+                       cliente.estado = Convert.ToString(dr[5]);
+                 //      MessageBox.Show(cliente.ToString());
+                       clientes.Add(cliente);
+
+                   }*/
+
+                cn.Close();
+                
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public ComboBox ConsultarTipoUsuario(ComboBox cbx)
         {
