@@ -5,22 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionUsuarios"
         mc:Ignorable="d"
-        Title="Administración de Usuarios - FYSIEX" Height="464" Width="800" MinWidth="800" MinHeight="464">
+        Title="Administración de Usuarios - FYSIEX" Height="470" Width="850" MinWidth="850" MinHeight="470" SizeChanged="Window_SizeChanged">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="577*"/>
-            <ColumnDefinition Width="130*"/>
-            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Name="cd1"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0" Grid.ColumnSpan="3"/>
+        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Administración de Usuarios" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="39"/>
-        <Rectangle Fill="#FFFFFFFF" Margin="240,100,10,10" Stroke="Black" Grid.ColumnSpan="3"/>
-        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBox TextWrapping="Wrap" Text="" Margin="250,120,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="386" MaxLength="50" BorderThickness="1" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="250,158,23,141" BorderThickness="0" Grid.ColumnSpan="3" AutoGenerateColumns="False">
+        <Rectangle Fill="#FFFFFFFF" Margin="209,100,10,10" Stroke="Black"/>
+        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0"/>
+        <TextBox TextWrapping="Wrap" Text="" Margin="224,120,171,0" Height="32" VerticalAlignment="Top" MaxLength="50" BorderThickness="1"/>
+        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="224,158,23,147" BorderThickness="0" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}"/>
                 <DataGridTextColumn MinWidth="160" Header="Correo Electrónico" Binding="{Binding CORREO_USUARIO}"/>
@@ -47,23 +45,24 @@
         </Button>
         <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="250,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,1.038" Height="26" BorderThickness="0" Background="#FFFFFFFF"/>
         <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="52,0,0,17" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
-        <Label Content="Usuario" HorizontalAlignment="Left" Margin="250,0,0,110" Height="26" VerticalAlignment="Bottom" Width="50"/>
-        <Label Content="Contraseña" Margin="0,0,10,110" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="70"/>
-        <Label Content="Correo electrónico" HorizontalAlignment="Left" Margin="250,0,0,48" Height="26" VerticalAlignment="Bottom" Width="108"/>
-        <Label Content="Rol de usuario" Margin="250,0,0,80" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="86"/>
-        <TextBox TextChanged="CuadroUsuario_TextChanged" Name="cuadroUsuario" Margin="380,0,0,110" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="7" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="80"/>
-        <TextBox TextChanged="CuadroEmail_TextChanged" Name="cuadroEmail" Margin="380,0,23,48" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="3"/>
-        <PasswordBox PasswordChanged="CuadroContrasena_PasswordChanged" Name="cuadroContrasena" Margin="13,0,23,110" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <PasswordBox PasswordChanged="CuadroContrasenaConfirmar_PasswordChanged" x:Name="cuadroContrasenaConfirmar" Margin="13,0,23,80" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <ComboBox Name="comboRoles" Margin="380,0,18,80" FontSize="14" IsEnabled="False" SelectionChanged="ComboRoles_SelectionChanged"
+        <Label Name="labelUsuario" Content="Usuario" HorizontalAlignment="Left" Margin="224,0,0,116" Width="50" Height="26" VerticalAlignment="Bottom"/>
+        <Label Name="labelContrasena" Content="Contraseña" Margin="533,0,0,116" HorizontalAlignment="Left" Width="70" Height="26" VerticalAlignment="Bottom"/>
+        <Label Name="labelEmail" Content="Correo electrónico" HorizontalAlignment="Left" Margin="224,0,0,56" Height="26" VerticalAlignment="Bottom" Width="108"/>
+        <Label Name="labelRoles" Content="Rol de usuario" Margin="224,0,0,86" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="86"/>
+        <TextBox TextChanged="CuadroUsuario_TextChanged" Name="cuadroUsuario" Margin="337,0,0,116" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="7" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="80"/>
+        <TextBox TextChanged="CuadroEmail_TextChanged" Name="cuadroEmail" Margin="337,0,23,56" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom"/>
+        <PasswordBox PasswordChanged="CuadroContrasena_PasswordChanged" Name="cuadroContrasena" Margin="626,0,23,116" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom"/>
+        <PasswordBox PasswordChanged="CuadroContrasenaConfirmar_PasswordChanged" x:Name="cuadroContrasenaConfirmar" Margin="626,0,23,86" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom"/>
+        <ComboBox Name="comboRoles" Margin="337,0,0,86" FontSize="14" IsEnabled="False" SelectionChanged="ComboRoles_SelectionChanged"
                   Height="26" VerticalAlignment="Bottom" DropDownClosed="ComboRoles_DropDownClosed"
-                  ItemsSource="{Binding}" DisplayMemberPath="nombreTipoUsuario" SelectedValuePath="codTipoUsuario"/>
-        <Button Name="botonGuardar" Content="Guardar" Margin="0,0,23,17" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" Click="BotonGuardar_Click" HorizontalAlignment="Right" Width="88" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1" FontFamily="Comic Sans MS"/>
-        <Label Content="Elige la Opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="308" Grid.ColumnSpan="3" Height="34"/>
-        <Label Content="Empleado" HorizontalAlignment="Left" Margin="250,0,0,17" Height="26" VerticalAlignment="Bottom" Width="63"/>
-        <ComboBox Name="comboEmpleado" Margin="380,0,37,17" IsEnabled="False" SelectionChanged="ComboEmpleado_SelectionChanged"
-                  Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" DropDownClosed="ComboEmpleado_DropDownClosed"
+                  ItemsSource="{Binding}" DisplayMemberPath="nombreTipoUsuario" SelectedValuePath="codTipoUsuario" HorizontalAlignment="Left" Width="135"/>
+        <Button Name="botonGuardar" Content="Guardar" Margin="0,0,23,26" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" Click="BotonGuardar_Click" HorizontalAlignment="Right" Width="88" FontFamily="Comic Sans MS" Height="26" VerticalAlignment="Bottom"/>
+        <Label Content="Elige la Opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="308" Height="34"/>
+        <Label Name="labelEmpleado" Content="Empleado" HorizontalAlignment="Left" Margin="224,0,0,26" Height="26" VerticalAlignment="Bottom" Width="63"/>
+        <ComboBox Name="comboEmpleado" Margin="337,0,171,26" IsEnabled="False" SelectionChanged="ComboEmpleado_SelectionChanged"
+                  Height="26" VerticalAlignment="Bottom" DropDownClosed="ComboEmpleado_DropDownClosed"
                   ItemsSource="{Binding}" DisplayMemberPath="nombreEmpleado" SelectedValuePath="codEmpleado"/>
-        <Label  Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="185" FontFamily="Comic Sans MS"/>
+        <Label Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="185" FontFamily="Comic Sans MS"/>
+        <Label Name="labelContrasenaConfirmar" Content="Confirme contraseña" Margin="483,0,0,86" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120"/>
     </Grid>
 </Window>

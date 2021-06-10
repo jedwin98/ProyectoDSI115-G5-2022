@@ -22,11 +22,26 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
     {
         private DataTable dt = new DataTable();
         private ControlBD control = new ControlBD();
-        private bool editando, contrasenaCorrecta, emailCorrecto, open = false, combo1 = false, combo2 = false;
+        private bool editando, guardando, contrasenaCorrecta, emailCorrecto, open = false, combo1 = false, combo2 = false;
+        private Thickness ogTabla, ogUsuario, ogRoles, ogContra, ogConfirma, ogMail, ogEmp, ogGuarda, oglUsuario, oglRoles, oglContra, oglConfirma, oglMail, oglEmp;
         public GestionUsuarios()
         {
             InitializeComponent();
             CargarTabla();
+            ogTabla = dataUsuarios.Margin;
+            ogUsuario = cuadroUsuario.Margin;
+            ogRoles = comboRoles.Margin;
+            ogContra = cuadroContrasena.Margin;
+            ogConfirma = cuadroContrasenaConfirmar.Margin;
+            ogMail = cuadroEmail.Margin;
+            ogEmp = comboEmpleado.Margin;
+            ogGuarda = botonGuardar.Margin;
+            oglUsuario = labelUsuario.Margin;
+            oglRoles = labelRoles.Margin;
+            oglContra = labelContrasena.Margin;
+            oglConfirma = labelContrasenaConfirmar.Margin;
+            oglMail = labelEmail.Margin;
+            oglEmp = labelEmpleado.Margin;
         }
 
         private void CargarTabla()
@@ -59,6 +74,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             //Variables para habilitar guardado.
+            guardando = false;
             if (!open)
             {
                 contrasenaCorrecta = false;
@@ -87,6 +103,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void BotonGuardar_Click(object sender, RoutedEventArgs e)
         {
+            guardando = true;
             //TO DO: Lógica de guardado de usuarios
             Usuario aGuardar = new Usuario();
             aGuardar.tipoUsuario = new TipoUsuario();
@@ -124,6 +141,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             botonGuardar.SetCurrentValue(IsEnabledProperty, false);
             var uriSource = new Uri("/Images/agregar.png", UriKind.Relative);
             imgAgregar.Source = new BitmapImage(uriSource);
+            CargarTabla();
         }
 
         private void HabilitarEdicion(bool valor)
@@ -174,14 +192,16 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void PermitirGuardado()
         {
-            //
-            if (contrasenaCorrecta && emailCorrecto && !comboEmpleado.SelectedItem.Equals(null) && !comboRoles.SelectedItem.Equals(null) && !cuadroUsuario.Text.Equals(""))
+            if (!guardando)
             {
-                botonGuardar.SetCurrentValue(IsEnabledProperty, true);
-            }
-            else
-            {
-                botonGuardar.SetCurrentValue(IsEnabledProperty, false);
+                if (contrasenaCorrecta && emailCorrecto && !comboEmpleado.SelectedItem.Equals(null) && !comboRoles.SelectedItem.Equals(null) && !cuadroUsuario.Text.Equals(""))
+                {
+                    botonGuardar.SetCurrentValue(IsEnabledProperty, true);
+                }
+                else
+                {
+                    botonGuardar.SetCurrentValue(IsEnabledProperty, false);
+                }
             }
         }
 
@@ -194,6 +214,44 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         {
             combo2 = !comboEmpleado.IsDropDownOpen;
             PermitirGuardado();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.Height > 636 || this.WindowState == WindowState.Maximized)
+            {
+                dataUsuarios.Margin = new Thickness(224, 158, 23, 307);
+                labelUsuario.Margin = new Thickness(224, 0, 23, 246);
+                cuadroUsuario.Margin = new Thickness(349, 0, 0, 246);
+                labelRoles.Margin = new Thickness(517, 0, 0, 246);
+                comboRoles.Margin = new Thickness(626, 0, 23, 246);
+                labelContrasena.Margin = new Thickness(224, 0, 0, 216);
+                cuadroContrasena.Margin = new Thickness(349, 0, 23, 216);
+                labelContrasenaConfirmar.Margin = new Thickness(224, 0, 0, 186);
+                cuadroContrasenaConfirmar.Margin = new Thickness(349, 0, 23, 186);
+                labelEmail.Margin = new Thickness(224, 0, 0, 156);
+                cuadroEmail.Margin = new Thickness(349, 0, 23, 156);
+                labelEmpleado.Margin = new Thickness(224, 0, 0, 126);
+                comboEmpleado.Margin = new Thickness(349, 0, 171, 126);
+                botonGuardar.Margin = new Thickness(0, 0, 23, 126);
+            }
+            else
+            {
+                dataUsuarios.Margin = ogTabla;
+                labelUsuario.Margin = oglUsuario;
+                cuadroUsuario.Margin = ogUsuario;
+                labelRoles.Margin = oglRoles;
+                comboRoles.Margin = ogRoles;
+                labelContrasena.Margin = oglContra;
+                cuadroContrasena.Margin = ogContra;
+                labelContrasenaConfirmar.Margin = oglConfirma;
+                cuadroContrasenaConfirmar.Margin = ogConfirma;
+                labelEmail.Margin = oglMail;
+                cuadroEmail.Margin = ogMail;
+                labelEmpleado.Margin = oglEmp;
+                comboEmpleado.Margin = ogEmp;
+                botonGuardar.Margin = ogGuarda;
+            }
         }
 
         private void ComboRoles_DropDownClosed(object sender, EventArgs e)
