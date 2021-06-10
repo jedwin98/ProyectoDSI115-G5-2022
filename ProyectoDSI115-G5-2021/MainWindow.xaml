@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
+        Closing="MainWindow_Closing"
         Title="FYSIEX - Bienvenido " Height="450" Width="800" ResizeMode="CanMinimize" MinWidth="800" MinHeight="450">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,12 +14,13 @@
             <ColumnDefinition Width="181*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" Grid.ColumnSpan="3" StrokeThickness="0"/>
-        <Label Content="¡Bienvenido a FYSIEX, tu control de inventario digital!" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Grid.ColumnSpan="3" Height="39" Width="594"/>
+        <Label Content="¡Bienvenido a FYSIEX, tu control de inventario digital!" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Grid.ColumnSpan="3" Height="39"/>
         <Label Content="Menú principal" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Height="34" Width="129" FontFamily="Comic Sans MS"/>
         <Rectangle Grid.Column="1" Fill="#FFF1EBEC" Height="309" Margin="10,100,10,0" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
-        <Button HorizontalAlignment="Left" Margin="19,350,0,0" VerticalAlignment="Top" Width="150" Height="50" Background="#FFC91029" Click="Button_Click_2">
+        <Button Name="btnLogout" HorizontalAlignment="Left" Margin="19,350,0,0" VerticalAlignment="Top" Width="150" Height="50" Background="#FFC91029" Click="BtnLogout_Click">
             <DockPanel Height="40" LastChildFill="False" Width="140">
-                <Label Content="Cerrar sesión" Height="30" VerticalAlignment="Top" FontSize="14" Margin="40,5,0,0" Width="100" Foreground="White" FontFamily="Comic Sans MS"/>
+                <Image Source="/Images/cerrar2.png" Height="40" Width="40"/>
+                <Label Content="Cerrar sesión" Height="30" VerticalAlignment="Top" FontSize="14" Margin="5,5,0,0" Width="100" Foreground="White" FontFamily="Comic Sans MS"/>
             </DockPanel>
         </Button>
         <Label Content="Administración" Grid.Column="1" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.154" Height="26" Width="89"/>
@@ -26,20 +28,23 @@
         <Label Content="Consultas y gestiones" Grid.Column="2" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.154" Height="26" Width="124"/>
         <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Height="130" Margin="10,279,10,0" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Solicitudes" Grid.Column="2" HorizontalAlignment="Left" Margin="10,248,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.154" Height="26" Width="67"/>
-        <Button Grid.Column="1" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0" Click="Button_Click_1">
-            <DockPanel Height="80" LastChildFill="False" Width="140">
-                <Label Content="Administrar Clientes" Height="30" VerticalAlignment="Top" Margin="0,50,0,0" Width="120"/>
-            </DockPanel>
+        <Button Background="#FFF1EBEC" Name="btnClientes" Grid.Column="1" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0" Click="BtnClientes_Click">
+            <StackPanel Height="80" Width="140">
+                <Image Source="/Images/cliente.png" Height="40" Width="54" Margin="43,5"/>
+                <Label Content="Administrar Clientes" Height="30" VerticalAlignment="Bottom" Width="120"/>
+            </StackPanel>
         </Button>
-        <Button Grid.Column="1" HorizontalAlignment="Left" Margin="20,210,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0">
-            <DockPanel Height="80" LastChildFill="False" Width="140">
-                <Label Content="Administrar Empleados" Height="30" VerticalAlignment="Top" Margin="0,50,0,0"/>
-            </DockPanel>
+        <Button Background="#FFF1EBEC" Name="btnEmpleados" Grid.Column="1" HorizontalAlignment="Left" Margin="20,210,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0">
+            <StackPanel Height="80" Width="140">
+                <Image Source="/Images/empleados.png" Height="40" Width="54" Margin="43,5"/>
+                <Label Content="Administrar Empleados" Height="30" VerticalAlignment="Bottom" Width="132"/>
+            </StackPanel>
         </Button>
-        <Button Grid.Column="1" HorizontalAlignment="Left" Margin="20,310,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0" Click="Button_Click">
-            <DockPanel Height="80" LastChildFill="False" Width="140">
-                <Label Content="Administrar Usuarios" Height="30" VerticalAlignment="Top" Margin="0,50,0,0"/>
-            </DockPanel>
+        <Button Background="#FFF1EBEC" Name="btnUsuarios" Grid.Column="1" HorizontalAlignment="Left" Margin="20,310,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0" Click="BtnUsuarios_Click">
+            <StackPanel Height="80" Width="140">
+                <Image Source="/Images/usuario.png" Height="40" Width="54" Margin="43,5"/>
+                <Label Content="Administrar Usuarios" Height="30" VerticalAlignment="Bottom" Width="120"/>
+            </StackPanel>
         </Button>
     </Grid>
 </Window>

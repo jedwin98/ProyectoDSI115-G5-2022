@@ -84,15 +84,16 @@ namespace ProyectoDSI115_G5_2021
         private void BotonInicioSesion_Click(object sender, RoutedEventArgs e)
         {
             //Estos valores son temporales. Al implementar la conexión a BD, borrar credenciales temporales.
-            String contrasenaTemp = "0xFE59AC",
-                   contrasenaBox = cuadroContrasena.Password.ToString(),
-                   usuarioTemp = "Administrador";
-            if (contrasenaBox.Equals(contrasenaTemp))
+            String contrasenaBox = cuadroContrasena.Password.ToString(),
+                   usuarioCorreo = cuadroEmail.Text;
+            GestionUsuarios.Usuario sesion = control.CrearSesion(usuarioCorreo, contrasenaBox);
+            if (sesion != null)
             {
                 //Si la contraseña es correcta
                 MainWindow mw = new MainWindow();
                 //TODO: Implementar recuperación de información del usuario
-                mw.Title += usuarioTemp;
+                mw.Title += sesion.empleado;
+                mw.Sesion = sesion;
                 mw.Show();
                 this.Close();
             }

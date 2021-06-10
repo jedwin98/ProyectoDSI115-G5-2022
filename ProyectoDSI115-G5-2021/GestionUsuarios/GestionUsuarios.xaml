@@ -16,45 +16,54 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0" Grid.ColumnSpan="3"/>
-        <Label Content="Administración de Usuarios" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" Height="39" Width="294"/>
-        <Rectangle Fill="#FFF1EBEC" Margin="240,100,10,10" Stroke="Black" StrokeThickness="0" Grid.ColumnSpan="3"/>
-        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Segoe UI" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBox TextWrapping="Wrap" Text="" Margin="250,120,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="386" MaxLength="50" BorderThickness="0" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="250,158,23,141" BorderThickness="0" Grid.ColumnSpan="3" >
+        <Label Content="Administración de Usuarios" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="39"/>
+        <Rectangle Fill="#FFFFFFFF" Margin="240,100,10,10" Stroke="Black" Grid.ColumnSpan="3"/>
+        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox TextWrapping="Wrap" Text="" Margin="250,120,0,0" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="386" MaxLength="50" BorderThickness="1" Grid.ColumnSpan="2"/>
+        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="250,158,23,141" BorderThickness="0" Grid.ColumnSpan="3" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}"/>
                 <DataGridTextColumn MinWidth="160" Header="Correo Electrónico" Binding="{Binding CORREO_USUARIO}"/>
-                <DataGridTextColumn MinWidth="100" Header="Rol de usuario" Binding="{Binding NOMBRE_TIPOUSUARIO}"/>
-                <DataGridTextColumn Visibility="Hidden" Header="ID Empleado" Binding="{Binding COD_EMPLEADO}"/>
-                <DataGridTextColumn MinWidth="200" Header="Empleado" Binding="{Binding NOMBRE_EMPLEADO}"/>
-                <DataGridTextColumn Visibility="Hidden" Header="Contraseña" Binding="{Binding CONTRASENA_USUARIO}"/>
+                <DataGridTextColumn MinWidth="100" Header="Rol de usuario" Binding="{Binding NOM_TIPOUSUARIO}"/>
+                <DataGridTextColumn MinWidth="200" Header="Nombre Empleado" Binding="{Binding NOM_EMPLEADO}"/>
+                <DataGridTextColumn MinWidth="200" Header="Apellido Empleado" Binding="{Binding APE_EMPLEADO}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="244" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="195" StrokeThickness="0"/>
-        <Button x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="37,121,0,0" VerticalAlignment="Top" Width="162" Height="65" Click="BtnAgregar_Click" BorderThickness="0">
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="244" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
+        <Button Background="#FFF1EBEC" x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="52,121,0,0" VerticalAlignment="Top" Width="101" Height="65" Click="BtnAgregar_Click" BorderThickness="0">
             <DockPanel>
-                <Image Source="agregar.png" Height="40" Width="54"></Image>
-                <TextBlock HorizontalAlignment="Stretch" Height="20">Agregar</TextBlock>
+                <Image Name="imgAgregar" Source="/Images/agregar.png" Height="40" Width="54"></Image>
             </DockPanel>
         </Button>
-        <Button Name="btnBorrar" Content="Borrar" HorizontalAlignment="Left" Margin="37,199,0,0" VerticalAlignment="Top" Width="162" Height="65" BorderThickness="0"/>
-        <Button Name="btnEditar" Content="Editar" HorizontalAlignment="Left" Margin="37,278,0,0" VerticalAlignment="Top" Width="162" Height="65" BorderThickness="0"/>
-        <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="250,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,1.038" Height="26" Width="109"/>
-        <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="19,0,0,10" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Segoe UI" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
+        <Button Background="#FFF1EBEC" Name="btnBorrar" HorizontalAlignment="Left" Margin="52,199,0,0" VerticalAlignment="Top" Width="101" Height="65" BorderThickness="0">
+            <DockPanel>
+                <Image Source="/Images/basura.png" Height="40" Width="54"></Image>
+            </DockPanel>
+        </Button>
+        <Button Background="#FFF1EBEC" Name="btnEditar" HorizontalAlignment="Left" Margin="52,278,0,0" VerticalAlignment="Top" Width="101" Height="65" BorderThickness="0">
+            <DockPanel>
+                <Image Source="/Images/editar.png" Height="40" Width="54"></Image>
+            </DockPanel>
+        </Button>
+        <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="250,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,1.038" Height="26" BorderThickness="0" Background="#FFFFFFFF"/>
+        <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="52,0,0,17" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
         <Label Content="Usuario" HorizontalAlignment="Left" Margin="250,0,0,110" Height="26" VerticalAlignment="Bottom" Width="50"/>
-        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="250,0,0,79" Height="26" VerticalAlignment="Bottom" Width="70"/>
+        <Label Content="Contraseña" Margin="0,0,10,110" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="70"/>
         <Label Content="Correo electrónico" HorizontalAlignment="Left" Margin="250,0,0,48" Height="26" VerticalAlignment="Bottom" Width="108"/>
-        <Label Content="Rol de usuario" Margin="474,0,0,110" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="86"/>
-        <TextBox Name="cuadroUsuario" Margin="380,0,0,110" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="7" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="80"/>
-        <TextBox Name="cuadroEmail" Margin="380,0,37,48" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
-        <PasswordBox Name="cuadroContrasena" Margin="380,0,18,80" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom"/>
-        <PasswordBox x:Name="cuadroContrasenaConfirmar" Margin="13,0,23,80" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <ComboBox Name="comboRoles" Margin="13,0,23,110" FontSize="14" IsEnabled="False" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <Button Name="botonGuardar" Content="Guardar" Margin="0,0,23,17" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" Click="BotonGuardar_Click" HorizontalAlignment="Right" Width="88" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <Label Content="Elige la Opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="285" Grid.ColumnSpan="3" Height="34"/>
+        <Label Content="Rol de usuario" Margin="250,0,0,80" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="86"/>
+        <TextBox TextChanged="CuadroUsuario_TextChanged" Name="cuadroUsuario" Margin="380,0,0,110" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="7" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="80"/>
+        <TextBox TextChanged="CuadroEmail_TextChanged" Name="cuadroEmail" Margin="380,0,23,48" TextWrapping="Wrap" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="3"/>
+        <PasswordBox PasswordChanged="CuadroContrasena_PasswordChanged" Name="cuadroContrasena" Margin="13,0,23,110" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <PasswordBox PasswordChanged="CuadroContrasenaConfirmar_PasswordChanged" x:Name="cuadroContrasenaConfirmar" Margin="13,0,23,80" FontSize="14" IsEnabled="False" MaxLength="50" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ComboBox Name="comboRoles" Margin="380,0,18,80" FontSize="14" IsEnabled="False" SelectionChanged="ComboRoles_SelectionChanged"
+                  Height="26" VerticalAlignment="Bottom" DropDownClosed="ComboRoles_DropDownClosed"
+                  ItemsSource="{Binding}" DisplayMemberPath="nombreTipoUsuario" SelectedValuePath="codTipoUsuario"/>
+        <Button Name="botonGuardar" Content="Guardar" Margin="0,0,23,17" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" Click="BotonGuardar_Click" HorizontalAlignment="Right" Width="88" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Grid.Column="1" FontFamily="Comic Sans MS"/>
+        <Label Content="Elige la Opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="308" Grid.ColumnSpan="3" Height="34"/>
         <Label Content="Empleado" HorizontalAlignment="Left" Margin="250,0,0,17" Height="26" VerticalAlignment="Bottom" Width="63"/>
-        <ComboBox Name="comboEmpleado" Margin="380,0,37,17" IsEnabled="False" Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
-        <Label  Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="169"/>
-        <Button x:Name="botonValidar" Content="Guardar" Margin="0,0,23,49" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" IsEnabled="False" HorizontalAlignment="Right" Width="88" Height="26" VerticalAlignment="Bottom" Click="BotonValidar_Click" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <ComboBox Name="comboEmpleado" Margin="380,0,37,17" IsEnabled="False" SelectionChanged="ComboEmpleado_SelectionChanged"
+                  Height="26" VerticalAlignment="Bottom" Grid.ColumnSpan="2" DropDownClosed="ComboEmpleado_DropDownClosed"
+                  ItemsSource="{Binding}" DisplayMemberPath="nombreEmpleado" SelectedValuePath="codEmpleado"/>
+        <Label  Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="185" FontFamily="Comic Sans MS"/>
     </Grid>
 </Window>
