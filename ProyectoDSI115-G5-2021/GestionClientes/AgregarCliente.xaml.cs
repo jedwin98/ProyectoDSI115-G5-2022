@@ -44,25 +44,26 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
           
 
          }
-      /*  public void llenarComboBox()
-        {
-            ts = control.consultarTipoServicio();
-            cmbServicio.ItemsSource = ts;
-        }*/
+     
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            GestionClientes nueva = new GestionClientes();
+            GestionClientes nueva = new GestionClientes() {
+                WindowState = WindowState.Maximized
+            };
             nueva.Show();
             this.Close();
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //clean up code
-            GestionClientes nueva = new GestionClientes();
+            
+            GestionClientes nueva = new GestionClientes() {
+                WindowState = WindowState.Maximized
+            };
             nueva.Show();
-            this.Hide();
+            
 
         }
     }

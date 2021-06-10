@@ -19,11 +19,11 @@
 
 
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="183" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
-        <Button x:Name="btnGuardar"  HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="77" Click="BtnActualizar_Click">
-            <DockPanel>
-                <Image Source="agregar.png" Height="60" Width="69"></Image>
-
-            </DockPanel>
+        <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" Width="85" Height="100" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Click="BtnActualizar_Click">
+            <StackPanel>
+                <Image Source="/Images/disquete.png" Height="60" Width="69"></Image>
+                <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Comic Sans MS"/>
+            </StackPanel>
 
 
         </Button>

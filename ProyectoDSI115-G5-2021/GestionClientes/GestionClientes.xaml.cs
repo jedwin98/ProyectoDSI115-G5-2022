@@ -44,7 +44,9 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
-            ActualizarCliente ac = new ActualizarCliente();
+            ActualizarCliente ac = new ActualizarCliente() {
+                WindowState = WindowState.Maximized
+            };
 
 
             DataRowView row = dataClientes.SelectedItem as DataRowView;
@@ -73,14 +75,18 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarCliente ag = new AgregarCliente();
+            AgregarCliente ag = new AgregarCliente() {
+                WindowState = WindowState.Maximized
+            };
             ag.Show();
             this.Close();
         }
 
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
         {
-            EliminarCliente ec = new EliminarCliente();
+            EliminarCliente ec = new EliminarCliente() {
+                WindowState = WindowState.Maximized
+            };
 
             DataRowView row = dataClientes.SelectedItem as DataRowView;
             if (row == null)
@@ -106,10 +112,22 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
+
+            BuscarCliente();
+        }
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                BuscarCliente();
+            }
+        }
+        private void BuscarCliente()
+        {
             dt.Clear();
             dt = control.BuscarCliente(textBuscar.Text);
             dataClientes.ItemsSource = dt.DefaultView;
-            
+
         }
     }
 }
