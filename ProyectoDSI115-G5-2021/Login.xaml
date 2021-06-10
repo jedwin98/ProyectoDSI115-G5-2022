@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
-        Title="Login - FYSIEX" Height="450" Width="850" ResizeMode="CanMinimize">
+        Title="Login - FYSIEX" Height="450" Width="850" ResizeMode="CanMinimize" MinWidth="850" MinHeight="450">
     <Grid>
         <Rectangle Fill="#FFC91029" HorizontalAlignment="Left" Height="59" Stroke="Black" VerticalAlignment="Top" Width="844" Margin="0,362,0,0"/>
         <Label x:Name="labelEmail" Content="Correo electrónico" Margin="306,282,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="124"/>
-        <TextBox x:Name="cuadroEmail" HorizontalAlignment="Left" Height="26" Margin="440,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="394" FontSize="14" IsTabStop="False" MaxLength="50"/>
-        <Label x:Name="labelContrasena" Content="Contraseña" Margin="350,0,0,67" VerticalAlignment="Bottom" FontSize="14" HorizontalAlignment="Left" Width="80"/>
-        <PasswordBox x:Name="cuadroContrasena" HorizontalAlignment="Left" Margin="440,320,0,0" VerticalAlignment="Top" Width="250" Height="26" FontSize="14" MaxLength="50"/>
-        <Button x:Name="botonInicioSesion" Content="Iniciar Sesión" HorizontalAlignment="Left" Margin="714,320,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="26" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BotonInicioSesion_Click"/>
+        <TextBox x:Name="cuadroEmail" Height="26" Margin="440,282,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" IsTabStop="False" MaxLength="50"/>
+        <Label x:Name="labelContrasena" Content="Contraseña" Margin="350,319,0,0" FontSize="14" HorizontalAlignment="Left" Width="80" Height="29" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="cuadroContrasena" Margin="440,320,154,0" VerticalAlignment="Top" Height="26" FontSize="14" MaxLength="50"/>
+        <Button x:Name="botonInicioSesion" Content="Iniciar Sesión" Margin="714,322,10,0" VerticalAlignment="Top" FontSize="14" Height="26" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BotonInicioSesion_Click"/>
         <Button x:Name="botonOlvide" Content="¿Olvidó su contraseña?" HorizontalAlignment="Left" Margin="440,377,0,0" VerticalAlignment="Top" Width="150" Height="26" FontSize="14" Click="OlvideButton_Click"/>
         <Button x:Name="botonSalir" Content="Salir" HorizontalAlignment="Left" Height="26" Margin="60,377,0,0" VerticalAlignment="Top" Width="56" FontSize="14" RenderTransformOrigin="2.02,0.564" Click="BotonSalir_Click"/>
         <Label x:Name="labelNuevaContrasena" Content="Nueva contraseña" Margin="309,0,0,67" FontSize="14" HorizontalAlignment="Left" Width="121" Height="29" VerticalAlignment="Bottom" Visibility="Hidden"/>
@@ -22,5 +22,8 @@
         <PasswordBox x:Name="cuadroRestaurarContrasena" HorizontalAlignment="Left" Margin="440,377,0,0" VerticalAlignment="Top" Width="250" Height="26" FontSize="14" MaxLength="50" Visibility="Hidden"/>
         <Label x:Name="labelBienvenido" Content="Para acceder, ingrese sus credenciales." HorizontalAlignment="Left" Margin="3,282,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Button x:Name="botonVolver" Content="Volver" HorizontalAlignment="Left" Height="26" Margin="140,377,0,0" VerticalAlignment="Top" Width="56" FontSize="14" RenderTransformOrigin="2.02,0.564" Click="BotonVolver_Click" Visibility="Hidden"/>
+        <Image HorizontalAlignment="Left" Height="143" Margin="306,10,0,0" VerticalAlignment="Top" Width="229" Source="Images/fysi.jpg"/>
+        <Image HorizontalAlignment="Left" Height="42" Margin="274,170,0,0" VerticalAlignment="Top" Width="35" Source="Images/cff.jpg"/>
+        <Image HorizontalAlignment="Left" Height="42" Margin="440,170,0,0" VerticalAlignment="Top" Width="150" Source="Images/hf.jpg"/>
     </Grid>
 </Window>

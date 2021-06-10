@@ -46,5 +46,6 @@
                 <Label Content="Administrar Usuarios" Height="30" VerticalAlignment="Bottom" Width="120"/>
             </StackPanel>
         </Button>
+        <Image HorizontalAlignment="Left" Height="145" Margin="19,105,0,0" VerticalAlignment="Top" Width="222" Source="Images/fysi.jpg"/>
     </Grid>
 </Window>
