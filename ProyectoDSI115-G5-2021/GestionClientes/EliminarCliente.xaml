@@ -20,11 +20,11 @@
 
 
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="183" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
-        <Button x:Name="btnEliminar" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="77" Click="BtnEliminar_Click">
-            <DockPanel>
-                <Image Source="agregar.png" Height="40" Width="54"></Image>
-                <TextBlock HorizontalAlignment="Stretch">Eliminar</TextBlock>
-            </DockPanel>
+        <Button x:Name="btnEliminar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="100" Click="BtnEliminar_Click">
+            <StackPanel>
+                <Image Source="/Images/basura.png" Height="79" Width="76"/>
+                <TextBlock HorizontalAlignment="Stretch" Width="44" FontFamily="Comic Sans MS"><Run Text="Eliminar"/></TextBlock>
+            </StackPanel>
 
 
         </Button>

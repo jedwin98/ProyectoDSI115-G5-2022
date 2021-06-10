@@ -16,7 +16,7 @@
 
 
         <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,34,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click"/>
-        <TextBox x:Name="textBuscar"  Text="" Margin="263,120,143,0" Height="30" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBuscar"  Text="" Margin="263,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
         <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,176,34,67" >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Codigo"  Binding="{Binding COD_CLIENTE}"/>
@@ -30,24 +30,28 @@
         <Button x:Name="btnGenerar"  Content="Generar Reporte" Margin="0,0,61,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="138" Height="30" VerticalAlignment="Bottom"/>
 
 
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="246" VerticalAlignment="Top"/>
-        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnAgregar_Click">
-            <DockPanel>
-                <Image Source="/Images/agregar.png" Height="60" Width="74"></Image>
-            </DockPanel>
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="258" VerticalAlignment="Top"/>
+        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,112,0,0" VerticalAlignment="Top" Width="85" Height="75" Click="BtnAgregar_Click">
+            <StackPanel Height="64" Width="83">
+                <Image Source="/Images/agregar.png" Margin="10,0" Height="42"/>
+                <Label Content="Agregar" FontFamily="Comic Sans MS" Height="28" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,10,0" />
+            </StackPanel>
         </Button>
-        <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="69,196,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnBorrar_Click">
-            <DockPanel>
-                <Image Source="/Images/basura.png" Height="60" Width="74"></Image>
-            </DockPanel>
+        <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="69,197,0,0" VerticalAlignment="Top" Width="85" Height="81" Click="BtnBorrar_Click">
+            <StackPanel Height="81" Width="81">
+                <Image Source="/Images/basura.png" Height="57" Margin="4,0,5,0"/>
+                <Label Content="Eliminar" FontFamily="Comic Sans MS"  Height="24" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,13,0" />
+            </StackPanel>
         </Button>
-        <Button  x:Name="btnEditar" Background="#FFF1EBEC" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="69,261,0,0" VerticalAlignment="Top" Width="85" Height="65" Click="BtnEditar_Click">
-            <DockPanel>
-                <Image Source="/Images/editar.png" Height="54" Width="58"></Image>
-            </DockPanel>
+        <Button  x:Name="btnEditar" Background="#FFF1EBEC" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="69,278,0,0" VerticalAlignment="Top" Width="85" Height="76" Click="BtnEditar_Click">
+            <StackPanel>
+                <Image Source="/Images/editar.png" Height="54" Width="58"/>
+                <Label Content="Actualizar" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Bottom"/>
+            </StackPanel>
         </Button>
         <Label  Content="Consultar Clientes" HorizontalAlignment="Left" Margin="250,84,0,0" Background="White" Height="26" VerticalAlignment="Top"/>
         <Button x:Name="btnVolver" Content="Volver" Margin="69,0,0,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom"/>
+
     </Grid>
-    
+
 </Window>

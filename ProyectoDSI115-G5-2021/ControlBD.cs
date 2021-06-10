@@ -23,8 +23,8 @@ namespace ProyectoDSI115_G5_2021
         public ControlBD()
         {
 
-            cn = new SQLiteConnection("data source=D:/FYSIEX.db");
-        //  cn = new SQLiteConnection("data source=C:/Users/Gabri/Desktop/dsi/v4/ProyectoDSI115-G5-2021/ProyectoDSI115-G5-2021/FYSIEX.db");
+           // cn = new SQLiteConnection("data source=D:/FYSIEX.db");
+            cn = new SQLiteConnection("data source=C:/Users/Gabri/Desktop/dsi/v5/ProyectoDSI115-G5-2021/ProyectoDSI115-G5-2021/FYSIEX.db");
 
         }
      
@@ -132,25 +132,10 @@ namespace ProyectoDSI115_G5_2021
             {
                 cn.Open();
                 SQLiteCommand comando = new SQLiteCommand("SELECT * from CLIENTE WHERE NOMBRE_CLIENTE LIKE @nombre AND ESTADO_CLIENTE='Activo';", cn);
-                comando.Parameters.Add(new SQLiteParameter("@nombre",nombrecliente+"%"));
+                comando.Parameters.Add(new SQLiteParameter("@nombre", nombrecliente + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
-                /*   SQLiteDataReader dr = comando.ExecuteReader();
-
-                   while (dr.Read())
-                   {
-                       cliente.codigo = Convert.ToString(dr[0]);
-                       cliente.nombres = Convert.ToString(dr[1]);
-                       cliente.apellidos = Convert.ToString(dr[2]);
-                       cliente.empresa = Convert.ToString(dr[3]);
-                       cliente.telefono = Convert.ToString(dr[4]);
-                       cliente.estado = Convert.ToString(dr[5]);
-                 //      MessageBox.Show(cliente.ToString());
-                       clientes.Add(cliente);
-
-                   }*/
-
-                cn.Close();
+                
                 
             }
             catch (SQLiteException ex)
