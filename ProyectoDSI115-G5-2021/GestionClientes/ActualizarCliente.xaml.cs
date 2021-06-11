@@ -56,9 +56,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-
-            GestionClientes nueva = new GestionClientes();
-            nueva.Show();
+                                  
             this.Close();
         }
 

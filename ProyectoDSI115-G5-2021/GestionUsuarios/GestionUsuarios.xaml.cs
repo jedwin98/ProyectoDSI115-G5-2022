@@ -187,14 +187,17 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         private void CuadroEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
             CorreoValido(cuadroEmail.Text);
-            PermitirGuardado();
+            if (comboEmpleado.SelectedItem!=null)
+            {
+                PermitirGuardado();
+            }
         }
 
         private void PermitirGuardado()
         {
             if (!guardando)
             {
-                if (contrasenaCorrecta && emailCorrecto && !comboEmpleado.SelectedItem.Equals(null) && !comboRoles.SelectedItem.Equals(null) && !cuadroUsuario.Text.Equals(""))
+                if (contrasenaCorrecta && emailCorrecto && comboEmpleado.SelectedItem != null && comboRoles.SelectedItem != null && cuadroUsuario.Text != null && !cuadroEmail.IsFocused)
                 {
                     botonGuardar.SetCurrentValue(IsEnabledProperty, true);
                 }
