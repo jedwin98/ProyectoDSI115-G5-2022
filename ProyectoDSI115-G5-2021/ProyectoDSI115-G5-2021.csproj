@@ -246,9 +246,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="WhatsApp Image 2021-06-10 at 3.22.01 PM.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="FYSIEX.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
