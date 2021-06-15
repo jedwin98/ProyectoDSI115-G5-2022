@@ -131,6 +131,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GestionEmpleados\ActualizarEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestionEmpleados\AgregarEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestionEmpleados\EliminarEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestionEmpleados\GestionEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GestionUsuarios\GestionUsuarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +178,21 @@
       <DependentUpon>GestionClientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="GestionClientes\TipoServicio.cs" />
+    <Compile Include="GestionEmpleados\ActualizarEmpleado.xaml.cs">
+      <DependentUpon>ActualizarEmpleado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpleados\AgregarEmpleado.xaml.cs">
+      <DependentUpon>AgregarEmpleado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpleados\Area.cs" />
+    <Compile Include="GestionEmpleados\Cargo.cs" />
+    <Compile Include="GestionEmpleados\EliminarEmpleado.xaml.cs">
+      <DependentUpon>EliminarEmpleado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEmpleados\Empleado.cs" />
+    <Compile Include="GestionEmpleados\GestionEmpleados.xaml.cs">
+      <DependentUpon>GestionEmpleados.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestionUsuarios\EmpleadoItem.cs" />
     <Compile Include="GestionUsuarios\GestionUsuarios.xaml.cs">
       <DependentUpon>GestionUsuarios.xaml</DependentUpon>
