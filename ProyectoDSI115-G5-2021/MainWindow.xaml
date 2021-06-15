@@ -34,7 +34,7 @@
                 <Label Content="Administrar Clientes" Height="30" VerticalAlignment="Bottom" Width="120"/>
             </StackPanel>
         </Button>
-        <Button Background="#FFF1EBEC" Name="btnEmpleados" Grid.Column="1" HorizontalAlignment="Left" Margin="20,210,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0">
+        <Button Background="#FFF1EBEC" Name="btnEmpleados" Grid.Column="1" HorizontalAlignment="Left" Margin="20,210,0,0" VerticalAlignment="Top" Width="140" BorderThickness="0" Click="BtnEmpleados_Click">
             <StackPanel Height="80" Width="140">
                 <Image Source="/Images/empleados.png" Height="40" Width="54" Margin="43,5"/>
                 <Label Content="Administrar Empleados" Height="30" VerticalAlignment="Bottom" Width="132"/>

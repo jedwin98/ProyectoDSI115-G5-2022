@@ -8,6 +8,7 @@ using System.Windows;
 using System.Data;
 using System.Windows.Controls;
 using ProyectoDSI115_G5_2021.GestionUsuarios;
+using System.Data.SqlClient;
 
 namespace ProyectoDSI115_G5_2021
 {
@@ -267,7 +268,26 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return sesion;
         }
+        public DataTable ConsultarEmpleados()
+        {
+            DataTable data = new DataTable();
 
+            try
+            {
+                cn.Open();
+                string comando = "SELECT e.COD_EMPLEADO, e.COD_AREA, a.NOMBRE_AREA, e.COD_CARGO,c.NOMBRE_CARGO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO, e.FECHA_CONTRATACION,e.ESTADO_EMPLEADO FROM EMPLEADO AS e INNER JOIN AREA AS a INNER JOIN CARGO AS c  WHERE e.COD_AREA= a.COD_AREA AND e.COD_CARGO= c.COD_CARGO AND e.ESTADO_EMPLEADO = 'Activo'";
+                SQLiteDataAdapter da = new SQLiteDataAdapter(comando, cn);
+                da.Fill(data);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return data;
+        }
         /*
 
                 public List<GestionClientes.TipoServicio> consultarTipoServicio()
@@ -296,40 +316,50 @@ namespace ProyectoDSI115_G5_2021
                     cn.Close();
                     return tipoServ;
                 }*/
-        /*   public List<GestionClientes.Cliente> consultarClientes()
+        
+           
+       /*
+
+        public List<GestionEmpleados.Empleado> ConsultarEmpleados()
         {
-            List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
-            GestionClientes.Cliente cliente = new GestionClientes.Cliente();
-            try {
+            GestionEmpleados.Empleado empleado = new GestionEmpleados.Empleado();
+            List<GestionEmpleados.Empleado> empleados = new List<GestionEmpleados.Empleado>();
+            try
+            {
                 cn.Open();
-                SQLiteCommand da = new SQLiteCommand("select * from cliente", cn);
-                SQLiteDataReader dr = da.ExecuteReader();
-               
+                string comando = "SELECT e.COD_EMPLEADO, e.COD_AREA, a.NOMBRE_AREA, e.COD_CARGO,c.NOMBRE_CARGO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO, e.FECHA_CONTRATACION,e.ESTADO_EMPLEADO FROM EMPLEADO AS e INNER JOIN AREA AS a INNER JOIN CARGO AS c  WHERE e.COD_AREA= a.COD_AREA AND e.COD_CARGO= c.COD_CARGO AND e.ESTADO_EMPLEADO = 'Activo'";
+                SQLiteCommand command = new SQLiteCommand(comando, cn);
+                SQLiteDataReader dr = command.ExecuteReader();
+
+
                 while (dr.Read())
                 {
-                    cliente.codigo = Convert.ToString(dr[0]);
-                    cliente.codservicio = Convert.ToString(dr[1]);
-                    cliente.nombres = Convert.ToString(dr[2]);
-                    cliente.apellidos = Convert.ToString(dr[3]);
-                    cliente.empresa = Convert.ToString(dr[4]);
-                    MessageBox.Show(cliente.ToString());
-                    clientes.Add(cliente);
+
+                    empleado.codigoEmpleado = Convert.ToString(dr[0]);
+                    empleado.area.codigoArea = Convert.ToString(dr[1]);
+                    empleado.area.nombreArea = Convert.ToString(dr[2]);
+                    empleado.cargo.codigoCargo = Convert.ToString(dr[3]);
+                    empleado.cargo.nombreCargo = Convert.ToString(dr[4]);
+                    empleado.nombreEmpleado = Convert.ToString(dr[5]);
+                    empleado.apellidoEmpleado = Convert.ToString(dr[6]);
+                    empleado.fechaContratacion = Convert.ToDateTime(dr[7]);
+                    empleado.estadoEmpleado = Convert.ToString(dr[8]);
+                    empleados.Add(empleado);
 
                 }
-                
-            } catch (SQLiteException ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-              //  Console.WriteLine();
-                cn.Close();
 
             }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
             cn.Close();
-            MessageBox.Show("funcionó ?");
-            return clientes;
-           
-        }*/
 
+
+            return empleados;
+        }*/
 
 
     }

@@ -86,5 +86,14 @@ namespace ProyectoDSI115_G5_2021
             Login lg = new Login();
             lg.Show();
         }
+
+        private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
+        {
+            GestionEmpleados.GestionEmpleados ge = new GestionEmpleados.GestionEmpleados()
+            {
+                WindowState = WindowState.Maximized
+            };
+            ge.Show();
+        }
     }
 }
