@@ -17,6 +17,7 @@ namespace ProyectoDSI115_G5_2021
         SQLiteConnection cn;
       //  List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
         GestionClientes.Cliente cliente = new GestionClientes.Cliente();
+       
         DataTable dt = new DataTable();
         
 
@@ -40,7 +41,7 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Ha ocurrido un error al cargar tabla de clientes "+ex.Message.ToString());
                 Console.WriteLine();
                 cn.Close();
             }            
@@ -66,10 +67,10 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show("Agregar cliente "+ex.Message.ToString());
-                Console.WriteLine();
+               
+                
                 cn.Close();
-                return "Ha ocurrido un error";
+                return "Ha ocurrido un error al agregar cliente "+ex.Message.ToString();
 
             }
             cn.Close();
@@ -89,10 +90,10 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
-                Console.WriteLine();
+                
                 cn.Close();
-                return "Ha ocurrido un error";
+                return "Ha ocurrido un error al eliminar cliente " + ex.Message.ToString();
+
 
             }
             cn.Close();
@@ -116,16 +117,16 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
-                Console.WriteLine();
+                
                 cn.Close();
-                return "Ha ocurrido un error";
+                return "Ha ocurrido un error al actualizar cliente " + ex.Message.ToString();
+
 
             }
             cn.Close();
             return "Cliente Actualizado correctamente";
         }
-        public DataTable BuscarCliente(string nombrecliente)
+        public DataTable BuscarCliente(string nombreCliente)
         {
             List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -133,7 +134,7 @@ namespace ProyectoDSI115_G5_2021
             {
                 cn.Open();
                 SQLiteCommand comando = new SQLiteCommand("SELECT * from CLIENTE WHERE NOMBRE_CLIENTE LIKE @nombre AND ESTADO_CLIENTE='Activo';", cn);
-                comando.Parameters.Add(new SQLiteParameter("@nombre", nombrecliente + "%"));
+                comando.Parameters.Add(new SQLiteParameter("@nombre","%"+ nombreCliente + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
                 
@@ -141,7 +142,7 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Ha ocurrido un error al buscar cliente "+ex.Message.ToString());
                 Console.WriteLine();
                 cn.Close();
             }
@@ -281,12 +282,172 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Ha ocurrido un error al carga tabla de empleados "+ex.Message.ToString());
                 Console.WriteLine();
                 cn.Close();
             }
             cn.Close();
             return data;
+        }
+        public List<GestionEmpleados.Area> ConsultarArea()
+        {
+            List<GestionEmpleados.Area> areas = new List<GestionEmpleados.Area>();
+
+
+            try
+            {
+                cn.Open();
+                string comando = "SELECT * FROM  AREA";
+                SQLiteCommand command = new SQLiteCommand(comando, cn);
+                SQLiteDataReader dr = command.ExecuteReader();
+                 
+                while (dr.Read())
+                {
+                     
+                    areas.Add(new GestionEmpleados.Area(Convert.ToString(dr[0]), Convert.ToString(dr[1])));  //se realiza de esta forma para evitar los datos replicados en la lista            
+                }
+                dr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar areas de trabajo "+ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            
+            cn.Close();
+            return areas;
+        }
+        public List<GestionEmpleados.Cargo> ConsultarCargo()
+        {
+            List<GestionEmpleados.Cargo> cargos = new List<GestionEmpleados.Cargo>();
+            GestionEmpleados.Cargo cargo = new GestionEmpleados.Cargo();
+            try
+            {
+                cn.Open();
+                string comando = "SELECT * FROM  CARGO";
+                SQLiteCommand command = new SQLiteCommand(comando, cn);
+                SQLiteDataReader dr = command.ExecuteReader();
+                while (dr.Read())
+                {
+                    cargos.Add(new GestionEmpleados.Cargo(Convert.ToString(dr[0]), Convert.ToString(dr[1])));
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar cargos de trabajo "+ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+               
+            }
+            cn.Close();
+            return cargos;
+        }
+        public String AgregarEmpleado(GestionEmpleados.Empleado empleado)
+        {
+            try
+            {
+                cn.Open();
+                //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO EMPLEADO (COD_EMPLEADO, COD_AREA, COD_CARGO, NOMBRE_EMPLEADO, APELLIDO_EMPLEADO, FECHA_CONTRATACION, ESTADO_EMPLEADO) VALUES (@id,@idA,@idC,@nombre,@ape,@fecha,@est)", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", empleado.codigoEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@idA", empleado.areaE.codigoArea));
+                comando.Parameters.Add(new SQLiteParameter("@idC", empleado.cargoE.codigoCargo));
+                comando.Parameters.Add(new SQLiteParameter("@nombre", empleado.nombreEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@ape", empleado.apellidoEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", empleado.fechaContratacion));
+                comando.Parameters.Add(new SQLiteParameter("@est", empleado.estadoEmpleado));
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+               
+                Console.WriteLine();
+                cn.Close();
+                return "Ha ocurrido un error al agregar empleado " + ex.Message.ToString();
+
+            }
+            cn.Close();
+            return "Empleado Registrado correctamente";
+        }
+        public String EliminarEmpleado(String idEmpleado)
+        {
+            try
+            {
+                cn.Open();
+                //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                SQLiteCommand comando = new SQLiteCommand("UPDATE EMPLEADO SET ESTADO_EMPLEADO = 'Oculto' WHERE COD_EMPLEADO = @id", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", idEmpleado));
+
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+               
+                Console.WriteLine();
+                cn.Close();
+                return "Ha ocurrido un error al Eliminar " + ex.Message.ToString();
+
+            }
+            cn.Close();
+            return "Empleado Eliminado correctamente";
+        }
+        public String ActualizarEmpleado(GestionEmpleados.Empleado empleado)
+        {
+            try
+            {
+                cn.Open();
+                //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                SQLiteCommand comando = new SQLiteCommand("UPDATE EMPLEADO SET COD_AREA = @idA, COD_CARGO= @idC, NOMBRE_EMPLEADO= @nombre, APELLIDO_EMPLEADO =@ape, FECHA_CONTRATACION=@fecha WHERE COD_EMPLEADO = @id", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", empleado.codigoEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@idA", empleado.areaE.codigoArea));
+                comando.Parameters.Add(new SQLiteParameter("@idC", empleado.cargoE.codigoCargo));
+                comando.Parameters.Add(new SQLiteParameter("@nombre", empleado.nombreEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@ape", empleado.apellidoEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", empleado.fechaContratacion));
+                
+
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                
+               
+                cn.Close();
+                Console.WriteLine(ex.Message.ToString());
+                return "Ha ocurrido un error al Actualizar " + ex.Message.ToString();
+                
+
+            }
+            cn.Close();
+            return "Empleado Actualizado correctamente";
+        }
+        public DataTable BuscarEmpleado(string nombreEmpleado)
+        {
+            List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_EMPLEADO, e.COD_AREA, a.NOMBRE_AREA, e.COD_CARGO,c.NOMBRE_CARGO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO, e.FECHA_CONTRATACION,e.ESTADO_EMPLEADO FROM EMPLEADO AS e INNER JOIN AREA AS a INNER JOIN CARGO AS c  WHERE e.COD_AREA= a.COD_AREA AND e.COD_CARGO= c.COD_CARGO AND e.ESTADO_EMPLEADO = 'Activo' AND e.NOMBRE_EMPLEADO LIKE @nombre", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%"+nombreEmpleado + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+
+
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar empleado " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+
         }
         /*
 
@@ -316,50 +477,50 @@ namespace ProyectoDSI115_G5_2021
                     cn.Close();
                     return tipoServ;
                 }*/
-        
-           
-       /*
-
-        public List<GestionEmpleados.Empleado> ConsultarEmpleados()
-        {
-            GestionEmpleados.Empleado empleado = new GestionEmpleados.Empleado();
-            List<GestionEmpleados.Empleado> empleados = new List<GestionEmpleados.Empleado>();
-            try
-            {
-                cn.Open();
-                string comando = "SELECT e.COD_EMPLEADO, e.COD_AREA, a.NOMBRE_AREA, e.COD_CARGO,c.NOMBRE_CARGO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO, e.FECHA_CONTRATACION,e.ESTADO_EMPLEADO FROM EMPLEADO AS e INNER JOIN AREA AS a INNER JOIN CARGO AS c  WHERE e.COD_AREA= a.COD_AREA AND e.COD_CARGO= c.COD_CARGO AND e.ESTADO_EMPLEADO = 'Activo'";
-                SQLiteCommand command = new SQLiteCommand(comando, cn);
-                SQLiteDataReader dr = command.ExecuteReader();
 
 
-                while (dr.Read())
-                {
+        /*
 
-                    empleado.codigoEmpleado = Convert.ToString(dr[0]);
-                    empleado.area.codigoArea = Convert.ToString(dr[1]);
-                    empleado.area.nombreArea = Convert.ToString(dr[2]);
-                    empleado.cargo.codigoCargo = Convert.ToString(dr[3]);
-                    empleado.cargo.nombreCargo = Convert.ToString(dr[4]);
-                    empleado.nombreEmpleado = Convert.ToString(dr[5]);
-                    empleado.apellidoEmpleado = Convert.ToString(dr[6]);
-                    empleado.fechaContratacion = Convert.ToDateTime(dr[7]);
-                    empleado.estadoEmpleado = Convert.ToString(dr[8]);
-                    empleados.Add(empleado);
-
-                }
-
-            }
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-                Console.WriteLine();
-                cn.Close();
-            }
-            cn.Close();
+         public List<GestionEmpleados.Empleado> ConsultarEmpleados()
+         {
+             GestionEmpleados.Empleado empleado = new GestionEmpleados.Empleado();
+             List<GestionEmpleados.Empleado> empleados = new List<GestionEmpleados.Empleado>();
+             try
+             {
+                 cn.Open();
+                 string comando = "SELECT e.COD_EMPLEADO, e.COD_AREA, a.NOMBRE_AREA, e.COD_CARGO,c.NOMBRE_CARGO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO, e.FECHA_CONTRATACION,e.ESTADO_EMPLEADO FROM EMPLEADO AS e INNER JOIN AREA AS a INNER JOIN CARGO AS c  WHERE e.COD_AREA= a.COD_AREA AND e.COD_CARGO= c.COD_CARGO AND e.ESTADO_EMPLEADO = 'Activo'";
+                 SQLiteCommand command = new SQLiteCommand(comando, cn);
+                 SQLiteDataReader dr = command.ExecuteReader();
 
 
-            return empleados;
-        }*/
+                 while (dr.Read())
+                 {
+
+                     empleado.codigoEmpleado = Convert.ToString(dr[0]);
+                     empleado.area.codigoArea = Convert.ToString(dr[1]);
+                     empleado.area.nombreArea = Convert.ToString(dr[2]);
+                     empleado.cargo.codigoCargo = Convert.ToString(dr[3]);
+                     empleado.cargo.nombreCargo = Convert.ToString(dr[4]);
+                     empleado.nombreEmpleado = Convert.ToString(dr[5]);
+                     empleado.apellidoEmpleado = Convert.ToString(dr[6]);
+                     empleado.fechaContratacion = Convert.ToDateTime(dr[7]);
+                     empleado.estadoEmpleado = Convert.ToString(dr[8]);
+                     empleados.Add(empleado);
+
+                 }
+
+             }
+             catch (SQLiteException ex)
+             {
+                 MessageBox.Show(ex.Message.ToString());
+                 Console.WriteLine();
+                 cn.Close();
+             }
+             cn.Close();
+
+
+             return empleados;
+         }*/
 
 
     }

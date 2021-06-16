@@ -33,6 +33,11 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             {
                 string respuesta = control.eliminarCliente(txtId.Text);
                 MessageBox.Show(respuesta);
+                txtId.Text = null;
+                txtNombre.Text = null;
+                txtApellido.Text = null;
+                txtEmpresa.Text = null;
+                txtTelefono.Text = null;
             }
           
 

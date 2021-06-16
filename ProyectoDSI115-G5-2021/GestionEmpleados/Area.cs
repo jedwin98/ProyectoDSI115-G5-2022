@@ -15,5 +15,10 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
         {
 
         }
+        public Area(string codigo, string area)
+        {
+            nombreArea = area;
+            codigoArea = codigo;
+        }
     }
 }

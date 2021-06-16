@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionEmpleados"
         mc:Ignorable="d"
-        Title="EliminarEmpleado" Height="450" Width="800">
+        Title="EliminarEmpleado" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
-        
+
+
+        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
+        <Label Content="Administración de Empleados" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
+        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Label Content="Elige la Opción que deseas realizar" Margin="472,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Rectangle Margin="250,108,23,10" Stroke="Black"/>
+        <TextBox x:Name="txtId" IsEnabled="False" TextWrapping="Wrap" Text="" Margin="489,125,79,0" Height="26" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNombre" TextWrapping="Wrap" Text="" Margin="489,158,79,0" Height="24" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtApellido" TextWrapping="Wrap" Text="" Margin="489,196,79,0" Height="24" VerticalAlignment="Top"/>
+
+
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="183" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
+        <Button x:Name="btnEliminar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="100" Click="BtnEliminar_Click">
+            <StackPanel>
+                <Image Source="/Images/basura.png" Height="79" Width="76"/>
+                <TextBlock HorizontalAlignment="Stretch" Width="44" FontFamily="Comic Sans MS"><Run Text="Eliminar"/></TextBlock>
+            </StackPanel>
+
+
+        </Button>
+
+        <Label Content="Eliminar Empleado" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
+        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click"/>
+        <Label Content="ID Empleado:" HorizontalAlignment="Left" Margin="323,127,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
+        <Label Content="Nombres del Empleado:" HorizontalAlignment="Left" Margin="323,158,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apellidos del Empleado:" HorizontalAlignment="Left" Margin="323,196,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha de Contratación:" HorizontalAlignment="Left" Margin="323,232,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="Activo" Margin="401,37,167,64" Grid.Row="1"/>
+        <DatePicker Name="datePicker1"  Margin="489,232,79,0" Height="24" VerticalAlignment="Top"/>
+        <Label Content="Cargo del Empleado:" HorizontalAlignment="Left" Margin="323,273,0,0" VerticalAlignment="Top"/>
+        <Label Content="Area de Trabajo:" HorizontalAlignment="Left" Margin="323,304,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbCargo"  HorizontalAlignment="Left" Margin="489,273,0,0" VerticalAlignment="Top" Width="224">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding nombreCargo}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="cmbArea"  HorizontalAlignment="Left" Margin="489,308,0,0" VerticalAlignment="Top" Width="224" RenderTransformOrigin="0.5,0.5">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding nombreArea}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </Window>
