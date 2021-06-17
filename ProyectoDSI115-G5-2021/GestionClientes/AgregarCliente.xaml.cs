@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ProyectoDSI115_G5_2021.GestionClientes
 {
@@ -21,7 +22,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (txtNombre.Text == "" || txtApellido.Text == "" || txtTelefono.Text == "")
+            if (txtId.Text == "" || txtNombre.Text == "" || txtApellido.Text == "" || txtTelefono.Text == "")
             {
                 MessageBox.Show("Debe de llenar todos los campos", "Campos vacios", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -65,6 +66,19 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             nueva.Show();
             
 
+        }
+
+        private void TxtTelefono_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+
+        }
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if(e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+        e.Handled = false;
+    else
+        e.Handled = true;
         }
     }
 }

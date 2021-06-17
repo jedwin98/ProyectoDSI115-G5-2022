@@ -32,21 +32,26 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (txtId.Text == null)
+            MessageBoxResult result;
+            if (txtId.Text == "")
             {
                 MessageBox.Show("Debe seleccionar un nuevo empleado en la pantalla de administración de empleados", "Eliminar Empleado", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
             else
             {
-                string respuesta = control.EliminarEmpleado(txtId.Text);
-                MessageBox.Show(respuesta, "Eliminar Empleado", MessageBoxButton.OK, MessageBoxImage.Information);
-                txtId.Text = null;
-                txtNombre.Text = null;
-                txtApellido.Text = null;
-                datePicker1.SelectedDate = null;
-                cmbArea.SelectedItem = null;
-                cmbCargo.SelectedItem = null;
+               result= MessageBox.Show("¿Está seguro que desea eliminar este empleado?", "Confirmación de Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result== MessageBoxResult.Yes)
+                {
+                    string respuesta = control.EliminarEmpleado(txtId.Text);
+                    MessageBox.Show(respuesta, "Eliminar Empleado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    txtId.Text = null;
+                    txtNombre.Text = null;
+                    txtApellido.Text = null;
+                    datePicker1.SelectedDate = null;
+                    cmbArea.SelectedItem = null;
+                    cmbCargo.SelectedItem = null;
+                }
 
             }
         }

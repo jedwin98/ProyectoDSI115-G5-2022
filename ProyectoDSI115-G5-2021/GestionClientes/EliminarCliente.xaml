@@ -10,7 +10,7 @@
 
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
         <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Label Content="Acciones dispobles" HorizontalAlignment="Left" Margin="37,66,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="37,66,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="472,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
         <Rectangle Margin="250,108,20,44" Stroke="Black" Grid.RowSpan="2"/>
         <TextBox x:Name="txtId" IsEnabled="False" TextWrapping="Wrap" Text="" Margin="461,125,107,0" Height="26" VerticalAlignment="Top"/>
@@ -32,10 +32,10 @@
         <Label Content="Editar Cliente" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
         <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click_1"/>
         <Label Content="ID Cliente:" HorizontalAlignment="Left" Margin="342,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
-        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="342,156,0,0" VerticalAlignment="Top"/>
-        <Label Content="Apellido:" HorizontalAlignment="Left" Margin="342,194,0,0" VerticalAlignment="Top"/>
-        <Label Content="Empresa:" HorizontalAlignment="Left" Margin="342,230,0,0" VerticalAlignment="Top"/>
-        <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="342,265,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nombre del Cliente:" HorizontalAlignment="Left" Margin="342,156,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apellido del Cliente:" HorizontalAlignment="Left" Margin="342,194,0,0" VerticalAlignment="Top"/>
+        <Label Content="Empresa del Cliente:" HorizontalAlignment="Left" Margin="342,230,0,0" VerticalAlignment="Top"/>
+        <Label Content="Teléfono del Cliente:" HorizontalAlignment="Left" Margin="342,265,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="" Margin="401,37,167,64" Grid.Row="1"/>
         <TextBox x:Name="txtTelefono" Height="25" IsEnabled="False" TextWrapping="Wrap" Text="" Margin="461,266,107,0" VerticalAlignment="Top"/>
     </Grid>

@@ -19,14 +19,14 @@
         <TextBox x:Name="textBuscar"  Text="" Margin="263,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
         <DataGrid  x:Name="dataEmpleados" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,176,34,67" >
             <DataGrid.Columns>
-                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Codigo"  Binding="{Binding COD_CLIENTE}"/>
-                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding COD_AREA}"/>
-                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding COD_CARGO}"/>
-                <DataGridTextColumn MinWidth="110" Header="Nombres"  Binding="{Binding NOMBRE_EMPLEADO}"/>
-                <DataGridTextColumn MinWidth="110" Header="Apellidos"  Binding="{Binding APELLIDO_EMPLEADO}"/>
-                <DataGridTextColumn MinWidth="110" Header="Area"  Binding="{Binding NOMBRE_AREA}"/>
-                <DataGridTextColumn MinWidth="110" Header="Cargo"  Binding="{Binding NOMBRE_CARGO}"/>
-                <DataGridTextColumn MinWidth="100" Header="Fecha de Contratacion"  Binding="{Binding FECHA_CONTRATACION, StringFormat='dd-MM-yyyy'}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_EMPLEADO}"/>
+                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="codArea"  Binding="{Binding COD_AREA}"/>
+                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="codEstado"  Binding="{Binding COD_CARGO}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombres"  Binding="{Binding NOMBRE_EMPLEADO}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Apellidos"  Binding="{Binding APELLIDO_EMPLEADO}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Area"  Binding="{Binding NOMBRE_AREA}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cargo"  Binding="{Binding NOMBRE_CARGO}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True"  Header="Fecha de Contratacion"  Binding="{Binding FECHA_CONTRATACION, StringFormat='dd-MM-yyyy'}"/>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding ESTADO_EMPLEADO}"/>
                
                

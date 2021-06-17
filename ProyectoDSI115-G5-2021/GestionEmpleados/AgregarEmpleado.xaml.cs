@@ -32,7 +32,7 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbCargo.SelectedItem ==null || cmbArea.SelectedItem == null || txtId.Text == null || txtNombre.Text == null || txtApellido.Text == null || datePicker1.SelectedDate == null)
+            if (cmbCargo.SelectedItem ==null || cmbArea.SelectedItem == null || txtId.Text == "" || txtNombre.Text == "" || txtApellido.Text == "" || datePicker1.SelectedDate == null)
             { // validacion de campos nulos
                 MessageBox.Show("Debe llenar todos los campos", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -71,5 +71,7 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
             cmbCargo.ItemsSource = cargos;
 
         }
+
+        
     }
 }

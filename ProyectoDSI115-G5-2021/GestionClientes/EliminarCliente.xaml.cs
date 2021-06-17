@@ -28,18 +28,25 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
-           MessageBoxResult result= MessageBox.Show("¿Está seguro que desea eliminar este cliente?", "Confirmación de eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result== MessageBoxResult.Yes)
+            if (txtId.Text == "")
             {
-                string respuesta = control.eliminarCliente(txtId.Text);
-                MessageBox.Show(respuesta);
-                txtId.Text = null;
-                txtNombre.Text = null;
-                txtApellido.Text = null;
-                txtEmpresa.Text = null;
-                txtTelefono.Text = null;
+                MessageBox.Show("Debe seleccionar un nuevo cliente en la pantalla de administración de clientes", "Eliminar Cliente", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
-          
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("¿Está seguro que desea eliminar este cliente?", "Confirmación de eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    string respuesta = control.eliminarCliente(txtId.Text);
+                    MessageBox.Show(respuesta);
+                    txtId.Text = null;
+                    txtNombre.Text = null;
+                    txtApellido.Text = null;
+                    txtEmpresa.Text = null;
+                    txtTelefono.Text = null;
+                }
+            }
 
         }
 

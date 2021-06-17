@@ -19,11 +19,11 @@
         <TextBox x:Name="textBuscar"  Text="" Margin="263,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
         <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,176,34,67" >
             <DataGrid.Columns>
-                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Codigo"  Binding="{Binding COD_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="110" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="110" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="100" Header="Empresa"  Binding="{Binding EMPRESA_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="100" Header="Telefono"  Binding="{Binding TELEFONO_CLIENTE}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Empresa"  Binding="{Binding EMPRESA_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Teléfono"  Binding="{Binding TELEFONO_CLIENTE}"/>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding ESTADO_CLIENTE}"/>
             </DataGrid.Columns>
         </DataGrid>

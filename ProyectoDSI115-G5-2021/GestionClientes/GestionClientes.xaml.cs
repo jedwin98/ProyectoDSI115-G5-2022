@@ -176,5 +176,10 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         {
             CrearPDF();
         }
+
+        private void TextBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
