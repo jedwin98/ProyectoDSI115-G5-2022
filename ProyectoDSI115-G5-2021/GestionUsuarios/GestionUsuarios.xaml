@@ -22,26 +22,25 @@
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}"/>
                 <DataGridTextColumn MinWidth="160" Header="Correo Electrónico" Binding="{Binding CORREO_USUARIO}"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Código Rol" Binding="{Binding COD_TIPOUSUARIO}"/>
                 <DataGridTextColumn MinWidth="100" Header="Rol de usuario" Binding="{Binding NOM_TIPOUSUARIO}"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Código Empleado" Binding="{Binding COD_EMPLEADO}"/>
                 <DataGridTextColumn MinWidth="200" Header="Nombre Empleado" Binding="{Binding NOM_EMPLEADO}"/>
                 <DataGridTextColumn MinWidth="200" Header="Apellido Empleado" Binding="{Binding APE_EMPLEADO}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="244" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="182" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
         <Button Background="#FFF1EBEC" x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="52,121,0,0" VerticalAlignment="Top" Width="101" Height="65" Click="BtnAgregar_Click" BorderThickness="0">
-            <DockPanel>
+            <StackPanel>
                 <Image Name="imgAgregar" Source="/Images/agregar.png" Height="40" Width="54"></Image>
-            </DockPanel>
+                <Label Name="labelAgregar" Content="Agregar" HorizontalAlignment="Center"/>
+            </StackPanel>
         </Button>
-        <Button Background="#FFF1EBEC" Name="btnBorrar" HorizontalAlignment="Left" Margin="52,199,0,0" VerticalAlignment="Top" Width="101" Height="65" BorderThickness="0">
-            <DockPanel>
+        <Button Background="#FFF1EBEC" Name="btnBorrar" HorizontalAlignment="Left" Margin="52,199,0,0" VerticalAlignment="Top" Width="101" Height="65" BorderThickness="0" Click="BtnBorrar_Click">
+            <StackPanel>
                 <Image Source="/Images/basura.png" Height="40" Width="54"></Image>
-            </DockPanel>
-        </Button>
-        <Button Background="#FFF1EBEC" Name="btnEditar" HorizontalAlignment="Left" Margin="52,278,0,0" VerticalAlignment="Top" Width="101" Height="65" BorderThickness="0">
-            <DockPanel>
-                <Image Source="/Images/editar.png" Height="40" Width="54"></Image>
-            </DockPanel>
+                <Label Name="labelEliminar" Content="Eliminar" HorizontalAlignment="Center"/>
+            </StackPanel>
         </Button>
         <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="250,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,1.038" Height="26" BorderThickness="0" Background="#FFFFFFFF"/>
         <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="52,0,0,17" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>

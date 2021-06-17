@@ -22,12 +22,14 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
     {
         private DataTable dt = new DataTable();
         private ControlBD control = new ControlBD();
-        private bool editando, guardando, contrasenaCorrecta, emailCorrecto, open = false, combo1 = false, combo2 = false;
+        internal Usuario sesion;
+        private bool guardando, contrasenaCorrecta, emailCorrecto, abrir = false, combo1 = false, combo2 = false;
         private Thickness ogTabla, ogUsuario, ogRoles, ogContra, ogConfirma, ogMail, ogEmp, ogGuarda, oglUsuario, oglRoles, oglContra, oglConfirma, oglMail, oglEmp;
         public GestionUsuarios()
         {
             InitializeComponent();
             CargarTabla();
+            // Definiendo posiciones iniciales en caso que se reduzca el tamaño de la ventana.
             ogTabla = dataUsuarios.Margin;
             ogUsuario = cuadroUsuario.Margin;
             ogRoles = comboRoles.Margin;
@@ -44,18 +46,39 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             oglEmp = labelEmpleado.Margin;
         }
 
+        private void BtnBorrar_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(dataUsuarios.SelectedItem is DataRowView row))
+            {
+                MessageBox.Show("No hay usuario seleccionado. Debe seleccionar un usuario.", "Error al eliminar", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                if (sesion.codigo.Equals(row.Row.ItemArray[0].ToString()))
+                {
+                    MessageBox.Show("No puede eliminar su cuenta. Solicite esta operación a otro usuario autorizado.", "Error al eliminar", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    string mensaje = control.EliminarUsuario(row.Row.ItemArray[0].ToString());
+                    if (mensaje.Equals("Ha ocurrido un error. Verifique su conexión e intente de nuevo.")) MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else MessageBox.Show(mensaje, "Eliminar usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
         private void CargarTabla()
         {
-            //TODO: Hacer función de carga de usuarios.
+            // Envía comando de carga. Recibe la tabla de datos para usarla como ItemsSource
             dt = control.ConsultarUsuarios();
             dataUsuarios.ItemsSource = dt.DefaultView;
         }
 
         private void LlenarComboTipos()
         {
-            //Se recibe un listado de los tipos de usuario.
+            // Se recibe un listado de los tipos de usuario.
             List<TipoUsuario> tipos = control.ConsultarTipoUsuario();
-            //Se vincula al combobox, define los títulos, valores y la posición inicial
+            // Se vincula al combobox, define los títulos y valores
             comboRoles.ItemsSource = tipos;
             comboRoles.DisplayMemberPath = "nombreTipoUsuario";
             comboRoles.SelectedValuePath = "codTipoUsuario";
@@ -63,9 +86,9 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void LlenarComboEmpleados()
         {
-            //Igual que LlenarComboTipos, pero aplicado a empleados
+            // Igual que LlenarComboTipos, pero aplicado a empleados
             List<EmpleadoItem> empleados = control.ConsultarEmpleadosLista();
-            //Vinculando al combobox, definiendo valores y títulos.
+            // Vinculando al combobox, definiendo títulos y valores
             comboEmpleado.ItemsSource = empleados;
             comboEmpleado.DisplayMemberPath = "nombreEmpleado";
             comboEmpleado.SelectedValuePath = "codEmpleado";
@@ -73,10 +96,11 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            //Variables para habilitar guardado.
+            // Variables para habilitar guardado.
             guardando = false;
-            if (!open)
+            if (!abrir)
             {
+                // Si no se está editando, pasa a modo de edición y cambia la imagen del botón.
                 contrasenaCorrecta = false;
                 emailCorrecto = false;
                 // Inicializando formulario para agregar usuario
@@ -84,84 +108,88 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
                 LlenarComboTipos();
                 LlenarComboEmpleados();
                 // Booleano para determinar el resultado de guardar
-                editando = false;
                 var uriSource = new Uri("/Images/regreso.png", UriKind.Relative);
+                labelAgregar.Content = "Cancelar";
                 imgAgregar.Source = new BitmapImage(uriSource);
-                open = true;
+                abrir = true;
             }
             else
             {
+                // Si se edita y se pulsa el botón, sale del modo de edición.
+                comboEmpleado.ItemsSource = null;
+                comboEmpleado.Items.Clear();
+                comboRoles.ItemsSource = null;
+                comboRoles.Items.Clear();
                 HabilitarEdicion(false);
                 cuadroEmail.Background = Brushes.White;
                 cuadroContrasena.Background = Brushes.White;
                 cuadroContrasenaConfirmar.Background = Brushes.White;
                 var uriSource = new Uri("/Images/agregar.png", UriKind.Relative);
+                labelAgregar.Content = "Agregar";
                 imgAgregar.Source = new BitmapImage(uriSource);
-                open = false;
+                abrir = false;
             }
         }
 
         private void BotonGuardar_Click(object sender, RoutedEventArgs e)
         {
             guardando = true;
-            //TO DO: Lógica de guardado de usuarios
+            // Lógica de guardado de usuarios
+            // Crea una instancia de usuario e inicializa con los valores a definir.
             Usuario aGuardar = new Usuario();
             aGuardar.tipoUsuario = new TipoUsuario();
             aGuardar.codigo = cuadroUsuario.Text;
             aGuardar.correoElectronico = cuadroEmail.Text;
             aGuardar.empleado = comboEmpleado.SelectedValue.ToString();
             aGuardar.tipoUsuario.codTipoUsuario = comboRoles.SelectedValue.ToString();
-            if (editando)
+            // Lógica de creación de registro
+            if (control.VerificarCorreo(aGuardar.correoElectronico))
             {
-                //Lógica de edición de registro
-            }
-            else
-            {
-                //Lógica de creación de registro
                 String mensaje = control.AgregarUsuario(aGuardar, cuadroContrasena.Password.ToString());
-                if (mensaje.Equals("Ha ocurrido un error"))
+                if (mensaje.Equals("Ha ocurrido un error. Verifique su conexión e intente de nuevo."))
                 {
                     MessageBox.Show(mensaje, "Error al registrar", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
                     MessageBox.Show(mensaje, "Registro de usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+                    comboEmpleado.ItemsSource = null;
+                    comboEmpleado.Items.Clear();
+                    comboRoles.ItemsSource = null;
+                    comboRoles.Items.Clear();
+                    HabilitarEdicion(false);
+                    cuadroEmail.Background = Brushes.White;
+                    cuadroContrasena.Background = Brushes.White;
+                    cuadroContrasenaConfirmar.Background = Brushes.White;
+                    botonGuardar.SetCurrentValue(IsEnabledProperty, false);
+                    var uriSource = new Uri("/Images/agregar.png", UriKind.Relative);
+                    labelAgregar.Content = "Agregar";
+                    imgAgregar.Source = new BitmapImage(uriSource);
+                    guardando = false;
+                    CargarTabla();
                 }
             }
-            //Después de guardar, reiniciar los campos de edición
-            //Limpia ComboBox para llenar en la siguiente edición
-            comboEmpleado.ItemsSource = null;
-            comboEmpleado.Items.Clear();
-            comboRoles.ItemsSource = null;
-            comboRoles.Items.Clear();
-            HabilitarEdicion(false);
-            cuadroEmail.Background = Brushes.White;
-            cuadroContrasena.Background = Brushes.White;
-            cuadroContrasenaConfirmar.Background = Brushes.White;
-            botonGuardar.SetCurrentValue(IsEnabledProperty, false);
-            var uriSource = new Uri("/Images/agregar.png", UriKind.Relative);
-            imgAgregar.Source = new BitmapImage(uriSource);
-            CargarTabla();
+            else MessageBox.Show("Ocurrió un error. Verifique si está conectado o si el correo electrónico no está siendo usado", "Error al registrar", MessageBoxButton.OK, MessageBoxImage.Error);            // Después de guardar, reiniciar los campos de edición.
+            // Limpia ComboBox para llenar en la siguiente edición.
         }
 
         private void HabilitarEdicion(bool valor)
         {
-            //Cuadro de usuario
+            // Cuadro de usuario.
             cuadroUsuario.SetCurrentValue(IsEnabledProperty, valor);
             cuadroUsuario.Text = "";
-            //Cuadro de contraseña y confirmación
+            // Cuadro de contraseña y confirmación.
             cuadroContrasena.SetCurrentValue(IsEnabledProperty, valor);
             cuadroContrasena.Clear();
             cuadroContrasenaConfirmar.SetCurrentValue(IsEnabledProperty, valor);
             cuadroContrasenaConfirmar.Clear();
-            //Cuadro de email
+            // Cuadro de email.
             cuadroEmail.SetCurrentValue(IsEnabledProperty, valor);
             cuadroEmail.Text = "";
-            //Lista de empleados
+            // Lista de empleados, roles y otros botones de gestión
             comboEmpleado.SetCurrentValue(IsEnabledProperty, valor);
             comboRoles.SetCurrentValue(IsEnabledProperty, valor);
             btnBorrar.SetCurrentValue(IsEnabledProperty, !valor);
-            btnEditar.SetCurrentValue(IsEnabledProperty, !valor);
         }
 
         private void CorreoValido(string mail)
@@ -181,6 +209,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
+            // Cierra esta instancia de la ventana.
             this.Close();
         }
 
@@ -195,6 +224,8 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void PermitirGuardado()
         {
+            // Si la dirección de correo, las contraseñas o los combos no están ingresados...
+            // Evita el ingreso de la información.
             if (!guardando)
             {
                 if (contrasenaCorrecta && emailCorrecto && comboEmpleado.SelectedItem != null && comboRoles.SelectedItem != null && cuadroUsuario.Text != null && !cuadroEmail.IsFocused)
@@ -223,23 +254,25 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         {
             if (this.Height > 636 || this.WindowState == WindowState.Maximized)
             {
+                // Si la ventana supera 636 unidades de altura, cambia los márgenes del formulario.
                 dataUsuarios.Margin = new Thickness(224, 158, 23, 307);
                 labelUsuario.Margin = new Thickness(224, 0, 23, 246);
                 cuadroUsuario.Margin = new Thickness(349, 0, 0, 246);
                 labelRoles.Margin = new Thickness(517, 0, 0, 246);
                 comboRoles.Margin = new Thickness(626, 0, 23, 246);
-                labelContrasena.Margin = new Thickness(224, 0, 0, 216);
-                cuadroContrasena.Margin = new Thickness(349, 0, 23, 216);
-                labelContrasenaConfirmar.Margin = new Thickness(224, 0, 0, 186);
-                cuadroContrasenaConfirmar.Margin = new Thickness(349, 0, 23, 186);
-                labelEmail.Margin = new Thickness(224, 0, 0, 156);
-                cuadroEmail.Margin = new Thickness(349, 0, 23, 156);
+                labelEmail.Margin = new Thickness(224, 0, 0, 216);
+                cuadroEmail.Margin = new Thickness(349, 0, 23, 216);
+                labelContrasena.Margin = new Thickness(224, 0, 0, 186);
+                cuadroContrasena.Margin = new Thickness(349, 0, 23, 186);
+                labelContrasenaConfirmar.Margin = new Thickness(224, 0, 0, 156);
+                cuadroContrasenaConfirmar.Margin = new Thickness(349, 0, 23, 156);
                 labelEmpleado.Margin = new Thickness(224, 0, 0, 126);
                 comboEmpleado.Margin = new Thickness(349, 0, 171, 126);
                 botonGuardar.Margin = new Thickness(0, 0, 23, 126);
             }
             else
             {
+                // De lo contrario, vuelve a los márgenes originales.
                 dataUsuarios.Margin = ogTabla;
                 labelUsuario.Margin = oglUsuario;
                 cuadroUsuario.Margin = ogUsuario;
@@ -278,7 +311,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         private void CuadroContrasenaConfirmar_PasswordChanged(object sender, RoutedEventArgs e)
         {
             string nuevaContra = cuadroContrasena.Password.ToString();
-            //Comprobar que la contraseña sea de al menos 6 caracteres y coincidan.
+            // Comprobar que la contraseña sea de al menos 6 caracteres y coincidan.
             PruebaContrasena(nuevaContra);
         }
 
@@ -289,18 +322,21 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             {
                 if (contra.Equals(cuadroContrasenaConfirmar.Password.ToString()))
                 {
+                    // Las contraseñas son correctas.
                     cuadroContrasena.Background = Brushes.White;
                     cuadroContrasenaConfirmar.Background = Brushes.White;
                     contrasenaCorrecta = true;
                 }
                 else
                 {
+                    // La confirmación no es correcta.
                     cuadroContrasena.Background = Brushes.LightGoldenrodYellow;
                     cuadroContrasenaConfirmar.Background = Brushes.LightPink;
                 }
             }
             else
             {
+                // La contraseña es muy corta.
                 cuadroContrasena.Background = Brushes.LightPink;
                 cuadroContrasenaConfirmar.Background = Brushes.LightPink;
             }
@@ -309,7 +345,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void CuadroContrasena_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            //Comprobando que la contraseña sea de 6 caracteres
+            // Comprobando que la contraseña sea de 6 caracteres.
             string nuevaContra = cuadroContrasena.Password.ToString();
             PruebaContrasena(nuevaContra);
         }
