@@ -199,7 +199,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT cod_usuario, correo_usuario, t.nombre_tipousuario as NOM_TIPOUSUARIO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM (usuario as u INNER JOIN tipo_usuario AS t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE NOT estado_usuario = 'O'", cn);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM (usuario as u INNER JOIN tipo_usuario AS t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE NOT estado_usuario = 'O'", cn);
                 da.Fill(dt);
             }
             catch (SQLiteException ex)
@@ -231,29 +231,61 @@ namespace ProyectoDSI115_G5_2021
                 MessageBox.Show(ex.Message.ToString());
                 Console.WriteLine();
                 cn.Close();
-                return "Ha ocurrido un error";
+                return "Ha ocurrido un error. Verifique su conexión e intente de nuevo.";
             }
             cn.Close();
             return "Usuario registrado correctamente";
         }
 
+        public bool VerificarCorreo(string correo)
+        {
+            bool valido = false;
+            try
+            {
+                cn.Open();
+                SQLiteCommand conteo = new SQLiteCommand("SELECT COUNT(*) as cuenta FROM usuario WHERE correo_usuario=@correo AND NOT estado_usuario = 'O'", cn);
+                conteo.Parameters.Add(new SQLiteParameter("@correo", correo));
+                SQLiteDataReader sqlReader = conteo.ExecuteReader();
+                while (sqlReader.Read())
+                {
+                    int cuentas = int.Parse(sqlReader["cuenta"].ToString());
+                    if (cuentas > 0) valido = false;
+                    else valido = true;
+                }
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+                return false;
+            }
+            return valido;
+        }
+
         public Usuario CrearSesion(string usuario, string contrasena)
         {
+            //Se selecciona al usuario a partir del correo obtenido
+            //Se asegura que la contraseña coincida con la BD.
             Usuario sesion = new Usuario();
-            string comando = "SELECT cod_usuario, correo_usuario, u.cod_tipousuario as cod_tipo, t.nombre_tipousuario as tipo, e.nombre_empleado as nom_empleado, e.apellido_empleado as ape_empleado, contrasena_usuario FROM (usuario as u INNER JOIN tipo_usuario as t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE correo_usuario='" + usuario+ "'";
+            string comando = "SELECT cod_usuario, correo_usuario, u.cod_tipousuario as cod_tipo, t.nombre_tipousuario as tipo, e.nombre_empleado as nom_empleado, e.apellido_empleado as ape_empleado, contrasena_usuario FROM (usuario as u INNER JOIN tipo_usuario as t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE correo_usuario='" + usuario+ "' AND NOT estado_usuario = 'O'";
             cn.Open();
             SQLiteCommand iniciarCmd = new SQLiteCommand(comando, cn);
             SQLiteDataReader iniciarReader = iniciarCmd.ExecuteReader();
             if (!iniciarReader.HasRows)
             {
+                //Si no hay usuarios registrados, se retorna null y se maneja en login.
                 sesion = null;
             }
             else
             {
                 while (iniciarReader.Read())
                 {
+                    //
                     if (contrasena.Equals(iniciarReader["contrasena_usuario"].ToString()))
                     {
+                        //No se pasa la contraseña, sólo se compara
                         sesion.codigo = iniciarReader["cod_usuario"].ToString();
                         sesion.correoElectronico = iniciarReader["correo_usuario"].ToString();
                         sesion.empleado = iniciarReader["nom_empleado"].ToString() + " " + iniciarReader["ape_empleado"].ToString();
@@ -289,6 +321,7 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return data;
         }
+
         public List<GestionEmpleados.Area> ConsultarArea()
         {
             List<GestionEmpleados.Area> areas = new List<GestionEmpleados.Area>();
@@ -358,12 +391,10 @@ namespace ProyectoDSI115_G5_2021
                 comando.Parameters.Add(new SQLiteParameter("@fecha", empleado.fechaContratacion));
                 comando.Parameters.Add(new SQLiteParameter("@est", empleado.estadoEmpleado));
                 comando.ExecuteNonQuery();
-                cn.Close();
+                    
             }
             catch (SQLiteException ex)
             {
-               
-                Console.WriteLine();
                 cn.Close();
                 return "Ha ocurrido un error al agregar empleado " + ex.Message.ToString();
 
@@ -371,7 +402,7 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return "Empleado Registrado correctamente";
         }
-        public String EliminarEmpleado(String idEmpleado)
+      public String EliminarEmpleado(String idEmpleado)
         {
             try
             {
@@ -394,8 +425,8 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return "Empleado Eliminado correctamente";
         }
-        public String ActualizarEmpleado(GestionEmpleados.Empleado empleado)
-        {
+       public String ActualizarEmpleado(GestionEmpleados.Empleado empleado)
+   {
             try
             {
                 cn.Open();
@@ -447,7 +478,44 @@ namespace ProyectoDSI115_G5_2021
             }
             cn.Close();
             return dt;
+         }
 
+
+        public String EliminarUsuario(String usuario)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand borra = new SQLiteCommand("UPDATE usuario SET estado_usuario='O' WHERE cod_usuario = @id", cn);
+                borra.Parameters.Add(new SQLiteParameter("@id", usuario));
+                borra.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                return "Ha ocurrido un error. Verifique su conexión e intente de nuevo.";
+            }
+            return "Se eliminó al usuario correctamente";
+        }
+
+        public bool CambiarContrasena(String id, String contrasena)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena WHERE cod_usuario = @id");
+                cambio.Parameters.Add(new SQLiteParameter("@contrasena", contrasena));
+                cambio.Parameters.Add(new SQLiteParameter("@id", id));
+                cambio.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                return false;
+            }
+            return true;
         }
         /*
 

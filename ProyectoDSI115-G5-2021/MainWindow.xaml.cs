@@ -23,7 +23,10 @@ namespace ProyectoDSI115_G5_2021
     public partial class MainWindow : Window
     {
         private Usuario sesion;
-
+        GestionClientes.GestionClientes gc;
+        GestionEmpleados.GestionEmpleados ge;
+        GestionUsuarios.GestionUsuarios gu;
+        Nullable<bool> gca = false, gea = false, gua = false;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
 
         public MainWindow()
@@ -37,11 +40,14 @@ namespace ProyectoDSI115_G5_2021
             //Solo puede entrar la gerencia.
             if (sesion.tipoUsuario.codTipoUsuario.Equals("G"))
             {
-                GestionUsuarios.GestionUsuarios gu = new GestionUsuarios.GestionUsuarios
+                gu = new GestionUsuarios.GestionUsuarios
                 {
                     WindowState = WindowState.Maximized
                 };
-                gu.Show();
+                //Aunque la función bloquea las acciones en esta ventana
+                //Se tiene esta variable que se define al cerrar la ventana
+                gu.sesion = this.sesion;
+                gua = gu.ShowDialog();
             }
             else
             {
@@ -55,11 +61,13 @@ namespace ProyectoDSI115_G5_2021
             //Autorizado para gerencia y administración.
             if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
             {
-                GestionClientes.GestionClientes gc = new GestionClientes.GestionClientes
+                gc = new GestionClientes.GestionClientes
                 {
                     WindowState = WindowState.Maximized
                 };
-                gc.Show();
+                //Aunque la función bloquea las acciones en esta ventana
+                //Se tiene esta variable que se define al cerrar la ventana
+                gca = gc.ShowDialog();
             }
             else
             {
@@ -83,17 +91,30 @@ namespace ProyectoDSI115_G5_2021
         {
             //Al cerrar la ventana, la sesión debe cerrarse.
             //Después, debe mostrar la ventana de inicio de sesión.
-            Login lg = new Login();
-            lg.Show();
+            bool gcr = gca ?? false;
+            bool ger = gea ?? false;
+            bool gur = gua ?? false;
+            if (!gcr && !ger && !gur)
+            {
+                Login lg = new Login();
+                lg.Show();
+            }
+            else
+            {
+                e.Cancel = true;
+                MessageBox.Show("Cierre sus ventanas y guarde su trabajo antes de salir.","Sesión activa",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+            }
         }
 
         private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
         {
-            GestionEmpleados.GestionEmpleados ge = new GestionEmpleados.GestionEmpleados()
+            ge = new GestionEmpleados.GestionEmpleados()
             {
                 WindowState = WindowState.Maximized
             };
-            ge.Show();
+            //Aunque la función bloquea las acciones en esta ventana
+            //Se tiene esta variable que se define al cerrar la ventana
+            gea = ge.ShowDialog();
         }
     }
 }
