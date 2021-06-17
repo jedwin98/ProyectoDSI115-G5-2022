@@ -15,5 +15,11 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
         {
 
         }
+        public Cargo(string codigo, string cargo)
+        {
+            nombreCargo = cargo;
+            codigoCargo = codigo;
+        }
+
     }
 }

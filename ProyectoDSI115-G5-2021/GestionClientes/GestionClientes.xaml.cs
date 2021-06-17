@@ -129,5 +129,57 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             dataClientes.ItemsSource = dt.DefaultView;
 
         }
+
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        public DataTable CrearDataTable()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Nombres");
+            dataTable.Columns.Add("Apellidos");
+            dataTable.Columns.Add("Empresa");
+            
+            dataTable.Columns.Add("Teléfono");
+           
+            string[] nombre = new string[4];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                nombre[0] = dt.Rows[i][1].ToString();
+                nombre[1] = dt.Rows[i][2].ToString();
+                nombre[2] = dt.Rows[i][3].ToString();
+                nombre[3] = dt.Rows[i][4].ToString();
+                
+                dataTable.Rows.Add(new Object[] { nombre[0], nombre[1], nombre[2], nombre[3] });
+
+
+            }
+            return dataTable;
+
+        }
+        public void CrearPDF()
+        {
+            DataTable info = CrearDataTable();
+            CreadorPDF creador = new CreadorPDF(info, @"C:\FYSIEX\ReporteClientes.pdf", "Clientes");
+            MessageBoxResult result;
+            result = MessageBox.Show("Reporte creado en: " + @"C:\FYSIEX\ReporteClientes.pdf" + "\nDesea abrir el documento?", "Abrir PDF", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start(@"C:\FYSIEX\ReporteClientes.pdf");
+
+            }
+
+        }
+
+        private void BtnGenerar_Click(object sender, RoutedEventArgs e)
+        {
+            CrearPDF();
+        }
+
+        private void TextBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

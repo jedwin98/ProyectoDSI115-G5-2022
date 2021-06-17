@@ -19,15 +19,15 @@
         <TextBox x:Name="textBuscar"  Text="" Margin="263,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
         <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,176,34,67" >
             <DataGrid.Columns>
-                <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Codigo"  Binding="{Binding COD_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="110" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="110" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="100" Header="Empresa"  Binding="{Binding EMPRESA_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="100" Header="Telefono"  Binding="{Binding TELEFONO_CLIENTE}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Empresa"  Binding="{Binding EMPRESA_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Teléfono"  Binding="{Binding TELEFONO_CLIENTE}"/>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding ESTADO_CLIENTE}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnGenerar"  Content="Generar Reporte" Margin="0,0,61,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="138" Height="30" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnGenerar"  Content="Generar Reporte" Margin="0,0,61,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="138" Height="30" VerticalAlignment="Bottom" Click="BtnGenerar_Click"/>
 
 
         <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="258" VerticalAlignment="Top"/>
@@ -50,7 +50,7 @@
             </StackPanel>
         </Button>
         <Label  Content="Consultar Clientes" HorizontalAlignment="Left" Margin="250,84,0,0" Background="White" Height="26" VerticalAlignment="Top"/>
-        <Button x:Name="btnVolver" Content="Volver" Margin="69,0,0,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnVolver" Content="Volver" Margin="69,0,0,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
 
     </Grid>
 
