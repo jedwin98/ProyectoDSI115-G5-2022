@@ -60,9 +60,17 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
                 }
                 else
                 {
-                    string mensaje = control.EliminarUsuario(row.Row.ItemArray[0].ToString());
-                    if (mensaje.Equals("Ha ocurrido un error. Verifique su conexión e intente de nuevo.")) MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    else MessageBox.Show(mensaje, "Eliminar usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBoxResult res = MessageBox.Show("¿Está seguro que desea eliminar este usuario", "Eliminar Usuario", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        string mensaje = control.EliminarUsuario(row.Row.ItemArray[0].ToString());
+                        if (mensaje.Equals("Ha ocurrido un error. Verifique su conexión e intente de nuevo.")) MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            MessageBox.Show(mensaje, "Eliminar usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+                            CargarTabla();
+                        }
+                    }
                 }
             }
         }
@@ -70,8 +78,30 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         private void CargarTabla()
         {
             // Envía comando de carga. Recibe la tabla de datos para usarla como ItemsSource
+            dt.Clear();
             dt = control.ConsultarUsuarios();
             dataUsuarios.ItemsSource = dt.DefaultView;
+        }
+
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            RealizarBusqueda();
+        }
+
+        private void RealizarBusqueda()
+        {
+            // Busca una clave en nombre, apellido o correo.
+            dt.Clear();
+            dt = control.BuscarUsuario(cuadroBuscar.Text);
+            dataUsuarios.ItemsSource = dt.DefaultView;
+        }
+
+        private void CuadroBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                RealizarBusqueda();
+            }
         }
 
         private void LlenarComboTipos()

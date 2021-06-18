@@ -16,20 +16,20 @@
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Administración de Usuarios" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="39"/>
         <Rectangle Fill="#FFFFFFFF" Margin="209,100,10,10" Stroke="Black"/>
-        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0"/>
-        <TextBox TextWrapping="Wrap" Text="" Margin="224,120,171,0" Height="32" VerticalAlignment="Top" MaxLength="50" BorderThickness="1"/>
+        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Click="BtnBuscar_Click"/>
+        <TextBox x:Name="cuadroBuscar" TextWrapping="Wrap" Text="" Margin="224,120,171,0" Height="32" VerticalAlignment="Top" MaxLength="50" BorderThickness="1" KeyDown="CuadroBuscar_KeyDown"/>
         <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="224,158,23,147" BorderThickness="0" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}"/>
-                <DataGridTextColumn MinWidth="160" Header="Correo Electrónico" Binding="{Binding CORREO_USUARIO}"/>
-                <DataGridTextColumn Visibility="Hidden" Header="Código Rol" Binding="{Binding COD_TIPOUSUARIO}"/>
-                <DataGridTextColumn MinWidth="100" Header="Rol de usuario" Binding="{Binding NOM_TIPOUSUARIO}"/>
-                <DataGridTextColumn Visibility="Hidden" Header="Código Empleado" Binding="{Binding COD_EMPLEADO}"/>
-                <DataGridTextColumn MinWidth="200" Header="Nombre Empleado" Binding="{Binding NOM_EMPLEADO}"/>
-                <DataGridTextColumn MinWidth="200" Header="Apellido Empleado" Binding="{Binding APE_EMPLEADO}"/>
+                <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="160" Header="Correo Electrónico" Binding="{Binding CORREO_USUARIO}" IsReadOnly="True"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Código Rol" Binding="{Binding COD_TIPOUSUARIO}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="100" Header="Rol de usuario" Binding="{Binding NOM_TIPOUSUARIO}" IsReadOnly="True"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Código Empleado" Binding="{Binding COD_EMPLEADO}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="200" Header="Nombre Empleado" Binding="{Binding NOM_EMPLEADO}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="200" Header="Apellido Empleado" Binding="{Binding APE_EMPLEADO}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="182" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="168" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
         <Button Background="#FFF1EBEC" x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="52,121,0,0" VerticalAlignment="Top" Width="101" Height="65" Click="BtnAgregar_Click" BorderThickness="0">
             <StackPanel>
                 <Image Name="imgAgregar" Source="/Images/agregar.png" Height="40" Width="54"></Image>

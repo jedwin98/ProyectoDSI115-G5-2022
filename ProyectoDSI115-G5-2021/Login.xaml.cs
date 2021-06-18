@@ -58,7 +58,7 @@ namespace ProyectoDSI115_G5_2021
             GestionUsuarios.Usuario sesion = control.CrearSesion(usuarioCorreo, contrasenaBox);
             // Comprobar que la nueva contraseña sea de al menos 6 caracteres
             // y comprobar que las contraseñas coincidan.
-            if (cuadroRestaurarContrasena.Password.ToString().Equals(nuevaContra) && nuevaContra.Length > 5 && sesion != null)
+            if (cuadroRestaurarContrasena.Password.ToString().Equals(nuevaContra) && nuevaContra.Length > 5 && sesion != null && !nuevaContra.Equals(contrasenaBox))
             {
                 // El usuario ingresa su contraseña anterior y la nueva contraseña.
                 if (control.CambiarContrasena(sesion.codigo, nuevaContra))
@@ -73,13 +73,26 @@ namespace ProyectoDSI115_G5_2021
                 else
                 {
                     MessageBox.Show("Ha ocurrido un error. Verifique su conexión e intente de nuevo.", "Error al cambiar contraseña", MessageBoxButton.OK, MessageBoxImage.Error);
+                    cuadroContrasena.Clear();
+                    cuadroNuevaContrasena.Clear();
+                    cuadroRestaurarContrasena.Clear();
                 }
             }
             else
             {
                 MessageBox.Show("La credencial o las contraseñas no son correctas. Intente de nuevo.", "Error al cambiar contraseña", MessageBoxButton.OK, MessageBoxImage.Error);
+                cuadroEmail.Clear();
+                cuadroContrasena.Clear();
                 cuadroNuevaContrasena.Clear();
                 cuadroRestaurarContrasena.Clear();
+            }
+        }
+
+        private void CuadroContrasena_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (labelNuevaContrasena.Visibility == Visibility.Hidden && e.Key == Key.Return)
+            {
+                IniciarSesion();
             }
         }
 
@@ -105,6 +118,11 @@ namespace ProyectoDSI115_G5_2021
         private void BotonInicioSesion_Click(object sender, RoutedEventArgs e)
         {
             //Estos valores son temporales. Al implementar la conexión a BD, borrar credenciales temporales.
+            IniciarSesion();
+        }
+
+        private void IniciarSesion()
+        {
             String contrasenaBox = cuadroContrasena.Password.ToString(),
                    usuarioCorreo = cuadroEmail.Text;
             GestionUsuarios.Usuario sesion = control.CrearSesion(usuarioCorreo, contrasenaBox);

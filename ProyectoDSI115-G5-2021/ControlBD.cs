@@ -175,7 +175,7 @@ namespace ProyectoDSI115_G5_2021
             //Se usa una versión reducida de empleado para este caso
             List<EmpleadoItem> empleados = new List<EmpleadoItem>();
             //Sólo se buscan los atributos de empleados activos
-            string comandoString = "SELECT e.cod_empleado,e.nombre_empleado,e.apellido_empleado,a.nombre_area as narea,c.nombre_area as ncargo FROM (empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area WHERE estado_empleado='Activo' AND NOT e.cod_cargo = 'ST'";
+            string comandoString = "SELECT e.cod_empleado,e.nombre_empleado,e.apellido_empleado,a.nombre_area as narea,c.nombre_cargo as ncargo FROM (empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area WHERE estado_empleado='Activo' AND NOT(e.cod_cargo = 'ST' AND e.cod_area = 'T')";
             //Abriendo conexión a BD
             cn.Open();
             SQLiteCommand sqlCmd = new SQLiteCommand(comandoString, cn);
@@ -504,7 +504,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena WHERE cod_usuario = @id");
+                SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena WHERE cod_usuario = @id",cn);
                 cambio.Parameters.Add(new SQLiteParameter("@contrasena", contrasena));
                 cambio.Parameters.Add(new SQLiteParameter("@id", id));
                 cambio.ExecuteNonQuery();
@@ -517,6 +517,29 @@ namespace ProyectoDSI115_G5_2021
             }
             return true;
         }
+
+        public DataTable BuscarUsuario(string clave)
+        {
+            List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM (usuario as u INNER JOIN tipo_usuario AS t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE NOT estado_usuario = 'O' AND (correo_usuario LIKE @clave OR nom_empleado LIKE @clave OR ape_empleado LIKE @clave);", cn);
+                comando.Parameters.Add(new SQLiteParameter("@clave", "%" + clave + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar empleado: " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
         /*
 
                 public List<GestionClientes.TipoServicio> consultarTipoServicio()

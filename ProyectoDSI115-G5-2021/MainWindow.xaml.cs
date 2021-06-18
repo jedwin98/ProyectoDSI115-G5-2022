@@ -108,13 +108,20 @@ namespace ProyectoDSI115_G5_2021
 
         private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
         {
-            ge = new GestionEmpleados.GestionEmpleados()
+            if (sesion.tipoUsuario.codTipoUsuario.Equals("G"))
             {
-                WindowState = WindowState.Maximized
-            };
-            //Aunque la función bloquea las acciones en esta ventana
-            //Se tiene esta variable que se define al cerrar la ventana
-            gea = ge.ShowDialog();
+                ge = new GestionEmpleados.GestionEmpleados()
+                {
+                    WindowState = WindowState.Maximized
+                };
+                //Aunque la función bloquea las acciones en esta ventana
+                //Se tiene esta variable que se define al cerrar la ventana
+                gea = ge.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
