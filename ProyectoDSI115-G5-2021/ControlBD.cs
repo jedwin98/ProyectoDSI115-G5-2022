@@ -175,7 +175,7 @@ namespace ProyectoDSI115_G5_2021
             //Se usa una versión reducida de empleado para este caso
             List<EmpleadoItem> empleados = new List<EmpleadoItem>();
             //Sólo se buscan los atributos de empleados activos
-            string comandoString = "SELECT e.cod_empleado,e.nombre_empleado,e.apellido_empleado,a.nombre_area as narea,c.nombre_cargo as ncargo FROM (empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area WHERE estado_empleado='Activo' AND NOT(e.cod_cargo = 'ST' AND e.cod_area = 'T')";
+            string comandoString = "SELECT e.cod_empleado,e.nombre_empleado,e.apellido_empleado,a.nombre_area as narea,c.nombre_cargo as ncargo FROM (empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area WHERE estado_empleado='Activo' AND NOT(e.cod_cargo = 'ST' AND e.cod_area = 'L')";
             //Abriendo conexión a BD
             cn.Open();
             SQLiteCommand sqlCmd = new SQLiteCommand(comandoString, cn);
