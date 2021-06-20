@@ -31,7 +31,7 @@ namespace ProyectoDSI115_G5_2021
         }
      
 
-        public  DataTable consultarClientes()
+        public  DataTable ConsultarClientes()
         {
             try
             {
@@ -49,7 +49,7 @@ namespace ProyectoDSI115_G5_2021
             return dt;           
        }
 
-        public String agregarCliente(GestionClientes.Cliente client)
+        public String AgregarCliente(GestionClientes.Cliente client)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return "Cliente Registrado correctamente";
         }
-        public String eliminarCliente(String client)
+        public String EliminarCliente(String client)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return "Cliente Eliminado correctamente";
         }
-        public String actualizarCliente(GestionClientes.Cliente client)
+        public String ActualizarCliente(GestionClientes.Cliente client)
         {
             try
             {

@@ -1,9 +1,11 @@
 ﻿
 
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -189,14 +191,10 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
         }
         public void CrearPDF()
         {
-            DataTable info = CrearDataTable();
-            CreadorPDF creador = new CreadorPDF(info, @"C:\FYSIEX\ReporteEmpleados.pdf", "Empleados");
-            MessageBoxResult result;
-            result =MessageBox.Show("Reporte creado en: "+@"C:\FYSIEX\ReporteEmpleados.pdf" + "\nDesea abrir el documento?", "Abrir PDF", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result== MessageBoxResult.Yes) {
-                System.Diagnostics.Process.Start(@"C:\FYSIEX\ReporteEmpleados.pdf");
+            
 
-            }
+            DataTable info = CrearDataTable();
+            CreadorPDF creador = new CreadorPDF(info, "Empleados");
             
         }
 
