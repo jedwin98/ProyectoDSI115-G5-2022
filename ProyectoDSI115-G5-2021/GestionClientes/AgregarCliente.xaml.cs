@@ -37,7 +37,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 cliente.empresa = txtEmpresa.Text;
                 cliente.telefono = txtTelefono.Text;
                 cliente.estado = txtEstado.Text;
-                respuesta = control.agregarCliente(cliente);
+                respuesta = control.AgregarCliente(cliente);
                 MessageBox.Show(respuesta);
 
             }

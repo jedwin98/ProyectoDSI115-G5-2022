@@ -45,7 +45,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 clien.empresa = txtEmpresa.Text;
                 clien.telefono = txtTelefono.Text;
 
-                String resultaod = control.actualizarCliente(clien);
+                String resultaod = control.ActualizarCliente(clien);
                 MessageBox.Show(resultaod, "Resultado de la actualizacion", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 

@@ -38,7 +38,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 MessageBoxResult result = MessageBox.Show("¿Está seguro que desea eliminar este cliente?", "Confirmación de eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    string respuesta = control.eliminarCliente(txtId.Text);
+                    string respuesta = control.EliminarCliente(txtId.Text);
                     MessageBox.Show(respuesta);
                     txtId.Text = null;
                     txtNombre.Text = null;

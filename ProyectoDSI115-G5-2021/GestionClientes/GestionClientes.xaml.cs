@@ -38,7 +38,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         }
         public void cargarTabla()
         {
-            dt = control.consultarClientes();
+            dt = control.ConsultarClientes();
             dataClientes.ItemsSource = dt.DefaultView;
         }
 
@@ -161,14 +161,8 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         public void CrearPDF()
         {
             DataTable info = CrearDataTable();
-            CreadorPDF creador = new CreadorPDF(info, @"C:\FYSIEX\ReporteClientes.pdf", "Clientes");
-            MessageBoxResult result;
-            result = MessageBox.Show("Reporte creado en: " + @"C:\FYSIEX\ReporteClientes.pdf" + "\nDesea abrir el documento?", "Abrir PDF", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                System.Diagnostics.Process.Start(@"C:\FYSIEX\ReporteClientes.pdf");
-
-            }
+            CreadorPDF creador = new CreadorPDF(info, "Clientes");
+           
 
         }
 
