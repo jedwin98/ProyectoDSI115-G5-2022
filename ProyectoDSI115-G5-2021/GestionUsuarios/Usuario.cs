@@ -12,5 +12,6 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         internal string correoElectronico { get; set; }
         internal string empleado { get; set; }
         internal TipoUsuario tipoUsuario { get; set; }
+        internal string estado { get; set; }
     }
 }

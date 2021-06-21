@@ -96,6 +96,8 @@ namespace ProyectoDSI115_G5_2021
             bool gur = gua ?? false;
             if (!gcr && !ger && !gur)
             {
+                ControlBD control = new ControlBD();
+                control.Desbloquear(sesion.correoElectronico);
                 Login lg = new Login();
                 lg.Show();
             }

@@ -252,6 +252,7 @@ namespace ProyectoDSI115_G5_2021
                     if (cuentas > 0) valido = false;
                     else valido = true;
                 }
+                sqlReader.Close();
                 cn.Close();
             }
             catch (SQLiteException ex)
@@ -269,7 +270,7 @@ namespace ProyectoDSI115_G5_2021
             //Se selecciona al usuario a partir del correo obtenido
             //Se asegura que la contraseña coincida con la BD.
             Usuario sesion = new Usuario();
-            string comando = "SELECT cod_usuario, correo_usuario, u.cod_tipousuario as cod_tipo, t.nombre_tipousuario as tipo, e.nombre_empleado as nom_empleado, e.apellido_empleado as ape_empleado, contrasena_usuario FROM (usuario as u INNER JOIN tipo_usuario as t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE correo_usuario='" + usuario+ "' AND NOT estado_usuario = 'O'";
+            string comando = "SELECT cod_usuario, correo_usuario, u.cod_tipousuario as cod_tipo, t.nombre_tipousuario as tipo, e.nombre_empleado as nom_empleado, e.apellido_empleado as ape_empleado, contrasena_usuario, estado_usuario FROM (usuario as u INNER JOIN tipo_usuario as t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE correo_usuario='" + usuario+ "' AND NOT estado_usuario = 'O'";
             cn.Open();
             SQLiteCommand iniciarCmd = new SQLiteCommand(comando, cn);
             SQLiteDataReader iniciarReader = iniciarCmd.ExecuteReader();
@@ -290,6 +291,7 @@ namespace ProyectoDSI115_G5_2021
                         sesion.correoElectronico = iniciarReader["correo_usuario"].ToString();
                         sesion.empleado = iniciarReader["nom_empleado"].ToString() + " " + iniciarReader["ape_empleado"].ToString();
                         sesion.tipoUsuario = new TipoUsuario(iniciarReader["cod_tipo"].ToString(), iniciarReader["tipo"].ToString());
+                        sesion.estado = iniciarReader["estado_usuario"].ToString();
                     }
                     else
                     {
@@ -371,7 +373,6 @@ namespace ProyectoDSI115_G5_2021
                 MessageBox.Show("Ha ocurrido un error al cargar cargos de trabajo "+ex.Message.ToString());
                 Console.WriteLine();
                 cn.Close();
-               
             }
             cn.Close();
             return cargos;
@@ -491,7 +492,7 @@ namespace ProyectoDSI115_G5_2021
                 borra.ExecuteNonQuery();
                 cn.Close();
             }
-            catch (SQLiteException ex)
+            catch (SQLiteException)
             {
                 cn.Close();
                 return "Ha ocurrido un error. Verifique su conexión e intente de nuevo.";
@@ -499,12 +500,13 @@ namespace ProyectoDSI115_G5_2021
             return "Se eliminó al usuario correctamente";
         }
 
-        public bool CambiarContrasena(String id, String contrasena)
+        //Reservando para usuarios logueados.
+ /*       public bool CambiarContrasena(String id, String contrasena)
         {
             try
             {
                 cn.Open();
-                SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena WHERE cod_usuario = @id",cn);
+                SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena WHERE cod_usuario = @id", cn);
                 cambio.Parameters.Add(new SQLiteParameter("@contrasena", contrasena));
                 cambio.Parameters.Add(new SQLiteParameter("@id", id));
                 cambio.ExecuteNonQuery();
@@ -517,27 +519,171 @@ namespace ProyectoDSI115_G5_2021
             }
             return true;
         }
+        */
+        public bool CambiarContrasenaEmail(String email, String contrasena)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena WHERE correo_usuario = @email AND NOT estado_usuario = 'O'", cn);
+                cambio.Parameters.Add(new SQLiteParameter("@contrasena", contrasena));
+                cambio.Parameters.Add(new SQLiteParameter("@email", email));
+                cambio.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException)
+            {
+                cn.Close();
+                return false;
+            }
+            return true;
+        }
 
         public DataTable BuscarUsuario(string clave)
         {
-            List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
             try
             {
                 cn.Open();
-                SQLiteCommand comando = new SQLiteCommand("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM (usuario as u INNER JOIN tipo_usuario AS t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE NOT estado_usuario = 'O' AND (correo_usuario LIKE @clave OR nom_empleado LIKE @clave OR ape_empleado LIKE @clave);", cn);
+                SQLiteCommand comando = new SQLiteCommand("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM (usuario as u INNER JOIN tipo_usuario AS t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE estado_usuario = 'O' AND (correo_usuario LIKE @clave OR nom_empleado LIKE @clave OR ape_empleado LIKE @clave);", cn);
                 comando.Parameters.Add(new SQLiteParameter("@clave", "%" + clave + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show("Ha ocurrido un error al buscar empleado: " + ex.Message.ToString());
-                Console.WriteLine();
+                MessageBox.Show("Ha ocurrido un error al buscar usuario: " + ex.Message.ToString());
                 cn.Close();
             }
             cn.Close();
             return dt;
+        }
+
+        public bool BuscarUsuarioActivo(string email)
+        {
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT * FROM usuario WHERE estado_usuario = 'D' AND correo_usuario = @email", cn);
+                comando.Parameters.Add(new SQLiteParameter("@email", email));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+                cn.Close();
+                if (dt.Rows.Count == 1) return true;
+                else return false;
+            }
+            catch
+            {
+                cn.Close();
+                return false;
+            }
+        }
+
+        public Remitente ObtenerServicio()
+        {
+            cn.Open();
+            SQLiteCommand remitente = new SQLiteCommand("SELECT correo_usuario, contrasena_usuario FROM usuario WHERE cod_usuario = 'U0000'", cn);
+            SQLiteDataReader dr = remitente.ExecuteReader();
+            Remitente res = new Remitente("","");
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    res.correo = Convert.ToString(dr[0]);
+                    res.contrasena = Convert.ToString(dr[1]);
+                }
+            }
+            dr.Close();
+            cn.Close();
+            return res;
+        }
+
+        public string ObtenerNombre(string email)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand nombreDestinatario = new SQLiteCommand("SELECT e.nombre_empleado FROM usuario as u INNER JOIN empleado as e ON u.cod_empleado = e.cod_empleado WHERE correo_usuario='" + email + "' AND NOT estado_usuario = 'O'", cn);
+                SQLiteDataReader dr = nombreDestinatario.ExecuteReader();
+                string nombre = "Usuario";
+                while (dr.Read())
+                {
+                    nombre = Convert.ToString(dr[0]);
+                }
+                dr.Close();
+                cn.Close();
+                return nombre;
+            }
+            catch
+            {
+                cn.Close();
+                return "Usuario";
+            }
+        }
+
+        public void Bloquear(string email, string estado)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand block = new SQLiteCommand("UPDATE usuario SET estado_usuario = @estado WHERE correo_usuario = @email AND NOT estado_usuario = 'O'", cn);
+                block.Parameters.Add(new SQLiteParameter("@email", email));
+                block.Parameters.Add(new SQLiteParameter("@estado", estado));
+                block.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SqlException)
+            {
+                cn.Close();
+                MessageBox.Show("La sesión de recuperación terminó incorrectamente. Si no puede iniciar sesión, consulte con gerencia.", "Error al recuperar contraseña", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void Desbloquear(string email)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand desblock = new SQLiteCommand("UPDATE usuario SET estado_usuario = 'D' WHERE correo_usuario = @email AND (estado_usuario = 'B' OR estado_usuario = 'C')", cn);
+                desblock.Parameters.Add(new SQLiteParameter("@email", email));
+                desblock.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SqlException)
+            {
+                cn.Close();
+                MessageBox.Show("La sesión de recuperación terminó incorrectamente. Si no puede iniciar sesión, consulte con gerencia.", "Error al recuperar contraseña", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void AjustarEstado(string id)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand buscar = new SQLiteCommand("SELECT cod_usuario, estado_usuario FROM usuario WHERE cod_usuario = @id AND (estado_usuario='B' OR estado_usuario = 'C')", cn);
+                buscar.Parameters.Add(new SQLiteParameter("@id", id));
+                SQLiteDataReader buscaReader = buscar.ExecuteReader();
+                if (buscaReader.HasRows)
+                {
+                    SQLiteCommand desblock = new SQLiteCommand("UPDATE usuario SET estado_usuario = 'D' WHERE cod_usuario = @id AND (estado_usuario = 'B' OR estado_usuario = 'C')", cn);
+                    desblock.Parameters.Add(new SQLiteParameter("@id", id));
+                    desblock.ExecuteNonQuery();
+                    cn.Close();
+                    MessageBox.Show("El usuario ha sido desbloqueado.", "Desbloquear Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    cn.Close();
+                    MessageBox.Show("El usuario no está bloqueado.", "Desbloquear Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (SqlException)
+            {
+                cn.Close();
+                MessageBox.Show("Ocurrió un error en la consulta. Intente de nuevo más tarde.", "Error al desbloquear", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /*

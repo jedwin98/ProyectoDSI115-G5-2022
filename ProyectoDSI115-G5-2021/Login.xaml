@@ -19,11 +19,11 @@
         <PasswordBox x:Name="cuadroNuevaContrasena" HorizontalAlignment="Left" Margin="310,360,0,0" VerticalAlignment="Top" Width="394" Height="26" FontSize="14" MaxLength="50" Visibility="Hidden"/>
         <Button x:Name="botonRestaurarContrasena" Content="Cambiar" HorizontalAlignment="Left" Margin="580,430,0,0" VerticalAlignment="Top" Width="120" Height="26" FontSize="14" IsTabStop="False" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BotonRestaurarContrasena_Click" RenderTransformOrigin="1.066,0.596" Visibility="Hidden"/>
         <Label x:Name="labelRestaurarContrasena" Content="Confirme su contraseña" HorizontalAlignment="Left" Margin="129,390,0,0" VerticalAlignment="Top" FontSize="14" Width="156" Visibility="Hidden"/>
-        <PasswordBox x:Name="cuadroRestaurarContrasena" HorizontalAlignment="Left" Margin="311,390,0,0" VerticalAlignment="Top" Width="393" Height="26" FontSize="14" MaxLength="50" Visibility="Hidden"/>
+        <PasswordBox x:Name="cuadroRestaurarContrasena" HorizontalAlignment="Left" Margin="310,390,0,0" VerticalAlignment="Top" Width="393" Height="26" FontSize="14" MaxLength="50" Visibility="Hidden"/>
         <Button x:Name="botonVolver" Content="Volver" HorizontalAlignment="Left" Height="26" Margin="310,430,0,0" VerticalAlignment="Top" Width="56" FontSize="14" RenderTransformOrigin="2.02,0.564" Click="BotonVolver_Click" Visibility="Collapsed"/>
         <Image HorizontalAlignment="Left" Height="195" Margin="260,10,0,0" VerticalAlignment="Top" Width="341" Source="Images/fysi.jpg"/>
         <Image HorizontalAlignment="Left" Height="59" Margin="277,240,0,0" VerticalAlignment="Top" Width="57" Source="Images/cff.jpg"/>
         <Image HorizontalAlignment="Left" Height="59" Margin="382,240,0,0" VerticalAlignment="Top" Width="201" Source="Images/hf.jpg"/>
-        <Label x:Name="labelHelp" Content="Ingrese su correo registrado y su contraseña anterior para cambiar su contraseña." HorizontalAlignment="Left" Margin="180,470,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-0.115" FontSize="14" Foreground="#FFFFFFFF" Visibility="Hidden"/>
+        <Label x:Name="labelHelp" Content="Ingrese su correo registrado y la clave enviada a su correo para cambiar su contraseña." HorizontalAlignment="Left" Margin="160,475,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-0.115" FontSize="14" Foreground="#FFFFFFFF" Visibility="Hidden"/>
     </Grid>
 </Window>
