@@ -52,7 +52,7 @@ namespace ProyectoDSI115_G5_2021
                 numeroRandom = generador.Next(1, 999999);
                 control.Bloquear(aRecuperar,"B");
                 string correoEnv = AgenteEmail.GenerarMail(control.ObtenerNombre(aRecuperar), numeroRandom);
-                //AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador);
+                AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador);
                 labelEmail.Margin = new Thickness(161, 300, 0, 0);
                 cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
                 labelContrasena.Margin = new Thickness(145, 330, 0, 0);
