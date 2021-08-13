@@ -1,0 +1,14 @@
+﻿<Window x:Class="ProyectoDSI115_G5_2021.GestionMateriales.GestionMateriales"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionMateriales"
+        mc:Ignorable="d"
+        Title="FYSIEX - Gestion de Insumos y Materiales" Height="900" Width="900">
+    <Grid>
+        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
+        <Label Content="Gestión de Insumos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
+
+    </Grid>
+</Window>

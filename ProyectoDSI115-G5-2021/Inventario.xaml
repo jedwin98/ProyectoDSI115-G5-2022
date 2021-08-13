@@ -1,0 +1,23 @@
+﻿<Window x:Class="ProyectoDSI115_G5_2021.Inventario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
+        mc:Ignorable="d"
+        Title="FYSIEX - Inventario" Height="600" Width="900">
+    <Grid Margin="0,0,-8,0">
+        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0" Margin="0,0,8,0"/>
+        <Label Content="Inventario" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
+        <Rectangle  Fill="#FFF1EBEC" Margin="0,107,673,134" Stroke="Black" HorizontalAlignment="Right" Width="209"/>
+        <Label  Content="Gestiones" HorizontalAlignment="Left" Margin="70,120,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Button x:Name="btnVolver" Content="Volver" Margin="19,0,0,10" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
+        <Button Name="btnMateriales" HorizontalAlignment="Left" Margin="48,160,0,0" VerticalAlignment="Top" Width="150" Height="125" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}">
+            <StackPanel Height="120" Width="147">
+                <Image Height="92" Source="/Images/Materiales.png"/>
+                <Label Content="Insumos y Materiales" FontSize="14" Height="30"/>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Window>

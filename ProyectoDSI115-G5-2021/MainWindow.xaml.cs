@@ -26,6 +26,8 @@ namespace ProyectoDSI115_G5_2021
         GestionClientes.GestionClientes gc;
         GestionEmpleados.GestionEmpleados ge;
         GestionUsuarios.GestionUsuarios gu;
+        Inventario verInventario;
+
         Nullable<bool> gca = false, gea = false, gua = false;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
 
@@ -124,6 +126,10 @@ namespace ProyectoDSI115_G5_2021
             {
                 MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        private void BtnInventario_Click(object sender, RoutedEventArgs e)
+        {
+            verInventario.Show();
         }
     }
 }
