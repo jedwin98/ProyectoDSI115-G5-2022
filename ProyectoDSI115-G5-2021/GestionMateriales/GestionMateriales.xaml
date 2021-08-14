@@ -5,10 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionMateriales"
         mc:Ignorable="d"
-        Title="FYSIEX - Gestion de Insumos y Materiales" Height="900" Width="900">
+        Title="FYSIEX - Gestion de Insumos y Materiales" Height="526" Width="900">
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Gestión de Insumos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="332" VerticalAlignment="Top"/>
+        <Button x:Name="btnVolver" Content="Volver" Margin="19,0,0,10" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom"/>
+        <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="35,108,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button Content="Agregar Materiales" HorizontalAlignment="Left" Margin="63,144,0,0" VerticalAlignment="Top" Width="115" Height="88" VerticalContentAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Image Source="/FYSIEX;component/Images/agregar.png" HorizontalAlignment="Left" Height="69" Margin="87,144,0,0" VerticalAlignment="Top" Width="71"/>
+        <Button Content="Actualizar Materiales" HorizontalAlignment="Left" Margin="63,237,0,0" VerticalAlignment="Top" Width="115" Height="88"  VerticalContentAlignment="Bottom" BorderBrush="{x:Null}" Background="{x:Null}"/>
+        <Button Content="Borrar Materiales" HorizontalAlignment="Left" Margin="63,330,0,0" VerticalAlignment="Top" Width="115" Height="88"  VerticalContentAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Image Source="/FYSIEX;component/Images/editar.png" HorizontalAlignment="Left" Height="69" Margin="87,237,0,0" VerticalAlignment="Top" Width="71"/>
+        <Image Source="/FYSIEX;component/Images/basura.png" HorizontalAlignment="Left" Height="69" Margin="87,330,0,0" VerticalAlignment="Top" Width="71"/>
+        <Rectangle Margin="234,102,10,10" Stroke="Black"/>
+        <Label Content="Materiales" HorizontalAlignment="Left" Margin="249,86,0,0" VerticalAlignment="Top" FontSize="16" Background="White"/>
+        <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,165,21,20" RenderTransformOrigin="0.515,0.282" >
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre del Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Unidad Medida"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Fecha de Modificación"  Binding="{Binding FECHA_MODF_MATERIAL}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,25,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="107" Height="30" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBuscar"  Text="" Margin="263,120,158,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
+
 
     </Grid>
 </Window>
