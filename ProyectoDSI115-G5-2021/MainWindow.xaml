@@ -32,28 +32,35 @@
             </DockPanel>
         </Button>
         <Label Content="Administración" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="26" Width="89"/>
-        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,0,10,28" Stroke="Black" StrokeThickness="0" Grid.RowSpan="2" Grid.Row="1"/>
+        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,0" Stroke="Black" StrokeThickness="0" Grid.Row="1"/>
         <Label Content="Consultas y gestiones" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="26" Width="124"/>
-        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,30,10,0" Stroke="Black" StrokeThickness="0" Grid.Row="3" Grid.RowSpan="2"/>
-        <Label Content="Solicitudes" Grid.Column="2" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.154" Height="26" Width="67" Grid.Row="3"/>
-        <Button Background="#FFDAD5D6" Name="btnClientes" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnClientes_Click" Grid.Row="1">
+        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,57,10,15" Stroke="Black" StrokeThickness="0" Grid.Row="3" Grid.RowSpan="2"/>
+        <Label Content="Solicitudes" Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.154" Height="26" Width="67" Grid.Row="3"/>
+        <Button Background="{x:Null}" Name="btnClientes" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnClientes_Click" Grid.Row="1" Foreground="{x:Null}" BorderBrush="{x:Null}">
             <StackPanel>
                 <Image Source="/Images/cliente.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Clientes" Height="30" VerticalAlignment="Bottom" Width="134" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Background="#FFDAD5D6" Name="btnEmpleados" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnEmpleados_Click" Grid.Row="2" Grid.RowSpan="2">
+        <Button Background="{x:Null}" Name="btnEmpleados" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnEmpleados_Click" Grid.Row="2" Grid.RowSpan="2">
             <StackPanel>
                 <Image Source="/Images/empleados.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Empleados" Height="30" VerticalAlignment="Bottom" Width="153" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Background="#FFDAD5D6" Name="btnUsuarios" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnUsuarios_Click" Grid.Row="4">
+        <Button Background="{x:Null}" Name="btnUsuarios" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnUsuarios_Click" Grid.Row="4">
             <StackPanel>
                 <Image Source="/Images/usuario.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Usuarios" Height="30" VerticalAlignment="Bottom" Width="138" FontSize="14" Margin="0"/>
             </StackPanel>
         </Button>
-        <Image Margin="19,0,30,0" Source="Images/fysi.jpg" Grid.Row="1"/>
+        <Image Margin="19,0,30,10" Source="Images/fysi.jpg" Grid.Row="1" Grid.RowSpan="3"/>
+        <Button Background="{x:Null}" Grid.Column="2" HorizontalAlignment="Left" Margin="29,19,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="120" 
+                RenderTransformOrigin="0.493,0.367" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click">
+            <StackPanel Height="118" Width="146">
+                <Image Height="94" Width="100" RenderTransformOrigin="0.535,0.289" Source="/Images/Inventario.png" Margin="23,0"/>
+                <Label Content="Inventario" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="37,0"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

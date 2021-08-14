@@ -134,6 +134,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GestionMateriales\GestionMateriales.xaml.cs">
+      <DependentUpon>GestionMateriales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario.xaml.cs">
+      <DependentUpon>Inventario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Remitente.cs" />
     <Page Include="GestionClientes\ActualizarCliente.xaml">
       <SubType>Designer</SubType>
@@ -167,7 +173,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GestionMateriales\GestionMateriales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GestionUsuarios\GestionUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,6 +314,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FYSIEX.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
