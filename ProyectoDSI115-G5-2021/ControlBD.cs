@@ -565,9 +565,10 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteCommand comando = new SQLiteCommand("SELECT * FROM usuario WHERE estado_usuario = 'D' AND correo_usuario = @email", cn);
+                SQLiteCommand comando = new SQLiteCommand("SELECT cod_usuario FROM usuario WHERE estado_usuario = 'D' AND correo_usuario = @email", cn);
                 comando.Parameters.Add(new SQLiteParameter("@email", email));
                 adapter.SelectCommand = comando;
+                dt.Clear();
                 adapter.Fill(dt);
                 cn.Close();
                 if (dt.Rows.Count == 1) return true;

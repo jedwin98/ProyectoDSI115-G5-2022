@@ -40,34 +40,43 @@ namespace ProyectoDSI115_G5_2021
         private void OlvideButton_Click(object sender, RoutedEventArgs e)
         {
             // Cambio de visibilidad de los objetos en la ventana.
-            string aRecuperar = cuadroEmail.Text;
-            if (!control.BuscarUsuarioActivo(aRecuperar))
+            if (cuadroEmail.Text.Equals(""))
             {
-                MessageBox.Show("La credencial no existe o está en una sesión activa. Ingrese un correo electrónico registrado e intente de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Ingrese un correo electrónico registrado e intente de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                cuadroEmail.SetCurrentValue(IsEnabledProperty, false);
-                Random generador = new Random();
-                numeroRandom = generador.Next(1, 999999);
-                control.Bloquear(aRecuperar,"B");
-                string correoEnv = AgenteEmail.GenerarMail(control.ObtenerNombre(aRecuperar), numeroRandom);
-                AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador);
-                labelEmail.Margin = new Thickness(161, 300, 0, 0);
-                cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
-                labelContrasena.Margin = new Thickness(145, 330, 0, 0);
-                labelContrasena.Content = "Código de seguridad";
-                cuadroContrasena.Margin = new Thickness(310, 330, 0, 0);
-                botonInicioSesion.Visibility = Visibility.Hidden;
-                botonOlvide.Visibility = Visibility.Hidden;
-                labelNuevaContrasena.Visibility = Visibility.Visible;
-                cuadroNuevaContrasena.Visibility = Visibility.Visible;
-                labelRestaurarContrasena.Visibility = Visibility.Visible;
-                cuadroRestaurarContrasena.Visibility = Visibility.Visible;
-                botonRestaurarContrasena.Visibility = Visibility.Visible;
-                botonVolver.Visibility = Visibility.Visible;
-                botonSalir.Visibility = Visibility.Hidden;
-                labelHelp.Visibility = Visibility.Visible;
+                string aRecuperar = "";
+                aRecuperar = cuadroEmail.Text;
+                bool recuperable = control.BuscarUsuarioActivo(aRecuperar);
+                if (!recuperable)
+                {
+                    MessageBox.Show("Ingrese un correo electrónico registrado e intente de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    cuadroEmail.SetCurrentValue(IsEnabledProperty, false);
+                    Random generador = new Random();
+                    numeroRandom = generador.Next(1, 999999);
+                    control.Bloquear(aRecuperar, "B");
+                    string correoEnv = AgenteEmail.GenerarMail(control.ObtenerNombre(aRecuperar), numeroRandom);
+                    AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador);
+                    labelEmail.Margin = new Thickness(161, 300, 0, 0);
+                    cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
+                    labelContrasena.Margin = new Thickness(145, 330, 0, 0);
+                    labelContrasena.Content = "Código de seguridad";
+                    cuadroContrasena.Margin = new Thickness(310, 330, 0, 0);
+                    botonInicioSesion.Visibility = Visibility.Hidden;
+                    botonOlvide.Visibility = Visibility.Hidden;
+                    labelNuevaContrasena.Visibility = Visibility.Visible;
+                    cuadroNuevaContrasena.Visibility = Visibility.Visible;
+                    labelRestaurarContrasena.Visibility = Visibility.Visible;
+                    cuadroRestaurarContrasena.Visibility = Visibility.Visible;
+                    botonRestaurarContrasena.Visibility = Visibility.Visible;
+                    botonVolver.Visibility = Visibility.Visible;
+                    botonSalir.Visibility = Visibility.Hidden;
+                    labelHelp.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -96,14 +105,16 @@ namespace ProyectoDSI115_G5_2021
                 else
                 {
                     MessageBox.Show("Ha ocurrido un error. Verifique su conexión e intente de nuevo.", "Error al cambiar contraseña", MessageBoxButton.OK, MessageBoxImage.Error);
-                    ModoNormal(usuarioEmail);
+                    control.Desbloquear(usuarioEmail);
+                    ModoNormal();
                 }
             }
             else
             {
                 MessageBox.Show("La credencial o las contraseñas no son correctas. Intente de nuevo.", "Error al cambiar contraseña", MessageBoxButton.OK, MessageBoxImage.Error);
-                ModoNormal(usuarioEmail);
-                
+                control.Desbloquear(usuarioEmail);
+                ModoNormal();
+
             }
         }
 
@@ -117,28 +128,28 @@ namespace ProyectoDSI115_G5_2021
 
         private void BotonVolver_Click(object sender, RoutedEventArgs e)
         {
-            ModoNormal(cuadroEmail.Text);
+            control.Desbloquear(cuadroEmail.Text);
+            ModoNormal();
         }
 
-        private void ModoNormal(string email)
+        private void ModoNormal()
         {
-            control.Desbloquear(email);
             cuadroEmail.SetCurrentValue(IsEnabledProperty, true);
             numeroRandom = -1;
             labelEmail.Margin = oglEmail;
             cuadroEmail.Margin = ogEmail;
-            cuadroEmail.Clear();
+            cuadroEmail.Text = "";
             labelContrasena.Margin = oglContra;
             labelContrasena.Content = "Contraseña";
             cuadroContrasena.Margin = ogContra;
-            cuadroContrasena.Clear();
+            cuadroContrasena.Password = "";
             botonInicioSesion.Visibility = Visibility.Visible;
             botonOlvide.Visibility = Visibility.Visible;
             labelNuevaContrasena.Visibility = Visibility.Hidden;
-            cuadroNuevaContrasena.Clear();
+            cuadroNuevaContrasena.Password = "";
             cuadroNuevaContrasena.Visibility = Visibility.Hidden;
             labelRestaurarContrasena.Visibility = Visibility.Hidden;
-            cuadroRestaurarContrasena.Clear();
+            cuadroRestaurarContrasena.Password = "";
             cuadroRestaurarContrasena.Visibility = Visibility.Hidden;
             botonRestaurarContrasena.Visibility = Visibility.Hidden;
             botonVolver.Visibility = Visibility.Hidden;
