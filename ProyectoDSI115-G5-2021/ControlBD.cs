@@ -707,6 +707,66 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        public DataTable ConsultarSolicitudes(int opcion)
+        {
+            SQLiteDataAdapter da;
+            try
+            {
+                cn.Open();
+                if (opcion == 0)//Gab
+                {
+                    da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,e.COD_EMPLEADO,e.NOMBRE_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s WHERE e.COD_EMPLEADO=s.COD_EMPLEADO", cn);
+                }
+                else {//Felix
+                    da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,e.COD_EMPLEADO,e.NOMBRE_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s WHERE e.COD_EMPLEADO=s.COD_EMPLEADO AND s.ESTADO_SOLICITUD='Pendiente'", cn);
+
+                }
+
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar tabla de solicitudes " + ex.Message.ToString());
+                
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+        public DataTable ConsultarDetalleSolicitudes()
+        {
+            SQLiteDataAdapter da;
+            try
+            {
+                
+                    da = new SQLiteDataAdapter("SELECT  d.COD_SOLICITUD, d.COD_MATERIAL, m.NOMBRE_MATERIAL,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM MATERIAL AS m INNER JOIN DETALLE_SOLICITUD_INSUMO AS d INNER JOIN SOLICITUD_INSUMO AS s WHERE s.COD_SOLICITUD=d.COD_SOLICITUD AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
+                    da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar el detalle de las solicitudes " + ex.Message.ToString());
+
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************//
+
+
+
         /*
 
                 public List<GestionClientes.TipoServicio> consultarTipoServicio()
