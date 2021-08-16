@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Data;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -19,9 +20,93 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
     /// </summary>
     public partial class GestionMateriales : Window
     {
+        DataTable dt = new DataTable();
+        ControlBD control = new ControlBD();
+        List<Material> material = new List<Material>();
         public GestionMateriales()
         {
             InitializeComponent();
+            cargarTabla();
+        }
+        //METODO INICIAL
+        public void cargarTabla()
+        {
+            dt = control.consultarMateriales();
+            dataMateriales.ItemsSource = dt.DefaultView;
+        }
+
+        // ******** METODOS PARA BOTONES ***************//
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            Inventario inventario = new Inventario()
+            {
+                WindowState = WindowState.Maximized
+            };
+            inventario.Show();
+            this.Close();
+        }
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarMaterial ag = new AgregarMaterial()
+            {
+                WindowState = WindowState.Maximized
+            };
+            ag.Show();
+            this.Close();
+        }
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            ActualizarMaterial ac = new ActualizarMaterial()
+            {
+                WindowState = WindowState.Maximized
+            };
+
+            string fecha;
+            DataRowView row = dataMateriales.SelectedItem as DataRowView;
+            if (row == null)
+            {
+                MessageBox.Show("Seleccione primero un material", "Seleccione un material", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
+            else
+            {
+                ac.txtCodigo.Text = row.Row.ItemArray[0].ToString();
+                ac.txtNombre.Text = row.Row.ItemArray[1].ToString();
+                ac.txtCantidad.Text = row.Row.ItemArray[2].ToString();
+                ac.txtUnidad.Text = row.Row.ItemArray[3].ToString();
+                fecha = row.Row.ItemArray[4].ToString();
+                ac.dpFecha.SelectedDate = Convert.ToDateTime(fecha);
+
+                ac.Show();
+                this.Close();
+            }
+        }
+        private void BtnBorrar_Click(object sender, RoutedEventArgs e)
+        {
+            EliminarMaterial ec = new EliminarMaterial()
+            {
+                WindowState = WindowState.Maximized
+            };
+
+            string fecha;
+            DataRowView row = dataMateriales.SelectedItem as DataRowView;
+            if (row == null)
+            {
+                MessageBox.Show("Seleccione primero un material", "Seleccione un material", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+            }
+            else
+            {
+                ec.txtCodigo.Text = row.Row.ItemArray[0].ToString();
+                ec.txtNombre.Text = row.Row.ItemArray[1].ToString();
+                ec.txtCantidad.Text = row.Row.ItemArray[2].ToString();
+                ec.txtUnidad.Text = row.Row.ItemArray[3].ToString();
+                fecha = row.Row.ItemArray[4].ToString();
+                ec.dpFecha.SelectedDate = Convert.ToDateTime(fecha);
+
+                ec.Show();
+                this.Close();
+            }
         }
     }
 }

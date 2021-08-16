@@ -134,6 +134,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GestionMateriales\ActualizarMaterial.xaml.cs">
+      <DependentUpon>ActualizarMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestionMateriales\AgregarMaterial.xaml.cs">
+      <DependentUpon>AgregarMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestionMateriales\EliminarMaterial.xaml.cs">
+      <DependentUpon>EliminarMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestionMateriales\Material.cs" />
     <Compile Include="GestionMateriales\GestionMateriales.xaml.cs">
       <DependentUpon>GestionMateriales.xaml</DependentUpon>
     </Compile>
@@ -170,6 +180,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestionEmpleados\GestionEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestionMateriales\ActualizarMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestionMateriales\AgregarMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestionMateriales\EliminarMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -316,7 +338,9 @@
     <Resource Include="FYSIEX.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image1.png" />
+    <Resource Include="Images\inventario.png" />
+    <Resource Include="Images\materiales.png" />
+    <Resource Include="Images\productos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

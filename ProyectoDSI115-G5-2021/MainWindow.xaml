@@ -55,12 +55,16 @@
             </StackPanel>
         </Button>
         <Image Margin="19,0,30,10" Source="Images/fysi.jpg" Grid.Row="1" Grid.RowSpan="3"/>
-        <Button Background="{x:Null}" Grid.Column="2" HorizontalAlignment="Left" Margin="29,19,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150" Height="120" 
-                RenderTransformOrigin="0.493,0.367" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click">
-            <StackPanel Height="118" Width="146">
-                <Image Height="94" Width="100" RenderTransformOrigin="0.535,0.289" Source="/Images/Inventario.png" Margin="23,0"/>
-                <Label Content="Inventario" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="37,0"/>
+        <Button Grid.Column="2" Margin="27,15,235,15" Grid.Row="1" FontSize="14" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click">
+            <StackPanel Width="135">
+                <Image Source="Images/inventario.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Height="90"/>
+                <Label Content="Inventario" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
+
+
+
+
+
     </Grid>
 </Window>

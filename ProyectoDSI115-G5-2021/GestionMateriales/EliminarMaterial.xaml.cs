@@ -11,39 +11,28 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ProyectoDSI115_G5_2021.GestionUsuarios;
 
-namespace ProyectoDSI115_G5_2021
+namespace ProyectoDSI115_G5_2021.GestionMateriales
 {
     /// <summary>
-    /// Lógica de interacción para Inventario.xaml
+    /// Lógica de interacción para EliminarMaterial.xaml
     /// </summary>
-    public partial class Inventario : Window
+    public partial class EliminarMaterial : Window
     {
-        private Usuario sesion;
-        Nullable<bool> gma = false;
-        internal Usuario Sesion { get => sesion; set => sesion = value; }
-
-        GestionMateriales.GestionMateriales gm;
-
-        public Inventario()
+        public EliminarMaterial()
         {
             InitializeComponent();
         }
 
+        //*************************** METODO DE BOTONES ***************************************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
-        private void BtnMateriales_Click(object sender, RoutedEventArgs e)
-        {
-            gm = new GestionMateriales.GestionMateriales() {
+            GestionMateriales gestionMateriales = new GestionMateriales()
+            {
                 WindowState = WindowState.Maximized
             };
-            gm.Show();
+            gestionMateriales.Show();
             this.Close();
-
-
         }
     }
 }

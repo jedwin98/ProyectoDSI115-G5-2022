@@ -8,15 +8,15 @@
         Title="FYSIEX - Inventario" Height="600" Width="900">
     <Grid Margin="0,0,-8,0">
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0" Margin="0,0,8,0"/>
-        <Label Content="Inventario" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
-        <Rectangle  Fill="#FFF1EBEC" Margin="0,107,673,134" Stroke="Black" HorizontalAlignment="Right" Width="209"/>
+        <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
+        <Rectangle  Fill="#FFF1EBEC" Margin="18,107,0,0" Stroke="Black" HorizontalAlignment="Left" Width="209" Height="400" VerticalAlignment="Top"/>
         <Label  Content="Gestiones" HorizontalAlignment="Left" Margin="70,120,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
         <Button x:Name="btnVolver" Content="Volver" Margin="19,0,0,10" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" 
                 HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
-        <Button Name="btnMateriales" HorizontalAlignment="Left" Margin="48,160,0,0" VerticalAlignment="Top" Width="150" Height="125" 
-                Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnMateriales_Click">
+        <Button Name="btnMateriales" Margin="43,160,0,0" VerticalAlignment="Top" Height="126" 
+                Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnMateriales_Click" HorizontalAlignment="Left" Width="162">
             <StackPanel Height="120" Width="147">
-                <Image Height="92" Source="/Images/Materiales.png"/>
+                <Image Height="92" Source="Images/materiales.png"/>
                 <Label Content="Insumos y Materiales" FontSize="14" Height="30" />
             </StackPanel>
         </Button>

@@ -28,7 +28,7 @@ namespace ProyectoDSI115_G5_2021
         GestionUsuarios.GestionUsuarios gu;
         Inventario verInventario;
 
-        Nullable<bool> gca = false, gea = false, gua = false;
+        Nullable<bool> gca = false, gea = false, gua = false, inv = false;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
 
         public MainWindow()
@@ -129,7 +129,11 @@ namespace ProyectoDSI115_G5_2021
         }
         private void BtnInventario_Click(object sender, RoutedEventArgs e)
         {
-            verInventario.Show();
+            verInventario = new Inventario()
+            {
+                WindowState = WindowState.Maximized
+            };
+            inv = verInventario.ShowDialog();
         }
     }
 }

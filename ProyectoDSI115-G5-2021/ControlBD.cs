@@ -687,6 +687,26 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        //**************************************  ACA EMPIEZA GESTION DE MATERIALES E INSUMOS  ******************************************************************//
+        //METODO PARA GENERAR CONSULTAS 
+        public DataTable consultarMateriales()
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM MATERIAL", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Materiales " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
         /*
 
                 public List<GestionClientes.TipoServicio> consultarTipoServicio()
