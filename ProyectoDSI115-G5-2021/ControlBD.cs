@@ -742,7 +742,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                cn.Open();
-                    SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_SOLICITUD, d.COD_MATERIAL, m.NOMBRE_MATERIAL,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM MATERIAL AS m INNER JOIN DETALLE_SOLICITUD_INSUMO AS d INNER JOIN SOLICITUD_INSUMO AS s WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
+                    SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM MATERIAL AS m INNER JOIN DETALLE_SOLICITUD_INSUMO AS d  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
                 comando.Parameters.Add(new SQLiteParameter("@codSolicitud",  codigoSolicitud));
                     adapter.SelectCommand = comando;
                     adapter.Fill(dt);
