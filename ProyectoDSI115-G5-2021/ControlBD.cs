@@ -713,7 +713,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                if (opcion == 0)//Gab
+                if (opcion == 0)//Gabriel
                 {
                     da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,e.COD_EMPLEADO,e.NOMBRE_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s WHERE e.COD_EMPLEADO=s.COD_EMPLEADO", cn);
                 }
@@ -734,14 +734,18 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
-        public DataTable ConsultarDetalleSolicitudes()
+        public DataTable ConsultarDetalleSolicitudes(string codigoSolicitud)
         {
-            SQLiteDataAdapter da;
+            
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            dt.Clear();
             try
             {
-                
-                    da = new SQLiteDataAdapter("SELECT  d.COD_SOLICITUD, d.COD_MATERIAL, m.NOMBRE_MATERIAL,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM MATERIAL AS m INNER JOIN DETALLE_SOLICITUD_INSUMO AS d INNER JOIN SOLICITUD_INSUMO AS s WHERE s.COD_SOLICITUD=d.COD_SOLICITUD AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
-                    da.Fill(dt);
+               cn.Open();
+                    SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM MATERIAL AS m INNER JOIN DETALLE_SOLICITUD_INSUMO AS d  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
+                comando.Parameters.Add(new SQLiteParameter("@codSolicitud",  codigoSolicitud));
+                    adapter.SelectCommand = comando;
+                    adapter.Fill(dt);
             }
             catch (SQLiteException ex)
             {
