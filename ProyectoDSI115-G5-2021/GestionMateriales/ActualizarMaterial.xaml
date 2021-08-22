@@ -11,12 +11,12 @@
 
         <Label  Content="Gestion de Insumos y Materiales" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
         <Rectangle Margin="250,81,23,64" Stroke="Black"/>
-        <Label Content="Agregar un Material" HorizontalAlignment="Left" Margin="266,67,0,0" VerticalAlignment="Top" Background="White" Height="26"/>
+        <Label Content="Actualizar un Material" HorizontalAlignment="Left" Margin="266,67,0,0" VerticalAlignment="Top" Background="White" Height="26"/>
         <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="21,81,0,0" Stroke="Black" Width="204" Height="247" VerticalAlignment="Top"/>
         <Rectangle  Fill="#FFC91029" Stroke="Black" Height="43" VerticalAlignment="Bottom" />
         <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="38,81,0,0" VerticalAlignment="Top" FontSize="16" Height="33" Width="167"/>
         <Label Content="ATENCIÓN: Todos los campos son obligatorios." Margin="0,0,10,14" FontSize="14" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" HorizontalAlignment="Right" Width="336" Height="29" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="66,119,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="66,140,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnActualizar_Click">
             <StackPanel>
                 <Image  Source="/FYSIEX;component/Images/disquete.png" Height="81" Width="92"/>
                 <Label Content="Guardar" FontSize="14" Width="64" HorizontalContentAlignment="Center"/>
@@ -26,12 +26,10 @@
         <Label Content="Codigo:" HorizontalAlignment="Left" Margin="315,129,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Nombre de Material:" HorizontalAlignment="Left" Margin="315,158,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Cantidad de Existencias:" HorizontalAlignment="Left" Margin="315,192,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Unidad de Medida:" HorizontalAlignment="Left" Margin="315,226,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Fecha de Modificación:" HorizontalAlignment="Left" Margin="315,260,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="501,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <Label Content="Presentación de Material:" HorizontalAlignment="Left" Margin="315,226,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="501,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="501,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TxtCantidad_TextChanged"/>
         <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Grid.ColumnSpan="2"/>
-        <DatePicker x:Name="dpFecha"  HorizontalAlignment="Left" Margin="501,265,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

@@ -129,7 +129,7 @@ namespace ProyectoDSI115_G5_2021
         }
         private void BtnInventario_Click(object sender, RoutedEventArgs e)
         {
-            verInventario = new Inventario()
+            verInventario = new Inventario(sesion.tipoUsuario.codTipoUsuario)
             {
                 WindowState = WindowState.Maximized
             };

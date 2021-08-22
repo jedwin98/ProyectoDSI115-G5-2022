@@ -19,9 +19,22 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
     /// </summary>
     public partial class ActualizarMaterial : Window
     {
+        ControlBD control = new ControlBD();
+
+        /// CONSTRUCTOR
         public ActualizarMaterial()
         {
             InitializeComponent();
+        }
+
+        //EVENTO QUE IMPIDE INGRESAR LETRAS EN EL CAMPO DE CANTIDAD EN EXISTENCIA
+        private void TxtCantidad_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtCantidad.Text, "[^0-9]"))
+            {
+                MessageBox.Show("En este campo solamente puede utilizar numeros\nPor favor ingrese de forma correcta la cantidad de material.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtCantidad.Text = txtCantidad.Text.Remove(txtCantidad.Text.Length - 1);
+            }
         }
 
         //*************************** METODO DE BOTONES ***************************************//
@@ -33,6 +46,21 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             };
             gestionMateriales.Show();
             this.Close();
+        }
+
+        private void btnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtCodigo.Text == "" || txtNombre.Text == "" || txtCantidad.Text == "" || txtUnidad.Text == "")
+            {
+                MessageBox.Show("Debe llenar todos los campos del formulario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                string fecha = DateTime.Now.ToShortDateString();
+                Material material = new Material(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, fecha, true);
+                String respuesta = control.ActualizarMaterial(material);
+                MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

@@ -13,14 +13,16 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         public string cantidad { get; set; }
         public string unidad { get; set; }
         public string fecha { get; set; }
+        public bool estado { get; set; }
 
-        public Material(string cod, string nom, string can, string uni, string fecha)
+        public Material(string cod, string nom, string can, string uni, string fecha, bool estd)
         {
             codigo = cod;
             nombre = nom;
             cantidad = can;
             unidad = uni;
-            fecha = fecha;
+            this.fecha = fecha;
+            estado = estd;
         }
         public Material()
         {

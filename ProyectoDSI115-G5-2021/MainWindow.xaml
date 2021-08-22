@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
         Closing="MainWindow_Closing"
-        Title="FYSIEX - Bienvenido " Height="600" Width="900" MinWidth="900" MinHeight="600">
+        Title="FYSIEX - Bienvenido " Height="600" Width="900" MinWidth="900" MinHeight="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100*"/>

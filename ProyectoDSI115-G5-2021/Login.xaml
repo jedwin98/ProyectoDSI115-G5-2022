@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
-        Title="Login - FYSIEX" Height="550" Width="850" ResizeMode="CanMinimize" MinWidth="850" MinHeight="450">
+        Title="Login - FYSIEX" Height="550" Width="850" ResizeMode="CanMinimize" MinWidth="850" MinHeight="450" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle Fill="#FFC91029" HorizontalAlignment="Left" Height="59" Stroke="Black" VerticalAlignment="Top" Width="844" Margin="0,462,0,0"/>
         <Label x:Name="labelEmail" Content="Correo electrónico" Margin="161,320,0,0" VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Left" Width="124" RenderTransformOrigin="-0.206,0.086"/>

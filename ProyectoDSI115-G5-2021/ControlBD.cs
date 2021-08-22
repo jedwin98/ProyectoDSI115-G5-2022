@@ -707,6 +707,109 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        public String AgregarMaterial(GestionMateriales.Material material)
+        {
+            try
+            {
+                cn.Open();
+                //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO MATERIAL (COD_MATERIAL, NOMBRE_MATERIAL, EXISTENCIA_MATERIAL, UNIDAD_MEDIDA_MATERIAL, FECHA_MODF_MATERIAL, ESTADO_MATERIAL) VALUES (@id,@nom,@exis,@uni,@fecha,@estado)", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", material.codigo));
+                comando.Parameters.Add(new SQLiteParameter("@nom", material.nombre));
+                comando.Parameters.Add(new SQLiteParameter("@exis", material.cantidad));
+                comando.Parameters.Add(new SQLiteParameter("@uni", material.unidad));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", material.fecha));
+                comando.Parameters.Add(new SQLiteParameter("@estado", material.estado));
+                comando.ExecuteNonQuery();
+
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                return "Ha ocurrido un error al agregar el material" + ex.Message.ToString();
+
+            }
+            cn.Close();
+            return "Material Registrado correctamente";
+        }
+
+        public String ActualizarMaterial(GestionMateriales.Material material)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("UPDATE MATERIAL SET NOMBRE_MATERIAL = @nom, EXISTENCIA_MATERIAL= @exis, UNIDAD_MEDIDA_MATERIAL= @uni, FECHA_MODF_MATERIAL =@fecha WHERE COD_MATERIAL=@codigo ", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nom", material.nombre));
+                comando.Parameters.Add(new SQLiteParameter("@exis", material.cantidad));
+                comando.Parameters.Add(new SQLiteParameter("@uni", material.unidad));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", material.fecha));
+                comando.Parameters.Add(new SQLiteParameter("@codigo", material.codigo));
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+
+
+                cn.Close();
+                Console.WriteLine(ex.Message.ToString());
+                return "Ha ocurrido un error al Actualizar " + ex.Message.ToString();
+
+
+            }
+            cn.Close();
+            return "Material Actualizado correctamente";
+        }
+
+        public String EliminarMaterial(String codMaterial)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("DELETE FROM MATERIAL WHERE COD_MATERIAL = @id", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", codMaterial));
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+
+                Console.WriteLine();
+                cn.Close();
+                return "Ha ocurrido un error al Eliminar " + ex.Message.ToString();
+
+            }
+            cn.Close();
+            return "Material eliminado correctamente.";
+        }
+
+        public DataTable BuscarMaterial(string nombreMaterial)
+        {
+            List<GestionMateriales.Material> material = new List<GestionMateriales.Material>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_MATERIAL, e.NOMBRE_MATERIAL, e.EXISTENCIA_MATERIAL, e.UNIDAD_MEDIDA_MATERIAL, e.FECHA_MODF_MATERIAL FROM MATERIAL AS e WHERE e.NOMBRE_MATERIAL LIKE @nombre", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreMaterial + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+
+
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar MATERIAL " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+
+        // *************************** FIN DE LA HISTORIA GESTION DE MATERIALES **********************************************************************
+
         public DataTable ConsultarSolicitudes(int opcion)
         {
             SQLiteDataAdapter da;

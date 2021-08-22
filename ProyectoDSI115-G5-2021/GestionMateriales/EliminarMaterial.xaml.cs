@@ -19,6 +19,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
     /// </summary>
     public partial class EliminarMaterial : Window
     {
+        ControlBD control = new ControlBD();
         public EliminarMaterial()
         {
             InitializeComponent();
@@ -33,6 +34,21 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             };
             gestionMateriales.Show();
             this.Close();
+        }
+
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result;
+            result = MessageBox.Show("¿Está seguro que desea eliminar este material?", "Confirmación de Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                string respuesta = control.EliminarMaterial(txtCodigo.Text);
+                MessageBox.Show(respuesta, "Eliminar Empleado", MessageBoxButton.OK, MessageBoxImage.Information);
+                txtCodigo.Text = null;
+                txtNombre.Text = null;
+                txtCantidad.Text = null;
+                txtUnidad.Text = null;
+            }
         }
     }
 }

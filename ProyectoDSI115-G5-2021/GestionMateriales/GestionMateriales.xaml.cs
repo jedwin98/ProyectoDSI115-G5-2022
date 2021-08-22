@@ -38,11 +38,6 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         // ******** METODOS PARA BOTONES ***************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            Inventario inventario = new Inventario()
-            {
-                WindowState = WindowState.Maximized
-            };
-            inventario.Show();
             this.Close();
         }
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
@@ -54,6 +49,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             ag.Show();
             this.Close();
         }
+
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
             ActualizarMaterial ac = new ActualizarMaterial()
@@ -75,12 +71,12 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ac.txtCantidad.Text = row.Row.ItemArray[2].ToString();
                 ac.txtUnidad.Text = row.Row.ItemArray[3].ToString();
                 fecha = row.Row.ItemArray[4].ToString();
-                ac.dpFecha.SelectedDate = Convert.ToDateTime(fecha);
 
                 ac.Show();
                 this.Close();
             }
         }
+
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
         {
             EliminarMaterial ec = new EliminarMaterial()
@@ -102,11 +98,30 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ec.txtCantidad.Text = row.Row.ItemArray[2].ToString();
                 ec.txtUnidad.Text = row.Row.ItemArray[3].ToString();
                 fecha = row.Row.ItemArray[4].ToString();
-                ec.dpFecha.SelectedDate = Convert.ToDateTime(fecha);
 
                 ec.Show();
                 this.Close();
             }
+        }
+
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarMaterial();
+        }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                BuscarMaterial();
+            }
+        }
+
+        private void BuscarMaterial()
+        {
+            dt.Clear();
+            dt = control.BuscarMaterial(txtBuscar.Text);
+            dataMateriales.ItemsSource = dt.DefaultView;
         }
     }
 }

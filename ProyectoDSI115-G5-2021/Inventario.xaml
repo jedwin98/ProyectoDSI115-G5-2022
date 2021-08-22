@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
-        Title="FYSIEX - Inventario" Height="600" Width="900">
+        Title="FYSIEX - Inventario" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-8,0">
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0" Margin="0,0,8,0"/>
         <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>

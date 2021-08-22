@@ -16,7 +16,7 @@
         <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="38,81,0,0" VerticalAlignment="Top" FontSize="16" Height="33" Width="167"/>
         <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Height="43" VerticalAlignment="Bottom"/>
         <Label Content="ATENCIÓN: Confirma que los datos coincidan con el material que quieres borrar." Margin="10,0,0,13" VerticalAlignment="Bottom" FontSize="14" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="26" HorizontalAlignment="Left" Width="571"/>
-        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="66,119,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="66,119,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnEliminar_Click">
             <StackPanel>
                 <Image  Source="/FYSIEX;component/Images/basura.png" Height="81" Width="92"/>
                 <Label Content="Borrar" FontSize="14" Width="64" HorizontalContentAlignment="Center"/>
@@ -27,11 +27,9 @@
         <Label Content="Nombre de Material:" HorizontalAlignment="Left" Margin="315,158,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Cantidad de Existencias:" HorizontalAlignment="Left" Margin="315,192,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Unidad de Medida:" HorizontalAlignment="Left" Margin="315,226,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Fecha de Modificación:" HorizontalAlignment="Left" Margin="315,260,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="501,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="501,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" IsEnabled="False"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
         <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
-        <DatePicker x:Name="dpFecha"  HorizontalAlignment="Left" Margin="501,265,0,0" VerticalAlignment="Top" IsEnabled="False"/>
     </Grid>
 </Window>
