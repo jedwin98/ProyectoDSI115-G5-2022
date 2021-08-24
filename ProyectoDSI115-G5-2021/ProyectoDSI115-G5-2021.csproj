@@ -151,14 +151,6 @@
       <DependentUpon>Inventario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remitente.cs" />
-    <Compile Include="SolicitarInsumos\CrearSolicitudInsumos.xaml.cs">
-      <DependentUpon>CrearSolicitudInsumos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SolicitarInsumos\DetalleSolicitudInsumos.cs" />
-    <Compile Include="SolicitarInsumos\SolicitudInsumos.cs" />
-    <Compile Include="SolicitarInsumos\VerSolicitudes.xaml.cs">
-      <DependentUpon>VerSolicitudes.xaml</DependentUpon>
-    </Compile>
     <Page Include="GestionClientes\ActualizarCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,14 +264,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SolicitarInsumos\CrearSolicitudInsumos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SolicitarInsumos\VerSolicitudes.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -809,7 +809,6 @@ namespace ProyectoDSI115_G5_2021
 
 
         // *************************** FIN DE LA HISTORIA GESTION DE MATERIALES **********************************************************************
-        //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
         public DataTable ConsultarSolicitudes(int opcion)
         {
@@ -871,7 +870,7 @@ namespace ProyectoDSI115_G5_2021
 
 
 
-        
+        //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************//
 
 
 
