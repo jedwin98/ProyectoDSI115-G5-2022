@@ -36,8 +36,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre del Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Fecha de Modificación"  Binding="{Binding FECHA_MODF_MATERIAL}"/>
             </DataGrid.Columns>
         </DataGrid>

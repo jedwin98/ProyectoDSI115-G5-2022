@@ -24,12 +24,12 @@ namespace ProyectoDSI115_G5_2021
 
         public ControlBD()
         {
-
-            cn = new SQLiteConnection("data source=C:/FYSIEX/FYSIEX.db");
-            //cn = new SQLiteConnection("data source=C:/Users/Francisco Escobar/Documents/Proyecto DSI/Master/ProyectoDSI115-G5-2021/FYSIEX.db");
+            //cn = new SQLiteConnection(@"Data Source=Z:\FYSIEX.db;Version=3;Compress=True;");     // CONEXION EN UNIDAD DE RED
+            cn = new SQLiteConnection(@"data source=//Frank-PC\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
+            //cn = new SQLiteConnection("data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
 
         }
-     
+
 
         public  DataTable ConsultarClientes()
         {
@@ -694,7 +694,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM MATERIAL", cn);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_MATERIAL, NOMBRE_MATERIAL, UNIDAD_MEDIDA_MATERIAL, EXISTENCIA_MATERIAL, FECHA_MODF_MATERIAL FROM MATERIAL WHERE ESTADO_MATERIAL='1'", cn);
                 da.Fill(dt);
             }
             catch (SQLiteException ex)
@@ -766,7 +766,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteCommand comando = new SQLiteCommand("DELETE FROM MATERIAL WHERE COD_MATERIAL = @id", cn);
+                SQLiteCommand comando = new SQLiteCommand("UPDATE MATERIAL SET ESTADO_MATERIAL = 0 WHERE COD_MATERIAL=@id", cn);
                 comando.Parameters.Add(new SQLiteParameter("@id", codMaterial));
                 comando.ExecuteNonQuery();
                 cn.Close();
@@ -790,7 +790,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_MATERIAL, e.NOMBRE_MATERIAL, e.EXISTENCIA_MATERIAL, e.UNIDAD_MEDIDA_MATERIAL, e.FECHA_MODF_MATERIAL FROM MATERIAL AS e WHERE e.NOMBRE_MATERIAL LIKE @nombre", cn);
+                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_MATERIAL, e.NOMBRE_MATERIAL, e.EXISTENCIA_MATERIAL, e.UNIDAD_MEDIDA_MATERIAL, e.FECHA_MODF_MATERIAL FROM MATERIAL AS e WHERE e.NOMBRE_MATERIAL LIKE @nombre AND ESTADO_MATERIAL='1'", cn);
                 comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreMaterial + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
