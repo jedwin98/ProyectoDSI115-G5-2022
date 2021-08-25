@@ -32,7 +32,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         public void cargarTabla()
         {
             dt = control.consultarMateriales();
-            dataMateriales.ItemsSource = dt.DefaultView;
+            dataProductos.ItemsSource = dt.DefaultView;
         }
 
         // ******** METODOS PARA BOTONES ***************//
@@ -58,7 +58,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
             };
 
             string fecha;
-            DataRowView row = dataMateriales.SelectedItem as DataRowView;
+            DataRowView row = dataProductos.SelectedItem as DataRowView;
             if (row == null)
             {
                 MessageBox.Show("Seleccione primero un producto", "Seleccione un producto", MessageBoxButton.OK, MessageBoxImage.Exclamation);
