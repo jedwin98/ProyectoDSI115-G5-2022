@@ -150,6 +150,9 @@
     <Compile Include="GestionProductos\AgregarProducto.xaml.cs">
       <DependentUpon>AgregarProducto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GestionProductos\GestionProductos.xaml.cs">
+      <DependentUpon>GestionProductos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestionProductos\Producto.cs" />
     <Compile Include="Inventario.xaml.cs">
       <DependentUpon>Inventario.xaml</DependentUpon>
@@ -212,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestionProductos\AgregarProducto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GestionProductos\GestionProductos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
