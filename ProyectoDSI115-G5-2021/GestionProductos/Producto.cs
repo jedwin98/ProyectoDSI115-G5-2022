@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoDSI115_G5_2021.GestionProductoes
+namespace ProyectoDSI115_G5_2021.GestionProductos
 {
     class Producto
     {
@@ -34,7 +34,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductoes
         }
         public override string ToString()
         {
-            return string.Format(" {0} - {1} - {2} - {3} - {4} - {5} - {6} - {7} ", codigoProd, nombreProd, cantidadProd, unidadProd, marcaProd, precioProd, fechaProd);
+            return string.Format(" {0} - {1} - {2} - {3} - {4} - {5} - {6} - {7}", codigoProd, nombreProd, cantidadProd, unidadProd, marcaProd, precioProd, fechaProd);
         }
     }
 }
