@@ -809,6 +809,38 @@ namespace ProyectoDSI115_G5_2021
 
 
         // *************************** FIN DE LA HISTORIA GESTION DE MATERIALES **********************************************************************
+
+        //**************************************  ACA EMPIEZA GESTION PRODUCTOS  ******************************************************************//
+        //METODO PARA AGREGAR PRODUCTO
+        public String AgregarProducto(GestionProductos.Producto producto)
+        {
+            try
+            {
+                cn.Open();
+                //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO PRODUCTO (COD_PRODUCTO, NOMBRE_PRODUCTO, EXISTENCIA_PRODUCTO, UNIDAD_MEDIDA_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, FECHA_MODF_PRODUCTO, ESTADO_PRODUCTO) VALUES (@id,@nom,@exis,@uni,@marc,@prec,@fecha,@estado)", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", producto.codigoProd));
+                comando.Parameters.Add(new SQLiteParameter("@nom", producto.nombreProd));
+                comando.Parameters.Add(new SQLiteParameter("@exis", producto.cantidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@uni", producto.unidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@marc", producto.marcaProd));
+                comando.Parameters.Add(new SQLiteParameter("@prec", producto.precioProd));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", producto.fechaProd));
+                comando.Parameters.Add(new SQLiteParameter("@estado", producto.estadoProd));
+                comando.ExecuteNonQuery();
+
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                return "Ha ocurrido un error al agregar el producto" + ex.Message.ToString();
+
+            }
+            cn.Close();
+            return "Producto Registrado correctamente";
+        }
+
+
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
         public DataTable ConsultarSolicitudes(int opcion)
