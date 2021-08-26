@@ -23,7 +23,9 @@ namespace ProyectoDSI115_G5_2021
 
         string tipo;
         GestionMateriales.GestionMateriales gm;
+        GestionProductos.GestionProductos gp;
         Nullable<bool> gma = false;
+        Nullable<bool> gpa = false;
 
         public Inventario(string tipoUsuario)
         {
@@ -44,6 +46,22 @@ namespace ProyectoDSI115_G5_2021
                     WindowState = WindowState.Maximized
                 };
                 gma = gm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnProductos_Click(object sender, RoutedEventArgs e)
+        {
+            if (tipo.Equals("A") || tipo.Equals("G"))
+            {
+                gp = new GestionProductos.GestionProductos()
+                {
+                    WindowState = WindowState.Maximized
+                };
+                gpa = gp.ShowDialog();
             }
             else
             {
