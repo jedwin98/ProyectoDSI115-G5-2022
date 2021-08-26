@@ -39,14 +39,14 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         }
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if(txtCodigo.Text == "" || txtNombre.Text == "" || txtCantidad.Text == "" || txtUnidad.Text == "")
+            if(txtCodigo.Text == "" || txtNombre.Text == "" || txtCantidad.Text == "" || txtUnidad.Text == "" || txtMarca.Text == "" || txtPrecio.Text == "")
             {
-                MessageBox.Show("Debe llenar todos los campos del formulario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Debe llenar todos los campos del formulario de Producto", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
                     string fecha = DateTime.Now.ToString("dd/MM/yyyy");
-                    Producto producto = new Producto(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtPrecio.Text, txtMarca.Text, fecha, true);
+                    Producto producto = new Producto(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtMarca.Text, txtPrecio.Text, fecha, true);
                     String respuesta = control.AgregarProducto(producto);
                     MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
             }
