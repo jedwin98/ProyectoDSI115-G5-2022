@@ -794,8 +794,6 @@ namespace ProyectoDSI115_G5_2021
                 comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreMaterial + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
-
-
             }
             catch (SQLiteException ex)
             {
@@ -806,8 +804,6 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return dt;
         }
-
-
         // *************************** FIN DE LA HISTORIA GESTION DE MATERIALES **********************************************************************
 
         //**************************************  ACA EMPIEZA GESTION PRODUCTOS  ******************************************************************//
@@ -929,6 +925,7 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return dt;
         }
+        // *************************** FIN DE LA HISTORIA GESTION DE PRODUCTOS **********************************************************************
 
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
