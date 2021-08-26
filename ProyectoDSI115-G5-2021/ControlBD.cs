@@ -817,7 +817,6 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
                 SQLiteCommand comando = new SQLiteCommand("INSERT INTO PRODUCTO (COD_PRODUCTO, NOMBRE_PRODUCTO, EXISTENCIA_PRODUCTO, UNIDAD_MEDIDA_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, FECHA_MODF_PRODUCTO, ESTADO_PRODUCTO) VALUES (@id,@nom,@exis,@uni,@marc,@prec,@fecha,@estado)", cn);
                 comando.Parameters.Add(new SQLiteParameter("@id", producto.codigoProd));
                 comando.Parameters.Add(new SQLiteParameter("@nom", producto.nombreProd));
@@ -840,6 +839,32 @@ namespace ProyectoDSI115_G5_2021
             return "Producto Registrado correctamente";
         }
 
+        //METODO PARA ACTUALIZAR PRODUCTO
+        public String ActualizarProducto(GestionProductos.Producto producto)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("UPDATE PRODUCTO SET NOMBRE_PRODUCTO = @nom, EXISTENCIA_PRODUCTO= @exis, UNIDAD_MEDIDA_PRODUCTO= @uni, MARCA_PRODUCTO= @marc, PRECIO_PRODUCTO= @prec, FECHA_MODF_PRODUCTO =@fecha WHERE COD_PRODUCTO=@codigo ", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nom", producto.nombreProd));
+                comando.Parameters.Add(new SQLiteParameter("@exis", producto.cantidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@uni", producto.unidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@marc", producto.marcaProd));
+                comando.Parameters.Add(new SQLiteParameter("@prec", producto.precioProd));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", producto.fechaProd));
+                comando.Parameters.Add(new SQLiteParameter("@codigo", producto.codigoProd));
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                Console.WriteLine(ex.Message.ToString());
+                return "Ha ocurrido un error al Actualizar el Producto" + ex.Message.ToString();
+            }
+            cn.Close();
+            return "Producto Actualizado correctamente";
+        }
 
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
