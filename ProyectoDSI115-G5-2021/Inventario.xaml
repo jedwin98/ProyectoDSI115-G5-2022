@@ -20,6 +20,13 @@
                 <Label Content="Insumos y Materiales" FontSize="14" Height="30" />
             </StackPanel>
         </Button>
+        <Button x:Name="btnProductos" Margin="43,330,0,0" VerticalAlignment="Top" Height="126" 
+            Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnProductos_Click" HorizontalAlignment="Left" Width="162">
+            <StackPanel Height="120" Width="147">
+                <Image Height="92" Source="Images/productos.png"/>
+                <Label Content="Productos" HorizontalAlignment="Center" FontSize="14" Height="30"/>
+            </StackPanel>
+        </Button>
 
     </Grid>
 </Window>

@@ -25,8 +25,8 @@ namespace ProyectoDSI115_G5_2021
         public ControlBD()
         {
             //cn = new SQLiteConnection(@"Data Source=Z:\FYSIEX.db;Version=3;Compress=True;");     // CONEXION EN UNIDAD DE RED
-            cn = new SQLiteConnection(@"data source=//Frank-PC\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
-            //cn = new SQLiteConnection("data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
+            //cn = new SQLiteConnection(@"data source=//Frank-PC\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
+            cn = new SQLiteConnection("data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
 
         }
 
@@ -794,8 +794,6 @@ namespace ProyectoDSI115_G5_2021
                 comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreMaterial + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
-
-
             }
             catch (SQLiteException ex)
             {
@@ -806,9 +804,129 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return dt;
         }
-
-
         // *************************** FIN DE LA HISTORIA GESTION DE MATERIALES **********************************************************************
+
+        //**************************************  ACA EMPIEZA GESTION PRODUCTOS  ******************************************************************//
+        //METODO PARA GENERAR CONSULTAS 
+        public DataTable consultarProductos()
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_PRODUCTO, NOMBRE_PRODUCTO, UNIDAD_MEDIDA_PRODUCTO, EXISTENCIA_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, FECHA_MODF_PRODUCTO FROM PRODUCTO WHERE ESTADO_PRODUCTO='1'", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Productos " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+        //METODO PARA AGREGAR PRODUCTO
+        public String AgregarProducto(GestionProductos.Producto producto)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO PRODUCTO (COD_PRODUCTO, NOMBRE_PRODUCTO, EXISTENCIA_PRODUCTO, UNIDAD_MEDIDA_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, FECHA_MODF_PRODUCTO, ESTADO_PRODUCTO) VALUES (@id,@nom,@exis,@uni,@marc,@prec,@fecha,@estado)", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", producto.codigoProd));
+                comando.Parameters.Add(new SQLiteParameter("@nom", producto.nombreProd));
+                comando.Parameters.Add(new SQLiteParameter("@exis", producto.cantidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@uni", producto.unidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@marc", producto.marcaProd));
+                comando.Parameters.Add(new SQLiteParameter("@prec", producto.precioProd));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", producto.fechaProd));
+                comando.Parameters.Add(new SQLiteParameter("@estado", producto.estadoProd));
+                comando.ExecuteNonQuery();
+
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                return "Ha ocurrido un error al agregar el producto" + ex.Message.ToString();
+
+            }
+            cn.Close();
+            return "Producto Registrado correctamente";
+        }
+
+        //METODO PARA ACTUALIZAR PRODUCTO
+        public String ActualizarProducto(GestionProductos.Producto producto)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("UPDATE PRODUCTO SET NOMBRE_PRODUCTO = @nom, EXISTENCIA_PRODUCTO= @exis, UNIDAD_MEDIDA_PRODUCTO= @uni, MARCA_PRODUCTO= @marc, PRECIO_PRODUCTO= @prec, FECHA_MODF_PRODUCTO =@fecha WHERE COD_PRODUCTO=@codigo ", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nom", producto.nombreProd));
+                comando.Parameters.Add(new SQLiteParameter("@exis", producto.cantidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@uni", producto.unidadProd));
+                comando.Parameters.Add(new SQLiteParameter("@marc", producto.marcaProd));
+                comando.Parameters.Add(new SQLiteParameter("@prec", producto.precioProd));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", producto.fechaProd));
+                comando.Parameters.Add(new SQLiteParameter("@codigo", producto.codigoProd));
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                Console.WriteLine(ex.Message.ToString());
+                return "Ha ocurrido un error al Actualizar el Producto" + ex.Message.ToString();
+            }
+            cn.Close();
+            return "Producto Actualizado correctamente";
+        }
+
+        //METODO PARA ELIMINAR PRODCUTO
+        public String EliminarProducto(String codProducto)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("UPDATE PRODUCTO SET ESTADO_PRODUCTO = 0 WHERE COD_PRODUCTO=@id", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", codProducto));
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine();
+                cn.Close();
+                return "Ha ocurrido un error al Eliminar el Producto" + ex.Message.ToString();
+            }
+            cn.Close();
+            return "Producto eliminado correctamente.";
+        }
+
+        //METODO PARA BUSCAR PRODUCTO
+        public DataTable BuscarProducto(string nombreProducto)
+        {
+            List<GestionProductos.Producto> producto = new List<GestionProductos.Producto>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_PRODUCTO, e.NOMBRE_PRODUCTO, e.EXISTENCIA_PRODUCTO, e.UNIDAD_MEDIDA_PRODUCTO, e.MARCA_PRODUCTO, e.PRECIO_PRODUCTO, e.FECHA_MODF_PRODUCTO FROM PRODUCTO AS e WHERE e.NOMBRE_PRODUCTO LIKE @nombre AND ESTADO_PRODUCTO='1'", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreProducto + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar el Producto " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+        // *************************** FIN DE LA HISTORIA GESTION DE PRODUCTOS **********************************************************************
+
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
         public DataTable ConsultarSolicitudes(int opcion)
