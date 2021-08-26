@@ -31,7 +31,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         //METODO INICIAL
         public void cargarTabla()
         {
-            dt = control.consultarMateriales();
+            dt = control.consultarProductos();
             dataProductos.ItemsSource = dt.DefaultView;
         }
 
