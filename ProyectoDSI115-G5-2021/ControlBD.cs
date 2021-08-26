@@ -811,6 +811,25 @@ namespace ProyectoDSI115_G5_2021
         // *************************** FIN DE LA HISTORIA GESTION DE MATERIALES **********************************************************************
 
         //**************************************  ACA EMPIEZA GESTION PRODUCTOS  ******************************************************************//
+        //METODO PARA GENERAR CONSULTAS 
+        public DataTable consultarProductos()
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_PRODUCTO, NOMBRE_PRODUCTO, UNIDAD_MEDIDA_PRODUCTO, EXISTENCIA_PRODUCTO, MARCA_PRODUCTO, PRECIO_PRODUCTO, FECHA_MODF_PRODUCTO FROM PRODUCTO WHERE ESTADO_PRODUCTO='1'", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Productos " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
         //METODO PARA AGREGAR PRODUCTO
         public String AgregarProducto(GestionProductos.Producto producto)
         {
