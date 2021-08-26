@@ -887,6 +887,30 @@ namespace ProyectoDSI115_G5_2021
             return "Producto eliminado correctamente.";
         }
 
+        //METODO PARA BUSCAR PRODUCTO
+        public DataTable BuscarProducto(string nombreProducto)
+        {
+            List<GestionProductos.Producto> producto = new List<GestionProductos.Producto>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_PRODUCTO, e.NOMBRE_PRODUCTO, e.EXISTENCIA_PRODUCTO, e.UNIDAD_MEDIDA_PRODUCTO, e.MARCA_PRODUCTO, e.PRECIO_PRODUCTO, e.FECHA_MODF_PRODUCTO FROM PRODUCTO AS e WHERE e.NOMBRE_PRODUCTO LIKE @nombre AND ESTADO_PRODUCTO='1'", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreProducto + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar el Producto " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
         public DataTable ConsultarSolicitudes(int opcion)
