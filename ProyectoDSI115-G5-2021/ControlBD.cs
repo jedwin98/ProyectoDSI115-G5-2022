@@ -866,6 +866,27 @@ namespace ProyectoDSI115_G5_2021
             return "Producto Actualizado correctamente";
         }
 
+        //METODO PARA ELIMINAR PRODCUTO
+        public String EliminarProducto(String codProducto)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("UPDATE PRODUCTO SET ESTADO_PRODUCTO = 0 WHERE COD_PRODUCTO=@id", cn);
+                comando.Parameters.Add(new SQLiteParameter("@id", codProducto));
+                comando.ExecuteNonQuery();
+                cn.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                Console.WriteLine();
+                cn.Close();
+                return "Ha ocurrido un error al Eliminar el Producto" + ex.Message.ToString();
+            }
+            cn.Close();
+            return "Producto eliminado correctamente.";
+        }
+
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
         public DataTable ConsultarSolicitudes(int opcion)
