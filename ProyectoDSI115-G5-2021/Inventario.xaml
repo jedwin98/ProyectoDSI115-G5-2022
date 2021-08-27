@@ -32,6 +32,14 @@
         <Button x:Name="btnReporteInv" Content="Generar Reporte" Margin="0,0,54,54" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" Grid.Row="1" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="133"/>
         <Button x:Name="btnBusquedaInv" Content="Buscar" Margin="0,21,54,0" Grid.Row="1" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="85"/>
         <Button x:Name="button" Content="Solicitar" Margin="0,0,206,54" Grid.Row="1" Foreground="#FFF7F7F7" Background="#FFC91029" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Right" Width="97" Height="34" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBusquedaInve" Height="30" Margin="284,21,168,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataGrid" Margin="268,71,54,115" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>
