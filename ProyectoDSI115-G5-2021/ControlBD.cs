@@ -979,6 +979,55 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        public string AgregarSolicudInsumos(SolicitarInsumos.SolicitudInsumos soli)
+        {
+            cn.Open();
+            try//insertando la solicitud
+            {
+                
+                //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est)", cn);
+                comando.Parameters.Add(new SQLiteParameter("@idS", soli.codigo));
+                comando.Parameters.Add(new SQLiteParameter("@idSolicitante", soli.solicitante.codigo));
+                comando.Parameters.Add(new SQLiteParameter("@idAprobador", soli.autorizador.codigo));
+                comando.Parameters.Add(new SQLiteParameter("@fecha",soli.fechaSolicitud));           
+                comando.Parameters.Add(new SQLiteParameter("@est", soli.estado));
+                comando.ExecuteNonQuery();
+                
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                return "Ha ocurrido un error al guardar la solicitud";
+            }
+            SolicitarInsumos.DetalleSolicitudInsumos detalle = new SolicitarInsumos.DetalleSolicitudInsumos();
+            for (int i = 0; i < soli.detalles.Count(); i++) {
+                detalle = soli.detalles[i];
+                try// insertando detalles
+                {
+                    
+                    //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                    SQLiteCommand comando = new SQLiteCommand("INSERT INTO DETALLE_SOLICITUD_INSUMO (COD_DETALLE,COD_MATERIAL,COD_SOLICITUD,COD_PRODUCTO, CANTIDAD_DETALLE) VALUES (@idD,@idM,@idSoli,@idPro,@cant)", cn);
+                    comando.Parameters.Add(new SQLiteParameter("@idD", detalle.codigo));
+                    comando.Parameters.Add(new SQLiteParameter("@idM", detalle.material.codigo));
+                    comando.Parameters.Add(new SQLiteParameter("@idSoli", detalle.codigoSolicitud));
+                    comando.Parameters.Add(new SQLiteParameter("@idPro", ""));
+                    comando.Parameters.Add(new SQLiteParameter("@cant", detalle.cantidad));
+                    
+                    comando.ExecuteNonQuery();
+                    
+                }
+                catch (SQLiteException ex)
+                {
+
+                   cn.Close();
+                    return "Ha ocurrido un error al guardar el detalle de la solicitud";
+
+                }
+            }
+            cn.Close();
+            return "La solicitud se ha realizado exitosamente";
+        }
 
 
 
@@ -989,7 +1038,8 @@ namespace ProyectoDSI115_G5_2021
 
 
 
-        
+
+
 
 
 

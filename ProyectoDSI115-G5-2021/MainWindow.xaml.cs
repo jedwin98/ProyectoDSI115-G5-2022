@@ -132,7 +132,9 @@ namespace ProyectoDSI115_G5_2021
             verInventario = new Inventario(sesion.tipoUsuario.codTipoUsuario)
             {
                 WindowState = WindowState.Maximized
-            };
+                
+        };
+            verInventario.Sesion = sesion;
             inv = verInventario.ShowDialog();
         }
     }
