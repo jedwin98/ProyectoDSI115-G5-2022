@@ -7,35 +7,39 @@
         mc:Ignorable="d"
         Title="FYSIEX - Inventario" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-8,0" RenderTransformOrigin="0.612,0.521">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="469*"/>
+        </Grid.RowDefinitions>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0" Margin="0,0,8,0"/>
         <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
-        <Rectangle  Fill="#FFF1EBEC" Margin="18,107,0,0" Stroke="Black" HorizontalAlignment="Left" Width="209" Height="400" VerticalAlignment="Top"/>
-        <Label  Content="Gestiones" HorizontalAlignment="Left" Margin="70,120,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Rectangle  Fill="#FFF1EBEC" Margin="18,7,0,0" Stroke="Black" HorizontalAlignment="Left" Width="209" Height="400" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label  Content="Gestiones" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Grid.Row="1"/>
         <Button x:Name="btnVolver" Content="Volver" Margin="19,0,0,10" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" 
-                HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
-        <Button Name="btnMateriales" Margin="43,160,0,0" VerticalAlignment="Top" Height="126" 
-                Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnMateriales_Click" HorizontalAlignment="Left" Width="162">
+                HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click" Grid.Row="1"/>
+        <Button Name="btnMateriales" Margin="43,60,0,0" VerticalAlignment="Top" Height="126" 
+                Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnMateriales_Click" HorizontalAlignment="Left" Width="162" Grid.Row="1">
             <StackPanel Height="120" Width="147">
                 <Image Height="92" Source="Images/materiales.png"/>
                 <Label Content="Insumos y Materiales" FontSize="14" Height="30" />
             </StackPanel>
         </Button>
-        <Rectangle Fill="#FFF1EBEC" Height="437" Margin="248,107,0,0" Stroke="Black" VerticalAlignment="Top" Width="621" RenderTransformOrigin="-0.271,0.283" HorizontalAlignment="Left"/>
-        <Label x:Name="label" Content="Inventario" HorizontalAlignment="Left" Margin="284,85,0,0" VerticalAlignment="Top" Height="31" Width="84" FontSize="16" Background="#FFF9F4F4"/>
-        <Label x:Name="label1" Content="Elige la acción que deseas realizar..." HorizontalAlignment="Left" Margin="561,66,0,0" VerticalAlignment="Top" Width="308" FontFamily="Comic Sans MS" FontSize="18" FontStyle="Italic"/>
-        <TextBox x:Name="textBuscarInv" Height="30" Margin="266,125,188,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="TextBuscarInv_TextChanged"/>
-        <Button x:Name="btnBuscarInv" Content="Buscar" HorizontalAlignment="Right" Margin="0,125,54,0" VerticalAlignment="Top" Width="88" Height="30" RenderTransformOrigin="0.686,0.433" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BtnBuscarInv_Click"/>
-        <DataGrid x:Name="dataInventario" Height="291" Margin="266,171,0,0" VerticalAlignment="Top" Width="580" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" HorizontalAlignment="Left">
+        <Rectangle Fill="#FFF1EBEC" Margin="248,7,31,25" Stroke="Black" RenderTransformOrigin="-0.271,0.283" Grid.Row="1"/>
+        <Label x:Name="label" Content="Inventario" Margin="284,85,0,0" FontSize="16" Background="#FFF9F4F4" Grid.RowSpan="2" Height="31" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84"/>
+        <Label x:Name="label1" Content="Elige la acción que deseas realizar..." Margin="0,66,31,0" FontFamily="Comic Sans MS" FontSize="18" FontStyle="Italic" Grid.RowSpan="2" HorizontalAlignment="Right" Width="308" Height="35" VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataInventario" Margin="266,71,54,107" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" Grid.Row="1" SelectionChanged="DataInventario_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
             </DataGrid.Columns>
         </DataGrid>
-        <CheckBox x:Name="checkProducto" Content="Productos" HorizontalAlignment="Left" Margin="284,480,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBox" Content="Materiales e Insumos" HorizontalAlignment="Left" Margin="284,500,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnSolicitar" Content="Solicitar" HorizontalAlignment="Left" Margin="609,481,0,0" VerticalAlignment="Top" Width="88" Height="34" Background="#FFC91029" Click="Button_Click" Foreground="#FFF7F7F7" FontFamily="Comic Sans MS" FontSize="16"/>
-        <Button x:Name="btnReporteInv" Content="Generar Reporte" HorizontalAlignment="Left" Margin="713,481,0,0" VerticalAlignment="Top" Width="133" FontFamily="Comic Sans MS" FontSize="16" Height="34" Background="#FFC91029" Foreground="#FFF7F7F7"/>
+        <CheckBox x:Name="checkProducto" Content="Productos" Margin="284,0,0,74" HorizontalAlignment="Left" Width="74" Grid.Row="1" Height="15" VerticalAlignment="Bottom"/>
+        <CheckBox x:Name="checkBox" Content="Materiales e Insumos" Margin="284,0,0,54" Grid.Row="1" Height="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="132"/>
+        <Button x:Name="btnReporteInv" Content="Generar Reporte" Margin="0,0,54,54" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" Grid.Row="1" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="133"/>
+        <TextBox x:Name="textBusquedaInv" Height="30" Margin="284,21,192,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="btnBusquedaInv" Content="Buscar" Margin="0,21,54,0" Grid.Row="1" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="85"/>
+        <Button x:Name="button" Content="Solicitar" Margin="0,0,206,54" Grid.Row="1" Foreground="#FFF7F7F7" Background="#FFC91029" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Right" Width="97" Height="34" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

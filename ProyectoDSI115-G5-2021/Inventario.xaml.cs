@@ -51,5 +51,14 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        private void DataInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
