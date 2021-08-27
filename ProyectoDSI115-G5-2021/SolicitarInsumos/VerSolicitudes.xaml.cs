@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDSI115_G5_2021.GestionUsuarios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,36 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
     /// </summary>
     public partial class VerSolicitudes : Window
     {
+        private Usuario sesion;
+        internal Usuario Sesion { get => sesion; set => sesion = value; }
         public VerSolicitudes()
         {
             InitializeComponent();
+        }
+
+        private void BtnNueva_Click(object sender, RoutedEventArgs e)
+        {
+            CrearSolicitudInsumos crear = new CrearSolicitudInsumos()
+            {
+                WindowState = WindowState.Maximized
+            };
+            crear.Sesion = sesion;
+            crear.Show();
+        }
+
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnSeleccionar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

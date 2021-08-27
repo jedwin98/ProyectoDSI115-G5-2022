@@ -26,6 +26,8 @@ namespace ProyectoDSI115_G5_2021
         GestionProductos.GestionProductos gp;
         Nullable<bool> gma = false;
         Nullable<bool> gpa = false;
+        private Usuario sesion;
+        internal Usuario Sesion { get => sesion; set => sesion = value; }
 
         public Inventario(string tipoUsuario)
         {
@@ -67,6 +69,17 @@ namespace ProyectoDSI115_G5_2021
             {
                 MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void BtnSolicitar_Click(object sender, RoutedEventArgs e)
+        {
+            SolicitarInsumos.VerSolicitudes solicitudes = new SolicitarInsumos.VerSolicitudes()
+            {
+                WindowState = WindowState.Maximized
+            };
+            solicitudes.Sesion = sesion;
+
+            solicitudes.Show();
         }
     }
 }

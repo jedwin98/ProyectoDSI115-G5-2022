@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.SolicitarInsumos"
         mc:Ignorable="d"
-        Title="VerSolicitudes" Height="450" Width="800">
-    <Grid>
-        
+        Title="VerSolicitudes" Height="481.5" Width="1101.15">
+    <Grid Margin="0,0,2,1" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="535*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="552*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,-6,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="3" />
+
+        <Label  Content="Solicitudes de Insumos" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="299"/>
+        <Label  Content="Solicitudes" Margin="163,65,173,0" VerticalAlignment="Top" FontSize="26" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Height="46" RenderTransformOrigin="0.517,-0.326"/>
+        <Label  Content="Contenido de la Solicitud" Margin="114,65,93,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Grid.Column="2" Height="41"/>
+        <DataGrid  x:Name="dataDetalles" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="29,124,33,112" Grid.Column="2" >
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding material.codigo}"/>
+                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding material.nombre }"/>
+                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding cantidad}"/>
+                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Presentación"  Binding="{Binding material.unidad}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid  x:Name="dataSolicitudes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,124,22,112" >
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnVolver" Content="Volver" Margin="37,0,0,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="101" Height="41" VerticalAlignment="Bottom" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902"/>
+        <Button x:Name="btnNueva" Content="Crear Nueva Solicitud" Margin="0,0,22,37" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="41" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="206" Click="BtnNueva_Click" />
+        <Button x:Name="btnVer" Content="Ver>>" Margin="15,212,10,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnSeleccionar_Click" Height="36" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button x:Name="btnLimpiar" Content="Limpiar" Margin="0,0,191,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" Click="BtnCancelar_Click" Grid.Column="2"/>
+
+
+
+
     </Grid>
 </Window>
