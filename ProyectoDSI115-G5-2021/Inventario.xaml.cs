@@ -50,5 +50,6 @@ namespace ProyectoDSI115_G5_2021
                 MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }
