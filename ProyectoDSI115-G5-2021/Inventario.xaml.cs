@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ProyectoDSI115_G5_2021.GestionMateriales;
+using ProyectoDSI115_G5_2021.GestionProductos;
 using ProyectoDSI115_G5_2021.GestionUsuarios;
 
 namespace ProyectoDSI115_G5_2021
@@ -29,10 +32,45 @@ namespace ProyectoDSI115_G5_2021
         private Usuario sesion;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
 
+        DataTable dt = new DataTable();
+        ControlBD control = new ControlBD();
+        //List<Producto> producto = new List<Producto>();
+        //List<Material> material = new List<Material>();
+
         public Inventario(string tipoUsuario)
         {
             InitializeComponent();
             tipo = tipoUsuario;
+            if (checkProducto.IsChecked == true && checkMaterial.IsChecked == true)
+                cargarTabla();
+            else if (checkProducto.IsChecked == true && checkMaterial.IsChecked == false)
+                cargarTablaProd();
+            else if (checkMaterial.IsChecked == true && checkProducto.IsChecked == false)
+                cargarTablaMat();
+            else
+                MessageBox.Show("Marque una de las oociones para ver en el inventario");
+
+        }
+
+        public void cargarTabla()
+        {
+            dt = control.consultarInventario();
+            dataInventario.ItemsSource = dt.DefaultView;
+            
+        }
+
+        public void cargarTablaProd()
+        {
+            dt = control.consultarInventarioProd();
+            dataInventario.ItemsSource = dt.DefaultView;
+
+        }
+
+        public void cargarTablaMat()
+        {
+            dt = control.consultarInventarioMat();
+            dataInventario.ItemsSource = dt.DefaultView;
+
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
