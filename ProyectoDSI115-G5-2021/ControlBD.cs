@@ -1057,7 +1057,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_PRODUCTO, NOMBRE_PRODUCTO, EXISTENCIA_PRODUCTO FROM PRODUCTO WHERE ESTADO_PRODUCTO='1'", cn);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_PRODUCTO AS COD_MATERIAL, NOMBRE_PRODUCTO AS NOMBRE_MATERIAL, EXISTENCIA_PRODUCTO AS EXISTENCIA_MATERIAL FROM PRODUCTO AS P WHERE ESTADO_PRODUCTO='1'", cn);
                 da.Fill(dt);
             }
             catch (SQLiteException ex)
