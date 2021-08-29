@@ -1033,7 +1033,7 @@ namespace ProyectoDSI115_G5_2021
 
         //************************************** INICIA CONSULTAR INVENTARIO  ******************************************************************
 
-
+        //Metodo para consulta inicial del inventario
         public DataTable consultarInventario()
         {
             try
@@ -1052,6 +1052,7 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        //Metodo para consultar solamente el inventario de producto
         public DataTable consultarInventarioProd()
         {
             try
@@ -1070,6 +1071,7 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        //Metodo para consultar solamente el inventario de Materiales e Insumos
         public DataTable consultarInventarioMat()
         {
             try
@@ -1088,7 +1090,7 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
-
+        //Metodo para buscar cuando se muestran ambas categorias en el inventario
         public DataTable BuscarInventario(string nombreInv)
         {
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -1111,6 +1113,7 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        //Metodo para buscar cuando se muestran solo Materiales e Insumos en el inventario
         public DataTable BuscarInventarioMat(string nombreInv)
         {
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -1133,6 +1136,7 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        //Metodo para buscar cuando se muestrab solo Productos en el inventario
         public DataTable BuscarInventarioPro(string nombreInv)
         {
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -1154,7 +1158,7 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return dt;
         }
-
+        //************************************** FIN DE CONSULTAR INVENTARIO  ************************************************************************
 
         /*
 
