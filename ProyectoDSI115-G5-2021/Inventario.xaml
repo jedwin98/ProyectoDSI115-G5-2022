@@ -24,29 +24,27 @@
                 <Label Content="Insumos y Materiales" FontSize="14" Height="30" />
             </StackPanel>
         </Button>
-        <Button x:Name="btnProductos"  Height="126" Background="#FFF1EBEC" BorderBrush="Transparent"  Click="BtnProductos_Click" HorizontalAlignment="Left" Width="162" Margin="43,228,0,115" Grid.Row="1">
+        <Button x:Name="btnProductos"  Height="126" Background="#FFF1EBEC" BorderBrush="Transparent"  Click="BtnProductos_Click" HorizontalAlignment="Left" Width="162" Margin="43,228,0,0" Grid.Row="1" VerticalAlignment="Top">
             <StackPanel Height="105" Width="154">
                 <Image Height="82" Source="Images/productos.png" Margin="25,0,25,0"/>
                 <Label Content="Productos" FontFamily="Comic Sans MS" FontSize="14" Height="30" Margin="38,0,37,0"/>
             </StackPanel>
         </Button>
         <Rectangle Fill="#FFF1EBEC" Margin="248,7,31,25" Stroke="Black" RenderTransformOrigin="-0.271,0.283" Grid.Row="1"/>
-        <Label x:Name="label" Content="Inventario" Margin="284,85,0,0" FontSize="16" Background="#FFF9F4F4" Grid.RowSpan="2" Height="31" VerticalAlignment="Top" HorizontalAlignment="Left" Width="84"/>
+        <Label x:Name="label" Content="Inventario" Margin="284,85,0,0" FontSize="16" Background="#FFF9F4F4" Grid.RowSpan="2" HorizontalAlignment="Left" Width="84" Height="31" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Elige la acción que deseas realizar..." Margin="0,66,31,0" FontFamily="Comic Sans MS" FontSize="18" FontStyle="Italic" Grid.RowSpan="2" HorizontalAlignment="Right" Width="308" Height="35" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkProducto" Content="Productos" Margin="284,0,0,74" HorizontalAlignment="Left" Width="74" Grid.Row="1" Height="15" VerticalAlignment="Bottom"/>
-        <CheckBox x:Name="checkBox" Content="Materiales e Insumos" Margin="284,0,0,54" Grid.Row="1" Height="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="132"/>
-        <Button x:Name="btnReporteInv" Content="Generar Reporte" Margin="0,0,54,54" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" Grid.Row="1" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="133"/>
-        <Button x:Name="btnBusquedaInv" Content="Buscar" Margin="0,21,54,0" Grid.Row="1" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="85"/>
+        <Button x:Name="btnReporteInv" Content="Generar Reporte" Margin="0,0,54,54" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" Grid.Row="1" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="133" Click="BtnReporteInv_Click"/>
+        <Button x:Name="btnBusquedaInv" Content="Buscar" Margin="0,21,54,0" Grid.Row="1" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="85" Click="BtnBusquedaInv_Click"/>
         <Button x:Name="btnSolicitar" Content="Solicitar" Margin="0,0,206,54" Grid.Row="1" Foreground="#FFF7F7F7" Background="#FFC91029" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Right" Width="97" Height="34" VerticalAlignment="Bottom" Click="BtnSolicitar_Click"/>
         <TextBox x:Name="textBusquedaInve" Height="30" Margin="284,21,168,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dataGrid" Margin="268,71,54,115" Grid.Row="1" AutoGenerateColumns="False">
+        <DataGrid x:Name="dataInventario" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="268,71,54,115" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                <DataGridTextColumn Binding="{Binding COD_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="110" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding NOMBRE_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Nombre" MinWidth="110" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding EXISTENCIA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Cantidad" MinWidth="110" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-
-
+        <CheckBox x:Name="checkProducto" Content="Productos" HorizontalAlignment="Left" Margin="268,0,0,73" Grid.Row="1" IsChecked="True" Height="15" VerticalAlignment="Bottom"/>
+        <CheckBox x:Name="checkMaterial" Content="Materiales e Insumos" HorizontalAlignment="Left" Margin="268,0,0,51" Grid.Row="1" IsChecked="True" Height="15" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

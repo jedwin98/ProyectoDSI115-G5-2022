@@ -1029,19 +1029,136 @@ namespace ProyectoDSI115_G5_2021
             return "La solicitud se ha realizado exitosamente";
         }
 
+        //************************************** FIN DE SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 
+        //************************************** INICIA CONSULTAR INVENTARIO  ******************************************************************
 
+        //Metodo para consulta inicial del inventario
+        public DataTable consultarInventario()
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_MATERIAL, NOMBRE_MATERIAL, EXISTENCIA_MATERIAL FROM MATERIAL WHERE ESTADO_MATERIAL='1' UNION SELECT COD_PRODUCTO, NOMBRE_PRODUCTO, EXISTENCIA_PRODUCTO FROM PRODUCTO WHERE ESTADO_PRODUCTO='1'", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Inventario " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
 
+        //Metodo para consultar solamente el inventario de producto
+        public DataTable consultarInventarioProd()
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_PRODUCTO AS COD_MATERIAL, NOMBRE_PRODUCTO AS NOMBRE_MATERIAL, EXISTENCIA_PRODUCTO AS EXISTENCIA_MATERIAL FROM PRODUCTO AS P WHERE ESTADO_PRODUCTO='1'", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Inventario " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
 
+        //Metodo para consultar solamente el inventario de Materiales e Insumos
+        public DataTable consultarInventarioMat()
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_MATERIAL, NOMBRE_MATERIAL, EXISTENCIA_MATERIAL FROM MATERIAL WHERE ESTADO_MATERIAL='1'", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Inventario " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
 
+        //Metodo para buscar cuando se muestran ambas categorias en el inventario
+        public DataTable BuscarInventario(string nombreInv)
+        {
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_MATERIAL, NOMBRE_MATERIAL, EXISTENCIA_MATERIAL FROM MATERIAL WHERE NOMBRE_MATERIAL LIKE @nombre AND ESTADO_MATERIAL='1' UNION SELECT COD_PRODUCTO, NOMBRE_PRODUCTO, EXISTENCIA_PRODUCTO FROM PRODUCTO WHERE NOMBRE_PRODUCTO LIKE @nombre AND ESTADO_PRODUCTO='1'", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreInv + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
 
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar el Producto o Material" + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
 
+        //Metodo para buscar cuando se muestran solo Materiales e Insumos en el inventario
+        public DataTable BuscarInventarioMat(string nombreInv)
+        {
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_MATERIAL, NOMBRE_MATERIAL, EXISTENCIA_MATERIAL FROM MATERIAL WHERE NOMBRE_MATERIAL LIKE @nombre AND ESTADO_MATERIAL='1'", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreInv + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
 
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar el Material " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
 
+        //Metodo para buscar cuando se muestrab solo Productos en el inventario
+        public DataTable BuscarInventarioPro(string nombreInv)
+        {
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_PRODUCTO AS COD_MATERIAL, NOMBRE_PRODUCTO AS NOMBRE_MATERIAL, EXISTENCIA_PRODUCTO AS EXISTENCIA_MATERIAL FROM PRODUCTO AS P WHERE NOMBRE_PRODUCTO LIKE @nombre AND ESTADO_PRODUCTO='1'", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreInv + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
 
-
-
-
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar el Producto " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+        //************************************** FIN DE CONSULTAR INVENTARIO  ************************************************************************
 
         /*
 
