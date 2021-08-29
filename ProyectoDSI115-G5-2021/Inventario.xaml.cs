@@ -143,5 +143,37 @@ namespace ProyectoDSI115_G5_2021
         {
             BuscarInventario();
         }
+
+        public DataTable CrearDataTable()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Código");
+            dataTable.Columns.Add("Nombre");
+            dataTable.Columns.Add("Existencia");
+            string[] nombre = new string[3];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                nombre[0] = dt.Rows[i][0].ToString();
+                nombre[1] = dt.Rows[i][1].ToString();
+                nombre[2] = dt.Rows[i][2].ToString();
+                dataTable.Rows.Add(new Object[] { nombre[0], nombre[1], nombre[2]});
+            }
+            return dataTable;
+
+        }
+
+        public void CrearPDF()
+        {
+
+
+            DataTable info = CrearDataTable();
+            CreadorPDF creador = new CreadorPDF(info, "Inventario");
+
+        }
+
+        private void BtnReporteInv_Click(object sender, RoutedEventArgs e)
+        {
+            CrearPDF();
+        }
     }
 }
