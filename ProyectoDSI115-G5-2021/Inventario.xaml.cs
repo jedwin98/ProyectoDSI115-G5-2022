@@ -34,8 +34,6 @@ namespace ProyectoDSI115_G5_2021
 
         DataTable dt = new DataTable();
         ControlBD control = new ControlBD();
-        //List<Producto> producto = new List<Producto>();
-        //List<Material> material = new List<Material>();
 
         public Inventario(string tipoUsuario)
         {
@@ -118,6 +116,32 @@ namespace ProyectoDSI115_G5_2021
             solicitudes.Sesion = sesion;
 
             solicitudes.Show();
+        }
+
+        private void BuscarInventario()
+        {
+            dt.Clear();
+            if (checkProducto.IsChecked==true && checkMaterial.IsChecked == true)
+            {
+                dt = control.BuscarInventario(textBusquedaInve.Text);
+                dataInventario.ItemsSource = dt.DefaultView;
+            }
+            else if (checkMaterial.IsChecked==true && checkProducto.IsChecked==false)
+            {
+                dt = control.BuscarInventarioMat(textBusquedaInve.Text);
+                dataInventario.ItemsSource = dt.DefaultView;
+            }
+            else if (checkProducto.IsChecked==true && checkMaterial.IsChecked == false)
+            {
+                dt = control.BuscarInventarioPro(textBusquedaInve.Text);
+                dataInventario.ItemsSource = dt.DefaultView;
+            }
+            
+        }
+
+        private void BtnBusquedaInv_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarInventario();
         }
     }
 }
