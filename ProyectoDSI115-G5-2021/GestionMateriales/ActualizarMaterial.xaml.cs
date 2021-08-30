@@ -37,6 +37,16 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             }
         }
 
+        //EVENTO QUE IMPIDE INGRESAR LETRAS EN EL CAMPO DE PRECIO
+        private void TxtPrecio_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrecio.Text, "[^0-9.,]"))
+            {
+                MessageBox.Show("En este campo solamente puede utilizar enteros o decimales\nPor favor ingrese de forma correcta el precio del material.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtPrecio.Text = txtPrecio.Text.Remove(txtPrecio.Text.Length - 1);
+            }
+        }
+
         //*************************** METODO DE BOTONES ***************************************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
@@ -57,7 +67,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             else
             {
                 string fecha = DateTime.Now.ToShortDateString();
-                Material material = new Material(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, fecha, true);
+                Material material = new Material(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtPrecio.Text, fecha, true);
                 String respuesta = control.ActualizarMaterial(material);
                 MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
             }

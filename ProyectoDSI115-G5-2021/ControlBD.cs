@@ -695,7 +695,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_MATERIAL, NOMBRE_MATERIAL, UNIDAD_MEDIDA_MATERIAL, EXISTENCIA_MATERIAL, FECHA_MODF_MATERIAL FROM MATERIAL WHERE ESTADO_MATERIAL='1'", cn);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_MATERIAL, NOMBRE_MATERIAL, UNIDAD_MEDIDA_MATERIAL, EXISTENCIA_MATERIAL, PRECIO_MATERIAL, FECHA_MODF_MATERIAL FROM MATERIAL WHERE ESTADO_MATERIAL='1'", cn);
                 da.Fill(dt);
             }
             catch (SQLiteException ex)
@@ -714,11 +714,12 @@ namespace ProyectoDSI115_G5_2021
             {
                 cn.Open();
                 //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
-                SQLiteCommand comando = new SQLiteCommand("INSERT INTO MATERIAL (COD_MATERIAL, NOMBRE_MATERIAL, EXISTENCIA_MATERIAL, UNIDAD_MEDIDA_MATERIAL, FECHA_MODF_MATERIAL, ESTADO_MATERIAL) VALUES (@id,@nom,@exis,@uni,@fecha,@estado)", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO MATERIAL (COD_MATERIAL, NOMBRE_MATERIAL, EXISTENCIA_MATERIAL, UNIDAD_MEDIDA_MATERIAL, PRECIO_MATERIAL, FECHA_MODF_MATERIAL, ESTADO_MATERIAL) VALUES (@id,@nom,@exis,@uni,@precio,@fecha,@estado)", cn);
                 comando.Parameters.Add(new SQLiteParameter("@id", material.codigo));
                 comando.Parameters.Add(new SQLiteParameter("@nom", material.nombre));
                 comando.Parameters.Add(new SQLiteParameter("@exis", material.cantidad));
                 comando.Parameters.Add(new SQLiteParameter("@uni", material.unidad));
+                comando.Parameters.Add(new SQLiteParameter("@precio", material.precio));
                 comando.Parameters.Add(new SQLiteParameter("@fecha", material.fecha));
                 comando.Parameters.Add(new SQLiteParameter("@estado", material.estado));
                 comando.ExecuteNonQuery();
@@ -739,10 +740,11 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteCommand comando = new SQLiteCommand("UPDATE MATERIAL SET NOMBRE_MATERIAL = @nom, EXISTENCIA_MATERIAL= @exis, UNIDAD_MEDIDA_MATERIAL= @uni, FECHA_MODF_MATERIAL =@fecha WHERE COD_MATERIAL=@codigo ", cn);
+                SQLiteCommand comando = new SQLiteCommand("UPDATE MATERIAL SET NOMBRE_MATERIAL = @nom, EXISTENCIA_MATERIAL= @exis, UNIDAD_MEDIDA_MATERIAL= @uni, PRECIO_MATERIAL =@precio, FECHA_MODF_MATERIAL =@fecha WHERE COD_MATERIAL=@codigo ", cn);
                 comando.Parameters.Add(new SQLiteParameter("@nom", material.nombre));
                 comando.Parameters.Add(new SQLiteParameter("@exis", material.cantidad));
                 comando.Parameters.Add(new SQLiteParameter("@uni", material.unidad));
+                comando.Parameters.Add(new SQLiteParameter("@precio", material.precio));
                 comando.Parameters.Add(new SQLiteParameter("@fecha", material.fecha));
                 comando.Parameters.Add(new SQLiteParameter("@codigo", material.codigo));
                 comando.ExecuteNonQuery();
@@ -791,8 +793,9 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_MATERIAL, e.NOMBRE_MATERIAL, e.EXISTENCIA_MATERIAL, e.UNIDAD_MEDIDA_MATERIAL, e.FECHA_MODF_MATERIAL FROM MATERIAL AS e WHERE e.NOMBRE_MATERIAL LIKE @nombre AND ESTADO_MATERIAL='1'", cn);
+                SQLiteCommand comando = new SQLiteCommand("SELECT e.COD_MATERIAL, e.NOMBRE_MATERIAL, e.EXISTENCIA_MATERIAL, e.UNIDAD_MEDIDA_MATERIAL, e.PRECIO_MATERIAL, e.FECHA_MODF_MATERIAL FROM MATERIAL AS e WHERE (e.NOMBRE_MATERIAL LIKE @nombre OR e.COD_MATERIAL LIKE @codigo) AND ESTADO_MATERIAL='1'", cn);
                 comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreMaterial + "%"));
+                comando.Parameters.Add(new SQLiteParameter("@codigo", "%" + nombreMaterial + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
             }

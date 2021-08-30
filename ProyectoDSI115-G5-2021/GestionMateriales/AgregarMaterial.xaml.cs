@@ -46,7 +46,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             else
             {
                     string fecha = DateTime.Now.ToString("dd/MM/yyyy");
-                    Material material = new Material(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, fecha, true);
+                    Material material = new Material(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtPrecio.Text, fecha, true);
                     String respuesta = control.AgregarMaterial(material);
                     MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -59,6 +59,15 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             {
                 MessageBox.Show("En este campo solamente puede utilizar numeros\nPor favor ingrese de forma correcta la cantidad de material.","Advertencia",MessageBoxButton.OK,MessageBoxImage.Warning);
                 txtCantidad.Text = txtCantidad.Text.Remove(txtCantidad.Text.Length - 1);
+            }
+        }
+        //EVENTO QUE IMPIDE INGRESAR LETRAS EN EL CAMPO DE PRECIO
+        private void TxtPrecio_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtPrecio.Text, "[^0-9.,]"))
+            {
+                MessageBox.Show("En este campo solamente puede utilizar enteros o decimales\nPor favor ingrese de forma correcta el precio del material.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtPrecio.Text = txtPrecio.Text.Remove(txtPrecio.Text.Length - 1);
             }
         }
     }

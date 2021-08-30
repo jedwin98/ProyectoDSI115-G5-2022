@@ -70,7 +70,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ac.txtNombre.Text = row.Row.ItemArray[1].ToString();
                 ac.txtUnidad.Text = row.Row.ItemArray[2].ToString();
                 ac.txtCantidad.Text = row.Row.ItemArray[3].ToString();
-                fecha = row.Row.ItemArray[4].ToString();
+                ac.txtPrecio.Text = row.Row.ItemArray[4].ToString();
+                fecha = row.Row.ItemArray[5].ToString();
 
                 ac.Show();
                 this.Close();
@@ -97,7 +98,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ec.txtNombre.Text = row.Row.ItemArray[1].ToString();
                 ec.txtUnidad.Text = row.Row.ItemArray[2].ToString();
                 ec.txtCantidad.Text = row.Row.ItemArray[3].ToString();
-                fecha = row.Row.ItemArray[4].ToString();
+                ec.txtPrecio.Text = row.Row.ItemArray[4].ToString();
+                fecha = row.Row.ItemArray[5].ToString();
 
                 ec.Show();
                 this.Close();

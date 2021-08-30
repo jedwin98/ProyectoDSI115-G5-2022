@@ -31,5 +31,7 @@
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="501,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" IsEnabled="False"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
         <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" IsEnabled="False"/>
+        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="501,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Precio (USD$):" HorizontalAlignment="Left" Margin="315,243,0,0" VerticalAlignment="Top" FontSize="14"/>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionMateriales"
         mc:Ignorable="d"
-        Title="FYSIEX - Gestion de Insumos y Materiales" Height="526" Width="831" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Gestion de Insumos y Materiales" Height="526" Width="931" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Gestión de Insumos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
@@ -38,6 +38,7 @@
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre del Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Precio (USD$)" Binding="{Binding PRECIO_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Fecha de Modificación"  Binding="{Binding FECHA_MODF_MATERIAL}"/>
             </DataGrid.Columns>
         </DataGrid>
