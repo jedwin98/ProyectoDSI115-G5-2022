@@ -930,16 +930,19 @@ namespace ProyectoDSI115_G5_2021
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
         public DataTable ConsultarSolicitudes2(string codigoEmpleado)
         {
-            SQLiteDataAdapter da = new SQLiteDataAdapter();
+            dt.Clear();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
             try
             {
-                cn.Open();               
-                    SQLiteCommand comando = new SQLiteCommand("SELECT s.COD_SOLICITUD, e.COD_EMPLEADO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO, s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s WHERE s.COD_EMPLEADO=@codE AND e.COD_EMPLEADO=@codE", cn);
-                    comando.Parameters.Add(new SQLiteParameter("@codE", "%" + codigoEmpleado + "%"));                
-                    da.SelectCommand = comando;
-                    MessageBox.Show("entró"+codigoEmpleado);
-                    da.Fill(dt);
-                
+                    SQLiteCommand comando = new SQLiteCommand("SELECT s.COD_SOLICITUD AS CODIGO_SOLI,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO,e.APELLIDO_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM SOLICITUD_INSUMO AS s  INNER JOIN EMPLEADO AS e WHERE s.COD_EMPLEADO=@cod AND e.COD_EMPLEADO=@cod", cn);
+                    comando.Parameters.Add(new SQLiteParameter("@cod", codigoEmpleado));                
+                    adapter.SelectCommand = comando;
+
+                    
+                    adapter.Fill(dt);
+                //  MessageBox.Show(dt.Rows[0][1].ToString());
+                MessageBox.Show("entró" + codigoEmpleado);
+
             }
             catch (SQLiteException ex)
             {
@@ -948,13 +951,14 @@ namespace ProyectoDSI115_G5_2021
                 cn.Close();
             }
             cn.Close();
+         //   MessageBox.Show(dt.Rows[1][1].ToString());
             return dt;
         }
-        public DataTable ConsultarSolicitudes()
+        public DataTable ConsultarSolicitudes()//felix
         {
             try { 
 
-                    SQLiteDataAdapter  da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,e.COD_EMPLEADO,e.NOMBRE_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s", cn);
+                    SQLiteDataAdapter  da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO,e.APELLIDO_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM SOLICITUD_INSUMO AS s  JOIN EMPLEADO AS e WHERE s.COD_EMPLEADO= e.COD_EMPLEADO", cn);
                     da.Fill(dt);
                     MessageBox.Show("tambien");
              
@@ -971,13 +975,14 @@ namespace ProyectoDSI115_G5_2021
 
         public DataTable ConsultarDetalleSolicitudes(string codigoSolicitud)
         {
-            
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+
             dt.Clear();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
             try
             {
                cn.Open();
-                    SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM MATERIAL AS m INNER JOIN DETALLE_SOLICITUD_INSUMO AS d  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
+                
+                SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL, m.UNIDAD_MEDIDA_MATERIAL ,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  MATERIAL AS m  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
                 comando.Parameters.Add(new SQLiteParameter("@codSolicitud",  codigoSolicitud));
                     adapter.SelectCommand = comando;
                     adapter.Fill(dt);
@@ -999,7 +1004,7 @@ namespace ProyectoDSI115_G5_2021
             {
                 
                 //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
-                SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est)", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD ,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est)", cn);
                 comando.Parameters.Add(new SQLiteParameter("@idS", soli.codigo));
                 comando.Parameters.Add(new SQLiteParameter("@idSolicitante", soli.solicitante.codigoEmpleado));
                 comando.Parameters.Add(new SQLiteParameter("@idAprobador", soli.autorizador.empleado));

@@ -21,9 +21,10 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
     /// </summary>
     public partial class VerSolicitudes : Window
     {
-        
-        ControlBD control;
+
+        ControlBD control = new ControlBD();
         DataTable dat = new DataTable();
+        DataTable detalles = new DataTable();
         internal Usuario sesion;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
         public string codigoEmpleado { get; set; }
@@ -54,19 +55,41 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
 
         private void BtnSeleccionar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = dataSolicitudes.SelectedItem as DataRowView;
+            if (row == null)
+            {
+                MessageBox.Show("Seleccione primero un material", "Seleccione un material", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
+            }
+            else
+            {
+                CargarDetalles(row.Row.ItemArray[0].ToString(), codigoEmpleado);
+                
+            }
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-
+            detalles.Clear();
+            dataDetalles.ItemsSource = null;
         }
         public void CargarTabla(string cod)
         {
-            control = new ControlBD();
-           // MessageBox.Show(":" + Sesion.codigoEmpleado);
+            // MessageBox.Show(":" + Sesion.codigoEmpleado);
+            dat.Clear();
             dat = control.ConsultarSolicitudes2( cod);
             dataSolicitudes.ItemsSource = dat.DefaultView;
         }
+        public void CargarDetalles(string codigoSolicitud, string empleado)
+        {
+            ControlBD control2 = new ControlBD();
+            detalles.Clear();
+            dataDetalles.ItemsSource = null;
+            
+            detalles = control2.ConsultarDetalleSolicitudes(codigoSolicitud);
+            dataDetalles.ItemsSource = detalles.DefaultView;
+           // CargarTabla(empleado);
+        }
+       
     }
 }
