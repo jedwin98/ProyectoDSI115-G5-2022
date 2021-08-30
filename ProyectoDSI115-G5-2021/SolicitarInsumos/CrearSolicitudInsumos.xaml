@@ -30,7 +30,7 @@
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding material.codigo}"/>
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding material.nombre }"/>
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Presentación"  Binding="{Binding material.unidad}"/>
-                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding cantidad}"/>
+                <DataGridTextColumn MinWidth="140"  Header="Cantidad Solicitada"  Binding="{Binding cantidad}"/>
                
 
             </DataGrid.Columns>

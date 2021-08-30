@@ -29,10 +29,9 @@
         </DataGrid>
         <DataGrid  x:Name="dataSolicitudes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,124,22,112" >
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding COD_SOLICITUD}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Fecha de solicitud"  Binding="{Binding FECHA_SOLICITUD}"/>
+                <DataGridTextColumn MinWidth="130" IsReadOnly="True" Header="Estado de la Solicitud"  Binding="{Binding ESTADO_SOLICITUD}"/>
 
             </DataGrid.Columns>
         </DataGrid>

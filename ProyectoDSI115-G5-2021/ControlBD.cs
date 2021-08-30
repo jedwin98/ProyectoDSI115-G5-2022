@@ -133,7 +133,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteCommand comando = new SQLiteCommand("SELECT * from CLIENTE WHERE NOMBRE_CLIENTE LIKE @nombre AND ESTADO_CLIENTE='Activo';", cn);
+                SQLiteCommand comando = new SQLiteCommand("SELECT * from CLIENTE WHERE NOMBRE_CLIENTE LIKE @nombre OR EMPRESA_CLIENTE LIKE @nombre AND ESTADO_CLIENTE='Activo';", cn);
                 comando.Parameters.Add(new SQLiteParameter("@nombre","%"+ nombreCliente + "%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
@@ -270,7 +270,7 @@ namespace ProyectoDSI115_G5_2021
             //Se selecciona al usuario a partir del correo obtenido
             //Se asegura que la contraseña coincida con la BD.
             Usuario sesion = new Usuario();
-            string comando = "SELECT cod_usuario, correo_usuario, u.cod_tipousuario as cod_tipo, t.nombre_tipousuario as tipo, e.nombre_empleado as nom_empleado, e.apellido_empleado as ape_empleado, contrasena_usuario, estado_usuario FROM (usuario as u INNER JOIN tipo_usuario as t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE correo_usuario='" + usuario+ "' AND NOT estado_usuario = 'O'";
+            string comando = "SELECT cod_usuario, u.cod_empleado as cod_empleado, correo_usuario, u.cod_tipousuario as cod_tipo, t.nombre_tipousuario as tipo, e.nombre_empleado as nom_empleado, e.apellido_empleado as ape_empleado, contrasena_usuario, estado_usuario FROM (usuario as u INNER JOIN tipo_usuario as t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE correo_usuario='" + usuario+ "' AND NOT estado_usuario = 'O'";
             cn.Open();
             SQLiteCommand iniciarCmd = new SQLiteCommand(comando, cn);
             SQLiteDataReader iniciarReader = iniciarCmd.ExecuteReader();
@@ -288,6 +288,7 @@ namespace ProyectoDSI115_G5_2021
                     {
                         //No se pasa la contraseña, sólo se compara
                         sesion.codigo = iniciarReader["cod_usuario"].ToString();
+                        sesion.codigoEmpleado = iniciarReader["cod_empleado"].ToString();
                         sesion.correoElectronico = iniciarReader["correo_usuario"].ToString();
                         sesion.empleado = iniciarReader["nom_empleado"].ToString() + " " + iniciarReader["ape_empleado"].ToString();
                         sesion.tipoUsuario = new TipoUsuario(iniciarReader["cod_tipo"].ToString(), iniciarReader["tipo"].ToString());
@@ -926,25 +927,37 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
         // *************************** FIN DE LA HISTORIA GESTION DE PRODUCTOS **********************************************************************
-
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
-
-        public DataTable ConsultarSolicitudes(int opcion)
+        public DataTable ConsultarSolicitudes2(string codigoEmpleado)
         {
-            SQLiteDataAdapter da;
+            SQLiteDataAdapter da = new SQLiteDataAdapter();
             try
             {
-                cn.Open();
-                if (opcion == 0)//Gabriel
-                {
-                    da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,e.COD_EMPLEADO,e.NOMBRE_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s WHERE e.COD_EMPLEADO=s.COD_EMPLEADO", cn);
-                }
-                else {//Felix
-                    da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,e.COD_EMPLEADO,e.NOMBRE_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s WHERE e.COD_EMPLEADO=s.COD_EMPLEADO AND s.ESTADO_SOLICITUD='Pendiente'", cn);
+                cn.Open();               
+                    SQLiteCommand comando = new SQLiteCommand("SELECT s.COD_SOLICITUD, e.COD_EMPLEADO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO, s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s WHERE s.COD_EMPLEADO=@codE AND e.COD_EMPLEADO=@codE", cn);
+                    comando.Parameters.Add(new SQLiteParameter("@codE", "%" + codigoEmpleado + "%"));                
+                    da.SelectCommand = comando;
+                    MessageBox.Show("entró"+codigoEmpleado);
+                    da.Fill(dt);
+                
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar tabla de solicitudes " + ex.Message.ToString());
 
-                }
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+        public DataTable ConsultarSolicitudes()
+        {
+            try { 
 
-                da.Fill(dt);
+                    SQLiteDataAdapter  da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,e.COD_EMPLEADO,e.NOMBRE_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM EMPLEADO AS e INNER JOIN SOLICITUD_INSUMO AS s", cn);
+                    da.Fill(dt);
+                    MessageBox.Show("tambien");
+             
             }
             catch (SQLiteException ex)
             {
@@ -988,8 +1001,8 @@ namespace ProyectoDSI115_G5_2021
                 //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
                 SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est)", cn);
                 comando.Parameters.Add(new SQLiteParameter("@idS", soli.codigo));
-                comando.Parameters.Add(new SQLiteParameter("@idSolicitante", soli.solicitante.codigo));
-                comando.Parameters.Add(new SQLiteParameter("@idAprobador", soli.autorizador.codigo));
+                comando.Parameters.Add(new SQLiteParameter("@idSolicitante", soli.solicitante.codigoEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@idAprobador", soli.autorizador.empleado));
                 comando.Parameters.Add(new SQLiteParameter("@fecha",soli.fechaSolicitud));           
                 comando.Parameters.Add(new SQLiteParameter("@est", soli.estado));
                 comando.ExecuteNonQuery();

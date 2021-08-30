@@ -129,12 +129,12 @@ namespace ProyectoDSI115_G5_2021
         }
         private void BtnInventario_Click(object sender, RoutedEventArgs e)
         {
-            verInventario = new Inventario(sesion.tipoUsuario.codTipoUsuario)
+            verInventario = new Inventario(sesion.tipoUsuario.codTipoUsuario, sesion.codigoEmpleado)
             {
                 WindowState = WindowState.Maximized
                 
         };
-            verInventario.Sesion = sesion;
+            verInventario.Sesion = this.sesion;
             inv = verInventario.ShowDialog();
         }
     }

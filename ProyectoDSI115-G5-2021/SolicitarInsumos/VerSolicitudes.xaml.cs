@@ -1,6 +1,7 @@
 ﻿using ProyectoDSI115_G5_2021.GestionUsuarios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,19 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
     /// </summary>
     public partial class VerSolicitudes : Window
     {
-        private Usuario sesion;
+        
+        ControlBD control;
+        DataTable dat = new DataTable();
+        internal Usuario sesion;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
-        public VerSolicitudes()
+        public string codigoEmpleado { get; set; }
+
+        public VerSolicitudes(string codE)
         {
             InitializeComponent();
+            codigoEmpleado = codE;
+           MessageBox.Show(codE);
+            CargarTabla(codE);
         }
 
         private void BtnNueva_Click(object sender, RoutedEventArgs e)
@@ -35,6 +44,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             };
             crear.Sesion = sesion;
             crear.Show();
+            this.Close();
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
@@ -50,6 +60,13 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        public void CargarTabla(string cod)
+        {
+            control = new ControlBD();
+           // MessageBox.Show(":" + Sesion.codigoEmpleado);
+            dat = control.ConsultarSolicitudes2( cod);
+            dataSolicitudes.ItemsSource = dat.DefaultView;
         }
     }
 }
