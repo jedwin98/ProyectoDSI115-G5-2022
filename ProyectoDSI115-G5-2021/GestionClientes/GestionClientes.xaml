@@ -22,7 +22,7 @@
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Empresa"  Binding="{Binding EMPRESA_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Razón social"  Binding="{Binding EMPRESA_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Teléfono"  Binding="{Binding TELEFONO_CLIENTE}"/>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding ESTADO_CLIENTE}"/>
             </DataGrid.Columns>

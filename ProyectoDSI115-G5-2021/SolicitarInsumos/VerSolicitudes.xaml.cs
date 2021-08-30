@@ -1,6 +1,7 @@
 ﻿using ProyectoDSI115_G5_2021.GestionUsuarios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,20 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
     /// </summary>
     public partial class VerSolicitudes : Window
     {
-        private Usuario sesion;
+
+        ControlBD control = new ControlBD();
+        DataTable dat = new DataTable();
+        DataTable detalles = new DataTable();
+        internal Usuario sesion;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
-        public VerSolicitudes()
+        public string codigoEmpleado { get; set; }
+
+        public VerSolicitudes(string codE)
         {
             InitializeComponent();
+            codigoEmpleado = codE;
+           MessageBox.Show(codE);
+            CargarTabla(codE);
         }
 
         private void BtnNueva_Click(object sender, RoutedEventArgs e)
@@ -35,6 +45,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             };
             crear.Sesion = sesion;
             crear.Show();
+            this.Close();
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
@@ -44,12 +55,41 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
 
         private void BtnSeleccionar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = dataSolicitudes.SelectedItem as DataRowView;
+            if (row == null)
+            {
+                MessageBox.Show("Seleccione primero un material", "Seleccione un material", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
+            }
+            else
+            {
+                CargarDetalles(row.Row.ItemArray[0].ToString(), codigoEmpleado);
+                
+            }
         }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-
+            detalles.Clear();
+            dataDetalles.ItemsSource = null;
         }
+        public void CargarTabla(string cod)
+        {
+            // MessageBox.Show(":" + Sesion.codigoEmpleado);
+            dat.Clear();
+            dat = control.ConsultarSolicitudes2( cod);
+            dataSolicitudes.ItemsSource = dat.DefaultView;
+        }
+        public void CargarDetalles(string codigoSolicitud, string empleado)
+        {
+            ControlBD control2 = new ControlBD();
+            detalles.Clear();
+            dataDetalles.ItemsSource = null;
+            
+            detalles = control2.ConsultarDetalleSolicitudes(codigoSolicitud);
+            dataDetalles.ItemsSource = detalles.DefaultView;
+           // CargarTabla(empleado);
+        }
+       
     }
 }

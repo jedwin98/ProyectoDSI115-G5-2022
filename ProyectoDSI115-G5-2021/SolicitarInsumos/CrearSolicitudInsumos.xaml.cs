@@ -35,7 +35,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             InitializeComponent();
             CargarTabla();
             codigoSolicitud = GenerarCodigoS();
-            txtBuscar.Text = codigoSolicitud;
+            //txtBuscar.Text = codigoSolicitud;
         }
         public void CargarTabla()
         {
@@ -154,6 +154,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             solicitud.solicitante = sesion;
             solicitud.autorizador = new GestionUsuarios.Usuario();
             solicitud.autorizador.codigo = "";
+            solicitud.autorizador.empleado = "";
             solicitud.fechaSolicitud = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
             solicitud.estado = "Pendiente";
             solicitud.setListDetalles(detalles);
@@ -179,13 +180,17 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Está seguro que desea cancelar? se borrará todos los datos de la solicitud", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar? se borrará todos los datos de la solicitud", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
+                txtCantidad.Text = "";
+                txtCodigo.Text = "";
+                txtNombre.Text = "";
+                txtPresentacion.Text = "";
                 detalles.Clear();
                 dataSoli.ItemsSource = null;
                 dataSoli.ItemsSource = detalles;
-                dataSoli.UpdateLayout();
+
             }
             else
             {
@@ -193,5 +198,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             }
           
         }
+       
+
     }
 }

@@ -31,13 +31,14 @@ namespace ProyectoDSI115_G5_2021
         Nullable<bool> gpa = false;
         private Usuario sesion;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
+        public string codigoEmpleado { get; set; }
 
-        DataTable dt = new DataTable();
         ControlBD control = new ControlBD();
-
-        public Inventario(string tipoUsuario)
+        DataTable dt = new DataTable();
+        public Inventario(string tipoUsuario, string codE)
         {
             InitializeComponent();
+            codigoEmpleado = codE;
             tipo = tipoUsuario;
             if (checkProducto.IsChecked == true && checkMaterial.IsChecked == true)
                 cargarTabla();
@@ -109,13 +110,14 @@ namespace ProyectoDSI115_G5_2021
 
         private void BtnSolicitar_Click(object sender, RoutedEventArgs e)
         {
-            SolicitarInsumos.VerSolicitudes solicitudes = new SolicitarInsumos.VerSolicitudes()
+            SolicitarInsumos.VerSolicitudes solicitudes = new SolicitarInsumos.VerSolicitudes( codigoEmpleado)
             {
                 WindowState = WindowState.Maximized
             };
             solicitudes.Sesion = sesion;
 
             solicitudes.Show();
+            this.Close();
         }
 
         private void BuscarInventario()

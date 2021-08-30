@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.SolicitarInsumos"
         mc:Ignorable="d"
-        Title="CrearSolicitudInsumos" Height="577.5" Width="1212.15">
+        Title="CrearSolicitudInsumos" Height="577.5" Width="1212.15" >
     <Grid Margin="0,0,2,-3" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="479*"/>
@@ -30,7 +30,7 @@
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding material.codigo}"/>
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding material.nombre }"/>
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Presentación"  Binding="{Binding material.unidad}"/>
-                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding cantidad}"/>
+                <DataGridTextColumn MinWidth="140"  Header="Cantidad Solicitada"  Binding="{Binding cantidad}"/>
                
 
             </DataGrid.Columns>
