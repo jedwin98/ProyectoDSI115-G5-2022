@@ -89,23 +89,6 @@ namespace ProyectoDSI115_G5_2021
             //¿Cómo manejar las sesiones en la BD?
         }
 
-        private void BtnInsumos_Click(object sender, RoutedEventArgs e)
-        {
-            if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
-            {
-                Autorizacion.ConsultarSolicitudes solicitudes = new Autorizacion.ConsultarSolicitudes
-                {
-                    WindowState = WindowState.Maximized
-                };
-                solicitudes.sesion = this.sesion;
-                solicitudes.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             //Al cerrar la ventana, la sesión debe cerrarse.

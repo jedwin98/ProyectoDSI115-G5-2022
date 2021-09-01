@@ -959,38 +959,21 @@ namespace ProyectoDSI115_G5_2021
         }
         public DataTable ConsultarSolicitudes()//felix
         {
-            try
-            {
-                dt.Clear();
-                SQLiteDataAdapter  da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO,e.APELLIDO_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM SOLICITUD_INSUMO AS s  JOIN EMPLEADO AS e WHERE s.COD_EMPLEADO= e.COD_EMPLEADO", cn);
-                da.Fill(dt);
+            try { 
+
+                    SQLiteDataAdapter  da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO,e.APELLIDO_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM SOLICITUD_INSUMO AS s  JOIN EMPLEADO AS e WHERE s.COD_EMPLEADO= e.COD_EMPLEADO", cn);
+                    da.Fill(dt);
+                    MessageBox.Show("tambien");
+             
             }
             catch (SQLiteException ex)
             {
                 MessageBox.Show("Ha ocurrido un error al cargar tabla de solicitudes " + ex.Message.ToString());
+                
                 cn.Close();
             }
             cn.Close();
             return dt;
-        }
-
-        public bool ActualizarEstadoSolicitud(string codigoSolicitud, string nuevoEstado, string empleadoEncargado)
-        {
-            try
-            {
-                SQLiteCommand cambio = new SQLiteCommand("UPDATE SOLICITUD_INSUMO SET ESTADO_SOLICITUD = @estado, EMP_COD_EMPLEADO = @empleado WHERE COD_SOLICITUD = @codigo",cn);
-                cambio.Parameters.Add(new SQLiteParameter("@estado", nuevoEstado));
-                cambio.Parameters.Add(new SQLiteParameter("@codigo", codigoSolicitud));
-                cambio.Parameters.Add(new SQLiteParameter("@empleado", empleadoEncargado));
-                cambio.ExecuteNonQuery();
-                cn.Close();
-            }
-            catch (SqlException ex)
-            {
-                cn.Close();
-                return false;
-            }
-            return true;
         }
 
         public DataTable ConsultarDetalleSolicitudes(string codigoSolicitud)
