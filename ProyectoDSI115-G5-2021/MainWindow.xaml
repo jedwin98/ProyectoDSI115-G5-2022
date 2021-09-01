@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
         Closing="MainWindow_Closing"
-        Title="FYSIEX - Bienvenido " Height="600" Width="900" MinWidth="900" MinHeight="600" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Bienvenido " Height="600" Width="940" MinWidth="940" MinHeight="600" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100*"/>
@@ -61,10 +61,11 @@
                 <Label Content="Inventario" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-
-
-
-
-
+        <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="2" Margin="152,0,152,30" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4">
+            <StackPanel>
+                <Image Source="/Images/empleados.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
+                <Label Content="Insumos" Height="30" VerticalAlignment="Bottom" Width="64" FontSize="14"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

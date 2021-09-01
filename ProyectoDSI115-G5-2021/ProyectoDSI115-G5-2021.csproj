@@ -134,6 +134,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Autorizacion\ConsultarSolicitudes.xaml.cs">
+      <DependentUpon>ConsultarSolicitudes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Autorizacion\VerificarSolicitud.xaml.cs">
+      <DependentUpon>VerificarSolicitud.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestionMateriales\ActualizarMaterial.xaml.cs">
       <DependentUpon>ActualizarMaterial.xaml</DependentUpon>
     </Compile>
@@ -172,6 +178,14 @@
     <Compile Include="SolicitarInsumos\VerSolicitudes.xaml.cs">
       <DependentUpon>VerSolicitudes.xaml</DependentUpon>
     </Compile>
+	<Page Include="Autorizacion\ConsultarSolicitudes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Autorizacion\VerificarSolicitud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GestionClientes\ActualizarCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -387,7 +401,12 @@
     <Resource Include="Images\materiales.png" />
     <Resource Include="Images\productos.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\aprobar.png" />
+    <Resource Include="Images\denegar.png" />
+    <Resource Include="Images\verificar.png" />
+    <Resource Include="Images\imprimir.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
