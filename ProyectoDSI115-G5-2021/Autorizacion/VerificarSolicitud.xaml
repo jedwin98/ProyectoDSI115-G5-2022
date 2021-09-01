@@ -1,0 +1,43 @@
+﻿<Window x:Class="ProyectoDSI115_G5_2021.Autorizacion.VerificarSolicitud"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.Autorizacion"
+        mc:Ignorable="d"
+        Title="VerificarSolicitud" Height="450" Width="800">
+    <Grid>
+        <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
+        <Label Content="Aprobar Solicitudes" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="39"/>
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="260" Margin="19,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
+        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="60,0,0,10" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
+        <Label Content="Seleccione el estado de la solicitud" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Height="34"/>
+        <DataGrid x:Name="dataDetalles" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AutoGenerateColumns="False" Margin="210,100,10,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn MinWidth="60" Header="Detalle" Binding="{Binding COD_DETALLE}" IsReadOnly="True"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Código Material" Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="150" Header="Material" Binding="{Binding NOMBRE_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="60" Header="Presentación" Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="60" Header="Cantidad" Binding="{Binding CANTIDAD_DETALLE}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Background="#FFF1EBEC" x:Name="btnAprobar"  HorizontalAlignment="Left" Margin="52,110,0,0" VerticalAlignment="Top" Width="101" Height="75" Click="BtnAprobar_Click" BorderThickness="0">
+            <StackPanel>
+                <Image x:Name="imgAprobar" Source="/FYSIEX;component/Images/aprobar.png" Height="50" Width="54"/>
+                <Label x:Name="labelAprobar" Content="Aprobar" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button Background="#FFF1EBEC" x:Name="btnDenegar"  HorizontalAlignment="Left" Margin="52,190,0,0" VerticalAlignment="Top" Width="101" Height="75" Click="BtnDenegar_Click" BorderThickness="0">
+            <StackPanel>
+                <Image x:Name="imgDenegar" Source="/FYSIEX;component/Images/denegar.png" Height="50" Width="54"/>
+                <Label x:Name="labelDenegar" Content="Denegar" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button Background="#FFF1EBEC" x:Name="btnImprimir"  HorizontalAlignment="Left" Margin="52,270,0,0" VerticalAlignment="Top" Width="101" Height="75" Click="BtnImprimir_Click" BorderThickness="0">
+            <StackPanel>
+                <Image x:Name="imgImprimir" Source="/FYSIEX;component/Images/imprimir.png" Height="50" Width="54"/>
+                <Label x:Name="labelImprimir" Content="Imprimir" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
