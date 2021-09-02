@@ -15,7 +15,7 @@
         <TextBox x:Name="txtId" MaxLength="7"  TextWrapping="Wrap" Text="" Margin="461,125,107,0" IsEnabled="False" Height="24" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNombre" MaxLength="50"  TextWrapping="Wrap" Text="" Margin="461,158,107,0" Height="24" VerticalAlignment="Top"/>
         <TextBox x:Name="txtApellido" MaxLength="50" TextWrapping="Wrap" Text="" Margin="461,196,107,0" Height="24" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEmpresa" MaxLength="30" TextWrapping="Wrap" Text="" Margin="461,232,107,0" Height="24" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmpresa" MaxLength="300" TextWrapping="Wrap" Text="" Margin="461,232,107,0" Height="24" VerticalAlignment="Top"/>
 
 
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="183" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>

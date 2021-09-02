@@ -15,13 +15,13 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         public string telefono { get; set; }
         public string estado { get; set; }
 
-        public Cliente(string cod , string nom, string ape, string emp, string codserv, string estad)
+        public Cliente(string cod , string nom, string ape, string emp, string tel, string estad)
         {
             codigo = cod;
             nombres = nom;
             apellidos = ape;
             empresa = emp;
-            telefono = codserv;
+            telefono = tel;
             estado = estad;
         }
         public Cliente()

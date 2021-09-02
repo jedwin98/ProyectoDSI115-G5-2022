@@ -24,10 +24,11 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
         internal GestionUsuarios.Usuario Sesion { get => sesion; set => sesion = value; }
         ControlBD control;
         DataTable dt = new DataTable();
+        
         DataTable dataTable = new DataTable();    
         string codigoSolicitud { get; set; }
         List<DetalleSolicitudInsumos> detalles = new List<DetalleSolicitudInsumos>();
-
+        List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
 
 
         public CrearSolicitudInsumos()
@@ -42,6 +43,12 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             control = new ControlBD();
             dt = control.consultarMateriales();
             dataMateriales.ItemsSource = dt.DefaultView;
+            //llena combo de los clientes
+            clientes = control.ListaClientes();
+            cmbClientes.ItemsSource = clientes;
+           
+
+            
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
@@ -91,6 +98,9 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
+           
+            
+
             try
             {
                 if (txtCantidad.Text == "")
@@ -148,19 +158,41 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
 
         private void BtnSolicitar_Click(object sender, RoutedEventArgs e)
         {
-            SolicitudInsumos solicitud = new SolicitudInsumos();
-            solicitud.codigo = codigoSolicitud;
-            
-            solicitud.solicitante = sesion;
-            solicitud.autorizador = new GestionUsuarios.Usuario();
-            solicitud.autorizador.codigo = "";
-            solicitud.autorizador.empleado = "";
-            solicitud.fechaSolicitud = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            solicitud.estado = "Pendiente";
-            solicitud.setListDetalles(detalles);
-            string respuesta = control.AgregarSolicudInsumos(solicitud);
-            MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
-         
+            if (cmbClientes.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else 
+            {
+                if (txtCodigoReq.Text == "") {
+                    MessageBox.Show("Debe agregar el codigo de la solicitud", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    SolicitudInsumos solicitud = new SolicitudInsumos();
+                    solicitud.codigo = codigoSolicitud;
+                    solicitud.codigoReq = txtCodigoReq.Text;
+                    solicitud.codigoCliente = cmbClientes.SelectedValue.ToString();
+                    solicitud.solicitante = sesion;
+                    solicitud.autorizador = new GestionUsuarios.Usuario();
+                    solicitud.autorizador.codigo = "";
+                    solicitud.autorizador.empleado = "";
+                    solicitud.fechaSolicitud = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                    solicitud.estado = "Pendiente";
+                    solicitud.setListDetalles(detalles);
+                    string respuesta = control.AgregarSolicudInsumos(solicitud);
+                    MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
+                    txtCodigoReq.Text = "";
+                    cmbClientes.SelectedValue = null;
+
+                
+
+                }
+
+            }
+
+
+
         }
         public string GenerarCodigoS()
         {
@@ -198,7 +230,24 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             }
           
         }
-       
+        private void dgMateriales_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                {
+                    DataRowView row = grid.SelectedItem as DataRowView;
+                    // DataRowView row = dataMateriales.SelectedItem as DataRowView;
+                   // DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                    txtCodigo.Text = row.Row.ItemArray[0].ToString();
+                    txtNombre.Text = row.Row.ItemArray[1].ToString();
+
+                    txtPresentacion.Text = row.Row.ItemArray[2].ToString();
+                }
+            }
+        }
+
 
     }
 }
