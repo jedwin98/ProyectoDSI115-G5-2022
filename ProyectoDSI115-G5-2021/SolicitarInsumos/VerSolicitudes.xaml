@@ -8,9 +8,9 @@
         Title="VerSolicitudes" Height="481.5" Width="1101.15"  >
     <Grid Margin="0,0,2,1" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="535*"/>
-            <ColumnDefinition Width="115*"/>
-            <ColumnDefinition Width="552*"/>
+            <ColumnDefinition Width="506*"/>
+            <ColumnDefinition Width="93*"/>
+            <ColumnDefinition Width="492*"/>
         </Grid.ColumnDefinitions>
 
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,-6,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="3" />
@@ -24,13 +24,15 @@
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding NOMBRE_MATERIAL }"/>
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding CANTIDAD_DETALLE}"/>
-               
+
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid  x:Name="dataSolicitudes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,124,22,112" >
+        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,124,22,112" >
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding CODIGO_SOLI}"/>
+                <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding CODIGO_SOLI}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Solicitud Número"  Binding="{Binding COD_REQ}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Cliente"  Binding="{Binding EMPRESA_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Fecha de solicitud"  Binding="{Binding FECHA_SOLICITUD}"/>
                 <DataGridTextColumn MinWidth="130" IsReadOnly="True" Header="Estado de la Solicitud"  Binding="{Binding ESTADO_SOLICITUD}"/>
 

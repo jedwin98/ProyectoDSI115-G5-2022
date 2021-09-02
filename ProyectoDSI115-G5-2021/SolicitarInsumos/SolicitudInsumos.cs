@@ -11,6 +11,8 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
     class SolicitudInsumos
     {
         public string codigo { get; set; }
+        public string codigoReq { get; set; }
+        public string codigoCliente { get; set; }
         public GestionUsuarios.Usuario solicitante { get; set; }
         public string fechaSolicitud { get; set; }
         public List<DetalleSolicitudInsumos> detalles { get; set; }

@@ -67,6 +67,19 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
                 
             }
         }
+        private void dgDetalles_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                {
+                    DataRowView row = grid.SelectedItem as DataRowView;
+                   
+                    CargarDetalles(row.Row.ItemArray[0].ToString(), codigoEmpleado);
+                }
+            }
+        }
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {

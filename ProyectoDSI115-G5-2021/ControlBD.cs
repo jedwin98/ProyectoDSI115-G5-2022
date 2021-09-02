@@ -937,7 +937,7 @@ namespace ProyectoDSI115_G5_2021
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
             try
             {
-                    SQLiteCommand comando = new SQLiteCommand("SELECT s.COD_SOLICITUD AS CODIGO_SOLI,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO,e.APELLIDO_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM SOLICITUD_INSUMO AS s  INNER JOIN EMPLEADO AS e WHERE s.COD_EMPLEADO=@cod AND e.COD_EMPLEADO=@cod", cn);
+                    SQLiteCommand comando = new SQLiteCommand("SELECT s.COD_SOLICITUD AS CODIGO_SOLI,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO,e.APELLIDO_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD,  s.COD_REQ, s.COD_CLIENTE, c.EMPRESA_CLIENTE FROM SOLICITUD_INSUMO AS s  INNER JOIN EMPLEADO AS e INNER JOIN CLIENTE AS c WHERE s.COD_EMPLEADO=@cod AND e.COD_EMPLEADO=@cod AND s.COD_CLIENTE=c.COD_CLIENTE", cn);
                     comando.Parameters.Add(new SQLiteParameter("@cod", codigoEmpleado));                
                     adapter.SelectCommand = comando;
 
@@ -1025,12 +1025,14 @@ namespace ProyectoDSI115_G5_2021
             {
                 
                 //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
-                SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD ,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est)", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD ,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD, COD_CLIENTE, COD_REQ) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est,@idC,@idReq)", cn);
                 comando.Parameters.Add(new SQLiteParameter("@idS", soli.codigo));
                 comando.Parameters.Add(new SQLiteParameter("@idSolicitante", soli.solicitante.codigoEmpleado));
                 comando.Parameters.Add(new SQLiteParameter("@idAprobador", soli.autorizador.empleado));
                 comando.Parameters.Add(new SQLiteParameter("@fecha",soli.fechaSolicitud));           
                 comando.Parameters.Add(new SQLiteParameter("@est", soli.estado));
+                comando.Parameters.Add(new SQLiteParameter("@idC", soli.codigoCliente));
+                comando.Parameters.Add(new SQLiteParameter("@idReq", soli.codigoReq));
                 comando.ExecuteNonQuery();
                 
             }
@@ -1109,7 +1111,32 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return dt;
         }
+        public List<GestionClientes.Cliente> ListaClientes ()
+        {
+            List < GestionClientes.Cliente > clientes = new List<GestionClientes.Cliente>();
+            try
+            {
+                cn.Open();
+                string comando = "SELECT * FROM  CLIENTE WHERE ESTADO_CLIENTE='Activo'";
+                SQLiteCommand command = new SQLiteCommand(comando, cn);
+                SQLiteDataReader dr = command.ExecuteReader();
 
+                while (dr.Read())
+                {
+                    clientes.Add(new GestionClientes.Cliente(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]), Convert.ToString(dr[5])));  //se realiza de esta forma para evitar los datos replicados en la lista            
+                }
+                dr.Close();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar los clientes " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+
+            cn.Close();
+            return clientes;
+        }
         //Metodo para consultar solamente el inventario de Materiales e Insumos
         public DataTable consultarInventarioMat()
         {
