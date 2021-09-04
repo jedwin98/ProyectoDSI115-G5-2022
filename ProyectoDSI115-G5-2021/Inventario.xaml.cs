@@ -178,6 +178,14 @@ namespace ProyectoDSI115_G5_2021
             CrearPDF();
         }
 
+        private void CheckProducto_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarInventario();
+        }
 
+        private void CheckMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarInventario();
+        }
     }
 }

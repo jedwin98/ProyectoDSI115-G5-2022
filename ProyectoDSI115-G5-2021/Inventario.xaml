@@ -53,7 +53,7 @@
                 <DataGridTextColumn Binding="{Binding EXISTENCIA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Cantidad" MinWidth="110" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <CheckBox x:Name="checkProducto" Content="Productos" HorizontalAlignment="Left" Margin="268,0,0,73" Grid.Row="1" IsChecked="True" Height="15" VerticalAlignment="Bottom"/>
-        <CheckBox x:Name="checkMaterial" Content="Materiales e Insumos" HorizontalAlignment="Left" Margin="268,0,0,51" Grid.Row="1" IsChecked="True" Height="15" VerticalAlignment="Bottom"/>
+        <CheckBox x:Name="checkProducto" Content="Productos" HorizontalAlignment="Left" Margin="268,0,0,73" Grid.Row="1" IsChecked="True" Height="15" VerticalAlignment="Bottom" Click="CheckProducto_Click"/>
+        <CheckBox x:Name="checkMaterial" Content="Materiales e Insumos" HorizontalAlignment="Left" Margin="268,0,0,51" Grid.Row="1" IsChecked="True" Height="15" VerticalAlignment="Bottom" Click="CheckMaterial_Click"/>
     </Grid>
 </Window>
