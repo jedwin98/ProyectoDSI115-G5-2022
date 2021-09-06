@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionProductos"
         mc:Ignorable="d"
-        Title="FYSIEX - Actualizar Producto" Height="481.462" Width="800">
+        Title="FYSIEX - Actualizar Producto" Height="500" Width="800" MinWidth="800" MinHeight="500" WindowStartupLocation="CenterScreen">
+    
     <Grid>
         <Rectangle  Fill="#FFC91029" Stroke="Black" Height="61" VerticalAlignment="Top" />
 
@@ -29,10 +30,10 @@
         <Label Content="Presentación del Producto:" HorizontalAlignment="Left" Margin="315,186,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="501,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="501,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" TextChanged="TxtCantidad_TextChanged"/>
-        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
+        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TxtCantidad_TextChanged"/>
         <Label Content="Precio" HorizontalAlignment="Left" Margin="315.371,243,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="501.371,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="501.371,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TxtPrecio_TextChanged"/>
         <Label Content="Marca" HorizontalAlignment="Left" Margin="315.371,272,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="txtMarca" HorizontalAlignment="Left" Height="23" Margin="501.371,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
     </Grid>
