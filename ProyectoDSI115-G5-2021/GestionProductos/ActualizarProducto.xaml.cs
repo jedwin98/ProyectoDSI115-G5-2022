@@ -57,7 +57,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
             else
             {
                 string fecha = DateTime.Now.ToShortDateString();
-                Producto producto = new Producto(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtMarca.Text, txtPrecio.Text, fecha, true);
+                Producto producto = new Producto(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtMarca.Text,txtPrecio.Text,  fecha, true);
                 String respuesta = control.ActualizarProducto(producto);
                 MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
             }
