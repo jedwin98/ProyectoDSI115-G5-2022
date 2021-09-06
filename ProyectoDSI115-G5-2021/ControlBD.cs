@@ -931,6 +931,47 @@ namespace ProyectoDSI115_G5_2021
         }
         // *************************** FIN DE LA HISTORIA GESTION DE PRODUCTOS **********************************************************************
         //**************************************  SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
+        public DataTable BuscarMatYPro(string nombreInv)
+        {
+            dt.Clear();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_MATERIAL, NOMBRE_MATERIAL, UNIDAD_MEDIDA_MATERIAL, EXISTENCIA_MATERIAL FROM MATERIAL WHERE NOMBRE_MATERIAL LIKE @nombre AND ESTADO_MATERIAL='1' UNION SELECT COD_PRODUCTO, NOMBRE_PRODUCTO, UNIDAD_MEDIDA_PRODUCTO ,EXISTENCIA_PRODUCTO FROM PRODUCTO WHERE NOMBRE_PRODUCTO LIKE @nombre AND ESTADO_PRODUCTO='1'", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreInv + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar el Producto o Material" + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+        public DataTable consultarProductos2()
+        {
+           // DataTable list = new DataTable();
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT  COD_PRODUCTO AS COD_MATERIAL, NOMBRE_PRODUCTO AS NOMBRE_MATERIAL, UNIDAD_MEDIDA_PRODUCTO AS UNIDAD_MEDIDA_MATERIAL, EXISTENCIA_PRODUCTO AS EXISTENCIA_MATERIAL FROM PRODUCTO  WHERE ESTADO_PRODUCTO='1'", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Materiales y Productos " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
         public DataTable ConsultarSolicitudes2(string codigoEmpleado)
         {
             dt.Clear();
@@ -944,7 +985,7 @@ namespace ProyectoDSI115_G5_2021
                     
                     adapter.Fill(dt);
                 //  MessageBox.Show(dt.Rows[0][1].ToString());
-                MessageBox.Show("entró" + codigoEmpleado);
+               // MessageBox.Show("entró" + codigoEmpleado);
 
             }
             catch (SQLiteException ex)
@@ -1045,7 +1086,7 @@ namespace ProyectoDSI115_G5_2021
             {
                cn.Open();
                 
-                SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL, m.UNIDAD_MEDIDA_MATERIAL ,d.COD_SOLICITUD, d.CANTIDAD_DETALLE, m.EXISTENCIA_MATERIAL FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  MATERIAL AS m  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
+                SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL, m.UNIDAD_MEDIDA_MATERIAL ,d.COD_SOLICITUD, d.CANTIDAD_DETALLE, m.EXISTENCIA_MATERIAL FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  MATERIAL AS m  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL UNION SELECT d.COD_DETALLE, d.COD_MATERIAL, p.NOMBRE_PRODUCTO AS NOMBRE_MATERIAL, p.UNIDAD_MEDIDA_PRODUCTO AS UNIDAD_MEDIDA_MATERIAL ,d.COD_SOLICITUD, d.CANTIDAD_DETALLE, p.EXISTENCIA_PRODUCTO FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  PRODUCTO AS p  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=p.COD_PRODUCTO", cn);
                 comando.Parameters.Add(new SQLiteParameter("@codSolicitud",  codigoSolicitud));
                     adapter.SelectCommand = comando;
                     adapter.Fill(dt);

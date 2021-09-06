@@ -42,6 +42,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
         {
             control = new ControlBD();
             dt = control.consultarMateriales();
+            dt = control.consultarProductos2();
             dataMateriales.ItemsSource = dt.DefaultView;
             //llena combo de los clientes
             clientes = control.ListaClientes();
@@ -92,7 +93,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
         private void BuscarMaterial()
         {
             dt.Clear();
-            dt = control.BuscarMaterial(txtBuscar.Text);
+            dt = control.BuscarMatYPro(txtBuscar.Text);
             dataMateriales.ItemsSource = dt.DefaultView;
         }
 
@@ -184,6 +185,9 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
                     MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtCodigoReq.Text = "";
                     cmbClientes.SelectedValue = null;
+
+                    detalles.Clear();
+                    dataSoli.ItemsSource = null;
 
                 
 
