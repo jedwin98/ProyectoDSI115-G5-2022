@@ -33,7 +33,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
         {
             InitializeComponent();
             codigoEmpleado = codE;
-           MessageBox.Show(codE);
+          // MessageBox.Show(codE);
             CargarTabla(codE);
         }
 
