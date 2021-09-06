@@ -19,6 +19,7 @@
                 <DataGridTextColumn MinWidth="150" Header="Material" Binding="{Binding NOMBRE_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="60" Header="Presentación" Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="60" Header="Cantidad" Binding="{Binding CANTIDAD_DETALLE}"/>
+                <DataGridTextColumn MinWidth="60" Header="Existencias" Binding="{Binding EXISTENCIA_MATERIAL}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Background="#FFF1EBEC" x:Name="btnAprobar"  HorizontalAlignment="Left" Margin="52,110,0,0" VerticalAlignment="Top" Width="101" Height="75" Click="BtnAprobar_Click" BorderThickness="0">

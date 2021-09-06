@@ -40,7 +40,7 @@ namespace ProyectoDSI115_G5_2021.Autorizacion
             else
             {
                 // Agregar id de solicitud.
-                vs = new VerificarSolicitud(row.Row.ItemArray[0].ToString(), row.Row.ItemArray[2].ToString(), row.Row.ItemArray[3].ToString(), row.Row.ItemArray[5].ToString());
+                vs = new VerificarSolicitud(row.Row.ItemArray[0].ToString(), row.Row.ItemArray[2].ToString(), row.Row.ItemArray[3].ToString(), row.Row.ItemArray[4].ToString(), row.Row.ItemArray[5].ToString(), row.Row.ItemArray[7].ToString(), row.Row.ItemArray[6].ToString());
                 vs.sesion = this.sesion;
                 vs.WindowState = WindowState.Maximized;
                 // Bloquea la ejecución de esta instancia de ventana y se transfiere a la ventana creada.

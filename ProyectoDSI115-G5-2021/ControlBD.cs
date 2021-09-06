@@ -199,7 +199,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM (usuario as u INNER JOIN tipo_usuario AS t ON u.cod_tipousuario = t.cod_tipousuario) INNER JOIN empleado AS e ON u.cod_empleado = e.cod_empleado WHERE NOT estado_usuario = 'O'", cn);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM ((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) INNER JOIN USUARIO AS u ON e.COD_EMPLEADO = u.COD_EMPLEADO WHERE u.COD_EMPLEADO IS NULL AND NOT estado_usuario = 'O'", cn);
                 da.Fill(dt);
             }
             catch (SQLiteException ex)
@@ -962,7 +962,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 dt.Clear();
-                SQLiteDataAdapter  da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO,e.APELLIDO_EMPLEADO,s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD FROM SOLICITUD_INSUMO AS s  JOIN EMPLEADO AS e WHERE s.COD_EMPLEADO= e.COD_EMPLEADO", cn);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT s.COD_SOLICITUD,s.COD_EMPLEADO,e.NOMBRE_EMPLEADO||' '||e.APELLIDO_EMPLEADO as SOLICITANTE, c.NOMBRE_CLIENTE||' '||c.APELLIDO_CLIENTE as REPRESENTANTE, c.EMPRESA_CLIENTE, s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD, s.COD_REQ FROM (SOLICITUD_INSUMO AS s JOIN EMPLEADO AS e ON s.COD_EMPLEADO = e.COD_EMPLEADO) JOIN CLIENTE AS c ON s.COD_CLIENTE = c.COD_CLIENTE ORDER BY s.ESTADO_SOLICITUD DESC", cn);
                 da.Fill(dt);
             }
             catch (SQLiteException ex)
@@ -972,6 +972,29 @@ namespace ProyectoDSI115_G5_2021
             }
             cn.Close();
             return dt;
+        }
+
+        public string ObtenerEmpleadoAutorizador(string codigoSolicitud)
+        {
+            try
+            {
+                string empleado = "";
+                cn.Open();
+                SQLiteCommand nombreEmpleado = new SQLiteCommand("SELECT e.NOMBRE_EMPLEADO||' '||e.APELLIDO_EMPLEADO AS AUTORIZADOR FROM SOLICITUD_INSUMO AS s JOIN EMPLEADO AS e ON e.COD_EMPLEADO = s.EMP_COD_EMPLEADO WHERE COD_SOLICITUD = '"+codigoSolicitud+"'", cn);
+                SQLiteDataReader dr = nombreEmpleado.ExecuteReader();
+                while (dr.Read())
+                {
+                    empleado = Convert.ToString(dr[0]);
+                }
+                dr.Close();
+                cn.Close();
+                return empleado;
+            }
+            catch
+            {
+                cn.Close();
+                return "Empleado";
+            }
         }
 
         public bool ActualizarEstadoSolicitud(string codigoSolicitud, string nuevoEstado, string empleadoEncargado)
@@ -985,13 +1008,32 @@ namespace ProyectoDSI115_G5_2021
                 cambio.Parameters.Add(new SQLiteParameter("@empleado", empleadoEncargado));
                 cambio.ExecuteNonQuery();
                 cn.Close();
+                return true;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 cn.Close();
                 return false;
             }
-            return true;
+        }
+
+        public bool ActualizarExistencias(string codigoMaterial, float nuevaExistencia)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand cambio = new SQLiteCommand("UPDATE MATERIAL SET EXISTENCIA_MATERIAL = @existencia WHERE COD_MATERIAL = @codigo", cn);
+                cambio.Parameters.Add(new SQLiteParameter("@existencia", nuevaExistencia));
+                cambio.Parameters.Add(new SQLiteParameter("@codigo", codigoMaterial));
+                cambio.ExecuteNonQuery();
+                cn.Close();
+                return true;
+            }
+            catch
+            {
+                cn.Close();
+                return false;
+            }
         }
 
         public DataTable ConsultarDetalleSolicitudes(string codigoSolicitud)
@@ -1003,7 +1045,7 @@ namespace ProyectoDSI115_G5_2021
             {
                cn.Open();
                 
-                SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL, m.UNIDAD_MEDIDA_MATERIAL ,d.COD_SOLICITUD, d.CANTIDAD_DETALLE  FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  MATERIAL AS m  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
+                SQLiteCommand comando = new SQLiteCommand("SELECT  d.COD_DETALLE, d.COD_MATERIAL, m.NOMBRE_MATERIAL, m.UNIDAD_MEDIDA_MATERIAL ,d.COD_SOLICITUD, d.CANTIDAD_DETALLE, m.EXISTENCIA_MATERIAL FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  MATERIAL AS m  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL", cn);
                 comando.Parameters.Add(new SQLiteParameter("@codSolicitud",  codigoSolicitud));
                     adapter.SelectCommand = comando;
                     adapter.Fill(dt);

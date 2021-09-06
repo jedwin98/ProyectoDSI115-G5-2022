@@ -98,7 +98,7 @@ namespace ProyectoDSI115_G5_2021
                     MainWindow mw = new MainWindow();
                     mw.Title += sesion.empleado;
                     mw.Sesion = sesion;
-                    control.Bloquear(usuarioEmail, "C");
+                    //control.Bloquear(usuarioEmail, "C");
                     mw.Show();
                     this.Close();
                 }
@@ -184,7 +184,7 @@ namespace ProyectoDSI115_G5_2021
                     MainWindow mw = new MainWindow();
                     mw.Title += sesion.empleado;
                     mw.Sesion = sesion;
-                    control.Bloquear(usuarioEmail, "C");
+                    //control.Bloquear(usuarioEmail, "C");
                     mw.Show();
                     this.Close();
                 }

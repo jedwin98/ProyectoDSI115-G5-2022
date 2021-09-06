@@ -14,10 +14,12 @@
         <Label Content="Seleccione la solicitud a verificar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Height="34"/>
         <DataGrid x:Name="dataSolicitudes" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AutoGenerateColumns="False" Margin="210,100,10,10">
             <DataGrid.Columns>
-                <DataGridTextColumn MinWidth="70" Header="Solicitud" Binding="{Binding COD_SOLICITUD}" IsReadOnly="True"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Solicitud" Binding="{Binding COD_SOLICITUD}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="70" Header="Código Solicitud" Binding="{Binding COD_REQ}" IsReadOnly="True"/>
                 <DataGridTextColumn Visibility="Hidden" Header="Código Empleado" Binding="{Binding COD_EMPLEADO}" IsReadOnly="True"/>
-                <DataGridTextColumn MinWidth="140" Header="Nombre Empleado" Binding="{Binding NOMBRE_EMPLEADO}" IsReadOnly="True"/>
-                <DataGridTextColumn MinWidth="140" Header="Apellido Empleado" Binding="{Binding APELLIDO_EMPLEADO}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="150" Header="Solicitante" Binding="{Binding SOLICITANTE}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="150" Header="Representante" Binding="{Binding REPRESENTANTE}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="200" Header="Razón Social" Binding="{Binding EMPRESA_CLIENTE}" IsReadOnly="True"/>
                 <DataGridTextColumn MinWidth="100" Header="Fecha de solicitud" Binding="{Binding FECHA_SOLICITUD}" IsReadOnly="True"/>
                 <DataGridTextColumn MinWidth="70" Header="Estado" Binding="{Binding ESTADO_SOLICITUD}" IsReadOnly="True"/>
             </DataGrid.Columns>
