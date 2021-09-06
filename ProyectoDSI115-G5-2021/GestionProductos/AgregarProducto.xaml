@@ -35,9 +35,9 @@
         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="330.371,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Grid.Column="1"/>
         <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="330.371,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" TextChanged="TxtCantidad_TextChanged" Grid.Column="1"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="330.371,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="1"/>
-        <Label Content="Precio" HorizontalAlignment="Left" Margin="144.371,243,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
-        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="330.371,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="1"/>
-        <Label Content="Marca" HorizontalAlignment="Left" Margin="144.371,272,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
-        <TextBox x:Name="txtMarca" HorizontalAlignment="Left" Height="23" Margin="330.371,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="1"/>
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="144.371,243,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
+        <TextBox x:Name="txtMarca" HorizontalAlignment="Left" Height="23" Margin="330.371,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="1"/>
+        <Label Content="Precio" HorizontalAlignment="Left" Margin="144.371,272,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
+        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="330.371,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="1"/>
     </Grid>
 </Window>
