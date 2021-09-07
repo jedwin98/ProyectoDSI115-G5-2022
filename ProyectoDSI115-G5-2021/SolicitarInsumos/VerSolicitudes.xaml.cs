@@ -39,13 +39,12 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
 
         private void BtnNueva_Click(object sender, RoutedEventArgs e)
         {
-            CrearSolicitudInsumos crear = new CrearSolicitudInsumos()
-            {
-                WindowState = WindowState.Maximized
-            };
+            CrearSolicitudInsumos crear = new CrearSolicitudInsumos();
+            
             crear.Sesion = sesion;
-            crear.Show();
-            this.Close();
+            crear.ShowDialog();
+            CargarTabla(codigoEmpleado);
+           // this.Close();
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)

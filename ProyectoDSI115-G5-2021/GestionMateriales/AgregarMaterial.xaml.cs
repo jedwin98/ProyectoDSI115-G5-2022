@@ -30,11 +30,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         //*************************** METODO DE BOTONES ***************************************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            GestionMateriales gestionMateriales = new GestionMateriales()
-            {
-                WindowState = WindowState.Maximized
-            };
-            gestionMateriales.Show();
+           
             this.Close();
         }
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
@@ -46,7 +42,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             else
             {
                     string fecha = DateTime.Now.ToString("dd/MM/yyyy");
-                    Material material = new Material(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtPrecio.Text, fecha, true);
+                    Material material = new Material("M" + txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtPrecio.Text, fecha, true);
                     String respuesta = control.AgregarMaterial(material);
                     MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
             }
