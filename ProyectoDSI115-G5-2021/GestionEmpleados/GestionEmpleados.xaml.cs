@@ -36,12 +36,10 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarEmpleado ae = new AgregarEmpleado()
-            {
-                WindowState = WindowState.Maximized
-            };
-            ae.Show();
-            this.Close();
+            AgregarEmpleado ae = new AgregarEmpleado();
+
+            ae.ShowDialog();
+            CargarTabla();
 
         }
 
@@ -143,6 +141,8 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
         }
         public void CargarTabla()
         {
+            data.Clear();
+            dataEmpleados.ItemsSource = null;
 
             //  empleados = control.ConsultarEmpleados();
             data = control.ConsultarEmpleados();

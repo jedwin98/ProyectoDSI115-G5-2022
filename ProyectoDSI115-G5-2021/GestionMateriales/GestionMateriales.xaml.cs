@@ -31,6 +31,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         //METODO INICIAL
         public void cargarTabla()
         {
+            dt.Clear();
+            dataMateriales.ItemsSource = null;
             dt = control.consultarMateriales();
             dataMateriales.ItemsSource = dt.DefaultView;
         }
@@ -42,12 +44,11 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         }
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarMaterial ag = new AgregarMaterial()
-            {
-                WindowState = WindowState.Maximized
-            };
-            ag.Show();
-            this.Close();
+            AgregarMaterial ag = new AgregarMaterial();
+
+            ag.ShowDialog();
+            cargarTabla();
+            
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)

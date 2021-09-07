@@ -31,6 +31,8 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         //METODO INICIAL
         public void cargarTabla()
         {
+            dt.Clear();
+            dataProductos.ItemsSource = null;
             dt = control.consultarProductos();
             dataProductos.ItemsSource = dt.DefaultView;
         }
@@ -42,12 +44,11 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         }
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarProducto ag = new AgregarProducto()
-            {
-                WindowState = WindowState.Maximized
-            };
-            ag.Show();
-            this.Close();
+            AgregarProducto ag = new AgregarProducto();
+
+            ag.ShowDialog();
+            cargarTabla();
+          
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)

@@ -37,18 +37,14 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
             else
             {
                     string fecha = DateTime.Now.ToString("dd/MM/yyyy");
-                    Producto producto = new Producto(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtMarca.Text, txtPrecio.Text, fecha, true);
+                    Producto producto = new Producto("P" + txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtMarca.Text, txtPrecio.Text, fecha, true);
                     String respuesta = control.AgregarProducto(producto);
                     MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            GestionProductos gestionProductos = new GestionProductos()
-            {
-                WindowState = WindowState.Maximized
-            };
-            gestionProductos.Show();
+           
             this.Close();
         }
         // +-+-+-+-+-+-+-+-+-+-+ FIN METODO DE BOTONES +-+-+-+-+-+-+-+-+-+-+
