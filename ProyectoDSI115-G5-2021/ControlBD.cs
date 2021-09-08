@@ -1058,15 +1058,27 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
-        public bool ActualizarExistencias(string codigoMaterial, float nuevaExistencia)
+        public bool ActualizarExistencias(string codigoMP, float nuevaExistencia)
         {
             try
             {
                 cn.Open();
-                SQLiteCommand cambio = new SQLiteCommand("UPDATE MATERIAL SET EXISTENCIA_MATERIAL = @existencia WHERE COD_MATERIAL = @codigo", cn);
-                cambio.Parameters.Add(new SQLiteParameter("@existencia", nuevaExistencia));
-                cambio.Parameters.Add(new SQLiteParameter("@codigo", codigoMaterial));
-                cambio.ExecuteNonQuery();
+                char[] cCodigo = codigoMP.ToCharArray();
+                char mop = cCodigo[0];
+                if (mop.ToString().Equals("M"))
+                {
+                    SQLiteCommand cambio = new SQLiteCommand("UPDATE MATERIAL SET EXISTENCIA_MATERIAL = @existencia WHERE COD_MATERIAL = @codigo", cn);
+                    cambio.Parameters.Add(new SQLiteParameter("@existencia", nuevaExistencia));
+                    cambio.Parameters.Add(new SQLiteParameter("@codigo", codigoMP));
+                    cambio.ExecuteNonQuery();
+                }
+                if (mop.ToString().Equals("P"))
+                {
+                    SQLiteCommand cambio = new SQLiteCommand("UPDATE PRODUCTO SET EXISTENCIA_PRODUCTO = @existencia WHERE COD_PRODUCTO = @codigo", cn);
+                    cambio.Parameters.Add(new SQLiteParameter("@existencia", nuevaExistencia));
+                    cambio.Parameters.Add(new SQLiteParameter("@codigo", codigoMP));
+                    cambio.ExecuteNonQuery();
+                }
                 cn.Close();
                 return true;
             }

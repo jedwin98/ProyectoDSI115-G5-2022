@@ -14,8 +14,8 @@
         <Label Content="Seleccione el estado de la solicitud" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Height="34"/>
         <DataGrid x:Name="dataDetalles" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AutoGenerateColumns="False" Margin="210,100,10,10">
             <DataGrid.Columns>
-                <DataGridTextColumn MinWidth="60" Header="Detalle" Binding="{Binding COD_DETALLE}" IsReadOnly="True"/>
-                <DataGridTextColumn Visibility="Hidden" Header="Código Material" Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Detalle" Binding="{Binding COD_DETALLE}" IsReadOnly="True"/>
+                <DataGridTextColumn MinWidth="60" Header="Código" Binding="{Binding COD_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="150" Header="Material" Binding="{Binding NOMBRE_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="60" Header="Presentación" Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="60" Header="Cantidad" Binding="{Binding CANTIDAD_DETALLE}"/>

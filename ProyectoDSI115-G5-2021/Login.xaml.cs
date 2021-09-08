@@ -98,7 +98,7 @@ namespace ProyectoDSI115_G5_2021
                     MainWindow mw = new MainWindow();
                     mw.Title += sesion.empleado;
                     mw.Sesion = sesion;
-                    //control.Bloquear(usuarioEmail, "C");
+                    control.Bloquear(usuarioEmail, "C");
                     mw.Show();
                     this.Close();
                 }
@@ -175,16 +175,16 @@ namespace ProyectoDSI115_G5_2021
                 {
                     MessageBox.Show("Tiene una sesión de recuperación de contraseña pendiente. Si su sesión terminó incorrectamente, consulte con gerencia.","Recuperación pendiente",MessageBoxButton.OK,MessageBoxImage.Exclamation);
                 }
-                if (sesion.estado.Equals("C"))
+                /*if (sesion.estado.Equals("C"))
                 {
                     MessageBox.Show("Tiene una sesión abierta. Si su sesión terminó incorrectamente, consulte con gerencia.", "Recuperación pendiente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
+                }*/
                 else
                 {
                     MainWindow mw = new MainWindow();
                     mw.Title += sesion.empleado;
                     mw.Sesion = sesion;
-                    //control.Bloquear(usuarioEmail, "C");
+                    control.Bloquear(usuarioEmail, "C");
                     mw.Show();
                     this.Close();
                 }
