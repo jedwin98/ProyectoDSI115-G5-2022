@@ -199,7 +199,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM ((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) INNER JOIN USUARIO AS u ON e.COD_EMPLEADO = u.COD_EMPLEADO WHERE u.COD_EMPLEADO IS NULL AND NOT estado_usuario = 'O'", cn);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT cod_usuario, correo_usuario, t.cod_tipousuario as COD_TIPOUSUARIO, t.nombre_tipousuario as NOM_TIPOUSUARIO, u.cod_empleado as COD_EMPLEADO, e.nombre_empleado as NOM_EMPLEADO, e.apellido_empleado as APE_EMPLEADO FROM (((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) INNER JOIN USUARIO AS u ON e.COD_EMPLEADO = u.COD_EMPLEADO) INNER JOIN TIPO_USUARIO AS t ON t.cod_tipousuario = u.cod_tipousuario WHERE NOT estado_usuario = 'O'", cn);
                 da.Fill(dt);
             }
             catch (SQLiteException ex)
