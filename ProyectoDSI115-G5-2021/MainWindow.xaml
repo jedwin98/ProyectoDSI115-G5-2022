@@ -31,11 +31,11 @@
                 <Label Content="Cerrar sesión" Height="30" VerticalAlignment="Top" FontSize="14" Margin="5,5,0,0" Width="100" Foreground="White" FontFamily="Comic Sans MS"/>
             </DockPanel>
         </Button>
-        <Label Content="Administración" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="26" Width="89"/>
+        <Label Content="Administración" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="26" Width="110" FontSize="14"/>
         <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,0" Stroke="Black" StrokeThickness="0" Grid.Row="1"/>
-        <Label Content="Consultas y gestiones" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="26" Width="124"/>
-        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,57,10,15" Stroke="Black" StrokeThickness="0" Grid.Row="3" Grid.RowSpan="2"/>
-        <Label Content="Solicitudes" Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.154" Height="26" Width="67" Grid.Row="3"/>
+        <Label Content="Consultas y gestiones" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="26" Width="150" FontSize="14"/>
+        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,72,10,0" Stroke="Black" StrokeThickness="0" Grid.Row="3" Grid.RowSpan="2"/>
+        <Label Content="Solicitudes" Grid.Column="2" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.154" Height="26" Width="94" Grid.Row="3" FontSize="14"/>
         <Button Background="{x:Null}" Name="btnClientes" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnClientes_Click" Grid.Row="1" Foreground="{x:Null}" BorderBrush="{x:Null}">
             <StackPanel>
                 <Image Source="/Images/cliente.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
@@ -61,7 +61,7 @@
                 <Label Content="Inventario" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="2" Margin="152,0,152,30" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4">
+        <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="2" Margin="152,15,152,0" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4" Height="120" VerticalAlignment="Top">
             <StackPanel>
                 <Image Source="/Images/empleados.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Insumos" Height="30" VerticalAlignment="Bottom" Width="64" FontSize="14"/>

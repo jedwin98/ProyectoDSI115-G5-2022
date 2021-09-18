@@ -11,7 +11,7 @@
 
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
         <Label Content="Administración de Empleados" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Width="194"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="0,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
         <Rectangle Margin="250,108,23,10" Stroke="Black"/>
         <TextBox x:Name="txtId" IsEnabled="False" TextWrapping="Wrap" Text="" Margin="489,125,79,0" Height="26" VerticalAlignment="Top"/>
@@ -22,7 +22,7 @@
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="183" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
         <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" Width="85" Height="100" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Click="BtnActualizar_Click">
             <StackPanel>
-                <Image Source="/Images/disquete.png" Height="60" Width="69"></Image>
+                <Image Source="/Images/disquete.png" Height="69" Width="76"></Image>
                 <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Comic Sans MS"/>
             </StackPanel>
 
@@ -30,7 +30,7 @@
         </Button>
 
         <Label Content="Actualizar Empleado" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
-        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click"/>
+        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,243,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click"/>
         <Label Content="ID Empleado:" HorizontalAlignment="Left" Margin="323,127,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
         <Label Content="Nombres del Empleado:" HorizontalAlignment="Left" Margin="323,158,0,0" VerticalAlignment="Top"/>
         <Label Content="Apellidos del Empleado:" HorizontalAlignment="Left" Margin="323,196,0,0" VerticalAlignment="Top"/>
