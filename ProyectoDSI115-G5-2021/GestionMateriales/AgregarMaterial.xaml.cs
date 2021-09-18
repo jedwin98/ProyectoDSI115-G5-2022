@@ -41,10 +41,15 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             }
             else
             {
-                    string fecha = DateTime.Now.ToString("dd/MM/yyyy");
-                    Material material = new Material("M" + txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtPrecio.Text, fecha, true);
-                    String respuesta = control.AgregarMaterial(material);
-                    MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
+                string fecha = DateTime.Now.ToString("dd/MM/yyyy");
+                Material material = new Material("M" + txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtPrecio.Text, fecha, true);
+                String respuesta = control.AgregarMaterial(material);
+                MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                txtCodigo.Text = null;
+                txtNombre.Text = null;
+                txtCantidad.Text = null;
+                txtUnidad.Text = null;
             }
         }
 
