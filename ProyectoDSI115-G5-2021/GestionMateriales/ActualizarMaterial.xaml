@@ -28,8 +28,8 @@
         <Label Content="Existencias:" HorizontalAlignment="Left" Margin="315,214,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label Content="Presentación de Material:" HorizontalAlignment="Left" Margin="315,186,0,0" VerticalAlignment="Top" FontSize="14"/>
         <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="501,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
-        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="501,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
+        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="501,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Grid.ColumnSpan="2" MaxLength="100"/>
+        <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" MaxLength="50"/>
         <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TxtCantidad_TextChanged"/>
         <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="501,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" TextChanged="TxtPrecio_TextChanged"/>
         <Label Content="Precio (USD$):" HorizontalAlignment="Left" Margin="315,243,0,0" VerticalAlignment="Top" FontSize="14"/>

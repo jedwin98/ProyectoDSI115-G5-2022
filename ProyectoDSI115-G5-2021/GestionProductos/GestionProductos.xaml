@@ -15,19 +15,19 @@
         <Button Name="BtnAgregar" HorizontalAlignment="Left" Margin="47,144,0,0" VerticalAlignment="Top" Width="131" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnAgregar_Click">
             <StackPanel Width="133">
                 <Image Source="/Images/agregar.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
-                <Label Content="Agregar Productos" FontSize="14" HorizontalAlignment="Center"/>
+                <Label Content="Agregar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
         <Button Name="BtnActualizar" HorizontalAlignment="Left" Margin="35,237,0,0" VerticalAlignment="Top" Width="150" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnEditar_Click">
             <StackPanel>
                 <Image Source="/Images/editar.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
-                <Label Content="Actualizar Productos" FontSize="14" HorizontalAlignment="Center"/>
+                <Label Content="Actualizar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
         <Button Name="BtnBorrar" HorizontalAlignment="Left" Margin="47,325,0,0" VerticalAlignment="Top" Width="131" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnBorrar_Click">
             <StackPanel>
                 <Image Source="/Images/basura.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
-                <Label Content="Borrar Productos" FontSize="14" HorizontalAlignment="Center"/>
+                <Label Content="Borrar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
         <Rectangle Margin="234,102,10,10" Stroke="Black"/>

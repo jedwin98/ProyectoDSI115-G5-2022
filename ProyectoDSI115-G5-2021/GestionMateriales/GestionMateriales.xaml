@@ -15,19 +15,19 @@
         <Button Name="BtnAgregar" HorizontalAlignment="Left" Margin="47,144,0,0" VerticalAlignment="Top" Width="131" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnAgregar_Click">
             <StackPanel Width="133">
                 <Image Source="/Images/agregar.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
-                <Label Content="Agregar Materiales" FontSize="14" HorizontalAlignment="Center"/>
+                <Label Content="Agregar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
         <Button Name="BtnActualizar" HorizontalAlignment="Left" Margin="35,237,0,0" VerticalAlignment="Top" Width="150" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnEditar_Click">
             <StackPanel>
                 <Image Source="/Images/editar.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
-                <Label Content="Actualizar Materiales" FontSize="14" HorizontalAlignment="Center"/>
+                <Label Content="Actualizar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
         <Button Name="BtnBorrar" HorizontalAlignment="Left" Margin="47,325,0,0" VerticalAlignment="Top" Width="131" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnBorrar_Click">
             <StackPanel>
                 <Image Source="/Images/basura.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
-                <Label Content="Borrar Materiales" FontSize="14" HorizontalAlignment="Center"/>
+                <Label Content="Borrar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
         <Rectangle Margin="234,102,10,10" Stroke="Black"/>
@@ -43,8 +43,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,21,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="110" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click"/>
-        <TextBox x:Name="txtBuscar"  Text="" Margin="263,120,158,0" Height="30" VerticalAlignment="Top" KeyDown="OnKeyDownHandler"/>
-        <Label  Content="Elige la opción que deseas realizar" Margin="0,66,21,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
+        <TextBox x:Name="txtBuscar"  Text="" Margin="250,120,158,0" Height="30" VerticalAlignment="Top" KeyDown="OnKeyDownHandler"/>
+        <Label  Content="Elige la opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
 
 
     </Grid>
