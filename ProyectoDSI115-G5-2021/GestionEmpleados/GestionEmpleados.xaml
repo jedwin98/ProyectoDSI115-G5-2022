@@ -11,11 +11,12 @@
 
         <Label  Content="Administración de Empleados" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
         <Label  Content="Gestión de Empleados" HorizontalAlignment="Left" Margin="20,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
-        <Label  Content="Elige la opción que deseas realizar" MargMargin="0,67,23,0"ticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" WidtWidth="297"        <Rectangle Margin="234,102,23,10" Stroke="Black"/>
+        <Label  Content="Elige la opción que deseas realizar" Margin="0,67,23,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="297"/>
+        <Rectangle Margin="234,102,23,10" Stroke="Black"/>
 
 
         <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,34,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click"/>
-        <TextBox x:Name="textBuscar"  Text="" MargMargin="250,120,143,0"ght="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
+        <TextBox x:Name="textBuscar"  Text="" Margin="250,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
         <DataGrid  x:Name="dataEmpleados" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,166,36,67" >
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_EMPLEADO}"/>
@@ -31,7 +32,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnGenerar"  Content="Generar Reporte" MargMargin="0,0,34,24"kground="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="138" Height="30" VerticalAlignment="Bottom" Click="BtnGenerar_Click"/>
+        <Button x:Name="btnGenerar"  Content="Generar Reporte" Margin="0,0,34,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="138" Height="30" VerticalAlignment="Bottom" Click="BtnGenerar_Click"/>
 
 
         <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="329" VerticalAlignment="Top"/>
