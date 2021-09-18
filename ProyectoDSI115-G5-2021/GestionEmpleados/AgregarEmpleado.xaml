@@ -11,7 +11,7 @@
 
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
         <Label Content="Administración de Empleados" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
+        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="0,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
         <Rectangle Margin="250,108,23,10" Stroke="Black"/>
         <TextBox x:Name="txtId" MaxLength="7" TextWrapping="Wrap" Text="" Margin="489,125,79,0" Height="26" VerticalAlignment="Top"/>
@@ -30,7 +30,7 @@
         </Button>
 
         <Label Content="Agregar nuevo Empleado" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
-        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click"/>
+        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,243,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click"/>
         <Label Content="ID Empleado:" HorizontalAlignment="Left" Margin="323,127,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
         <Label Content="Nombres del Empleado:" HorizontalAlignment="Left" Margin="323,158,0,0" VerticalAlignment="Top"/>
         <Label Content="Apellidos del Empleado:" HorizontalAlignment="Left" Margin="323,196,0,0" VerticalAlignment="Top"/>

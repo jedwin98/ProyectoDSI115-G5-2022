@@ -17,10 +17,10 @@
 
         <Label  Content="Solicitar Insumos" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="219"/>
         <Label  Content="Agregar a la Solicitud" Margin="200,60,148,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Grid.Column="2" Height="41"/>
-        <Label  Content="Insumos en inventario" Margin="78,65,127,0" VerticalAlignment="Top" FontSize="26" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Height="46"/>
-        <Button  x:Name="btnBuscar" Content="Buscar" Margin="351,124,0,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="88" Height="29" VerticalAlignment="Top" Click="BtnBuscar_Click" RenderTransformOrigin="0.324,0.5"/>
+        <Label  Content="Insumos en inventario" Margin="37,65,40,0" VerticalAlignment="Top" FontSize="26" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Height="46"/>
+        <Button  x:Name="btnBuscar" Content="Buscar" Margin="370,124,0,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="88" Height="29" VerticalAlignment="Top" Click="BtnBuscar_Click" RenderTransformOrigin="0.324,0.5"/>
         <Button  x:Name="btnAgregar" Content="Agregar" Margin="0,198,42,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88"  RenderTransformOrigin="0.324,0.5" Click="BtnAgregar_Click" Height="28" VerticalAlignment="Top" Grid.Column="2"/>
-        <TextBox x:Name="txtBuscar"  Text="" Margin="37,124,0,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler" HorizontalAlignment="Left" Width="287"/>
+        <TextBox x:Name="txtBuscar"  Text="" Margin="37,124,0,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler" HorizontalAlignment="Left" Width="310"/>
         <DataGrid  x:Name="dataSoli" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="28,244,42,93" Grid.Column="2" >
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding material.codigo}"/>
@@ -35,15 +35,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="130" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnVolver" Content="Volver" Margin="37,0,0,25" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="101" Height="41" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
-        <Button x:Name="btnSeleccionar" Content="Seleccionar>>" Margin="10,264,5,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnSeleccionar_Click" Height="36" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button x:Name="btnCancelar" Content="Cancelar" Margin="0,0,358,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" Click="BtnCancelar_Click" Grid.Column="2"/>
-        <Button x:Name="btnSolicitar" Content="Solicitar" Margin="0,0,120,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" Click="BtnSolicitar_Click" HorizontalAlignment="Right" Width="110" Grid.Column="2"/>
+        <Button x:Name="btnVolver" Content="Volver" Margin="37,0,0,25" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="101" Height="36" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
+        <Button x:Name="btnSeleccionar" Content="Seleccionar >>" Margin="0,264,0,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnSeleccionar_Click" Height="36" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button x:Name="btnCancelar" Content="Cancelar" Margin="0,0,173,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" Click="BtnCancelar_Click" Grid.Column="2"/>
+        <Button x:Name="btnSolicitar" Content="Solicitar" Margin="0,0,42,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" Click="BtnSolicitar_Click" HorizontalAlignment="Right" Width="110" Grid.Column="2"/>
         <Label Content="Código del Material:" Margin="28,158,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" HorizontalAlignment="Left" Width="138"/>
         <Label Content="Nombre Material:" Margin="0,160,283,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="103" Grid.Column="2" Height="26"/>
         <Label Content="Cantidad a Solicitar:" Margin="28,204,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" HorizontalAlignment="Left" Width="138"/>

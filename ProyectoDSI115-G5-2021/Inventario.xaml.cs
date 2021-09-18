@@ -187,5 +187,10 @@ namespace ProyectoDSI115_G5_2021
         {
             BuscarInventario();
         }
+
+        private void DataInventario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
