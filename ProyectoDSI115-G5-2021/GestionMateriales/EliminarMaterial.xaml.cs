@@ -48,6 +48,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 txtNombre.Text = null;
                 txtCantidad.Text = null;
                 txtUnidad.Text = null;
+                txtPrecio.Text = null;
             }
         }
     }
