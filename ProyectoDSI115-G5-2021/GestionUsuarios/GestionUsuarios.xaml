@@ -43,7 +43,7 @@
             </StackPanel>
         </Button>
         <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="250,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,1.038" Height="26" BorderThickness="0" Background="#FFFFFFFF"/>
-        <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="52,0,0,17" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
+        <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="60,0,0,17" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
         <Label Name="labelUsuario" Content="Usuario" HorizontalAlignment="Left" Margin="224,0,0,116" Width="50" Height="26" VerticalAlignment="Bottom"/>
         <Label Name="labelContrasena" Content="Contraseña" Margin="533,0,0,116" HorizontalAlignment="Left" Width="70" Height="26" VerticalAlignment="Bottom"/>
         <Label Name="labelEmail" Content="Correo electrónico" HorizontalAlignment="Left" Margin="224,0,0,56" Height="26" VerticalAlignment="Bottom" Width="108"/>
@@ -63,5 +63,6 @@
                   ItemsSource="{Binding}" DisplayMemberPath="nombreEmpleado" SelectedValuePath="codEmpleado"/>
         <Label Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="185" FontFamily="Comic Sans MS"/>
         <Label Name="labelContrasenaConfirmar" Content="Confirme contraseña" Margin="483,0,0,86" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120"/>
+        <Button Name="btnDesbloquear" Content="Desbloquear" HorizontalAlignment="Left" Margin="52,297,0,0" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" VerticalAlignment="Top" Width="101" Height="26" Click="BtnDesbloquear_Click"/>
     </Grid>
 </Window>

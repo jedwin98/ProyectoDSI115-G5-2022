@@ -104,6 +104,18 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             }
         }
 
+        private void BtnDesbloquear_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(dataUsuarios.SelectedItem is DataRowView row))
+            {
+                MessageBox.Show("No hay usuario seleccionado. Debe seleccionar un usuario.", "Error al desbloquear", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                control.AjustarEstado(row.Row.ItemArray[0].ToString());
+            }
+        }
+
         private void LlenarComboTipos()
         {
             // Se recibe un listado de los tipos de usuario.

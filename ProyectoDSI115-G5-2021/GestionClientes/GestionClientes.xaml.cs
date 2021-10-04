@@ -38,6 +38,8 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         }
         public void cargarTabla()
         {
+            dt.Clear();
+            dataClientes.ItemsSource = null;
             dt = control.ConsultarClientes();
             dataClientes.ItemsSource = dt.DefaultView;
         }
@@ -75,11 +77,11 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarCliente ag = new AgregarCliente() {
-                WindowState = WindowState.Maximized
-            };
-            ag.Show();
-            this.Close();
+            AgregarCliente ag = new AgregarCliente();
+
+            ag.ShowDialog();
+            cargarTabla();
+            
         }
 
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
