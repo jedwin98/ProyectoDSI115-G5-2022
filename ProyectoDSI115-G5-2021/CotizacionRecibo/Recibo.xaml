@@ -1,0 +1,14 @@
+﻿<Window x:Class="ProyectoDSI115_G5_2021.CotizacionRecibo.Recibo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.CotizacionRecibo"
+        mc:Ignorable="d"
+        Title="Recibo" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="btnVolver" Content="Regresar" HorizontalAlignment="Left" Margin="306,154,0,0" VerticalAlignment="Top" Width="244" Click="BtnVolver_Click" Height="174"/>
+        <Label Content="MODIFICAR EL BOTON DEL MENU" HorizontalAlignment="Left" Margin="306,112,0,0" VerticalAlignment="Top" FontSize="21"/>
+
+    </Grid>
+</Window>

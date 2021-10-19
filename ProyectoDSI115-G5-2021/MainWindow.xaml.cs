@@ -27,6 +27,11 @@ namespace ProyectoDSI115_G5_2021
         GestionEmpleados.GestionEmpleados ge;
         GestionUsuarios.GestionUsuarios gu;
         Inventario verInventario;
+        Historial.Historial historial;
+        CotizacionRecibo.Cotizacion cotizacion;
+        CotizacionRecibo.Recibo recibo;
+
+
 
         Nullable<bool> gca = false, gea = false, gua = false, inv = false;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
@@ -153,6 +158,22 @@ namespace ProyectoDSI115_G5_2021
         };
             verInventario.Sesion = this.sesion;
             inv = verInventario.ShowDialog();
+        }
+
+        //MODIFICAR ESTE CODIGO.
+        private void BtnHistorial_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        //MODIFICAR ESTE CODIGO
+        private void BtnCotizacion_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        //MODIFICAR ESTE CODIGO
+        private void BtnRecibo_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
