@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.CotizacionRecibo"
         mc:Ignorable="d"
-        Title="Cotizacion" Height="450" Width="800">
+        Title="Cotizacion" Height="523" Width="948">
     <Grid>
-        <Button Name="btnVolver" Content="Regresar" HorizontalAlignment="Left" Margin="306,154,0,0" VerticalAlignment="Top" Width="244" Click="BtnVolver_Click" Height="174"/>
-        <Label Content="MODIFICAR EL BOTON DEL MENU" HorizontalAlignment="Left" Margin="306,112,0,0" VerticalAlignment="Top" FontSize="21"/>
+        <Button Name="btnVolver" Content="Regresar" HorizontalAlignment="Left" Margin="29,443,0,0" VerticalAlignment="Top" Width="101" Click="BtnVolver_Click" Height="36" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White"/>
+        <Rectangle Fill="#FFC91029" Height="66" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.469"/>
+        <Label x:Name="label" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Height="47" Width="177" FontFamily="Comic Sans MS" FontSize="26" FontWeight="Bold" Foreground="White" Content="Cotización"/>
     </Grid>
 </Window>
