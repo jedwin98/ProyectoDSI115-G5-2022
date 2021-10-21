@@ -27,9 +27,9 @@ namespace ProyectoDSI115_G5_2021
         GestionEmpleados.GestionEmpleados ge;
         GestionUsuarios.GestionUsuarios gu;
         Inventario verInventario;
-        Historial.Historial historial;
-        CotizacionRecibo.Cotizacion cotizacion;
-        CotizacionRecibo.Recibo recibo;
+        //Historial.Historial historial;
+        //CotizacionRecibo.Cotizacion cotizacion;
+        CotizacionRecibo.CrearRecibo recibo;
 
 
 
@@ -175,7 +175,7 @@ namespace ProyectoDSI115_G5_2021
         {
             if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
             {
-                recibo = new CotizacionRecibo.Recibo
+                recibo = new CotizacionRecibo.CrearRecibo
                 {
                     WindowState = WindowState.Maximized
                 };
