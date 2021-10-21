@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.CotizacionRecibo"
         mc:Ignorable="d"
-        Title="Cotizacion" Height="523" Width="948">
+        Title="Cotizacion" Height="680" Width="1091">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="35*"/>
+            <RowDefinition Height="74*"/>
+            <RowDefinition Height="575*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="121*"/>
@@ -18,10 +18,10 @@
         <Button Name="btnVolver" Content="Regresar" HorizontalAlignment="Left" Margin="29,0,0,13" Width="101" Click="BtnVolver_Click" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Grid.Row="1" Height="36" VerticalAlignment="Bottom"/>
         <Rectangle Fill="#FFC91029" Height="66" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.469" Grid.ColumnSpan="2"/>
         <Label x:Name="label" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Height="47" Width="177" FontFamily="Comic Sans MS" FontSize="26" FontWeight="Bold" Foreground="White" Content="Cotización"/>
-        <Label x:Name="label1" Content="Inventario" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Width="114" FontFamily="Comic Sans MS" FontSize="16" Height="32" Grid.Row="1"/>
+        <Label x:Name="label1" Content="Inventario" HorizontalAlignment="Left" Margin="29,0,0,0" VerticalAlignment="Top" Width="114" FontFamily="Comic Sans MS" FontSize="18" Height="41" Grid.Row="1"/>
         <TextBox x:Name="txtBusqueda" Height="27" Margin="29,47,303,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"/>
         <Button x:Name="btnBusqueda" Content="Buscar" Margin="0,47,201,0" VerticalAlignment="Top" Height="27" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" Width="75"/>
-        <DataGrid x:Name="dataInventario" Margin="29,95,201,78" AutoGenerateColumns="False" Grid.Row="1">
+        <DataGrid x:Name="dataInventario" Margin="29,95,201,116" AutoGenerateColumns="False" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre"/>
@@ -30,6 +30,30 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnSeleccionar" Content="Seleccionar" Margin="0,179,26,0" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" Width="122"/>
-        <Label x:Name="label1_Copy" Content="Agregar a la cotización" Margin="132,10,108,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="16" Grid.Column="1" Height="32" Grid.Row="1"/>
+        <Label x:Name="label1_Copy" Content="Agregar a la cotización" Margin="167,0,143,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="18" Grid.Column="1" Height="41" Grid.Row="1"/>
+        <Label x:Name="label2" Content="Código de la Cotización:" Grid.Column="1" HorizontalAlignment="Left" Margin="19,56,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29" Width="160"/>
+        <TextBox x:Name="txtCodCotizacion" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="179,56,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+        <Label x:Name="label3" Content="Cliente:" Grid.Column="1" Margin="273,56,186,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29"/>
+        <TextBox x:Name="txtCliente" Grid.Column="1" Height="29" Margin="329,56,35,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Rectangle Grid.Column="1" Fill="#FFF4F4F5" Height="100" Margin="10,95,20,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top"/>
+        <Label x:Name="label4" Content="Nombre del Producto:" Grid.Column="1" HorizontalAlignment="Left" Margin="19,104,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29" Width="147"/>
+        <TextBox x:Name="txtNombreProducto" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="167,104,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        <Label x:Name="label5" Content="Precio:" Grid.Column="1" Margin="339,104,125,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29"/>
+        <TextBox x:Name="txtPrecio" Grid.Column="1" Height="29" Margin="390,104,47,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label x:Name="label6" Content="Cantidad de Producto:" Grid.Column="1" HorizontalAlignment="Left" Margin="19,151,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29" Width="148"/>
+        <Button x:Name="btnAgregar" Content="Agregar a cotización" Grid.Column="1" Margin="307,151,35,0" Grid.Row="1" VerticalAlignment="Top" Height="29" FontFamily="Comic Sans MS" FontSize="14" Background="#FFC91029" Foreground="White"/>
+        <TextBox x:Name="txtCantidad" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="167,151,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="49"/>
+        <DataGrid x:Name="dataCotizacion" Grid.Column="1" Margin="10,206,20,116" Grid.Row="1" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Concepto"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Unitario"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Total"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="label7" Content="Total:" Grid.Column="1" Margin="0,0,116,78" Grid.Row="1" FontSize="14" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="44"/>
+        <TextBox x:Name="txtTotalCotizacion" Grid.Column="1" Margin="0,0,20,78" Grid.Row="1" TextWrapping="Wrap" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91"/>
+        <Button x:Name="btnCancelarCot" Content="Cancelar" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,13" Grid.Row="1" Width="104" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Height="36" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnImprimirCot" Content="Imprimir" Grid.Column="1" HorizontalAlignment="Left" Margin="153,0,0,13" Grid.Row="1" Width="97" Background="#FFC91029" Foreground="White" FontFamily="Comic Sans MS" FontSize="16" Height="36" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
