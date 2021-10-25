@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProyectoDSI115_G5_2021.GestionUsuarios;
+using System.Data.SqlClient;
+using System.Data;
+using System.Data.SQLite;
 
 namespace ProyectoDSI115_G5_2021
 {
@@ -33,12 +36,66 @@ namespace ProyectoDSI115_G5_2021
 
 
 
+
+
+        //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
+        //AUTOR: FRANCISCO ESCOBAR
+        SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
+
+
         Nullable<bool> gca = false, gea = false, gua = false, inv = false;
         internal Usuario Sesion { get => sesion; set => sesion = value; }
 
         public MainWindow()
         {
             InitializeComponent();
+            
+            
+        }
+
+
+        //SOBREESCRIBO EL EVENTO CUANDO LA VENTANA PRINCIPAL ESTA ACTIVADA
+        //AUTOR: FRANCISCO ESCOBAR
+        private void MainWindows_Activated(object sender, System.EventArgs e)
+        {
+            GenerarNotificacion();
+        }
+
+        //MUESTRA U OCULTA LOS CONTROLES SI EXISTEN O NO NOTIFICACIONES
+        //AUTOR: FRANCISCO ESCOBAR
+        public void GenerarNotificacion()
+        {
+            int notificaciones = ContarRegistros();
+            if (notificaciones != 0)
+            {
+                imgBurbuja.Visibility = Visibility.Visible;
+                lblContador.Visibility = Visibility.Visible;
+                lblContador.Content = notificaciones.ToString();
+                
+            }
+            else
+            {
+                imgBurbuja.Visibility = Visibility.Hidden;
+                lblContador.Visibility = Visibility.Hidden;
+                lblContador.Content = "0";
+            } 
+        }
+        //REALIZA EL PROCESO DE CREAR UN OBJETO DATA TABLE Y CUENTA LAS FILAS DE LA TABLA
+        //LUEGO ASIGNA ESE VALOR A UNA VARIABLE Y ESTA SE RETORNA
+        //AUTOR: FRANCISCO ESCOBAR
+        public int ContarRegistros()
+        {
+            int filas;
+            DataTable data = new DataTable();
+
+           con.Open();
+           string sql = @"SELECT ESTADO_SOLICITUD FROM SOLICITUD_INSUMO WHERE ESTADO_SOLICITUD = 'Pendiente' ";
+           SQLiteDataAdapter da = new SQLiteDataAdapter(sql, con);
+           da.Fill(data);
+           filas = data.Rows.Count;
+           con.Close();
+           return filas;
+
         }
 
         private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
@@ -175,5 +232,8 @@ namespace ProyectoDSI115_G5_2021
         {
 
         }
+
+
+
     }
 }

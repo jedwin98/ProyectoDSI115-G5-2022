@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
         Closing="MainWindow_Closing"
-        Title="FYSIEX - Bienvenido " Height="600" Width="940" MinWidth="940" MinHeight="600" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Bienvenido " 
+        Activated="MainWindows_Activated" ResizeMode="NoResize" Width="1366" Height="768" WindowStartupLocation="CenterScreen">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100*"/>
@@ -27,69 +29,72 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" Grid.ColumnSpan="7" StrokeThickness="0"/>
-        <Label Content="¡Bienvenido a FYSIEX, tu control de inventario digital!" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Grid.ColumnSpan="3" Height="39" Width="591"/>
-        <Label Content="MENU PRINCIPAL" Margin="51,66,39,0" VerticalAlignment="Top" FontSize="18" Height="34" FontFamily="Segoe UI Emoji"/>
-        <Rectangle Grid.Column="1" Fill="#FFF1EBEC" Margin="10,0" Stroke="Black" StrokeThickness="0" Grid.RowSpan="4" Grid.Row="1"/>
-        <Button Name="btnLogout" HorizontalAlignment="Left" Margin="19,0,0,18" Width="150" Background="#FFC91029" Click="BtnLogout_Click" Grid.Row="4" Height="50" VerticalAlignment="Bottom" Grid.RowSpan="2">
+        <Label Content="¡Bienvenido a FYSIEX, tu control de inventario digital!" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Grid.ColumnSpan="3" Height="45" Width="664"/>
+        <Label Content="MENU PRINCIPAL" Margin="103,76,270,0" VerticalAlignment="Top" FontSize="36" Height="54" FontFamily="Segoe UI Emoji" Grid.ColumnSpan="2"/>
+        <Rectangle Grid.Column="1" Fill="#FFF1EBEC" Margin="154,115,170,51" Stroke="Black" StrokeThickness="0" Grid.ColumnSpan="5" Grid.RowSpan="2"/>
+        <Button Name="btnLogout" HorizontalAlignment="Left" Margin="29,0,0,40" Width="150" Background="#FFC91029" Click="BtnLogout_Click" Grid.Row="4" Height="50" VerticalAlignment="Bottom">
             <DockPanel Height="40" LastChildFill="False" Width="140">
                 <Image Source="/Images/cerrar2.png" Height="40" Width="40"/>
                 <Label Content="Cerrar sesión" Height="30" VerticalAlignment="Top" FontSize="14" Margin="5,5,0,0" Width="100" Foreground="White" FontFamily="Comic Sans MS"/>
             </DockPanel>
         </Button>
-        <Label Content="ADMINISTRACIÓN" Grid.Column="1" Margin="37,0,25,5" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="29" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI Emoji"/>
-        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,0,2,0" Stroke="Black" StrokeThickness="0" Grid.Row="1" Grid.ColumnSpan="4"/>
-        <Label Content="CONSULTAS Y GESTIONES" Grid.Column="2" Margin="138,0,134,3" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="29" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="4" FontFamily="Segoe UI Emoji"/>
-        <Rectangle Grid.Column="2" Fill="#FFF1EBEC" Margin="10,0,0,0" Stroke="Black" StrokeThickness="0" Grid.Row="4" Grid.ColumnSpan="4"/>
-        <Label Content="SOLICITUDES" Grid.Column="3" Margin="27,48,22,5" RenderTransformOrigin="-0.079,0.154" Grid.Row="3" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="2" FontFamily="Segoe UI Emoji"/>
-        <Button Background="{x:Null}" Name="btnClientes" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnClientes_Click" Grid.Row="1" Foreground="{x:Null}" BorderBrush="{x:Null}">
+        <Label Content="ADMINISTRACIÓN" Grid.Column="2" Margin="54,0,67,20" VerticalAlignment="Bottom" RenderTransformOrigin="-0.079,0.154" Height="38" FontSize="24" FontWeight="Bold" FontFamily="Segoe UI Emoji" Grid.ColumnSpan="2"/>
+        <Rectangle Grid.Column="1" Fill="#FFF1EBEC" Margin="156,194,169,44" Stroke="Black" StrokeThickness="0" Grid.Row="1" Grid.ColumnSpan="5" Grid.RowSpan="3"/>
+        <Label Content="CONSULTAS Y GESTIONES" Grid.Column="2" Margin="10,157,21,0" RenderTransformOrigin="-0.079,0.154" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" FontFamily="Segoe UI Emoji" Height="38" VerticalAlignment="Top" Grid.Row="1"/>
+        <Rectangle Grid.Column="1" Fill="#FFF1EBEC" Margin="160,20,171,32" Stroke="Black" StrokeThickness="0" Grid.Row="4" Grid.ColumnSpan="5"/>
+        <Label Content="SOLICITUDES" Grid.Column="2" Margin="72,71,107,0" RenderTransformOrigin="-0.079,0.154" Grid.Row="3" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" FontFamily="Segoe UI Emoji" Height="39" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Button Background="{x:Null}" Name="btnClientes" Grid.Column="1" Margin="170,6,199,65" BorderThickness="0" Click="BtnClientes_Click" Grid.Row="1" Foreground="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2">
             <StackPanel>
                 <Image Source="/Images/cliente.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Clientes" Height="30" VerticalAlignment="Bottom" Width="134" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Background="{x:Null}" Name="btnEmpleados" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnEmpleados_Click" Grid.Row="2" Grid.RowSpan="2">
+        <Button Background="{x:Null}" Name="btnEmpleados" Grid.Column="2" Margin="81,6,85,65" BorderThickness="0" Click="BtnEmpleados_Click" Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel>
                 <Image Source="/Images/empleados.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Empleados" Height="30" VerticalAlignment="Bottom" Width="153" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Background="{x:Null}" Name="btnUsuarios" Grid.Column="1" Margin="25,15" BorderThickness="0" Click="BtnUsuarios_Click" Grid.Row="4">
+        <Button Background="{x:Null}" Name="btnUsuarios" Grid.Column="3" Margin="83,6,200,65" BorderThickness="0" Click="BtnUsuarios_Click" Grid.Row="1" Grid.ColumnSpan="3">
             <StackPanel>
                 <Image Source="/Images/usuario.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Usuarios" Height="30" VerticalAlignment="Bottom" Width="138" FontSize="14" Margin="0"/>
             </StackPanel>
         </Button>
-        <Image Margin="19,0,30,10" Source="Images/fysi.jpg" Grid.Row="1" Grid.RowSpan="3"/>
-        <Button Grid.Column="2" Margin="27,15,10,15" Grid.Row="1" FontSize="14" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click" Grid.ColumnSpan="2">
+        <Image Margin="103,0,270,10" Source="Images/fysi.jpg" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <Button Grid.Column="1" Margin="260,9,123,54" Grid.Row="2" FontSize="14" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <StackPanel Width="135">
                 <Image Source="Images/inventario.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Height="90"/>
                 <Label Content="Inventario" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="3" Margin="10,16,10,14" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4" Grid.ColumnSpan="2">
+        <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="2" Margin="98,29,90,40" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4" Grid.ColumnSpan="2">
             <StackPanel>
                 <Image Source="/Images/empleados.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Insumos" Height="30" VerticalAlignment="Bottom" Width="64" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Name="btnCotizacion" Grid.Column="2" Margin="27,16,10,14" Grid.Row="4" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnCotizacion_Click">
+        <Button Name="btnCotizacion" Grid.Column="1" Margin="182,29,200,40" Grid.Row="4" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnCotizacion_Click" Grid.ColumnSpan="2">
             <StackPanel>
                 <Image Source="Images/cotizacion.png" Margin="10,0" Height="90" Width="90" MaxHeight="150" MaxWidth="150"/>
                 <Label Content="Cotizaciones" Height="30" VerticalAlignment="Bottom" Width="90" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Name="btnRecibo" Grid.Column="5" Margin="17,15,10,15" Grid.Row="4" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Click="BtnRecibo_Click">
+        <Button Name="btnRecibo" Grid.Column="3" Margin="96,29,219,40" Grid.Row="4" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Click="BtnRecibo_Click" Grid.ColumnSpan="3">
             <StackPanel>
                 <Image Source="Images/recibo.png" Margin="10,0" Height="90" Width="90" MaxHeight="150" MaxWidth="150"/>
                 <Label Content="Recibo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="52" Height="30" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Name="btnHistorial" Grid.Column="4" Margin="10,10,18,15" Grid.Row="1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.ColumnSpan="2" Click="BtnHistorial_Click">
+        <Button Name="btnHistorial" Grid.Column="3" Margin="9,10,60,54" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="BtnHistorial_Click" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <StackPanel>
                 <Image Source="Images/historial.png" Margin="10,0" Height="90" Width="90" MaxHeight="150" MaxWidth="150"/>
                 <Label Content="Historiales" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button x:Name="btnRecibo_Copy" Grid.Column="4" Margin="14,16,10,14" Grid.Row="4" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}"/>
+        <Image Grid.Column="2" Margin="0,32,110,0" Grid.Row="4" Source="Images/burbuja.png" Name="imgBurbuja" HorizontalAlignment="Right" Width="29" Height="23" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Name="lblContador" Content="0" Margin="205,27,108,136" Grid.Column="2" Grid.Row="4" Foreground="White" FontSize="16" Height="32" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+        <Rectangle Fill="#FFC91029" Stroke="Black" Grid.ColumnSpan="7" StrokeThickness="0" Margin="0,182,0,-4" Grid.Row="4" Grid.RowSpan="2"/>
+
     </Grid>
 </Window>

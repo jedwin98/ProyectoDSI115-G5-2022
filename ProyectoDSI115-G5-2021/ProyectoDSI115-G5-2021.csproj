@@ -433,6 +433,12 @@
     <Resource Include="Images\historial.png" />
     <Resource Include="Images\recibo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\burbuja.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bell.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
