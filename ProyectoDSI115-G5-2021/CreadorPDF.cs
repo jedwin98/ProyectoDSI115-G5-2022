@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Markup;
+using System.Windows.Media.Imaging;
 
 namespace ProyectoDSI115_G5_2021
 {
@@ -92,102 +94,31 @@ namespace ProyectoDSI115_G5_2021
 
         }
 
+        // Crea una impresión de una solicitud de extracción.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         public void PrepararImpresionSolicitud(DataTable dataTable, string nombreSolicitante, string autorizador, string cliente, string empresaR, string codigoSolicitud, string numeroOrden, string fecha)
         {
-            /*
-            string path = "C:/FYSIEX/Solicitudes/" + conv.Year + "/" + conv.Month;
-            DirectoryInfo di = Directory.CreateDirectory(path);
-            FileStream fs = new FileStream(path + "/Solicitud" + codigoSolicitud + ".pdf", FileMode.Create, FileAccess.Write, FileShare.None);
-            Document document = new Document();
-            document.SetPageSize(iTextSharp.text.PageSize.LETTER);
-            PdfWriter writer = PdfWriter.GetInstance(document, fs);
-            document.Open();
-
-            //Cabecera de la solicictud
-            BaseFont baseFontHead = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font fontHead = new iTextSharp.text.Font(baseFontHead, 18, 1, BaseColor.BLACK);
-            Paragraph empresa = new Paragraph();
-            empresa.Alignment = Element.ALIGN_CENTER;
-            empresa.Add(new Chunk("Fuego y Seguridad Industrial\nComprobante de autorización de extracción", fontHead));
-            document.Add(empresa);
-
-            //Datos generales de la solicitud
-            BaseFont baseFontData = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font fontHeadData = new iTextSharp.text.Font(baseFontHead, 14, 1, BaseColor.BLACK);
-            document.Add(new Chunk("\n", fontHead));
-
-            PdfPTable tableDatos = new PdfPTable(2);
-            PdfPCell cellDatos = new PdfPCell();
-            cellDatos.AddElement(new Chunk("Fecha de ingreso: " + fecha, fontHeadData));
-            tableDatos.AddCell(cellDatos);
-            cellDatos = new PdfPCell();
-            cellDatos.AddElement(new Chunk("Orden #" + numeroOrden, fontHeadData));
-            tableDatos.AddCell(cellDatos);
-            cellDatos = new PdfPCell();
-            cellDatos.AddElement(new Chunk("Representante: " + cliente, fontHeadData));
-            tableDatos.AddCell(cellDatos);
-            cellDatos = new PdfPCell();
-            cellDatos.AddElement(new Chunk("Razón social: " + empresaR, fontHeadData));
-            tableDatos.AddCell(cellDatos);
-            document.Add(tableDatos);
-            document.Add(new Chunk("\n", fontHead));
-
-            //Detalles de la solicitud
-            PdfPTable tableDetalle = new PdfPTable(dataTable.Columns.Count);
-            BaseFont baseFontColumns = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font fontColumns = new iTextSharp.text.Font(baseFontColumns, 10, 1, BaseColor.BLACK);
-            //Cabecera de los detalles
-            for (int i = 0; i < dataTable.Columns.Count; i++)
-            {
-                PdfPCell cell = new PdfPCell();
-                cell.AddElement(new Chunk(dataTable.Columns[i].ColumnName, fontColumns));
-                tableDetalle.AddCell(cell);
-            }
-            //Lista de detalles
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                for (int j = 0; j < dataTable.Columns.Count; j++)
-                {
-                    tableDetalle.AddCell(dataTable.Rows[i][j].ToString());
-                }
-            }
-            document.Add(tableDetalle);
-            document.Add(new Chunk("\n", fontHead));//inserta un salto de linea antes de imprimir tabla
-
-            //Espacio de firmas
-            iTextSharp.text.Font fontDetalles = new iTextSharp.text.Font(baseFontColumns, 12, 1, BaseColor.BLACK);
-            PdfPTable tableFirmas = new PdfPTable(2);
-            PdfPCell cellFirmas = new PdfPCell();
-            cellFirmas.AddElement(new Chunk("Firma de solicitante", fontDetalles));
-            tableFirmas.AddCell(cellFirmas);
-            cellFirmas = new PdfPCell();
-            cellFirmas.AddElement(new Chunk("Firma de autorizador", fontDetalles));
-            tableFirmas.AddCell(cellFirmas);
-            cellFirmas = new PdfPCell();
-            cellFirmas.AddElement(new Chunk(nombreSolicitante, fontDetalles));
-            tableFirmas.AddCell(cellFirmas);
-            cellFirmas = new PdfPCell();
-            cellFirmas.AddElement(new Chunk(autorizador, fontDetalles));
-            tableFirmas.AddCell(cellFirmas);
-            iTextSharp.text.Font fontFirmas = new iTextSharp.text.Font(baseFontHead, 24, 1, BaseColor.BLACK);
-            cellFirmas = new PdfPCell();
-            cellFirmas.AddElement(new Chunk(" ", fontFirmas));
-            tableFirmas.AddCell(cellFirmas);
-            cellFirmas = new PdfPCell();
-            cellFirmas.AddElement(new Chunk(" ", fontFirmas));
-            tableFirmas.AddCell(cellFirmas);
-            document.Add(tableFirmas);
-            //Llamar ventana de impresión
-            
-            document.Close();
-            writer.Close();
-            fs.Close();
-            */
+            // Preparando impresión por medio de FlowDocument
             FlowDocument fd = new FlowDocument();
-            System.Windows.Documents.Paragraph p = new System.Windows.Documents.Paragraph(new Run("Fuego y Seguridad Industrial\n"));
-            p.FontSize = 18;
-            p.TextAlignment = TextAlignment.Center;
-            fd.Blocks.Add(p);
+
+            Table tableEmpresa = new Table();
+            fd.Blocks.Add(tableEmpresa);
+            tableEmpresa.Background = System.Windows.Media.Brushes.White;
+            tableEmpresa.Columns.Add(new TableColumn());
+            tableEmpresa.RowGroups.Add(new TableRowGroup());
+            tableEmpresa.RowGroups[0].Rows.Add(new TableRow());
+            TableRow emp = tableEmpresa.RowGroups[0].Rows[0];
+            // Agregando logo de la empresa
+            BitmapImage bmp = new BitmapImage(new Uri("/Images/fysi.jpg", UriKind.Relative));
+            System.Windows.Controls.Image logo = new System.Windows.Controls.Image { Source = bmp };
+            logo.Width = 160;
+            logo.Height = 98;
+            emp.Cells.Add(new TableCell(new BlockUIContainer(logo)));
+            // Agregando nombre de la empresa
+            System.Windows.Documents.Paragraph p = new System.Windows.Documents.Paragraph(new Run("\nFuego y Seguridad Industrial\n"));
+            p.Inlines.Add(new Run("Solicitud de Extracción"));
+            p.FontSize = 20;
+            emp.Cells.Add(new TableCell(p));
 
             // Construcción de tabla de cabecera
             Table tableCabecera = new Table();
@@ -269,7 +200,7 @@ namespace ProyectoDSI115_G5_2021
             actual.FontSize = 14;
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(nombreSolicitante))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(autorizador))));
-            //Espacio de firmas
+            // Espacio de firmas
             tableFirmas.RowGroups[0].Rows.Add(new TableRow());
             actual = tableFirmas.RowGroups[0].Rows[2];
             actual.FontSize = 20;
@@ -277,11 +208,9 @@ namespace ProyectoDSI115_G5_2021
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("________________"))));
             // Impresión del documento
             MemoryStream s = new System.IO.MemoryStream();
-            TextRange src = new TextRange(fd.ContentStart, fd.ContentEnd);
-            src.Save(s, DataFormats.Xaml);
-            FlowDocument copy = new FlowDocument();
-            TextRange dst = new TextRange(copy.ContentStart, copy.ContentEnd);
-            dst.Load(s, DataFormats.Xaml);
+            string copyString = XamlWriter.Save(fd);
+            FlowDocument copy = XamlReader.Parse(copyString) as FlowDocument;
+            // Carga de diálogo de impresión y ajuste del documento al tamaño de impresión.
             PrintDialog printDialog = new PrintDialog();
             IDocumentPaginatorSource idpSrc = copy;
             copy.PageHeight = printDialog.PrintableAreaHeight;

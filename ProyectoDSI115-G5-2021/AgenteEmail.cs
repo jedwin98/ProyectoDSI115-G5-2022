@@ -11,15 +11,19 @@ namespace ProyectoDSI115_G5_2021
 {
     class AgenteEmail
     {
+        // Genera el cuerpo del mensaje de código a enviar.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         public static string GenerarMail(string usuario, int random)
         {
-            string cuerpo = "<font>"+usuario+", su clave para recuperar su contraseña es:</font>";
+            string cuerpo = "<font>"+usuario+", su código de seguridad a utilizar es:</font>";
             cuerpo += "<h2>" + random.ToString("000000") + "</h2>";
-            cuerpo += "<font>Si no solicitó el cambio, verifique su acceso.</font>";
+            cuerpo += "<font>No responda a este mensaje autogenerado.</font>";
             return cuerpo;
         }
 
-        public static void EnviarMail(string texto, string direccion, Remitente remitente)
+        // Prepara el envío de un mensaje de correo. Definir texto, destinatario, remitente y asunto.
+        // AUTOR: Félix Eduardo Henríquez Cruz
+        public static void EnviarMail(string texto, string direccion, Remitente remitente, string asunto)
         {
             try
             {
@@ -27,11 +31,21 @@ namespace ProyectoDSI115_G5_2021
                 SmtpClient smtp = new SmtpClient();
                 mensaje.From = new MailAddress(remitente.correo);
                 mensaje.To.Add(new MailAddress(direccion));
-                mensaje.Subject = "Recupere su contraseña";
+                mensaje.Subject = asunto;
                 mensaje.IsBodyHtml = true;
                 mensaje.Body = texto;
+                // Puerto SMTP default. (Recomendado)
+                // En caso de agregar nuevas configuraciones con otro puerto, ajuste en el respectivo apartado.
                 smtp.Port = 587;
-                smtp.Host = "smtp-mail.outlook.com"; //SMTP para Outlook.com 
+                // Selección basada en dominio de correo.
+                if (remitente.correo.Contains("@hotmail") || remitente.correo.Contains("@outlook"))
+                {
+                    smtp.Host = "smtp-mail.outlook.com"; //Servidor SMTP para Outlook.com
+                }
+                else if (remitente.correo.Contains("@gmail"))
+                {
+                    smtp.Host = "smtp-relay.gmail.com"; //Servidor SMTP para Gmail
+                }
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new NetworkCredential(remitente.correo, remitente.contrasena);
@@ -40,7 +54,7 @@ namespace ProyectoDSI115_G5_2021
             }
             catch (Exception)
             {
-                MessageBox.Show("Error al enviar correo. Verifique su conexión e intente de nuevo.");
+                MessageBox.Show("Error al enviar correo. Verifique su conexión o la configuración del remitente e intente de nuevo.");
             }
         }
     }
