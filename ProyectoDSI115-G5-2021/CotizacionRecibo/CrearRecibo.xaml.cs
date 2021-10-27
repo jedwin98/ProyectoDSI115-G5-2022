@@ -15,38 +15,30 @@ using System.Windows.Shapes;
 
 namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 {
-    /// <summary>
-    /// Lógica de interacción para CrearRecibo.xaml
-    /// </summary>
     public partial class CrearRecibo : Window
     {
         private GestionUsuarios.Usuario sesion;
         internal GestionUsuarios.Usuario Sesion { get => sesion; set => sesion = value; }
         ControlBD control;
         DataTable dt = new DataTable();
-        
-        DataTable dataTable = new DataTable();    
+        DataTable dataTable = new DataTable();
         string codigoSolicitud { get; set; }
         List<DetalleRecibo> detalles = new List<DetalleRecibo>();
-        List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
-
+        
+        private float totalTotal = 0;//Variable global para guardar el total de la compra del recibo
 
         public CrearRecibo()
         {
             InitializeComponent();
             CargarTabla();
             codigoSolicitud = GenerarCodigoS();
-            //txtBuscar.Text = codigoSolicitud;
         }
         public void CargarTabla()
         {
             control = new ControlBD();
             dt = control.consultarMateriales();
-            dt = control.consultarProductos2();
+            dt = control.consultarProductosRecibo();
             dataMateriales.ItemsSource = dt.DefaultView;
-            //llena combo de los clientes
-            clientes = control.ListaClientes();
-            cmbClientes.ItemsSource = clientes;
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
@@ -64,9 +56,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
             else
             {
-                txtCodigo.Text = row.Row.ItemArray[0].ToString();
+                //txtCodigo.Text = row.Row.ItemArray[0].ToString();
                 txtNombre.Text = row.Row.ItemArray[1].ToString();
-               
+                txtPrecio.Text = row.Row.ItemArray[4].ToString();
                 txtPresentacion.Text = row.Row.ItemArray[2].ToString();
             }
         }
@@ -87,12 +79,23 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         private void BuscarMaterial()
         {
             dt.Clear();
-            dt = control.BuscarMatYPro(txtBuscar.Text);
+            dt = control.BuscarMatYProRecibo(txtBuscar.Text);
             dataMateriales.ItemsSource = dt.DefaultView;
+        }
+
+        private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            txtCodigoReq.Text = "";
+            txtCliente.Text = "";
+            txtNombre.Text = "";
+            txtCantidad.Text = "";
+            txtPresentacion.Text = "";
+            txtPrecio.Text = "";
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            
             try
             {
                 if (txtCantidad.Text == "")
@@ -114,24 +117,31 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                         else
                         {
                             DetalleRecibo detalle = new DetalleRecibo();
+                            //detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
                             detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
                             detalle.codigo = GenerarCodigoS();
                             detalle.codigoSolicitud = codigoSolicitud;
-
+                            detalle.precio = Convert.ToSingle(txtPrecio.Text);
+                            
                             GestionMateriales.Material mate = new GestionMateriales.Material();
-                            mate.codigo = txtCodigo.Text;
+                            mate.precio = txtPrecio.Text;
                             mate.nombre = txtNombre.Text;
                             mate.unidad = txtPresentacion.Text;
 
                             detalle.material = mate;
-                            
+                            detalle.subtotal = detalle.cantidad * detalle.precio;
+
                             detalles.Add(detalle);
                             dataSoli.ItemsSource = null;
                             dataSoli.ItemsSource = detalles;
+
                             txtCantidad.Text = "";
-                            txtCodigo.Text = "";
+                            txtPrecio.Text = "";
                             txtNombre.Text = "";
                             txtPresentacion.Text = "";
+
+                            totalTotal = totalTotal + detalle.subtotal;
+                            txtTotalRecibo.Text = "$ " + Convert.ToString(totalTotal);
                         }
                     }
                 }
@@ -145,11 +155,12 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
         private void BtnSolicitar_Click(object sender, RoutedEventArgs e)
         {
-            if (cmbClientes.SelectedValue == null)
+            //if (cmbClientes.SelectedValue == null)
+            if (txtCliente.Text == "")
             {
                 MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else 
+            else
             {
                 if (txtCodigoReq.Text == "") {
                     MessageBox.Show("Debe agregar el codigo de la solicitud", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -159,7 +170,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     SolicitudRecibo solicitud = new SolicitudRecibo();
                     solicitud.codigo = codigoSolicitud;
                     solicitud.codigoReq = txtCodigoReq.Text;
-                    solicitud.codigoCliente = cmbClientes.SelectedValue.ToString();
+                    solicitud.codigoCliente = txtCliente.Text;
                     solicitud.solicitante = sesion;
                     solicitud.autorizador = new GestionUsuarios.Usuario();
                     solicitud.autorizador.codigo = "";
@@ -170,7 +181,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     string respuesta = control.AgregarRecibo(solicitud);
                     MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
                     txtCodigoReq.Text = "";
-                    cmbClientes.SelectedValue = null;
+                    txtCliente.Text = "";
 
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
@@ -197,7 +208,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             if (result == MessageBoxResult.Yes)
             {
                 txtCantidad.Text = "";
-                txtCodigo.Text = "";
+                txtPrecio.Text = "";
                 txtNombre.Text = "";
                 txtPresentacion.Text = "";
                 detalles.Clear();
@@ -210,6 +221,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
           
         }
+
         private void dgMateriales_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender != null)
@@ -220,12 +232,14 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     DataRowView row = grid.SelectedItem as DataRowView;
                     // DataRowView row = dataMateriales.SelectedItem as DataRowView;
                    // DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
-                    txtCodigo.Text = row.Row.ItemArray[0].ToString();
+                    
                     txtNombre.Text = row.Row.ItemArray[1].ToString();
-
+                    txtPrecio.Text = row.Row.ItemArray[4].ToString();
                     txtPresentacion.Text = row.Row.ItemArray[2].ToString();
                 }
             }
         }
+
+        
     }
 }
