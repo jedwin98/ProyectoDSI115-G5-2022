@@ -56,5 +56,20 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         {
             BuscarProMat();
         }
+
+        private void BtnSeleccionar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView row = dataInventario.SelectedItem as DataRowView;
+            if (row == null)
+            {
+                MessageBox.Show("Seleccione primero un producto", "Seleccione un producto", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                txtNombreProducto.Text = row.Row.ItemArray[1].ToString();
+                txtPrecio.Text = row.Row.ItemArray[3].ToString();
+            }
+        }
+
     }
 }

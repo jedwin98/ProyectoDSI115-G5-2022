@@ -29,20 +29,20 @@
                 <DataGridTextColumn Binding="{Binding PRECIO_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Precio"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnSeleccionar" Content="Seleccionar" Margin="0,179,26,0" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" Width="122"/>
+        <Button x:Name="btnSeleccionar" Content="Seleccionar" Margin="0,179,26,0" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Grid.Row="1" HorizontalAlignment="Right" Width="122" Click="BtnSeleccionar_Click"/>
         <Label x:Name="label1_Copy" Content="Agregar a la cotización" Margin="167,0,143,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="18" Grid.Column="1" Height="41" Grid.Row="1"/>
         <Label x:Name="label2" Content="Código de la Cotización:" Grid.Column="1" HorizontalAlignment="Left" Margin="19,56,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29" Width="160"/>
-        <TextBox x:Name="txtCodCotizacion" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="179,56,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+        <TextBox x:Name="txtCodCotizacion" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="179,56,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" FontSize="14"/>
         <Label x:Name="label3" Content="Cliente:" Grid.Column="1" Margin="273,56,186,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29"/>
-        <TextBox x:Name="txtCliente" Grid.Column="1" Height="29" Margin="329,56,35,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCliente" Grid.Column="1" Height="29" Margin="329,56,35,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14"/>
         <Rectangle Grid.Column="1" Fill="#FFF4F4F5" Height="100" Margin="10,95,20,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top"/>
         <Label x:Name="label4" Content="Nombre del Producto:" Grid.Column="1" HorizontalAlignment="Left" Margin="19,104,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29" Width="147"/>
-        <TextBox x:Name="txtNombreProducto" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="167,104,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
+        <TextBox x:Name="txtNombreProducto" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="167,104,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="143" IsEnabled="False" FontSize="14"/>
         <Label x:Name="label5" Content="Precio:" Grid.Column="1" Margin="339,104,125,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29"/>
-        <TextBox x:Name="txtPrecio" Grid.Column="1" Height="29" Margin="390,104,47,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPrecio" Grid.Column="1" Height="29" Margin="390,104,47,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" IsEnabled="False" FontSize="14"/>
         <Label x:Name="label6" Content="Cantidad de Producto:" Grid.Column="1" HorizontalAlignment="Left" Margin="19,151,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14" Height="29" Width="148"/>
         <Button x:Name="btnAgregar" Content="Agregar a cotización" Grid.Column="1" Margin="307,151,35,0" Grid.Row="1" VerticalAlignment="Top" Height="29" FontFamily="Comic Sans MS" FontSize="14" Background="#FFC91029" Foreground="White"/>
-        <TextBox x:Name="txtCantidad" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="167,151,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="49"/>
+        <TextBox x:Name="txtCantidad" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="167,151,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" FontSize="14"/>
         <DataGrid x:Name="dataCotizacion" Grid.Column="1" Margin="10,206,20,116" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
