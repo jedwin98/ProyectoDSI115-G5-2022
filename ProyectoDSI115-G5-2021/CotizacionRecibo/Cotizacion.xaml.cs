@@ -71,5 +71,19 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
         }
 
+        private void DataInventario_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                {
+                    DataRowView row = grid.SelectedItem as DataRowView;
+
+                    txtNombreProducto.Text = row.Row.ItemArray[1].ToString();
+                    txtPrecio.Text = row.Row.ItemArray[3].ToString();
+                }
+            }
+        }
     }
 }
