@@ -5,53 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.Historial"
         mc:Ignorable="d"
-        Title="Detalles del Historial del Cliente" Height="546.5" Width="729.5">
-    <Grid Margin="0,0,-8,5" >
+        Title="Detalles del Historial del Cliente" Height="571.5" Width="752.5">
+    <Grid Margin="0,0,2,5" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="295*"/>
+            <RowDefinition Height="241*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="232*"/>
             <ColumnDefinition Width="499*"/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="20,84,0,0" Stroke="Black" Width="186" Height="180" VerticalAlignment="Top"/>
-        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="62,84,0,0" VerticalAlignment="Top" Width="94" Height="114" Click="BtnSeleccionar_Click">
+        <Rectangle  Fill="#FFF1EBEC" Margin="20,84,0,0" Stroke="Black" Height="308" VerticalAlignment="Top" HorizontalAlignment="Left" Width="186" Grid.RowSpan="2"/>
+        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" Margin="62,84,0,0" VerticalAlignment="Top" Height="114" Click="BtnSeleccionar_Click" HorizontalAlignment="Left" Width="94">
             <StackPanel Height="107" Width="84">
                 <Image Source="/Images/verificar.png" Height="77" Width="58" Margin="12,0,13,0"/>
-                <Label Content="Consultar" FontFamily="Comic Sans MS" Height="27" FontSize="13"  HorizontalAlignment="Stretch" Margin="10,0" />
+                <Label Content="Consultar" FontFamily="Comic Sans MS" Height="27" FontSize="13"  HorizontalAlignment="Stretch" Margin="10,0,0,0" />
             </StackPanel>
         </Button>
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,-6,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="2" />
 
         <Label  Content="Historial de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="299" Grid.ColumnSpan="2"/>
-        <DataGrid  x:Name="dataDetalles" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="20,308,34,10" Grid.Column="1" >
+        <DataGrid  x:Name="dataDetalles" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="20,10,34,10" Grid.Column="1" Grid.Row="1" >
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código Material"  Binding="{Binding COD_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding NOMBRE_MATERIAL }"/>
-                <DataGridTextColumn MinWidth="90" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding CANTIDAD_DETALLE}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código Material"  Binding="{Binding material.codigo}"/>
+                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding material.nombre }"/>
+                <DataGridTextColumn MinWidth="90" IsReadOnly="True" Header="Presentación"  Binding="{Binding material.unidad}"/>
+                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding cantidad}"/>
 
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="20,180,34,207" Grid.Column="1" >
+        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="20,180,34,7" Grid.Column="1" >
             <DataGrid.Columns>
-                <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding CODIGO_SOLI}"/>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Solicitud Número"  Binding="{Binding COD_REQ}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Fecha de solicitud"  Binding="{Binding FECHA_SOLICITUD}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Elaborado por"  Binding="{Binding ESTADO_SOLICITUD}"/>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Aprobado por"  Binding="{Binding EMPRESA_CLIENTE}"/>
+                <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding codigo}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Solicitud Número"  Binding="{Binding codigoReq}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Fecha de solicitud"  Binding="{Binding fechaSolicitud}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Elaborado por"  Binding="{Binding solicitante.nombre}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Aprobado por"  Binding="{Binding autorizador.nombre}"/>
 
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="btnVolver" Content="Volver" Margin="62,203,0,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="100" Height="32" VerticalAlignment="Top" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902"/>
+        <Button x:Name="btnVolver" Content="Volver" Margin="62,48,0,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" VerticalAlignment="Top" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902" HorizontalAlignment="Left" Width="100" Grid.Row="1"/>
 
-        <Rectangle Grid.Column="1" Fill="#FFFFFF" HorizontalAlignment="Left" Height="91" Margin="20,84,0,0" Stroke="Black" VerticalAlignment="Top" Width="444"/>
-        <Label Content="Razón Social:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,101,0,0" VerticalAlignment="Top"/>
-        <Label Content="Teléfono:" Grid.Column="1" HorizontalAlignment="Left" Margin="245,101,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.431,0.269"/>
-        <Label Content="Nombre del Responsable:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,139,0,0" VerticalAlignment="Top"/>
+        <Rectangle Grid.Column="1" Fill="#FFFFFF" Height="91" Margin="20,84,38,0" Stroke="Black" VerticalAlignment="Top"/>
+        <Label Content="Razón Social:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,101,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
+        <Label Content="Teléfono:" Grid.Column="1" Margin="0,101,199,0" VerticalAlignment="Top" RenderTransformOrigin="0.431,0.269" Height="26" HorizontalAlignment="Right" Width="58"/>
+        <Label Content="Nombre del Responsable:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,139,0,0" VerticalAlignment="Top" Height="26" Width="146"/>
         <TextBox x:Name="txtRazon"  Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="99,104,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="141"/>
-        <TextBox x:Name="txtTel" Grid.Column="1" Height="23" Margin="308,102,49,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNombres" Grid.Column="1"  HorizontalAlignment="Left" Height="23" Margin="176,139,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="273"/>
-        <Label Content="Datos del Cliente:" Background="White" Grid.Column="1" HorizontalAlignment="Left" Margin="31,70,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtTel" Grid.Column="1" Height="23" Margin="0,102,49,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="150"/>
+        <TextBox x:Name="txtNombres" Grid.Column="1" Height="23" Margin="176,139,53,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label Content="Datos del Cliente:" Background="White" Grid.Column="1" HorizontalAlignment="Left" Margin="31,70,0,0" VerticalAlignment="Top" Height="26" Width="103"/>
+        <Button  x:Name="btnImprimir" Background="#FFF1EBEC" BorderBrush="Transparent" Margin="68,205,0,0" VerticalAlignment="Top" Height="114" Click="BtnSeleccionar_Click" HorizontalAlignment="Left" Width="94" Grid.RowSpan="2">
+            <StackPanel Height="107" Width="84">
+                <Image Source="/FYSIEX;component/Images/imprimir.png" Height="77" Width="58" Margin="12,0,13,0"/>
+                <Label Content="Imprimir" FontFamily="Comic Sans MS" Height="27" FontSize="13"  HorizontalAlignment="Stretch" Margin="10,0" />
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>
