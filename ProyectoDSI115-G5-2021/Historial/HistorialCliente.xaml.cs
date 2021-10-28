@@ -51,7 +51,7 @@ namespace ProyectoDSI115_G5_2021.Historial
 
             DataGrid grid = sender as DataGrid;
             Cliente client = dataClientes.SelectedItem as Cliente;
-            if (client != null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+            if (client != null)
             {
                 DetalleHistorialCliente detail = new DetalleHistorialCliente(client.codigo, client.nombres + " " + client.apellidos, client.empresa, client.telefono);
                 detail.ShowDialog();

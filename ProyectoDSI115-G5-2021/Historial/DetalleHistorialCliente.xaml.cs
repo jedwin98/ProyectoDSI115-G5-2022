@@ -28,6 +28,7 @@ namespace ProyectoDSI115_G5_2021.Historial
         string codigoCliente { get; set; }
         List<SolicitudInsumos> solicituds = new List<SolicitudInsumos>();
         List<DetalleSolicitudInsumos> detalles = new List<DetalleSolicitudInsumos>();
+        SolicitudInsumos solicitudSelected { get; set; }
         public DetalleHistorialCliente(string cod, string nombre, string empresa, string telefono)
         {
             InitializeComponent();
@@ -45,16 +46,17 @@ namespace ProyectoDSI115_G5_2021.Historial
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void BtnSeleccionar_Click(object sender, RoutedEventArgs e)
         {
-            DataGrid grid = sender as DataGrid;
+          //  DataGrid grid = sender as DataGrid;
             SolicitudInsumos soli = dataSolicitudes.SelectedItem as SolicitudInsumos;
-            if (soli != null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+            if (soli != null)
             {
                 CargarDetalles(soli.codigo);
+                solicitudSelected = soli;
             }
             else
             {
@@ -72,6 +74,7 @@ namespace ProyectoDSI115_G5_2021.Historial
             if (soli != null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
             {
                 CargarDetalles(soli.codigo);
+                solicitudSelected = soli;
                
             }
             else
@@ -94,5 +97,34 @@ namespace ProyectoDSI115_G5_2021.Historial
             
         }
 
-    }
+        private void BtnImprimir_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                GenerarImpresion();
+            }
+        }
+            private void GenerarImpresion()
+            {
+                // Adecuar cabeceras de tablas.
+                DataTable aImprimir = new DataTable();
+                aImprimir.Columns.Add("Código de Material");
+                aImprimir.Columns.Add("Descripción");
+                aImprimir.Columns.Add("Presentación");
+                aImprimir.Columns.Add("Cantidad");
+               //  aImprimir.Columns.Add("Observaciones");
+                string[] descripcion = new string[4];
+                for (int i = 0; i < detalles.Count(); i++)
+                {
+                    descripcion[0] = detalles[i].material.codigo;
+                    descripcion[1] = detalles[i].material.nombre;
+                    descripcion[2] = detalles[i].material.unidad;
+                    descripcion[3] = detalles[i].cantidad.ToString();
+                // Agregando detalle a la tabla de la impresión.
+                aImprimir.Rows.Add(new Object[] { descripcion[0], descripcion[1], descripcion[2], descripcion[3] });
+                }
+                CreadorPDF impresion = new CreadorPDF();
+                impresion.ImpresionSolicitud(aImprimir, solicitudSelected.solicitante.nombre, solicitudSelected.autorizador.nombre, txtNombres.Text, txtRazon.Text, solicitudSelected.codigo, solicitudSelected.codigoReq, solicitudSelected.fechaSolicitud);
+                //MessageBox.Show("Se ha generado el archivo de la solicitud.", "Generación de solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
 }

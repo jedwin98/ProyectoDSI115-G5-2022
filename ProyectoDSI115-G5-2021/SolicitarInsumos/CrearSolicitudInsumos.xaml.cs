@@ -150,7 +150,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Solo se permiten numeros en el campo cantidad", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Solo se permiten numeros en el campo cantidad", "Error: "+ex.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
                 txtCantidad.Text = "";
             }
            
