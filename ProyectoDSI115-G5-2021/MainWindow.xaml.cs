@@ -30,12 +30,13 @@ namespace ProyectoDSI115_G5_2021
         GestionEmpleados.GestionEmpleados ge;
         GestionUsuarios.GestionUsuarios gu;
         Inventario verInventario;
-        Historial.Historial historial;
-        CotizacionRecibo.Cotizacion cotizacion;
-        CotizacionRecibo.Recibo recibo;
+        //Historial.Historial historial;
+        //CotizacionRecibo.Cotizacion cotizacion;
+        CotizacionRecibo.CrearRecibo recibo;
 
 
 
+        Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false;
 
 
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
@@ -230,7 +231,20 @@ namespace ProyectoDSI115_G5_2021
         //MODIFICAR ESTE CODIGO
         private void BtnRecibo_Click(object sender, RoutedEventArgs e)
         {
-
+            if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
+            {
+                recibo = new CotizacionRecibo.CrearRecibo
+                {
+                    WindowState = WindowState.Maximized
+                };
+                //Aunque la función bloquea las acciones en esta ventana
+                //Se tiene esta variable que se define al cerrar la ventana
+                rb = recibo.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 

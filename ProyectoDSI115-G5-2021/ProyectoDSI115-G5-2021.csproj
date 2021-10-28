@@ -143,9 +143,14 @@
     <Compile Include="CotizacionRecibo\Cotizacion.xaml.cs">
       <DependentUpon>Cotizacion.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CotizacionRecibo\CrearRecibo.xaml.cs">
+      <DependentUpon>CrearRecibo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CotizacionRecibo\DetalleRecibo.cs" />
     <Compile Include="CotizacionRecibo\Recibo.xaml.cs">
       <DependentUpon>Recibo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CotizacionRecibo\SolicitudRecibo.cs" />
     <Compile Include="GestionMateriales\ActualizarMaterial.xaml.cs">
       <DependentUpon>ActualizarMaterial.xaml</DependentUpon>
     </Compile>
@@ -198,6 +203,10 @@
     <Page Include="CotizacionRecibo\Cotizacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CotizacionRecibo\CrearRecibo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CotizacionRecibo\Recibo.xaml">
       <SubType>Designer</SubType>
