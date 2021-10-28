@@ -39,7 +39,7 @@ namespace ProyectoDSI115_G5_2021
 
 
 
-        Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false;
+        Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false, cot = false;
 
 
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
@@ -237,10 +237,25 @@ namespace ProyectoDSI115_G5_2021
             }
 
         }
-        //MODIFICAR ESTE CODIGO
+        
         private void BtnCotizacion_Click(object sender, RoutedEventArgs e)
         {
-            
+            //Creando una instancia maximizada de Cotizaciones.
+            //Autorizado para gerencia y administración.
+            if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
+            {
+                cotizacion = new CotizacionRecibo.Cotizacion
+                {
+                    WindowState = WindowState.Maximized
+                };
+                //Aunque la función bloquea las acciones en esta ventana
+                //Se tiene esta variable que se define al cerrar la ventana
+                cot = cotizacion.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         //MODIFICAR ESTE CODIGO
         private void BtnRecibo_Click(object sender, RoutedEventArgs e)
