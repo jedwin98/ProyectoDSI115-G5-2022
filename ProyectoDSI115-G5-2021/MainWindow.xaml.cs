@@ -30,7 +30,7 @@ namespace ProyectoDSI115_G5_2021
         GestionEmpleados.GestionEmpleados ge;
         GestionUsuarios.GestionUsuarios gu;
         Inventario verInventario;
-        Historial.Historial historial;
+        Historial.HistorialCliente historial;
         CotizacionRecibo.Cotizacion cotizacion;
         CotizacionRecibo.Recibo recibo;
 
@@ -220,7 +220,20 @@ namespace ProyectoDSI115_G5_2021
         //MODIFICAR ESTE CODIGO.
         private void BtnHistorial_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
+            {
+                historial=new Historial.HistorialCliente
+                { 
+                    WindowState = WindowState.Maximized
+                };
+               
+                historial.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
         //MODIFICAR ESTE CODIGO
         private void BtnCotizacion_Click(object sender, RoutedEventArgs e)
