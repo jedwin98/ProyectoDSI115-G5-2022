@@ -32,7 +32,7 @@ namespace ProyectoDSI115_G5_2021
         Inventario verInventario;
         Historial.HistorialCliente historial;
         CotizacionRecibo.Cotizacion cotizacion;
-        CotizacionRecibo.Recibo recibo;
+        //CotizacionRecibo.Recibo recibo;
         //Historial.Historial historial;
         //CotizacionRecibo.Cotizacion cotizacion;
         CotizacionRecibo.CrearRecibo recibo;
