@@ -74,8 +74,8 @@ namespace ProyectoDSI115_G5_2021
                 {                                       //codigo, nombre´+apellido
                     Usuario solicitante = new Usuario(Convert.ToString(dr[1]), Convert.ToString(dr[2]) +" "+ Convert.ToString(dr[3]));
                     Usuario aprobador = new Usuario(Convert.ToString(dr[7]), Convert.ToString(dr[8]) + " " + Convert.ToString(dr[9]));
-                    //MessageBox.Show(solicitante.empleado);
-                                                        //codigo solicitud, solicitante, aprobador,fecha, codigomanual
+                    
+                                                        //codigo generado solicitud, solicitante, aprobador,fecha, codigomanual
                     solicitudes.Add(new SolicitudInsumos(Convert.ToString(dr[0]),solicitante,aprobador, Convert.ToString(dr[4]), Convert.ToString(dr[6])));  //se realiza de esta forma para evitar los datos replicados en la lista            
                 }
                 dr.Close();
@@ -88,10 +88,10 @@ namespace ProyectoDSI115_G5_2021
                 cn.Close();
             }
             cn.Close();
-            //   MessageBox.Show(dt.Rows[1][1].ToString());
+            
             return solicitudes;
         }
-        public List<DetalleSolicitudInsumos> ConsultarDetalleSolicitudes(string codigoSolicitud)
+        public List<DetalleSolicitudInsumos> ConsultarDetalleSolicitudes(string codigoSolicitud)//regresa el detalle de la solicitud seleccionada
         {
             List<DetalleSolicitudInsumos> detalles = new List<DetalleSolicitudInsumos>();
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();

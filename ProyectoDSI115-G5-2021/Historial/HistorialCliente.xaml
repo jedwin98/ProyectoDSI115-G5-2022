@@ -20,7 +20,7 @@
 
         <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,34,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click" Grid.Column="1"/>
         <TextBox x:Name="textBuscar"  Text="" Margin="33,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler" Grid.Column="1"/>
-        <DataGrid  x:Name="dataClientes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="33,166,34,67" Grid.Column="1" >
+        <DataGrid  x:Name="dataClientes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="33,166,34,67" Grid.Column="1" FontSize="14">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding codigo}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombres"  Binding="{Binding nombres}"/>
@@ -36,11 +36,11 @@
         <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="94" Height="113" Click="BtnSeleccionar_Click">
             <StackPanel Height="107" Width="84">
                 <Image Source="/Images/verificar.png" Height="77" Width="58" Margin="12,0,13,0"/>
-                <Label Content="Consultar" FontFamily="Comic Sans MS" Height="27" FontSize="13"  HorizontalAlignment="Stretch" Margin="10,0,0,0" />
+                <Label Content="Consultar" FontFamily="Comic Sans MS" Height="27" FontSize="14"  HorizontalAlignment="Stretch" Margin="10,0,0,0" />
             </StackPanel>
         </Button>
-        <Label  Content="Consultar Clientes" HorizontalAlignment="Left" Margin="33,89,0,0" Background="White" Height="26" VerticalAlignment="Top" Grid.Column="1" Width="104"/>
-        <Button x:Name="btnVolver" Content="Volver" Margin="69,248,0,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Top" Click="BtnVolver_Click" HorizontalAlignment="Left" Width="94"/>
+        <Label  Content="Consultar Clientes" FontSize="14" HorizontalAlignment="Left" Margin="33,89,0,0" Background="White" Height="26" VerticalAlignment="Top" Grid.Column="1" Width="129"/>
+        <Button x:Name="btnVolver" Content="Volver" Margin="69,248,0,0" Background="#FFC91029" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Top" Click="BtnVolver_Click" HorizontalAlignment="Left" Width="94"/>
 
     </Grid>
 

@@ -1134,7 +1134,7 @@ namespace ProyectoDSI115_G5_2021
             catch (SQLiteException ex)
             {
                 cn.Close();
-                return "Ha ocurrido un error al guardar la solicitud";
+                return "Ha ocurrido el error:"+ ex.ToString()+" al guardar la solicitud";
             }
             SolicitarInsumos.DetalleSolicitudInsumos detalle = new SolicitarInsumos.DetalleSolicitudInsumos();
             for (int i = 0; i < soli.detalles.Count(); i++) {
@@ -1157,7 +1157,7 @@ namespace ProyectoDSI115_G5_2021
                 {
 
                    cn.Close();
-                    return "Ha ocurrido un error al guardar el detalle de la solicitud";
+                    return "Ha ocurrido un error al guardar el detalle de la solicitud"+ex.ToString();
 
                 }
             }
@@ -1249,7 +1249,7 @@ namespace ProyectoDSI115_G5_2021
             catch (SQLiteException ex)
             {
                 cn.Close();
-                return "Ha ocurrido un error al guardar la solicitud";
+                return "Ha ocurrido el error: "+ex.ToString() +" al guardar la solicitud ";
             }
             CotizacionRecibo.DetalleRecibo detalle = new CotizacionRecibo.DetalleRecibo();
             for (int i = 0; i < soli.detalles.Count(); i++)
@@ -1273,7 +1273,7 @@ namespace ProyectoDSI115_G5_2021
                 {
 
                     cn.Close();
-                    return "Ha ocurrido un error al guardar el detalle de la solicitud";
+                    return "Ha ocurrido el error: "+ex.ToString()+" al guardar el detalle de la solicitud";
 
                 }
             }
