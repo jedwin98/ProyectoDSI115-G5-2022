@@ -31,7 +31,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         {
             InitializeComponent();
             CargarTabla();
-            codigoSolicitud = GenerarCodigoS();
+            //codigoSolicitud = GenerarCodigoS();
+            txtFecha.Text = GenerarFecha();
         }
         public void CargarTabla()
         {
@@ -117,9 +118,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                         else
                         {
                             DetalleRecibo detalle = new DetalleRecibo();
-                            //detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
                             detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
-                            detalle.codigo = GenerarCodigoS();
+                            //detalle.codigo = GenerarCodigoS();
                             detalle.codigoSolicitud = codigoSolicitud;
                             detalle.precio = Convert.ToSingle(txtPrecio.Text);
                             
@@ -188,7 +188,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 }
             }
         }
-
+        /*
         public string GenerarCodigoS()
         {
             DateTime fecha = DateTime.Now;
@@ -201,6 +201,21 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
             return dia + mes + anio + hora + min + seg;
         }
+        */
+
+        public string GenerarFecha()
+        {
+            DateTime fecha = DateTime.Now;
+            string anio = fecha.Year.ToString();
+            string mes = fecha.Month.ToString();
+            string dia = fecha.Day.ToString();
+            string hora = fecha.Hour.ToString();
+            string min = fecha.Minute.ToString();
+            string seg = fecha.Second.ToString();
+
+            return dia +"/"+ mes + "/" + anio;
+        }
+
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {

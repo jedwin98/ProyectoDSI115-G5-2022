@@ -61,16 +61,16 @@
         </Label>
 
         <Label Content="Fecha:" Margin="127,40,343,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
-        <TextBox x:Name="txtFec"  Height="22" Margin="182,42,258,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
+        <TextBox x:Name="txtFecha"  Height="22" Margin="182,42,258,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" IsEnabled="False"/>
         <Label Content="Código del Recibo" Margin="293,40,117,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1"/>
         <TextBox x:Name="txtCodigoReq"  Height="22" Margin="408,42,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
-        <Label Content="Cliente:" Margin="20,86,430,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
+        <Label Content="Cliente:" Margin="20,86,456,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
         <TextBox x:Name="txtCliente" Height="24" Margin="95,88,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" FontWeight="Bold" Grid.Row="1"/>
-        <Label Content="Material:" Margin="20,120,430,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
+        <Label Content="Material:" Margin="20,120,456,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
         <TextBox x:Name="txtNombre" IsEnabled="False" Height="24" Margin="95,122,258,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" FontWeight="Bold" Grid.Row="1"/>
         <Label Content="Cantidad a Solicitar:" Margin="302,120,0,0" VerticalAlignment="Top" Grid.Column="3" Height="26" HorizontalAlignment="Left" Width="138" Grid.Row="1" FontSize="14" RenderTransformOrigin="0.257,3.74"/>
         <TextBox x:Name="txtCantidad" Height="22" Margin="448,124,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
-        <Label Content="Presentación:" Margin="20,152,408,0" VerticalAlignment="Top" RenderTransformOrigin="0.2,0.5" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
+        <Label Content="Presentación:" Margin="20,152,430,0" VerticalAlignment="Top" RenderTransformOrigin="0.2,0.5" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
         <TextBox x:Name="txtPresentacion" IsEnabled="False" Height="22" Margin="132,156,258,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" FontWeight="Bold" Grid.Row="1"/>
         <Label Content="Precio:" Margin="302,152,0,0" VerticalAlignment="Top" Grid.Column="3" Height="26" HorizontalAlignment="Left" Width="55" Grid.Row="1" FontSize="14" RenderTransformOrigin="0.257,3.74"/>
         <TextBox x:Name="txtPrecio" Height="22" Margin="362,156,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
