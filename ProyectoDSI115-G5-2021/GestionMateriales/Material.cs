@@ -34,5 +34,13 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         {
             return string.Format(" {0} - {1} - {2} - {3} - {4} - {5}", codigo, nombre, cantidad, unidad, precio, fecha);
         }
+        public Material(string cod, string nom, string uni)
+        {
+            this.codigo = cod;
+            this.nombre = nom;
+            this.unidad = uni;
+            
+            
+        }
     }
 }

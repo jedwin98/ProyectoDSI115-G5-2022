@@ -51,14 +51,15 @@ namespace ProyectoDSI115_G5_2021.Historial
 
             DataGrid grid = sender as DataGrid;
             Cliente client = dataClientes.SelectedItem as Cliente;
-            if (client == null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
-            {
-                MessageBox.Show("Debe seleccionar un cliente primero", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
+            if (client != null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
             {
                 DetalleHistorialCliente detail = new DetalleHistorialCliente(client.codigo, client.nombres + " " + client.apellidos, client.empresa, client.telefono);
                 detail.ShowDialog();
+                
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente primero", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
         }
@@ -66,14 +67,15 @@ namespace ProyectoDSI115_G5_2021.Historial
         {
             DataGrid grid = sender as DataGrid;
             Cliente client = dataClientes.SelectedItem as Cliente;
-            if (client == null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
-            {
-                MessageBox.Show("Debe seleccionar un cliente primero", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
+            if (client != null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
             {
                 DetalleHistorialCliente detail = new DetalleHistorialCliente(client.codigo, client.nombres + " " + client.apellidos, client.empresa, client.telefono);
                 detail.ShowDialog();
+
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente primero", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
         }

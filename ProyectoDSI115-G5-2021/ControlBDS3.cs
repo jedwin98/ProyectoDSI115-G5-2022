@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using ProyectoDSI115_G5_2021.SolicitarInsumos;
+using ProyectoDSI115_G5_2021.GestionUsuarios;
+using ProyectoDSI115_G5_2021.GestionMateriales;
 
 namespace ProyectoDSI115_G5_2021
 {
@@ -58,7 +60,7 @@ namespace ProyectoDSI115_G5_2021
             try
             {
                 cn.Open();
-                string comando = "SELECT s.COD_SOLICITUD, s.COD_EMPLEADO,e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO," +
+                string comando = "SELECT s.COD_SOLICITUD, s.COD_EMPLEADO, e.NOMBRE_EMPLEADO, e.APELLIDO_EMPLEADO," +
                     "s.FECHA_SOLICITUD, s.ESTADO_SOLICITUD, s.COD_REQ," +
                     " s.EMP_COD_EMPLEADO, e2.NOMBRE_EMPLEADO AS NAPR, e2.APELLIDO_EMPLEADO AS AEMP" +
                     " FROM SOLICITUD_INSUMO AS s  INNER JOIN EMPLEADO AS e INNER JOIN EMPLEADO AS e2 INNER JOIN CLIENTE AS c" +
@@ -69,15 +71,14 @@ namespace ProyectoDSI115_G5_2021
 
                 SQLiteDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
-                {
-                    //Console.WriteLine(Convert.ToString(dr[1]));
-                   // solicitudes.Add(new GestionClientes.Cliente(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]), Convert.ToString(dr[5])));  //se realiza de esta forma para evitar los datos replicados en la lista            
+                {                                       //codigo, nombre´+apellido
+                    Usuario solicitante = new Usuario(Convert.ToString(dr[1]), Convert.ToString(dr[2]) +" "+ Convert.ToString(dr[3]));
+                    Usuario aprobador = new Usuario(Convert.ToString(dr[7]), Convert.ToString(dr[8]) + " " + Convert.ToString(dr[9]));
+                    //MessageBox.Show(solicitante.empleado);
+                                                        //codigo solicitud, solicitante, aprobador,fecha, codigomanual
+                    solicitudes.Add(new SolicitudInsumos(Convert.ToString(dr[0]),solicitante,aprobador, Convert.ToString(dr[4]), Convert.ToString(dr[6])));  //se realiza de esta forma para evitar los datos replicados en la lista            
                 }
                 dr.Close();
-
-                // adapter.Fill(dt);
-                //  MessageBox.Show(dt.Rows[0][1].ToString());
-                // MessageBox.Show("entró" + codigoEmpleado);
 
             }
             catch (SQLiteException ex)
@@ -89,6 +90,46 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             //   MessageBox.Show(dt.Rows[1][1].ToString());
             return solicitudes;
+        }
+        public List<DetalleSolicitudInsumos> ConsultarDetalleSolicitudes(string codigoSolicitud)
+        {
+            List<DetalleSolicitudInsumos> detalles = new List<DetalleSolicitudInsumos>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                string comando= "SELECT  d.COD_DETALLE," +
+                    " d.COD_MATERIAL, m.NOMBRE_MATERIAL, m.UNIDAD_MEDIDA_MATERIAL, " +
+                    "d.COD_SOLICITUD, d.CANTIDAD_DETALLE" +
+                    " FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  MATERIAL AS m  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=m.COD_MATERIAL" +
+                    " UNION SELECT d.COD_DETALLE," +
+                    " d.COD_MATERIAL, p.NOMBRE_PRODUCTO AS NOMBRE_MATERIAL, p.UNIDAD_MEDIDA_PRODUCTO AS UNIDAD_MEDIDA_MATERIAL," +
+                    "d.COD_SOLICITUD, d.CANTIDAD_DETALLE " +
+                    "FROM DETALLE_SOLICITUD_INSUMO AS d INNER JOIN  PRODUCTO AS p  WHERE d.COD_SOLICITUD=@codSolicitud AND d.COD_MATERIAL=p.COD_PRODUCTO";
+
+                SQLiteCommand comand = new SQLiteCommand(comando, cn);
+                comand.Parameters.Add(new SQLiteParameter("@codSolicitud", codigoSolicitud));
+                adapter.SelectCommand = comand;
+                SQLiteDataReader dr = comand.ExecuteReader();
+                while (dr.Read())
+                {                                       //codigo, nombre, presentacion
+                    Material material = new Material(Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]));
+                    
+                    //MessageBox.Show(solicitante.empleado);
+                    //codigo, codigo de solicitud , material, cantidad solicitada
+                    detalles.Add(new DetalleSolicitudInsumos(Convert.ToString(dr[0]), Convert.ToString(dr[4]),material,Convert.ToSingle(dr[5])));  //se realiza de esta forma para evitar los datos replicados en la lista            
+                }
+                dr.Close();
+
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar el detalle de las solicitudes " + ex.Message.ToString());
+
+                cn.Close();
+            }
+            cn.Close();
+            return detalles;
         }
 
     }

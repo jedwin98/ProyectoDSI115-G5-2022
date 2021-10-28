@@ -14,5 +14,17 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         internal string empleado { get; set; }
         internal TipoUsuario tipoUsuario { get; set; }
         internal string estado { get; set; }
+
+        public string codigoE { get; set; }      
+        public string nombre { get; set; }
+        public Usuario()
+        {
+        }
+
+        public Usuario(string codigoEmpleado, string empleado)
+        {
+            this.codigoE = codigoEmpleado;
+            this.nombre = empleado;
+        }
     }
 }
