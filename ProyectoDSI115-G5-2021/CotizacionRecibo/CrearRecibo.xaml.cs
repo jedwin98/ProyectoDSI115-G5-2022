@@ -33,6 +33,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             CargarTabla();
             //codigoSolicitud = GenerarCodigoS();
             txtFecha.Text = GenerarFecha();
+            txtCodigoRecibo.Text = GenerarCodigoRecibo();
         }
         public void CargarTabla()
         {
@@ -86,7 +87,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
         private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-            txtCodigoReq.Text = "";
+            txtCodigoRecibo.Text = "";
             txtCliente.Text = "";
             txtNombre.Text = "";
             txtCantidad.Text = "";
@@ -162,14 +163,14 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
             else
             {
-                if (txtCodigoReq.Text == "") {
+                if (txtCodigoRecibo.Text == "") {
                     MessageBox.Show("Debe agregar el codigo de la solicitud", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
                     SolicitudRecibo solicitud = new SolicitudRecibo();
                     solicitud.codigo = codigoSolicitud;
-                    solicitud.codigoReq = txtCodigoReq.Text;
+                    solicitud.codigoReq = txtCodigoRecibo.Text;
                     solicitud.codigoCliente = txtCliente.Text;
                     solicitud.solicitante = sesion;
                     solicitud.autorizador = new GestionUsuarios.Usuario();
@@ -180,7 +181,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     solicitud.setListDetalles(detalles);
                     string respuesta = control.AgregarRecibo(solicitud);
                     MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
-                    txtCodigoReq.Text = "";
+                    txtCodigoRecibo.Text = "";
                     txtCliente.Text = "";
 
                     detalles.Clear();
@@ -202,6 +203,19 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             return dia + mes + anio + hora + min + seg;
         }
         */
+        public string GenerarCodigoRecibo()
+        {
+            DateTime fecha = DateTime.Now;
+            string anio = fecha.Year.ToString();
+            string mes = fecha.Month.ToString();
+            string dia = fecha.Day.ToString();
+            string hora = fecha.Hour.ToString();
+            string min = fecha.Minute.ToString();
+            string seg = fecha.Second.ToString();
+
+            return anio + mes + dia + hora + min + seg;
+        }
+
 
         public string GenerarFecha()
         {
