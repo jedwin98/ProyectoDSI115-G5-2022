@@ -42,9 +42,7 @@ namespace ProyectoDSI115_G5_2021
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
         //AUTOR: FRANCISCO ESCOBAR
         SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
-
-
-        Nullable<bool> gca = false, gea = false, gua = false, inv = false;
+        
         internal Usuario Sesion { get => sesion; set => sesion = value; }
 
         public MainWindow()
