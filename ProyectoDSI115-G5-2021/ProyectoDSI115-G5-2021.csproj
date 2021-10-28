@@ -140,6 +140,7 @@
     <Compile Include="Autorizacion\VerificarSolicitud.xaml.cs">
       <DependentUpon>VerificarSolicitud.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControlBDS3.cs" />
     <Compile Include="CotizacionRecibo\Cotizacion.xaml.cs">
       <DependentUpon>Cotizacion.xaml</DependentUpon>
     </Compile>
@@ -172,8 +173,14 @@
       <DependentUpon>GestionProductos.xaml</DependentUpon>
     </Compile>
     <Compile Include="GestionProductos\Producto.cs" />
+    <Compile Include="Historial\DetalleHistorialCliente.xaml.cs">
+      <DependentUpon>DetalleHistorialCliente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Historial\Historial.xaml.cs">
       <DependentUpon>Historial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Historial\HistorialCliente.xaml.cs">
+      <DependentUpon>HistorialCliente.xaml</DependentUpon>
     </Compile>
     <Compile Include="Inventario.xaml.cs">
       <DependentUpon>Inventario.xaml</DependentUpon>
@@ -271,7 +278,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Historial\DetalleHistorialCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Historial\Historial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Historial\HistorialCliente.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
