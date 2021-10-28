@@ -26,7 +26,7 @@ namespace ProyectoDSI115_G5_2021
         {
             //cn = new SQLiteConnection(@"Data Source=Z:\FYSIEX.db;Version=3;Compress=True;");     // CONEXION EN UNIDAD DE RED
             //cn = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
-            cn = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
+            cn = new SQLiteConnection("data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
 
         }
 
@@ -1164,6 +1164,123 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return "La solicitud se ha realizado exitosamente";
         }
+
+
+        // - - - - - - - - - -
+        //Autor Gustavo H.Corvera
+
+
+        public DataTable consultarProductosRecibo()
+        { 
+            // DataTable list = new DataTable();
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT " +
+                    "COD_PRODUCTO AS COD_MATERIAL, " +
+                    "NOMBRE_PRODUCTO AS NOMBRE_MATERIAL, " +
+                    "EXISTENCIA_PRODUCTO AS EXISTENCIA_MATERIAL, " +
+                    "PRECIO_PRODUCTO AS PRECIO_MATERIAL, " +
+                    "UNIDAD_MEDIDA_PRODUCTO AS UNIDAD_MEDIDA_MATERIAL " +
+                    "FROM PRODUCTO  WHERE ESTADO_PRODUCTO='1'", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Materiales y Productos " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+        public DataTable BuscarMatYProRecibo(string nombreInv)
+        {
+            dt.Clear();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT " +
+                    "COD_MATERIAL,NOMBRE_MATERIAL, " +
+                    "UNIDAD_MEDIDA_MATERIAL, " +
+                    "PRECIO_MATERIAL, " +
+                    "EXISTENCIA_MATERIAL " +
+                    "FROM MATERIAL WHERE NOMBRE_MATERIAL LIKE @nombre AND ESTADO_MATERIAL = '1' " +
+                    "UNION SELECT " +
+                    "COD_PRODUCTO," +
+                    "NOMBRE_PRODUCTO," +
+                    "UNIDAD_MEDIDA_PRODUCTO," +
+                    "PRECIO_PRODUCTO," +
+                    "EXISTENCIA_PRODUCTO " +
+                    "FROM PRODUCTO WHERE NOMBRE_PRODUCTO LIKE @nombre AND ESTADO_PRODUCTO = '1'", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreInv + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar el Producto o Material" + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+        public string AgregarRecibo(CotizacionRecibo.SolicitudRecibo soli)
+        {
+            cn.Open();
+            try//insertando la solicitud
+            {
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD ,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD, COD_CLIENTE, COD_REQ) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est,@idC,@idReq)", cn);
+                comando.Parameters.Add(new SQLiteParameter("@idS", soli.codigo));
+                comando.Parameters.Add(new SQLiteParameter("@idSolicitante", soli.solicitante.codigoEmpleado));
+                comando.Parameters.Add(new SQLiteParameter("@idAprobador", soli.autorizador.empleado));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", soli.fechaSolicitud));
+                comando.Parameters.Add(new SQLiteParameter("@est", soli.estado));
+                comando.Parameters.Add(new SQLiteParameter("@idC", soli.codigoCliente));
+                comando.Parameters.Add(new SQLiteParameter("@idReq", soli.codigoReq));
+                comando.ExecuteNonQuery();
+
+            }
+            catch (SQLiteException ex)
+            {
+                cn.Close();
+                return "Ha ocurrido un error al guardar la solicitud";
+            }
+            CotizacionRecibo.DetalleRecibo detalle = new CotizacionRecibo.DetalleRecibo();
+            for (int i = 0; i < soli.detalles.Count(); i++)
+            {
+                detalle = soli.detalles[i];
+                try// insertando detalles
+                {
+
+                    //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
+                    SQLiteCommand comando = new SQLiteCommand("INSERT INTO DETALLE_SOLICITUD_INSUMO (COD_DETALLE,COD_MATERIAL,COD_SOLICITUD,COD_PRODUCTO, CANTIDAD_DETALLE) VALUES (@idD,@idM,@idSoli,@idPro,@cant)", cn);
+                    comando.Parameters.Add(new SQLiteParameter("@idD", detalle.codigo));
+                    comando.Parameters.Add(new SQLiteParameter("@idM", detalle.material.codigo));
+                    comando.Parameters.Add(new SQLiteParameter("@idSoli", detalle.codigoSolicitud));
+                    comando.Parameters.Add(new SQLiteParameter("@idPro", ""));
+                    comando.Parameters.Add(new SQLiteParameter("@cant", detalle.cantidad));
+
+                    comando.ExecuteNonQuery();
+
+                }
+                catch (SQLiteException ex)
+                {
+
+                    cn.Close();
+                    return "Ha ocurrido un error al guardar el detalle de la solicitud";
+
+                }
+            }
+            cn.Close();
+            return "La solicitud se ha realizado exitosamente";
+        }
+        // - - - - - - - - - -
 
         //************************************** FIN DE SOLICITUDES DE INSUMOS Y APROBACIÓN  ******************************************************************
 

@@ -1,0 +1,100 @@
+﻿<Window x:Class="ProyectoDSI115_G5_2021.CotizacionRecibo.CrearRecibo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.CotizacionRecibo"
+        mc:Ignorable="d"
+        Title="Crear Recibo" Height="684.75" Width="1236.4" >
+    <Grid Margin="0,0,0,-1" HorizontalAlignment="Left" Width="1226" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="241*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="617*"/>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="546*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,-6,-4,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="5" HorizontalAlignment="Left" Width="1230" />
+
+        <Label  Content="Extender Recibo" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="218" Grid.Column="1"/>
+
+        <Rectangle Margin="10,24,12,10" Stroke="Black" RenderTransformOrigin="-0.271,0.283" Grid.Row="1" Grid.Column="1"/>
+        <Label x:Name="l_Inventario" Content="Inventario" Margin="18,5,0,0" FontSize="18" Background="White" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Width="94" Height="30" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.736"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.47"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <TextBox x:Name="txtBuscar"  Text="" Margin="24,42,0,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler" HorizontalAlignment="Left" Width="315" Grid.Row="1" Grid.Column="1"/>
+        <Button  x:Name="btnBuscar" Content="Buscar" Margin="344,42,0,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="88" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click" RenderTransformOrigin="0.324,0.5" Grid.Row="1" Grid.Column="1"/>
+        <DataGrid  x:Name="dataMateriales" ItemsSource="{Binding}" MouseDoubleClick="dgMateriales_MouseDoubleClick"  AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="24,88,24,79" Grid.Row="1" Grid.Column="1" >
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="130" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="50" IsReadOnly="True" Header="Precio"  Binding="{Binding PRECIO_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="150" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnVolver" Content="Volver" Margin="24,0,443,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" Click="BtnVolver_Click" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="btnSeleccionar" Content="Seleccionar &gt;&gt;" Margin="444,0,23,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnSeleccionar_Click" Grid.Row="1" Grid.Column="1" Height="36" VerticalAlignment="Bottom"/>
+
+        <Rectangle Margin="10,24,11,0" Stroke="Black" RenderTransformOrigin="-0.271,0.283" Grid.Row="1" Grid.Column="3" Height="218" VerticalAlignment="Top"/>
+        <Label x:Name="l_Inventario_Copy" Content="Recibo de Pago" Margin="18,5,396,0" FontSize="18" Background="White" RenderTransformOrigin="0.5,0.5" Height="36" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="1.736"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.47"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+
+        <Label Content="Fecha:" Margin="127,40,343,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
+        <TextBox x:Name="txtFecha"  Height="22" Margin="182,42,258,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" IsEnabled="False"/>
+        <Label Content="Código del Recibo" Margin="293,40,117,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1"/>
+        <TextBox x:Name="txtCodigoRecibo"  Height="22" Margin="408,42,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
+        <Label Content="Cliente:" Margin="20,86,456,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
+        <TextBox x:Name="txtCliente" Height="24" Margin="95,88,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" FontWeight="Bold" Grid.Row="1"/>
+        <Label Content="Material:" Margin="20,120,456,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
+        <TextBox x:Name="txtNombre" IsEnabled="False" Height="24" Margin="95,122,258,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" FontWeight="Bold" Grid.Row="1"/>
+        <Label Content="Cantidad a Solicitar:" Margin="302,120,0,0" VerticalAlignment="Top" Grid.Column="3" Height="26" HorizontalAlignment="Left" Width="138" Grid.Row="1" FontSize="14" RenderTransformOrigin="0.257,3.74"/>
+        <TextBox x:Name="txtCantidad" Height="22" Margin="448,124,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
+        <Label Content="Presentación:" Margin="20,152,430,0" VerticalAlignment="Top" RenderTransformOrigin="0.2,0.5" Grid.Column="3" Height="26" Grid.Row="1" FontSize="14"/>
+        <TextBox x:Name="txtPresentacion" IsEnabled="False" Height="22" Margin="132,156,258,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" FontWeight="Bold" Grid.Row="1"/>
+        <Label Content="Precio:" Margin="302,152,0,0" VerticalAlignment="Top" Grid.Column="3" Height="26" HorizontalAlignment="Left" Width="55" Grid.Row="1" FontSize="14" RenderTransformOrigin="0.257,3.74"/>
+        <TextBox x:Name="txtPrecio" Height="22" Margin="362,156,22,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
+
+        <Button  x:Name="btnLimpiar" Content="Limpiar" Margin="268,200,152,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7"  RenderTransformOrigin="0.324,0.5" Click="BtnLimpiar_Click" Height="28" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
+        <Button  x:Name="btnAgregar" Content="Agregar" Margin="398,200,22,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7"  RenderTransformOrigin="0.5,0.5" Click="BtnAgregar_Click" Height="28" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1"/>
+
+        <Rectangle Margin="10,260,11,10" Stroke="Black" RenderTransformOrigin="-0.271,0.283" Grid.Row="1" Grid.Column="3"/>
+
+        <DataGrid  x:Name="dataSoli" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="20,274,22,108" Grid.Column="3" Grid.Row="1" >
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="TMaterial" IsReadOnly="True" MinWidth="135" Header="Material"  Binding="{Binding material.nombre}"/>
+                <DataGridTextColumn x:Name="TCantidad" MinWidth="65" IsReadOnly="True" Header="Cantidad"  Binding="{Binding cantidad}"/>
+                <DataGridTextColumn x:Name="TPrecioUnitario" MinWidth="135" IsReadOnly="True" Header="Precio Unitario"  Binding="{Binding material.precio}"/>
+                <DataGridTextColumn x:Name="TSubTotal" MinWidth="135"  Header="Cantidad * Precio"  Binding="{Binding subtotal}"/>
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="tt" Content="Total:" Margin="362,0,0,78" VerticalAlignment="Bottom" Grid.Column="3" Height="25" HorizontalAlignment="Left" Width="56" Grid.Row="1" FontSize="14" RenderTransformOrigin="0.257,3.74" FontWeight="Bold"/>
+        <TextBox x:Name="txtTotalRecibo" Height="24" Margin="423,0,22,79" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="1" IsEnabled="False" Background="#FFFFB0B0"/>
+
+        <Button x:Name="btnCancelar" Content="Cancelar" Margin="0,0,152,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" Click="BtnCancelar_Click" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Width="120"/>
+        <Button x:Name="btnSolicitar" Content="Solicitar" Margin="0,0,22,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" Click="BtnSolicitar_Click" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Width="120"/>
+
+    </Grid>
+</Window>
