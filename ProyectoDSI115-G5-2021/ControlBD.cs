@@ -175,7 +175,12 @@ namespace ProyectoDSI115_G5_2021
             //Se usa una versión reducida de empleado para este caso
             List<EmpleadoItem> empleados = new List<EmpleadoItem>();
             //Sólo se buscan los atributos de empleados activos
-            string comandoString = "SELECT e.cod_empleado,e.nombre_empleado,e.apellido_empleado,a.nombre_area as narea,c.nombre_cargo as ncargo FROM ((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) INNER JOIN usuario AS u ON e.cod_empleado = u.cod_empleado WHERE u.cod_empleado IS NULL AND estado_empleado='Activo' OR (u.estado_usuario = 'O' AND NOT estado_empleado='Oculto') AND NOT(e.cod_cargo = 'ST' AND e.cod_area = 'L')";
+            string comandoString = "SELECT e.cod_empleado, e.nombre_empleado, e.apellido_empleado, a.nombre_area as narea, c.nombre_cargo as ncargo " +
+                "FROM ((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) " +
+                "WHERE e.estado_empleado='Activo' " +
+                "EXCEPT SELECT DISTINCT u.cod_empleado, e.nombre_empleado, e.apellido_empleado, a.nombre_area as narea,c.nombre_cargo as ncargo " +
+                "FROM (((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) INNER JOIN USUARIO AS u) " +
+                "WHERE NOT u.ESTADO_USUARIO='O'";
             //Abriendo conexión a BD
             cn.Open();
             SQLiteCommand sqlCmd = new SQLiteCommand(comandoString, cn);
@@ -599,6 +604,39 @@ namespace ProyectoDSI115_G5_2021
             dr.Close();
             cn.Close();
             return res;
+        }
+
+        // Proceso de establecimiento de remitente para el servicio de correo del sistema.
+        public bool EstablecerRemitente(string email, string contrasena)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteCommand remitente = new SQLiteCommand("SELECT correo_usuario, contrasena_usuario FROM usuario WHERE cod_usuario = 'U0000'", cn);
+                SQLiteDataReader dr = remitente.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena AND correo_usuario = @email WHERE cod_usuario='U0000'", cn);
+                    cambio.Parameters.Add(new SQLiteParameter("@contrasena", contrasena));
+                    cambio.Parameters.Add(new SQLiteParameter("@email", email));
+                    cambio.ExecuteNonQuery();
+                }
+                else
+                {
+                    SQLiteCommand cambio = new SQLiteCommand("INSERT INTO usuario(cod_usuario, cod_tipousuario, cod_empleado, contrasena_usuario, correo_usuario, estado_usuario) " +
+                        "VALUES('U0000', 'G', '1', '" + contrasena + "', '" + email + "', 'O')", cn);
+                    cambio.Parameters.Add(new SQLiteParameter("@contrasena", contrasena));
+                    cambio.Parameters.Add(new SQLiteParameter("@email", email));
+                    cambio.ExecuteNonQuery();
+                }
+                dr.Close();
+                cn.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public string ObtenerNombre(string email)

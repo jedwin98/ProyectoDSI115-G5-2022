@@ -18,7 +18,7 @@
         <Rectangle Fill="#FFFFFFFF" Margin="209,100,10,10" Stroke="Black"/>
         <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Click="BtnBuscar_Click"/>
         <TextBox x:Name="cuadroBuscar" TextWrapping="Wrap" Text="" Margin="224,120,171,0" Height="32" VerticalAlignment="Top" MaxLength="50" BorderThickness="1" KeyDown="CuadroBuscar_KeyDown"/>
-        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFCC9999" AlternationCount="2" Margin="224,158,23,147" BorderThickness="0" AutoGenerateColumns="False">
+        <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="224,158,23,147" BorderThickness="0" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}" IsReadOnly="True"/>
                 <DataGridTextColumn MinWidth="160" Header="Correo Electrónico" Binding="{Binding CORREO_USUARIO}" IsReadOnly="True"/>
@@ -64,5 +64,6 @@
         <Label Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="185" FontFamily="Comic Sans MS"/>
         <Label Name="labelContrasenaConfirmar" Content="Confirme contraseña" Margin="483,0,0,86" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120"/>
         <Button Name="btnDesbloquear" Content="Desbloquear" HorizontalAlignment="Left" Margin="52,297,0,0" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" VerticalAlignment="Top" Width="101" Height="26" Click="BtnDesbloquear_Click"/>
+        <Button Name="btnCambiarCorreo" Content="Cambiar Correo" HorizontalAlignment="Left" Margin="52,337,0,0" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" VerticalAlignment="Top" Width="101" Height="26" Click="BtnCambiarCorreo_Click"/>
     </Grid>
 </Window>

@@ -23,8 +23,11 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
         private DataTable dt = new DataTable();
         private ControlBD control = new ControlBD();
         internal Usuario sesion;
+        internal CambiarCorreo cc;
         private bool guardando, contrasenaCorrecta, emailCorrecto, abrir = false, combo1 = false, combo2 = false;
         private Thickness ogTabla, ogUsuario, ogRoles, ogContra, ogConfirma, ogMail, ogEmp, ogGuarda, oglUsuario, oglRoles, oglContra, oglConfirma, oglMail, oglEmp;
+
+        // Inicialización de ventana
         public GestionUsuarios()
         {
             InitializeComponent();
@@ -46,6 +49,8 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             oglEmp = labelEmpleado.Margin;
         }
 
+        // Borrado de usuario. No permite que el usuario actual se elimine.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
         {
             if (!(dataUsuarios.SelectedItem is DataRowView row))
@@ -75,27 +80,33 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             }
         }
 
+        // Envía comando de carga. Recibe la tabla de datos para usarla como ItemsSource
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void CargarTabla()
         {
-            // Envía comando de carga. Recibe la tabla de datos para usarla como ItemsSource
             dt.Clear();
             dt = control.ConsultarUsuarios();
             dataUsuarios.ItemsSource = dt.DefaultView;
         }
 
+        // Acción del botón de búsqueda
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
         {
             RealizarBusqueda();
         }
 
+        // Busca una clave ingresada en el campo de búsqueda en nombre, apellido o correo.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void RealizarBusqueda()
         {
-            // Busca una clave en nombre, apellido o correo.
             dt.Clear();
             dt = control.BuscarUsuario(cuadroBuscar.Text);
             dataUsuarios.ItemsSource = dt.DefaultView;
         }
 
+        // Acción de tecla "Enter" en cuadro de búsqueda
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void CuadroBuscar_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -104,11 +115,15 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             }
         }
 
+        // Botón de desbloqueo de cuentas. Usar en caso de fallas fuera del rango de control.
+        // Posibles causas como: Fallos de conexión, fallos eléctricos, fallos de sistema u otros.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void BtnDesbloquear_Click(object sender, RoutedEventArgs e)
         {
             if (!(dataUsuarios.SelectedItem is DataRowView row))
             {
-                MessageBox.Show("No hay usuario seleccionado. Debe seleccionar un usuario.", "Error al desbloquear", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No hay usuario seleccionado. Debe seleccionar un usuario.", "Error al desbloquear",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -116,6 +131,15 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             }
         }
 
+        // AUTOR: Félix Eduardo Henríquez Cruz
+        private void BtnCambiarCorreo_Click(object sender, RoutedEventArgs e)
+        {
+            cc = new CambiarCorreo();
+            cc.sesion = this.sesion;
+            cc.ShowDialog();
+        }
+
+        // Llenado de ComboBox para tipos de usuario.
         private void LlenarComboTipos()
         {
             // Se recibe un listado de los tipos de usuario.
@@ -126,6 +150,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             comboRoles.SelectedValuePath = "codTipoUsuario";
         }
 
+        // Llenado de ComboBox para empleados disponibles.
         private void LlenarComboEmpleados()
         {
             // Igual que LlenarComboTipos, pero aplicado a empleados
@@ -136,6 +161,8 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             comboEmpleado.SelectedValuePath = "codEmpleado";
         }
 
+        // Activa el formulario de registro de usuario.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             // Variables para habilitar guardado.
@@ -173,6 +200,8 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             }
         }
 
+        // Botón de guardado. Solo se activa cuando los datos solicitados son válidos.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void BotonGuardar_Click(object sender, RoutedEventArgs e)
         {
             guardando = true;
@@ -211,10 +240,12 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
                     CargarTabla();
                 }
             }
-            else MessageBox.Show("Ocurrió un error. Verifique si está conectado o si el correo electrónico no está siendo usado", "Error al registrar", MessageBoxButton.OK, MessageBoxImage.Error);            // Después de guardar, reiniciar los campos de edición.
-            // Limpia ComboBox para llenar en la siguiente edición.
+            else MessageBox.Show("Ocurrió un error. Verifique si está conectado o si el correo electrónico no está siendo usado",
+                "Error al registrar", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        // Ajuste central de propiedad de edición en formulario. Toma un booleano para habilitar o deshabilitar.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void HabilitarEdicion(bool valor)
         {
             // Cuadro de usuario.
@@ -234,6 +265,8 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             btnBorrar.SetCurrentValue(IsEnabledProperty, !valor);
         }
 
+        // Verifica validez de correo registrado. Necesario para habilitar guardado.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void CorreoValido(string mail)
         {
             try
@@ -249,9 +282,10 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             }
         }
 
+        // Cierra esta instancia de la ventana.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            // Cierra esta instancia de la ventana.
             this.Close();
         }
 
@@ -264,13 +298,15 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             }
         }
 
+        // Si la dirección de correo, las contraseñas o los combos no están ingresados...
+        // Evita el ingreso de la información.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void PermitirGuardado()
         {
-            // Si la dirección de correo, las contraseñas o los combos no están ingresados...
-            // Evita el ingreso de la información.
             if (!guardando)
             {
-                if (contrasenaCorrecta && emailCorrecto && comboEmpleado.SelectedItem != null && comboRoles.SelectedItem != null && cuadroUsuario.Text != null && !cuadroEmail.IsFocused)
+                if (contrasenaCorrecta && emailCorrecto && comboEmpleado.SelectedItem != null &&
+                    comboRoles.SelectedItem != null && cuadroUsuario.Text != null && !cuadroEmail.IsFocused)
                 {
                     botonGuardar.SetCurrentValue(IsEnabledProperty, true);
                 }
@@ -292,6 +328,8 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             PermitirGuardado();
         }
 
+        // Ajuste del formulario según tamaño de ventana.
+        // AUTOR: Félix Eduardo Henríquez Cruz
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (this.Height > 636 || this.WindowState == WindowState.Maximized)

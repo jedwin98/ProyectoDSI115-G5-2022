@@ -179,6 +179,9 @@
       <DependentUpon>GestionProductos.xaml</DependentUpon>
     </Compile>
     <Compile Include="GestionProductos\Producto.cs" />
+    <Compile Include="GestionUsuarios\CambiarCorreo.xaml.cs">
+      <DependentUpon>CambiarCorreo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Historial\DetalleHistorialCliente.xaml.cs">
       <DependentUpon>DetalleHistorialCliente.xaml</DependentUpon>
     </Compile>
@@ -283,6 +286,10 @@
     <Page Include="GestionProductos\GestionProductos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GestionUsuarios\CambiarCorreo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GestionUsuarios\GestionUsuarios.xaml">
       <SubType>Designer</SubType>
