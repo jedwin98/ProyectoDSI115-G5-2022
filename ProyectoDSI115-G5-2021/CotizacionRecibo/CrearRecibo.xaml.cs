@@ -26,6 +26,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         List<DetalleRecibo> detalles = new List<DetalleRecibo>();
         
         private float totalTotal = 0;//Variable global para guardar el total de la compra del recibo
+        private float existenciaSelected = 0;//Variable global para validar la existencia de la cantidad
 
         public CrearRecibo()
         {
@@ -62,6 +63,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 txtNombre.Text = row.Row.ItemArray[1].ToString();
                 txtPrecio.Text = row.Row.ItemArray[4].ToString();
                 txtPresentacion.Text = row.Row.ItemArray[2].ToString();
+                existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
             }
         }
 
@@ -87,12 +89,12 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
         private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-            txtCodigoRecibo.Text = "";
             txtCliente.Text = "";
             txtNombre.Text = "";
             txtCantidad.Text = "";
             txtPresentacion.Text = "";
             txtPrecio.Text = "";
+            txtCliente.IsEnabled = true;
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
@@ -114,34 +116,47 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                         if (Convert.ToSingle(txtCantidad.Text) < 0)
                         {
                             MessageBox.Show("Debe ingresar un valor mayor a cero", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            txtCantidad.Text = "";
                         }
                         else
                         {
-                            DetalleRecibo detalle = new DetalleRecibo();
-                            detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
-                            //detalle.codigo = GenerarCodigoS();
-                            //detalle.codigoSolicitud = codigoSolicitud;
-                            detalle.precio = Convert.ToSingle(txtPrecio.Text);
+                            if (Convert.ToSingle(txtCantidad.Text) > existenciaSelected)
+                            {
+                                MessageBox.Show("La cantidad que desea extraer del inventario supera de su existencia", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                txtCantidad.Text = "";
+                            }
+                            else
+                            {
+                                DetalleRecibo detalle = new DetalleRecibo();
+                                detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
+                                //detalle.codigo = GenerarCodigoS();
+                                //detalle.codigoSolicitud = codigoSolicitud;
+                                detalle.precio = Convert.ToSingle(txtPrecio.Text);
+
+                                GestionMateriales.Material mate = new GestionMateriales.Material();
+                                mate.precio = txtPrecio.Text;
+                                mate.nombre = txtNombre.Text;
+                                mate.unidad = txtPresentacion.Text;
+
+                                detalle.material = mate;
+                                detalle.subtotal = detalle.cantidad * detalle.precio;
+
+                                detalles.Add(detalle);
+                                dataSoli.ItemsSource = null;
+                                dataSoli.ItemsSource = detalles;
+
+                                txtCantidad.Text = "";
+                                txtPrecio.Text = "";
+                                txtNombre.Text = "";
+                                txtPresentacion.Text = "";
+
+                                txtCliente.IsEnabled = false;
+                                existenciaSelected = 0;
+
+                                totalTotal = totalTotal + detalle.subtotal;
+                                txtTotalRecibo.Text = "$ " + Convert.ToString(totalTotal);
+                            }
                             
-                            GestionMateriales.Material mate = new GestionMateriales.Material();
-                            mate.precio = txtPrecio.Text;
-                            mate.nombre = txtNombre.Text;
-                            mate.unidad = txtPresentacion.Text;
-
-                            detalle.material = mate;
-                            detalle.subtotal = detalle.cantidad * detalle.precio;
-
-                            detalles.Add(detalle);
-                            dataSoli.ItemsSource = null;
-                            dataSoli.ItemsSource = detalles;
-
-                            txtCantidad.Text = "";
-                            txtPrecio.Text = "";
-                            txtNombre.Text = "";
-                            txtPresentacion.Text = "";
-
-                            totalTotal = totalTotal + detalle.subtotal;
-                            txtTotalRecibo.Text = "$ " + Convert.ToString(totalTotal);
                         }
                     }
                 }
@@ -188,6 +203,14 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
 
+                    txtTotalRecibo.Text = "";
+                    txtPresentacion.Text = "";
+
+                    existenciaSelected = 0;
+                    totalTotal = 0;
+
+                    txtCliente.IsEnabled = true;
+
                     GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
                 }
             }
@@ -218,20 +241,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             //MessageBox.Show("Se ha generado el archivo de la solicitud.", "Generación de solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        /*
-        public string GenerarCodigoS()
-        {
-            DateTime fecha = DateTime.Now;
-            string anio= fecha.Year.ToString();
-            string mes = fecha.Month.ToString();
-            string dia = fecha.Day.ToString();
-            string hora = fecha.Hour.ToString();
-            string min = fecha.Minute.ToString();
-            string seg = fecha.Second.ToString();
-
-            return dia + mes + anio + hora + min + seg;
-        }
-        */
         public string GenerarCodigoRecibo()
         {
             DateTime fecha = DateTime.Now;
@@ -263,10 +272,17 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar? se borrará todos los datos de la solicitud", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
+                txtCliente.Text = "";
                 txtCantidad.Text = "";
                 txtPrecio.Text = "";
                 txtNombre.Text = "";
                 txtPresentacion.Text = "";
+                txtTotalRecibo.Text = "";
+
+                totalTotal = 0;
+                existenciaSelected = 0;
+                txtCliente.IsEnabled = true;
+
                 detalles.Clear();
                 dataSoli.ItemsSource = null;
                 dataSoli.ItemsSource = detalles;
@@ -291,10 +307,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     txtNombre.Text = row.Row.ItemArray[1].ToString();
                     txtPrecio.Text = row.Row.ItemArray[4].ToString();
                     txtPresentacion.Text = row.Row.ItemArray[2].ToString();
+                    existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
                 }
             }
         }
-
-        
     }
 }
