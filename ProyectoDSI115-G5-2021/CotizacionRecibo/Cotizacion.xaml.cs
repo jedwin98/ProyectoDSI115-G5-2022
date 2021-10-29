@@ -25,7 +25,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         DataTable dt = new DataTable();
 
         DataTable dataDetalle = new DataTable();
+        List<DetalleCotizacion> detalles = new List<DetalleCotizacion>();
 
+        private float totalCotizado = 0; //Variable global para guardar el total de lo cotizado
 
         public Cotizacion()
         {
@@ -83,6 +85,77 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     txtNombreProducto.Text = row.Row.ItemArray[1].ToString();
                     txtPrecio.Text = row.Row.ItemArray[3].ToString();
                 }
+            }
+        }
+
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (txtCantidad.Text == "")
+                {
+                    MessageBox.Show("Debe ingresar un valor a la cantidad", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    if (Convert.ToSingle(txtCantidad.Text) == 0.0)
+                    {
+                        MessageBox.Show("Debe ingresar un valor mayor a cero", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    else
+                    {
+                        if (Convert.ToSingle(txtCantidad.Text) < 0)
+                        {
+                            MessageBox.Show("Debe ingresar un valor mayor a cero", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
+                        else
+                        {
+                            DetalleCotizacion detalle = new DetalleCotizacion();
+                            detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
+                            detalle.concepto = txtNombreProducto.Text;
+                            detalle.precio = Convert.ToSingle(txtPrecio.Text);
+                            detalle.subtotal = detalle.cantidad * detalle.precio;
+
+                            detalles.Add(detalle);
+                            dataCotizacion.ItemsSource = null;
+                            dataCotizacion.ItemsSource = detalles;
+
+                            txtCantidad.Text = "";
+                            txtNombreProducto.Text = "";
+                            txtPrecio.Text = "";
+
+                            totalCotizado = totalCotizado + detalle.subtotal;
+                            txtTotalCotizacion.Text = "$" + Convert.ToString(totalCotizado);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Solo se permiten numeros en el campo cantidad", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                txtCantidad.Text = "";
+            }
+        }
+
+        private void BtnCancelarCot_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar cotización?. Se borrará todos los" +
+                " datos de la cotización", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                txtCantidad.Text = "";
+                txtCliente.Text = "";
+                txtNombreProducto.Text = "";
+                txtPrecio.Text = "";
+                txtTotalCotizacion.Text = "";
+                totalCotizado = 0;
+                detalles.Clear();
+                dataCotizacion.ItemsSource = null;
+                dataCotizacion.ItemsSource = detalles;
+            }
+            else
+            {
+
             }
         }
     }

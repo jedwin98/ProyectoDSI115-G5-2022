@@ -147,6 +147,7 @@
     <Compile Include="CotizacionRecibo\CrearRecibo.xaml.cs">
       <DependentUpon>CrearRecibo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CotizacionRecibo\DetalleCotizacion.cs" />
     <Compile Include="CotizacionRecibo\DetalleRecibo.cs" />
     <Compile Include="CotizacionRecibo\Recibo.xaml.cs">
       <DependentUpon>Recibo.xaml</DependentUpon>
