@@ -97,7 +97,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            
             try
             {
                 if (txtCantidad.Text == "")
@@ -156,7 +155,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
         private void BtnImprimir_Click(object sender, RoutedEventArgs e)
         {
-            //if (cmbClientes.SelectedValue == null)
             if (txtCliente.Text == "")
             {
                 MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -169,26 +167,57 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 else
                 {
                     SolicitudRecibo solicitud = new SolicitudRecibo();
-                    solicitud.codigo = codigoSolicitud;
+                    solicitud.fechaSolicitudRecibo = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                    solicitud.codigo = txtCodigoRecibo.Text;
+                    solicitud.nombreCliente = txtCliente.Text;
+                    //solicitud.totalRecibo = Convert.ToSingle(txtTotalRecibo.Text);
+                    
                     //solicitud.codigoReq = txtCodigoRecibo.Text;
                     //solicitud.codigoCliente = txtCliente.Text;
                     //solicitud.solicitante = sesion;
                     //solicitud.autorizador = new GestionUsuarios.Usuario();
                     //solicitud.autorizador.codigo = "";
                     //solicitud.autorizador.empleado = "";
-                    //solicitud.fechaSolicitud = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-                    //solicitud.estado = "Pendiente";
-                    solicitud.setListDetalles(detalles);
-                    string respuesta = control.AgregarRecibo(solicitud);
-                    MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
-                    txtCodigoRecibo.Text = "";
-                    txtCliente.Text = "";
 
+                    //solicitud.estado = "Pendiente";
+
+                    solicitud.setListDetalles(detalles);
+                    //string respuesta = control.AgregarRecibo(solicitud);
+                    //MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
+
+                    GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
                 }
             }
         }
+
+        private void GenerarImpresion(string fechaSolicitudRecibo, string codigo, string nombreCliente, float totalRecibo)
+        {
+            //Adecuar cabeceras de tablas.
+            DataTable aImprimir = new DataTable();
+            aImprimir.Columns.Add("Material");
+            aImprimir.Columns.Add("Presentación");
+            aImprimir.Columns.Add("Cantidad");
+            aImprimir.Columns.Add("Precio");
+            aImprimir.Columns.Add("Subtotal");
+            string[] descripcion = new string[5];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                descripcion[0] = dt.Rows[i][1].ToString();
+                descripcion[1] = dt.Rows[i][2].ToString();
+                descripcion[2] = dt.Rows[i][3].ToString();
+                descripcion[3] = dt.Rows[i][4].ToString();
+                descripcion[4] = dt.Rows[i][5].ToString();
+                // Agregando detalle a la tabla de la impresión.
+                aImprimir.Rows.Add(new Object[] { descripcion[0], descripcion[1], descripcion[2], descripcion[3], descripcion[4] });
+            }
+            CreadorPDF impresion = new CreadorPDF();
+            impresion.PrepararImpresionRecibo(aImprimir, fechaSolicitudRecibo, codigo, nombreCliente, totalRecibo);
+            //MessageBox.Show("Se ha generado el archivo de la solicitud.", "Generación de solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         /*
         public string GenerarCodigoS()
         {
@@ -265,5 +294,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 }
             }
         }
+
+        
     }
 }
