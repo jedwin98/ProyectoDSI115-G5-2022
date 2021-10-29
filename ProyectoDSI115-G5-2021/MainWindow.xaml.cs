@@ -67,20 +67,28 @@ namespace ProyectoDSI115_G5_2021
         //AUTOR: FRANCISCO ESCOBAR
         public void GenerarNotificacion()
         {
-            int notificaciones = ContarRegistros();
-            if (notificaciones != 0)
-            {
-                imgBurbuja.Visibility = Visibility.Visible;
-                lblContador.Visibility = Visibility.Visible;
-                lblContador.Content = notificaciones.ToString();
-                
-            }
-            else
+            
+            if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
             {
                 imgBurbuja.Visibility = Visibility.Hidden;
                 lblContador.Visibility = Visibility.Hidden;
-                lblContador.Content = "0";
-            } 
+
+                int notificaciones = ContarRegistros();
+
+                if (notificaciones != 0)
+                {
+                    imgBurbuja.Visibility = Visibility.Visible;
+                    lblContador.Visibility = Visibility.Visible;
+                    lblContador.Content = notificaciones.ToString();
+
+                }
+                else
+                {
+                    imgBurbuja.Visibility = Visibility.Hidden;
+                    lblContador.Visibility = Visibility.Hidden;
+                    lblContador.Content = "0";
+                }
+            }
         }
         //REALIZA EL PROCESO DE CREAR UN OBJETO DATA TABLE Y CUENTA LAS FILAS DE LA TABLA
         //LUEGO ASIGNA ESE VALOR A UNA VARIABLE Y ESTA SE RETORNA
