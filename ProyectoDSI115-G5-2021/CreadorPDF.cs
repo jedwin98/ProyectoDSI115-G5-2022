@@ -371,5 +371,119 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+
+        //Impresion de Recibo
+        // AUTOR: Gustavo Ernesto H. Corvera
+        public void PrepararImpresionRecibo(DataTable dataTable, string fechaSolicitudRecibo, string codigo, string nombreCliente, float totalRecibo)
+        {
+            // Preparando impresión por medio de FlowDocument
+            FlowDocument fd = new FlowDocument();
+
+            Table tableEmpresa = new Table();
+            fd.Blocks.Add(tableEmpresa);
+            tableEmpresa.Background = System.Windows.Media.Brushes.White;
+            tableEmpresa.Columns.Add(new TableColumn());
+            tableEmpresa.RowGroups.Add(new TableRowGroup());
+            tableEmpresa.RowGroups[0].Rows.Add(new TableRow());
+            TableRow emp = tableEmpresa.RowGroups[0].Rows[0];
+            // Agregando logo de la empresa
+            BitmapImage bmp = new BitmapImage(new Uri("/Images/fysi.jpg", UriKind.Relative));
+            System.Windows.Controls.Image logo = new System.Windows.Controls.Image { Source = bmp };
+            logo.Width = 160;
+            logo.Height = 98;
+            emp.Cells.Add(new TableCell(new BlockUIContainer(logo)));
+            // Agregando nombre de la empresa
+            System.Windows.Documents.Paragraph p = new System.Windows.Documents.Paragraph(new Run("\nFuego y Seguridad Industrial\n"));
+            p.Inlines.Add(new Run("Recibo"));
+            p.FontSize = 20;
+            emp.Cells.Add(new TableCell(p));
+
+            // Construcción de tabla de cabecera
+            Table tableCabecera = new Table();
+            fd.Blocks.Add(tableCabecera);
+            tableCabecera.Background = System.Windows.Media.Brushes.White;
+            for (int i = 0; i < 2; i++)
+            {
+                tableCabecera.Columns.Add(new TableColumn());
+            }
+            // Información de orden
+            tableCabecera.RowGroups.Add(new TableRowGroup());
+            tableCabecera.RowGroups[0].Rows.Add(new TableRow());
+            TableRow actual = tableCabecera.RowGroups[0].Rows[0];
+            actual.FontSize = 14;
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Fecha: " + fechaSolicitudRecibo))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("No. " + codigo))));
+            // Información de cliente y razón social
+            tableCabecera.RowGroups[0].Rows.Add(new TableRow());
+            actual = tableCabecera.RowGroups[0].Rows[1];
+            actual.FontSize = 14;
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Cliente: " + nombreCliente))));
+            // Salto de línea
+            p = new System.Windows.Documents.Paragraph(new Run("\n"));
+            fd.Blocks.Add(p);
+
+            // Tabla de detalles
+            Table tableDetalles = new Table();
+            fd.Blocks.Add(tableDetalles);
+            tableDetalles.Background = System.Windows.Media.Brushes.White;
+            for (int i = 0; i < dataTable.Columns.Count; i++)
+            {
+                tableDetalles.Columns.Add(new TableColumn());
+            }
+            tableDetalles.RowGroups.Add(new TableRowGroup());
+            // Creación de encabezado
+            tableDetalles.RowGroups[0].Rows.Add(new TableRow());
+            actual = tableDetalles.RowGroups[0].Rows[0];
+            actual.FontSize = 12;
+            actual.FontWeight = FontWeights.Bold;
+            for (int i = 0; i < dataTable.Columns.Count; i++)
+            {
+                actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(dataTable.Columns[i].ColumnName))));
+            }
+            // Agregando información
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                tableDetalles.RowGroups[0].Rows.Add(new TableRow());
+                actual = tableDetalles.RowGroups[0].Rows[i + 1];
+                actual.FontSize = 12;
+                actual.FontWeight = FontWeights.Regular;
+                for (int j = 0; j < dataTable.Columns.Count; j++)
+                {
+                    actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(dataTable.Rows[i][j].ToString()))));
+                }
+            }
+            // Salto de línea
+            p = new System.Windows.Documents.Paragraph(new Run("\n"));
+            fd.Blocks.Add(p);
+
+            // Tabla de firmas
+            Table tableFirmas = new Table();
+            fd.Blocks.Add(tableFirmas);
+            tableFirmas.Background = System.Windows.Media.Brushes.White;
+            for (int i = 0; i < 2; i++)
+            {
+                tableFirmas.Columns.Add(new TableColumn());
+            }
+            tableFirmas.RowGroups.Add(new TableRowGroup());
+
+            // Impresión del documento
+            MemoryStream s = new System.IO.MemoryStream();
+            string copyString = XamlWriter.Save(fd);
+            FlowDocument copy = XamlReader.Parse(copyString) as FlowDocument;
+            // Carga de diálogo de impresión y ajuste del documento al tamaño de impresión.
+            PrintDialog printDialog = new PrintDialog();
+            IDocumentPaginatorSource idpSrc = copy;
+            copy.PageHeight = printDialog.PrintableAreaHeight;
+            copy.PageWidth = printDialog.PrintableAreaWidth;
+            copy.PagePadding = new Thickness(50);
+            copy.ColumnGap = 0;
+            copy.ColumnWidth = printDialog.PrintableAreaWidth;
+            //copy.Name = "Solicitud" + codigoSolicitud;
+            if (printDialog.ShowDialog() ?? false)
+            {
+                // Llamar a PrintDocument para la ventana de impresión
+                printDialog.PrintDocument(idpSrc.DocumentPaginator, "Impresión de solicitud");
+            }
+        }
     }
 }

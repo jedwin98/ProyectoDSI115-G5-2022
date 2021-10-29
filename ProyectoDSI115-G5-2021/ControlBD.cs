@@ -26,7 +26,7 @@ namespace ProyectoDSI115_G5_2021
         {
             //cn = new SQLiteConnection(@"Data Source=Z:\FYSIEX.db;Version=3;Compress=True;");     // CONEXION EN UNIDAD DE RED
             //cn = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
-            cn = new SQLiteConnection("data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
+            cn = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
 
         }
 
@@ -1230,21 +1230,23 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
-        public string AgregarRecibo(CotizacionRecibo.SolicitudRecibo soli)
+        public string AgregarRecibo(CotizacionRecibo.SolicitudRecibo soliRecibo)
         {
             cn.Open();
-            try//insertando la solicitud
+            try//insertando el recibo
             {
-                SQLiteCommand comando = new SQLiteCommand("INSERT INTO SOLICITUD_INSUMO (COD_SOLICITUD ,COD_EMPLEADO,EMP_COD_EMPLEADO,FECHA_SOLICITUD, ESTADO_SOLICITUD, COD_CLIENTE, COD_REQ) VALUES (@idS,@idSolicitante,@idAprobador,@fecha,@est,@idC,@idReq)", cn);
-                comando.Parameters.Add(new SQLiteParameter("@idS", soli.codigo));
-                comando.Parameters.Add(new SQLiteParameter("@idSolicitante", soli.solicitante.codigoEmpleado));
-                comando.Parameters.Add(new SQLiteParameter("@idAprobador", soli.autorizador.empleado));
-                comando.Parameters.Add(new SQLiteParameter("@fecha", soli.fechaSolicitud));
-                comando.Parameters.Add(new SQLiteParameter("@est", soli.estado));
-                comando.Parameters.Add(new SQLiteParameter("@idC", soli.codigoCliente));
-                comando.Parameters.Add(new SQLiteParameter("@idReq", soli.codigoReq));
-                comando.ExecuteNonQuery();
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO RECIBO " +
+                    "(COD_RECIBO," +
+                    "TOTAL_RECIBO," +
+                    "FECHA_RECIBO, " +
+                    "CLIENTE_RECIBO) " +
+                    "VALUES (@idRecibo, @totalRecibo, @fechaRecibo, @clienteRecibo)", cn);
 
+                comando.Parameters.Add(new SQLiteParameter("@idRecibo", soliRecibo.codigo));
+                comando.Parameters.Add(new SQLiteParameter("@totalRecibo", soliRecibo.totalRecibo));
+                comando.Parameters.Add(new SQLiteParameter("@fechaRecibo", soliRecibo.fechaSolicitudRecibo));
+                comando.Parameters.Add(new SQLiteParameter("@clienteRecibo", soliRecibo.nombreCliente));
+                comando.ExecuteNonQuery();
             }
             catch (SQLiteException ex)
             {
@@ -1252,26 +1254,32 @@ namespace ProyectoDSI115_G5_2021
                 return "Ha ocurrido el error: "+ex.ToString() +" al guardar la solicitud ";
             }
             CotizacionRecibo.DetalleRecibo detalle = new CotizacionRecibo.DetalleRecibo();
-            for (int i = 0; i < soli.detalles.Count(); i++)
+            for (int i = 0; i < soliRecibo.detalles.Count(); i++)
             {
-                detalle = soli.detalles[i];
+                detalle = soliRecibo.detalles[i];
                 try// insertando detalles
                 {
 
                     //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
-                    SQLiteCommand comando = new SQLiteCommand("INSERT INTO DETALLE_SOLICITUD_INSUMO (COD_DETALLE,COD_MATERIAL,COD_SOLICITUD,COD_PRODUCTO, CANTIDAD_DETALLE) VALUES (@idD,@idM,@idSoli,@idPro,@cant)", cn);
-                    comando.Parameters.Add(new SQLiteParameter("@idD", detalle.codigo));
-                    comando.Parameters.Add(new SQLiteParameter("@idM", detalle.material.codigo));
-                    comando.Parameters.Add(new SQLiteParameter("@idSoli", detalle.codigoSolicitud));
-                    comando.Parameters.Add(new SQLiteParameter("@idPro", ""));
-                    comando.Parameters.Add(new SQLiteParameter("@cant", detalle.cantidad));
+                    SQLiteCommand comando = new SQLiteCommand("INSERT INTO DETALLE_RECIBO " +
+                        "(COD_DETALLERECIBO," +
+                        "COD_RECIBO," +
+                        "NOMBRE_DETALLERECIBO," +
+                        "CANTIDAD_DETALLERECIBO," +
+                        "PRECIO_UNITARIO," +
+                        "SUBTOTAL_DETALLE) " +
+                        "VALUES (@idDetalleR,@idRecibo,@nomMR,@cantR,@preMR,@subTR)", cn);
 
+                    comando.Parameters.Add(new SQLiteParameter("@idDetalleR", detalle.codigo));
+                    comando.Parameters.Add(new SQLiteParameter("@idRecibo", detalle.codigoRecibo));
+                    comando.Parameters.Add(new SQLiteParameter("@nomMR", detalle.nombre));
+                    comando.Parameters.Add(new SQLiteParameter("@cantR", detalle.cantidad));
+                    comando.Parameters.Add(new SQLiteParameter("@preMR", detalle.precio));
+                    comando.Parameters.Add(new SQLiteParameter("@subTR", detalle.subtotal));
                     comando.ExecuteNonQuery();
-
                 }
                 catch (SQLiteException ex)
                 {
-
                     cn.Close();
                     return "Ha ocurrido el error: "+ex.ToString()+" al guardar el detalle de la solicitud";
 
