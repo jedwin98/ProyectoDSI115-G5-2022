@@ -31,10 +31,10 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         {
             InitializeComponent();
             CargarTabla();
-            //codigoSolicitud = GenerarCodigoS();
             txtFecha.Text = GenerarFecha();
             txtCodigoRecibo.Text = GenerarCodigoRecibo();
         }
+
         public void CargarTabla()
         {
             control = new ControlBD();
@@ -121,7 +121,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                             DetalleRecibo detalle = new DetalleRecibo();
                             detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
                             //detalle.codigo = GenerarCodigoS();
-                            detalle.codigoSolicitud = codigoSolicitud;
+                            //detalle.codigoSolicitud = codigoSolicitud;
                             detalle.precio = Convert.ToSingle(txtPrecio.Text);
                             
                             GestionMateriales.Material mate = new GestionMateriales.Material();
@@ -154,7 +154,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
         }
 
-        private void BtnSolicitar_Click(object sender, RoutedEventArgs e)
+        private void BtnImprimir_Click(object sender, RoutedEventArgs e)
         {
             //if (cmbClientes.SelectedValue == null)
             if (txtCliente.Text == "")
@@ -170,14 +170,14 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 {
                     SolicitudRecibo solicitud = new SolicitudRecibo();
                     solicitud.codigo = codigoSolicitud;
-                    solicitud.codigoReq = txtCodigoRecibo.Text;
-                    solicitud.codigoCliente = txtCliente.Text;
-                    solicitud.solicitante = sesion;
-                    solicitud.autorizador = new GestionUsuarios.Usuario();
-                    solicitud.autorizador.codigo = "";
-                    solicitud.autorizador.empleado = "";
-                    solicitud.fechaSolicitud = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-                    solicitud.estado = "Pendiente";
+                    //solicitud.codigoReq = txtCodigoRecibo.Text;
+                    //solicitud.codigoCliente = txtCliente.Text;
+                    //solicitud.solicitante = sesion;
+                    //solicitud.autorizador = new GestionUsuarios.Usuario();
+                    //solicitud.autorizador.codigo = "";
+                    //solicitud.autorizador.empleado = "";
+                    //solicitud.fechaSolicitud = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                    //solicitud.estado = "Pendiente";
                     solicitud.setListDetalles(detalles);
                     string respuesta = control.AgregarRecibo(solicitud);
                     MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -215,8 +215,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
             return anio + mes + dia + hora + min + seg;
         }
-
-
+        
         public string GenerarFecha()
         {
             DateTime fecha = DateTime.Now;
@@ -229,8 +228,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
             return dia +"/"+ mes + "/" + anio;
         }
-
-
+        
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar? se borrará todos los datos de la solicitud", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
@@ -248,7 +246,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             {
 
             }
-          
         }
 
         private void dgMateriales_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -268,7 +265,5 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 }
             }
         }
-
-        
     }
 }
