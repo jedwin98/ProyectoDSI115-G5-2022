@@ -33,6 +33,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         {
             InitializeComponent();
             cargarTabla();
+            labelFecha.Content = GenerarFecha();
+            txtCodCotizacion.Text = GenerarCodigoCotizacion();
         }
 
         public void cargarTabla()
@@ -157,6 +159,29 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             {
 
             }
+        }
+
+        public string GenerarFecha()
+        {
+            DateTime fecha = DateTime.Now;
+            string anio = fecha.Year.ToString();
+            string mes = fecha.Month.ToString();
+            string dia = fecha.Day.ToString();
+            string hora = fecha.Hour.ToString();
+            string min = fecha.Minute.ToString();
+            string seg = fecha.Second.ToString();
+
+            return dia + "/" + mes + "/" + anio;
+        }
+
+        public string GenerarCodigoCotizacion()
+        {
+            DateTime fecha = DateTime.Now;
+            string hora = fecha.Hour.ToString();
+            string min = fecha.Minute.ToString();
+            string seg = fecha.Second.ToString();
+            string coti = "C";
+            return coti + hora + min + seg;
         }
     }
 }
