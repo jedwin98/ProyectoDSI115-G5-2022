@@ -177,7 +177,7 @@ namespace ProyectoDSI115_G5_2021
             //Sólo se buscan los atributos de empleados activos
             string comandoString = "SELECT e.cod_empleado, e.nombre_empleado, e.apellido_empleado, a.nombre_area as narea, c.nombre_cargo as ncargo " +
                 "FROM ((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) " +
-                "WHERE e.estado_empleado='Activo' " +
+                "WHERE e.estado_empleado='Activo' AND NOT (c.cod_cargo='ST' AND a.cod_area='L') " +
                 "EXCEPT SELECT DISTINCT u.cod_empleado, e.nombre_empleado, e.apellido_empleado, a.nombre_area as narea,c.nombre_cargo as ncargo " +
                 "FROM (((empleado AS e INNER JOIN cargo AS c ON e.cod_cargo = c.cod_cargo) INNER JOIN area AS a ON e.cod_area = a.cod_area) INNER JOIN USUARIO AS u) " +
                 "WHERE NOT u.ESTADO_USUARIO='O'";
