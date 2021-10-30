@@ -34,6 +34,16 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         {
             return string.Format(" {0} - {1} - {2} - {3}-{4} - {5} - {6}", codigo, nombres, apellidos,empresa, telefono, correo, estado);
         }
+        public Cliente(string cod, string nom, string ape, string emp, string tel, string estad)
+        {
+            codigo = cod;
+            nombres = nom;
+            apellidos = ape;
+            empresa = emp;
+            telefono = tel;
+            
+            estado = estad;
+        }
     }
     
 }
