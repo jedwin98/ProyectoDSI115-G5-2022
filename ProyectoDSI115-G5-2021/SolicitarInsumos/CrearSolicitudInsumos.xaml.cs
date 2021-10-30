@@ -183,6 +183,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
                     solicitud.setListDetalles(detalles);
                     string respuesta = control.AgregarSolicudInsumos(solicitud);
                     MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
+                    codigoSolicitud = GenerarCodigoS();
                     txtCodigoReq.Text = "";
                     cmbClientes.SelectedValue = null;
 
