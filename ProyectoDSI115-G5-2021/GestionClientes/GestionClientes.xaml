@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
-        Title="FYSIEX - Gestion de Clientes" Height="478" Width="800">
+        Title="FYSIEX - Gestion de Clientes" Height="478" Width="884.667">
     <Grid >
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,1,0,0" Height="61" VerticalAlignment="Top" />
 
@@ -24,6 +24,7 @@
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Razón social"  Binding="{Binding EMPRESA_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Teléfono"  Binding="{Binding TELEFONO_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Correo" Binding="{Binding CORREO_CLIENTE}"/>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding ESTADO_CLIENTE}"/>
             </DataGrid.Columns>
         </DataGrid>

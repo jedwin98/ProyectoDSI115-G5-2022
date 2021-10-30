@@ -44,6 +44,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                     txtNombre.Text = null;
                     txtApellido.Text = null;
                     txtEmpresa.Text = null;
+                    txtCorreo.Text = null;
                     txtTelefono.Text = null;
                 }
             }

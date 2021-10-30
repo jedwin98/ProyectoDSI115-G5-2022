@@ -42,5 +42,7 @@
         <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="Activo" Margin="401,37,167,64" Grid.Row="1"/>
 
         <TextBox x:Name="txtTelefono" MaxLength="15" KeyDown="OnKeyDownHandler" TextWrapping="Wrap" Height="25" Text="" Margin="461,270,107,0" VerticalAlignment="Top" TextChanged="TxtTelefono_TextChanged"/>
+        <Label Content="Correo Electrónico:" HorizontalAlignment="Left" Margin="321,304,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCorreo" MaxLength="100" TextWrapping="Wrap" Height="25" Text="" Margin="461,304,107,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

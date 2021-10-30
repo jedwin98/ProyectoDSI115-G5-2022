@@ -24,7 +24,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         {
             if (txtId.Text == "" || txtNombre.Text == "" || txtApellido.Text == "" || txtTelefono.Text == "")
             {
-                MessageBox.Show("Debe de llenar todos los campos", "Campos vacios", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Debe de llenar todos los campos importantes", "Campos vacios", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -35,6 +35,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 cliente.nombres = txtNombre.Text;
                 cliente.apellidos = txtApellido.Text;
                 cliente.empresa = txtEmpresa.Text;
+                cliente.correo = txtCorreo.Text;
                 cliente.telefono = txtTelefono.Text;
                 cliente.estado = txtEstado.Text;
                 respuesta = control.AgregarCliente(cliente);

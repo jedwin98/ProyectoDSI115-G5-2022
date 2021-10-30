@@ -65,9 +65,11 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 ac.txtNombre.Text = row.Row.ItemArray[1].ToString();
                 ac.txtApellido.Text = row.Row.ItemArray[2].ToString();
                 ac.txtEmpresa.Text = row.Row.ItemArray[3].ToString();
-                //arreglar lo de servicio
                 ac.txtTelefono.Text = row.Row.ItemArray[4].ToString();
-                ac.txtEstado.Text = row.Row.ItemArray[5].ToString();
+                ac.txtCorreo.Text = row.Row.ItemArray[5].ToString();
+                //arreglar lo de servicio
+
+                ac.txtEstado.Text = row.Row.ItemArray[6].ToString();
 
                 ac.Show();
                 this.Close();
@@ -101,9 +103,11 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 ec.txtNombre.Text = row.Row.ItemArray[1].ToString();
                 ec.txtApellido.Text = row.Row.ItemArray[2].ToString();
                 ec.txtEmpresa.Text = row.Row.ItemArray[3].ToString();
-                //arreglar lo de servicio
                 ec.txtTelefono.Text = row.Row.ItemArray[4].ToString();
-                ec.txtEstado.Text = row.Row.ItemArray[5].ToString();
+                ec.txtCorreo.Text = row.Row.ItemArray[5].ToString();
+                //arreglar lo de servicio
+
+                ec.txtEstado.Text = row.Row.ItemArray[6].ToString();
                 ec.Show();
                 this.Close();
             }
@@ -142,18 +146,19 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             dataTable.Columns.Add("Nombres");
             dataTable.Columns.Add("Apellidos");
             dataTable.Columns.Add("Empresa");
-            
+            dataTable.Columns.Add("Correo");
             dataTable.Columns.Add("Teléfono");
            
-            string[] nombre = new string[4];
+            string[] nombre = new string[6];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 nombre[0] = dt.Rows[i][1].ToString();
                 nombre[1] = dt.Rows[i][2].ToString();
                 nombre[2] = dt.Rows[i][3].ToString();
                 nombre[3] = dt.Rows[i][4].ToString();
+                nombre[4] = dt.Rows[i][5].ToString();
                 
-                dataTable.Rows.Add(new Object[] { nombre[0], nombre[1], nombre[2], nombre[3] });
+                dataTable.Rows.Add(new Object[] { nombre[0], nombre[1], nombre[2], nombre[3], nombre[4] });
 
 
             }

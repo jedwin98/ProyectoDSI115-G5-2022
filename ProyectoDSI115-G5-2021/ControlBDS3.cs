@@ -38,7 +38,7 @@ namespace ProyectoDSI115_G5_2021
                 while (dr.Read())
                 {
                     //Console.WriteLine(Convert.ToString(dr[1]));
-                    clientes.Add(new GestionClientes.Cliente(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]), Convert.ToString(dr[5])));  //se realiza de esta forma para evitar los datos replicados en la lista            
+                    clientes.Add(new GestionClientes.Cliente(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]), Convert.ToString(dr[5]), Convert.ToString(dr[6])));  //se realiza de esta forma para evitar los datos replicados en la lista            
                 }
                 dr.Close();
             }

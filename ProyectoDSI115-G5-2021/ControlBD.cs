@@ -55,12 +55,13 @@ namespace ProyectoDSI115_G5_2021
             {
                 cn.Open();
                 //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
-                SQLiteCommand comando = new SQLiteCommand("INSERT INTO CLIENTE (COD_CLIENTE,NOMBRE_CLIENTE,APELLIDO_CLIENTE,EMPRESA_CLIENTE, TELEFONO_CLIENTE, ESTADO_CLIENTE) VALUES (@id,@nombre,@ape,@empre,@tele,@est)", cn);
+                SQLiteCommand comando = new SQLiteCommand("INSERT INTO CLIENTE (COD_CLIENTE,NOMBRE_CLIENTE,APELLIDO_CLIENTE,EMPRESA_CLIENTE, CORREO_CLIENTE, TELEFONO_CLIENTE, ESTADO_CLIENTE) VALUES (@id,@nombre,@ape,@empre,@correo,@tele,@est)", cn);
                 comando.Parameters.Add(new SQLiteParameter("@id", client.codigo));
                 comando.Parameters.Add(new SQLiteParameter("@nombre", client.nombres));
                 comando.Parameters.Add(new SQLiteParameter("@ape", client.apellidos));
                 comando.Parameters.Add(new SQLiteParameter("@empre", client.empresa));
                 comando.Parameters.Add(new SQLiteParameter("@tele", client.telefono));
+                comando.Parameters.Add(new SQLiteParameter("@correo", client.correo));
                 comando.Parameters.Add(new SQLiteParameter("@est", client.estado));
                 comando.ExecuteNonQuery();
                 cn.Close();
@@ -105,12 +106,13 @@ namespace ProyectoDSI115_G5_2021
             {
                 cn.Open();
                 //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
-                SQLiteCommand comando = new SQLiteCommand("UPDATE Cliente SET NOMBRE_CLIENTE= @nombre, APELLIDO_CLIENTE =@ape, EMPRESA_CLIENTE=@empre, TELEFONO_CLIENTE=@tele WHERE COD_CLIENTE = @id", cn);
+                SQLiteCommand comando = new SQLiteCommand("UPDATE Cliente SET NOMBRE_CLIENTE= @nombre, APELLIDO_CLIENTE =@ape, EMPRESA_CLIENTE=@empre, CORREO_CLIENTE=@correo, TELEFONO_CLIENTE=@tele WHERE COD_CLIENTE = @id", cn);
                 comando.Parameters.Add(new SQLiteParameter("@id", client.codigo));
                 comando.Parameters.Add(new SQLiteParameter("@nombre", client.nombres));
                 comando.Parameters.Add(new SQLiteParameter("@ape", client.apellidos));
                 comando.Parameters.Add(new SQLiteParameter("@empre", client.empresa));
                 comando.Parameters.Add(new SQLiteParameter("@tele", client.telefono));
+                comando.Parameters.Add(new SQLiteParameter("@correo", client.correo));
                
                 comando.ExecuteNonQuery();
                 cn.Close();
@@ -1381,7 +1383,7 @@ namespace ProyectoDSI115_G5_2021
 
                 while (dr.Read())
                 {
-                    clientes.Add(new GestionClientes.Cliente(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]), Convert.ToString(dr[5])));  //se realiza de esta forma para evitar los datos replicados en la lista            
+                    clientes.Add(new GestionClientes.Cliente(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]), Convert.ToString(dr[5]), Convert.ToString(dr[6])));  //se realiza de esta forma para evitar los datos replicados en la lista            
                 }
                 dr.Close();
             }
