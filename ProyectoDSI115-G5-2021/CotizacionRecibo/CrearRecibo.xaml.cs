@@ -22,10 +22,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         ControlBD control;
         DataTable dt = new DataTable();
         DataTable dataTable = new DataTable();
-        string codigoSolicitud { get; set; }
         List<DetalleRecibo> detalles = new List<DetalleRecibo>();
-        SolicitudRecibo solicitudSelected { get; set; }
 
+        string codigoSolicitud { get; set; }
         private float totalTotal = 0;//Variable global para guardar el total de la compra del recibo
         private float existenciaSelected = 0;//Variable global para validar la existencia de la cantidad
 
@@ -56,15 +55,13 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             if (row == null)
             {
                 MessageBox.Show("Seleccione primero un material", "Seleccione un material", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-
             }
             else
             {
-                //txtCodigo.Text = row.Row.ItemArray[0].ToString();
                 txtNombre.Text = row.Row.ItemArray[1].ToString();
-                txtPrecio.Text = row.Row.ItemArray[4].ToString();
                 txtPresentacion.Text = row.Row.ItemArray[2].ToString();
                 existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
+                txtPrecio.Text = row.Row.ItemArray[4].ToString();
             }
         }
 
@@ -128,10 +125,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                             }
                             else
                             {
+                                SolicitudRecibo solicitud = new SolicitudRecibo();
                                 DetalleRecibo detalle = new DetalleRecibo();
                                 detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
-                                //detalle.codigo = GenerarCodigoS();
-                                //detalle.codigoSolicitud = codigoSolicitud;
                                 detalle.precio = Convert.ToSingle(txtPrecio.Text);
 
                                 GestionMateriales.Material mate = new GestionMateriales.Material();
@@ -156,6 +152,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
                                 totalTotal = totalTotal + detalle.subtotal;
                                 txtTotalRecibo.Text = "$ " + Convert.ToString(totalTotal);
+                                solicitud.totalRecibo = totalTotal;
+                                MessageBox.Show("total a pagar: "+ solicitud.totalRecibo, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                             }
                             
                         }
@@ -186,22 +184,10 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     solicitud.fechaSolicitudRecibo = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
                     solicitud.codigo = txtCodigoRecibo.Text;
                     solicitud.nombreCliente = txtCliente.Text;
-                    //solicitud.totalRecibo = Convert.ToSingle(txtTotalRecibo.Text);
+                    solicitud.totalRecibo = totalTotal;
                     
-                    //solicitud.codigoReq = txtCodigoRecibo.Text;
-                    //solicitud.codigoCliente = txtCliente.Text;
-                    //solicitud.solicitante = sesion;
-                    //solicitud.autorizador = new GestionUsuarios.Usuario();
-                    //solicitud.autorizador.codigo = "";
-                    //solicitud.autorizador.empleado = "";
-
-                    //solicitud.estado = "Pendiente";
-
                     solicitud.setListDetalles(detalles);
                     dataSoli.ItemsSource = detalles;
-
-                    //string respuesta = control.AgregarRecibo(solicitud);
-                    //MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
 
@@ -215,8 +201,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     totalTotal = 0;
 
                     txtCliente.IsEnabled = true;
-
-                    
                 }
             }
         }
@@ -275,7 +259,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar? se borrará todos los datos de la solicitud", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar? se borrará todos los datos del Recibo", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 txtCliente.Text = "";
@@ -316,34 +300,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
                 }
             }
-
-            /*DataGrid grid = sender as DataGrid;
-            SolicitudRecibo reci = dataSoli.SelectedItem as SolicitudRecibo;
-            if (reci != null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
-            {
-                CargarDetalles(reci.codigo);
-                solicitudSelected = reci;
-
-            }
-            else
-            {
-
-                MessageBox.Show("Debe seleccionar una solicitud primero", "Seleccione una solicitud", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                // DetalleHistorialCliente detail = new DetalleHistorialCliente(client.codigo, client.nombres + " " + client.apellidos, client.empresa, client.telefono);
-                //detail.ShowDialog();
-
-            }*/
         }
-
-        /*public void CargarDetalles(string codigoSolicitud)
-        {
-
-            detalles.Clear();
-            dataSoli.ItemsSource = null;
-
-            detalles = control.ConsultarDetalleSolicitudes(codigoSolicitud);
-            dataSoli.ItemsSource = detalles;
-
-        }*/
     }
 }
