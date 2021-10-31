@@ -24,7 +24,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         DataTable dataTable = new DataTable();
         string codigoSolicitud { get; set; }
         List<DetalleRecibo> detalles = new List<DetalleRecibo>();
-        
+        SolicitudRecibo solicitudSelected { get; set; }
+
         private float totalTotal = 0;//Variable global para guardar el total de la compra del recibo
         private float existenciaSelected = 0;//Variable global para validar la existencia de la cantidad
 
@@ -197,9 +198,13 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     //solicitud.estado = "Pendiente";
 
                     solicitud.setListDetalles(detalles);
+                    dataSoli.ItemsSource = detalles;
+
                     //string respuesta = control.AgregarRecibo(solicitud);
                     //MessageBox.Show(respuesta, "Resultado de la solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
+
+                    GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
+
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
 
@@ -211,7 +216,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
                     txtCliente.IsEnabled = true;
 
-                    GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
+                    
                 }
             }
         }
@@ -226,13 +231,14 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             aImprimir.Columns.Add("Precio");
             aImprimir.Columns.Add("Subtotal");
             string[] descripcion = new string[5];
-            for (int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < detalles.Count(); i++)
             {
-                descripcion[0] = dt.Rows[i][1].ToString();
-                descripcion[1] = dt.Rows[i][2].ToString();
-                descripcion[2] = dt.Rows[i][3].ToString();
-                descripcion[3] = dt.Rows[i][4].ToString();
-                descripcion[4] = dt.Rows[i][5].ToString();
+                descripcion[0] = detalles[i].material.nombre;
+                descripcion[1] = detalles[i].material.unidad;
+                descripcion[2] = detalles[i].cantidad.ToString();
+                descripcion[3] = detalles[i].material.precio;
+                descripcion[4] = detalles[i].subtotal.ToString();
+                
                 // Agregando detalle a la tabla de la impresión.
                 aImprimir.Rows.Add(new Object[] { descripcion[0], descripcion[1], descripcion[2], descripcion[3], descripcion[4] });
             }
@@ -310,6 +316,34 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
                 }
             }
+
+            /*DataGrid grid = sender as DataGrid;
+            SolicitudRecibo reci = dataSoli.SelectedItem as SolicitudRecibo;
+            if (reci != null && grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+            {
+                CargarDetalles(reci.codigo);
+                solicitudSelected = reci;
+
+            }
+            else
+            {
+
+                MessageBox.Show("Debe seleccionar una solicitud primero", "Seleccione una solicitud", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                // DetalleHistorialCliente detail = new DetalleHistorialCliente(client.codigo, client.nombres + " " + client.apellidos, client.empresa, client.telefono);
+                //detail.ShowDialog();
+
+            }*/
         }
+
+        /*public void CargarDetalles(string codigoSolicitud)
+        {
+
+            detalles.Clear();
+            dataSoli.ItemsSource = null;
+
+            detalles = control.ConsultarDetalleSolicitudes(codigoSolicitud);
+            dataSoli.ItemsSource = detalles;
+
+        }*/
     }
 }
