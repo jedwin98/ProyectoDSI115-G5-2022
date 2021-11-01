@@ -44,6 +44,26 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             dataMateriales.ItemsSource = dt.DefaultView;
         }
 
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            BuscarMaterial();
+        }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                BuscarMaterial();
+            }
+        }
+
+        private void BuscarMaterial()
+        {
+            dt.Clear();
+            dt = control.BuscarMatYProRecibo(txtBuscar.Text);
+            dataMateriales.ItemsSource = dt.DefaultView;
+        }
+
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -65,26 +85,32 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
         }
 
-        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        public string GenerarCodigoRecibo()
         {
-            BuscarMaterial();
+            DateTime fecha = DateTime.Now;
+            string anio = fecha.Year.ToString();
+            string mes = fecha.Month.ToString();
+            string dia = fecha.Day.ToString();
+            string hora = fecha.Hour.ToString();
+            string min = fecha.Minute.ToString();
+            string seg = fecha.Second.ToString();
+
+            return anio + mes + dia + hora + min + seg;
         }
 
-        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        public string GenerarFecha()
         {
-            if (e.Key == Key.Return)
-            {
-                BuscarMaterial();
-            }
-        }
+            DateTime fecha = DateTime.Now;
+            string anio = fecha.Year.ToString();
+            string mes = fecha.Month.ToString();
+            string dia = fecha.Day.ToString();
+            string hora = fecha.Hour.ToString();
+            string min = fecha.Minute.ToString();
+            string seg = fecha.Second.ToString();
 
-        private void BuscarMaterial()
-        {
-            dt.Clear();
-            dt = control.BuscarMatYProRecibo(txtBuscar.Text);
-            dataMateriales.ItemsSource = dt.DefaultView;
+            return dia + "/" + mes + "/" + anio;
         }
-
+        
         private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
         {
             txtNombre.Text = "";
@@ -241,35 +267,11 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             //MessageBox.Show("Se ha generado el archivo de la solicitud.", "Generación de solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        public string GenerarCodigoRecibo()
-        {
-            DateTime fecha = DateTime.Now;
-            string anio = fecha.Year.ToString();
-            string mes = fecha.Month.ToString();
-            string dia = fecha.Day.ToString();
-            string hora = fecha.Hour.ToString();
-            string min = fecha.Minute.ToString();
-            string seg = fecha.Second.ToString();
-
-            return anio + mes + dia + hora + min + seg;
-        }
         
-        public string GenerarFecha()
-        {
-            DateTime fecha = DateTime.Now;
-            string anio = fecha.Year.ToString();
-            string mes = fecha.Month.ToString();
-            string dia = fecha.Day.ToString();
-            string hora = fecha.Hour.ToString();
-            string min = fecha.Minute.ToString();
-            string seg = fecha.Second.ToString();
-
-            return dia +"/"+ mes + "/" + anio;
-        }
         
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar? se borrará todos los datos del Recibo", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar?\nSe eliminar el historial del recibo", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 txtCliente.Text = "";
@@ -309,6 +311,15 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     txtPresentacion.Text = row.Row.ItemArray[2].ToString();
                     existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
                 }
+            }
+        }
+        
+        private void TxtCantidad_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtCantidad.Text, "[^0-9]"))
+            {
+                MessageBox.Show("En este campo solamente puede utilizar numeros\nPor favor ingrese de forma correcta la cantidad del insumo", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                txtCantidad.Text = txtCantidad.Text.Remove(txtCantidad.Text.Length - 1);
             }
         }
     }

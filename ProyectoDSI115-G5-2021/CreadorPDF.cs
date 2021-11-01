@@ -404,7 +404,7 @@ namespace ProyectoDSI115_G5_2021
             Table tableCabecera = new Table();
             fd.Blocks.Add(tableCabecera);
             tableCabecera.Background = System.Windows.Media.Brushes.White;
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 tableCabecera.Columns.Add(new TableColumn());
             }
@@ -415,6 +415,7 @@ namespace ProyectoDSI115_G5_2021
             TableRow actual = tableCabecera.RowGroups[0].Rows[0];
             actual.FontSize = 14;
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Fecha: " + fechaSolicitudRecibo))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("No. " + codigo))));
             // Información de cliente
             tableCabecera.RowGroups[0].Rows.Add(new TableRow());
