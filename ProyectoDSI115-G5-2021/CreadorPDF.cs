@@ -20,9 +20,17 @@ namespace ProyectoDSI115_G5_2021
 {
     class CreadorPDF
     {
+        
+        List<FlowDocument> paginas = new List<FlowDocument>();
+        //Document document = new Document();
+        // FlowDocument todo = new FlowDocument();
+        // IEnumerable<FlowDocument> lista;
+        public static FlowDocument prueba = new FlowDocument();
+
         public CreadorPDF(DataTable dataTable, string tipoReporte)
         {
             CrearPDF(dataTable, tipoReporte);
+           
         }
 
         public CreadorPDF()
@@ -230,13 +238,16 @@ namespace ProyectoDSI115_G5_2021
 
         // Crea una impresión de una solicitud elegida desde el historial del cliente.
         // AUTOR: Gabriel 
-        public void ImpresionSolicitud(DataTable dataTable, string nombreSolicitante, string autorizador, string cliente, string empresaR, string codigoSolicitud, string numeroOrden, string fecha)
+        public void ImpresionSolicitud(DataTable dataTable, string nombreSolicitante, string autorizador, string cliente, string empresaR, string codigoSolicitud, string numeroOrden, string fecha, int paginasRestantes)
         {
             // Preparando impresión por medio de FlowDocument
-            FlowDocument fd = new FlowDocument();
 
-            Table tableEmpresa = new Table();
-            fd.Blocks.Add(tableEmpresa);
+       FlowDocument todo = new FlowDocument();
+        Table tableEmpresa = new Table();
+           // todo.MinPageHeight = 982.7;
+            todo.PageHeight = 982.7;
+            
+            todo.Blocks.Add(tableEmpresa);
             tableEmpresa.Background = System.Windows.Media.Brushes.White;
             tableEmpresa.Columns.Add(new TableColumn());
             tableEmpresa.RowGroups.Add(new TableRowGroup());
@@ -256,7 +267,7 @@ namespace ProyectoDSI115_G5_2021
 
             // Construcción de tabla de cabecera
             Table tableCabecera = new Table();
-            fd.Blocks.Add(tableCabecera);
+            todo.Blocks.Add(tableCabecera);
             tableCabecera.Background = System.Windows.Media.Brushes.White;
             for (int i = 0; i < 2; i++)
             {
@@ -277,11 +288,11 @@ namespace ProyectoDSI115_G5_2021
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Razón social: " + empresaR))));
             // Salto de línea
             p = new System.Windows.Documents.Paragraph(new Run("\n"));
-            fd.Blocks.Add(p);
+            todo.Blocks.Add(p);
 
             // Tabla de detalles
             Table tableDetalles = new Table();
-            fd.Blocks.Add(tableDetalles);
+            todo.Blocks.Add(tableDetalles);
             tableDetalles.Background = System.Windows.Media.Brushes.White;
             for (int i = 0; i < dataTable.Columns.Count; i++)
             {
@@ -311,11 +322,11 @@ namespace ProyectoDSI115_G5_2021
             }
             // Salto de línea
             p = new System.Windows.Documents.Paragraph(new Run("\n"));
-            fd.Blocks.Add(p);
+            todo.Blocks.Add(p);
 
             // Tabla de firmas
             Table tableFirmas = new Table();
-            fd.Blocks.Add(tableFirmas);
+            todo.Blocks.Add(tableFirmas);
             tableFirmas.Background = System.Windows.Media.Brushes.White;
             for (int i = 0; i < 2; i++)
             {
@@ -338,22 +349,45 @@ namespace ProyectoDSI115_G5_2021
             actual = tableFirmas.RowGroups[0].Rows[2];
             actual.FontSize = 14;
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Observaciones:"))));
-            /* // Nombre de empleados
+            //agregando espacio en blanco:
             tableFirmas.RowGroups[0].Rows.Add(new TableRow());
-            actual = tableFirmas.RowGroups[0].Rows[1];
+            actual = tableFirmas.RowGroups[0].Rows[3];
             actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(nombreSolicitante))));
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(autorizador))));
-           // Espacio de firmas
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("\n"))));
+            //agregando espacio en blanco:
             tableFirmas.RowGroups[0].Rows.Add(new TableRow());
-            actual = tableFirmas.RowGroups[0].Rows[2];
-            actual.FontSize = 20;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("________________"))));
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("________________"))));
-            */
-            // Impresión del documento
+            actual = tableFirmas.RowGroups[0].Rows[4];
+            actual.FontSize = 14;
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("\n"))));
+            Console.Write(paginasRestantes.ToString());
+            paginas.Add(todo);
+            if (paginasRestantes == 1)
+            {
+                prueba =MergedFlowDoc(paginas);
+                OrdenarImpresion( prueba);
+                Console.Write("Entró");
+            }
+            Console.Write("Pasó");
+         
+        }
+       
+        
+            public void OrdenarImpresion( FlowDocument doc)
+        {
+          //  FlowDocument document=new FlowDocument();
+           
             MemoryStream s = new System.IO.MemoryStream();
-            string copyString = XamlWriter.Save(fd);
+            //Document docu = new Document();
+            //FlowDocument sourceDocument = (FlowDocument)XamlReader.Load(s);
+            //List<Block> flowDocumentBlocks = new List<Block>(sourceDocument.Blocks);
+
+            //flowDocumentBlocks.Add(document);
+            //foreach (Block aBlock in flowDocumentBlocks)
+           // {
+             //   document.Blocks.Add(aBlock);
+            //}
+
+            string copyString = XamlWriter.Save(doc);
             FlowDocument copy = XamlReader.Parse(copyString) as FlowDocument;
             // Carga de diálogo de impresión y ajuste del documento al tamaño de impresión.
             PrintDialog printDialog = new PrintDialog();
@@ -363,14 +397,24 @@ namespace ProyectoDSI115_G5_2021
             copy.PagePadding = new Thickness(50);
             copy.ColumnGap = 0;
             copy.ColumnWidth = printDialog.PrintableAreaWidth;
-            copy.Name = "Solicitud" + codigoSolicitud;
+            //copy.Name = "Solicitud" + codigoSolicitud;
             if (printDialog.ShowDialog() ?? false)
             {
                 // Llamar a PrintDocument para la ventana de impresión
-                printDialog.PrintDocument(idpSrc.DocumentPaginator, "Impresión de solicitud");
+                printDialog.PrintDocument(idpSrc.DocumentPaginator, "Impresión de Historial");
             }
-        }
 
+        }
+    
+        public static FlowDocument MergedFlowDoc(IEnumerable<FlowDocument> fDocs)
+        {
+            var fDoc = new FlowDocument();
+            foreach (var doc in fDocs)
+            {
+                fDoc.Blocks.AddRange(doc.Blocks.ToList());
+            }
+            return fDoc;
+        }
 
         //Impresion de Recibo
         // AUTOR: Gustavo Ernesto H. Corvera

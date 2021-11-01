@@ -94,8 +94,8 @@ namespace ProyectoDSI115_G5_2021.Historial
         private void BuscarCliente()
         {
             clientes.Clear();
-            // clientes = control.BuscarCliente(textBuscar.Text);
-            //dataClientes.ItemsSource = dt.DefaultView;
+            clientes = control.BuscarCliente(textBuscar.Text);
+            dataClientes.ItemsSource =clientes;
 
         }
     

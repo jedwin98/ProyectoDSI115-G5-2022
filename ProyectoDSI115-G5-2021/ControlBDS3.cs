@@ -131,6 +131,37 @@ namespace ProyectoDSI115_G5_2021
             cn.Close();
             return detalles;
         }
+        public List<GestionClientes.Cliente> BuscarCliente(string nombreCliente)
+        {
+            List<GestionClientes.Cliente> clientes = new List<GestionClientes.Cliente>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comand = new SQLiteCommand("SELECT * from CLIENTE WHERE NOMBRE_CLIENTE LIKE @nombre OR EMPRESA_CLIENTE LIKE @nombre AND ESTADO_CLIENTE='Activo';", cn);
+                comand.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreCliente + "%"));
+                adapter.SelectCommand = comand;
+                SQLiteDataReader dr = comand.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    //Console.WriteLine(Convert.ToString(dr[1]));
+                    clientes.Add(new GestionClientes.Cliente(Convert.ToString(dr[0]), Convert.ToString(dr[1]), Convert.ToString(dr[2]), Convert.ToString(dr[3]), Convert.ToString(dr[4]), Convert.ToString(dr[6])));  //se realiza de esta forma para evitar los datos replicados en la lista            
+                }
+                dr.Close();
+
+
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar cliente " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return clientes;
+
+        }
 
     }
 }
