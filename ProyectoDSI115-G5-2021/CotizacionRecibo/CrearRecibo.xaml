@@ -95,7 +95,7 @@
         <TextBox x:Name="txtTotalRecibo" Height="24" Margin="546,0,22,79" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Grid.Column="3" Grid.Row="1" IsEnabled="False" Background="White" BorderBrush="Black"/>
 
         <Button x:Name="btnCancelar" Content="Cancelar" Margin="0,0,152,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="28" VerticalAlignment="Bottom" Click="BtnCancelar_Click" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Width="120"/>
-        <Button x:Name="btnImprimir" Content="Imprimir" Margin="0,0,22,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="28" VerticalAlignment="Bottom" Click="BtnImprimir_Click" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Width="120"/>
+        <Button x:Name="btnImprimir" Content="Imprimir" Margin="0,0,22,27" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="28" VerticalAlignment="Bottom" Click="BtnImprimir_Click" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" Width="120" IsEnabled="false"/>
 
     </Grid>
 </Window>

@@ -87,75 +87,83 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
         private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
         {
-            txtCliente.Text = "";
             txtNombre.Text = "";
             txtCantidad.Text = "";
             txtPresentacion.Text = "";
             txtPrecio.Text = "";
-            txtCliente.IsEnabled = true;
+            txtCliente.IsEnabled = false;
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (txtCantidad.Text == "")
+                if (txtCliente.Text == "")//Verifica que llene el campo de cliente está vacio
                 {
-                    MessageBox.Show("Debe ingresar un valor a la cantidad", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show("Debe seleccionar un cliente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    if (Convert.ToSingle(txtCantidad.Text) == 0.0)
+                    if (txtCantidad.Text == "")//Verifica si el campo de cantidad está vacia
                     {
-                        MessageBox.Show("Debe ingresar un valor mayor a cero", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show("Debe ingresar un valor a la cantidad", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                     else
                     {
-                        if (Convert.ToSingle(txtCantidad.Text) < 0)
+                        if (Convert.ToSingle(txtCantidad.Text) == 0.0)//Verifica que han ingresado valor CERO en el campo cantidad
                         {
                             MessageBox.Show("Debe ingresar un valor mayor a cero", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                            txtCantidad.Text = "";
                         }
                         else
                         {
-                            if (Convert.ToSingle(txtCantidad.Text) > existenciaSelected)
+                            if (Convert.ToSingle(txtCantidad.Text) < 0)//Verifica que ingresado un valor MENOR a CERO en el campo cantidad
                             {
-                                MessageBox.Show("La cantidad que desea extraer del inventario supera de su existencia", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                MessageBox.Show("Debe ingresar un valor mayor a cero", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                                 txtCantidad.Text = "";
                             }
                             else
                             {
-                                SolicitudRecibo solicitud = new SolicitudRecibo();
-                                DetalleRecibo detalle = new DetalleRecibo();
-                                detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
-                                detalle.precio = Convert.ToSingle(txtPrecio.Text);
+                                if (Convert.ToSingle(txtCantidad.Text) > existenciaSelected)//verifica que la cantidad no exceda de la existencia del inventario
+                                {
+                                    MessageBox.Show("La cantidad que desea extraer del inventario supera de su existencia", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                    txtCantidad.Text = "";
+                                }
+                                else
+                                {
+                                    SolicitudRecibo solicitud = new SolicitudRecibo();
+                                    DetalleRecibo detalle = new DetalleRecibo();
 
-                                GestionMateriales.Material mate = new GestionMateriales.Material();
-                                mate.precio = txtPrecio.Text;
-                                mate.nombre = txtNombre.Text;
-                                mate.unidad = txtPresentacion.Text;
+                                    detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
+                                    detalle.precio = Convert.ToSingle(txtPrecio.Text);
 
-                                detalle.material = mate;
-                                detalle.subtotal = detalle.cantidad * detalle.precio;
+                                    GestionMateriales.Material mate = new GestionMateriales.Material();
 
-                                detalles.Add(detalle);
-                                dataSoli.ItemsSource = null;
-                                dataSoli.ItemsSource = detalles;
+                                    mate.precio = txtPrecio.Text;
+                                    mate.nombre = txtNombre.Text;
+                                    mate.unidad = txtPresentacion.Text;
 
-                                txtCantidad.Text = "";
-                                txtPrecio.Text = "";
-                                txtNombre.Text = "";
-                                txtPresentacion.Text = "";
+                                    detalle.material = mate;
+                                    detalle.subtotal = detalle.cantidad * detalle.precio;
 
-                                txtCliente.IsEnabled = false;
-                                existenciaSelected = 0;
+                                    detalles.Add(detalle);
 
-                                totalTotal = totalTotal + detalle.subtotal;
-                                txtTotalRecibo.Text = "$ " + Convert.ToString(totalTotal);
-                                solicitud.totalRecibo = totalTotal;
-                                MessageBox.Show("total a pagar: "+ solicitud.totalRecibo, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                                    dataSoli.ItemsSource = null;
+                                    dataSoli.ItemsSource = detalles;
+
+                                    //Limpia los campos luego de agregar un insumo
+                                    txtCantidad.Text = "";
+                                    txtPrecio.Text = "";
+                                    txtNombre.Text = "";
+                                    txtPresentacion.Text = "";
+                                    txtCliente.IsEnabled = false;
+                                    btnImprimir.IsEnabled = true;
+
+                                    existenciaSelected = 0;
+
+                                    totalTotal = totalTotal + detalle.subtotal;
+                                    txtTotalRecibo.Text = "$ " + Convert.ToString(totalTotal);
+                                }
                             }
-                            
                         }
                     }
                 }
@@ -194,13 +202,15 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
 
+                    txtCodigoRecibo.Text = GenerarCodigoRecibo();//Genera nuevo codigo del Recibo
+                    txtCliente.Text = "";
                     txtTotalRecibo.Text = "";
                     txtPresentacion.Text = "";
+                    txtCliente.IsEnabled = true;
+                    btnImprimir.IsEnabled = false;
 
                     existenciaSelected = 0;
                     totalTotal = 0;
-
-                    txtCliente.IsEnabled = true;
                 }
             }
         }
@@ -268,14 +278,14 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 txtNombre.Text = "";
                 txtPresentacion.Text = "";
                 txtTotalRecibo.Text = "";
+                txtCliente.IsEnabled = true;
+                btnImprimir.IsEnabled = false;
 
                 totalTotal = 0;
                 existenciaSelected = 0;
-                txtCliente.IsEnabled = true;
 
                 detalles.Clear();
                 dataSoli.ItemsSource = null;
-                dataSoli.ItemsSource = detalles;
             }
             else
             {
