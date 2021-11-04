@@ -175,7 +175,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
                                     dataSoli.ItemsSource = null;
                                     dataSoli.ItemsSource = detalles;
-
+                                    
                                     //Limpia los campos luego de agregar un insumo
                                     txtCantidad.Text = "";
                                     txtPrecio.Text = "";
@@ -215,6 +215,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 else
                 {
                     SolicitudRecibo solicitud = new SolicitudRecibo();
+                    DetalleRecibo detalle = new DetalleRecibo();
+
                     solicitud.fechaSolicitudRecibo = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
                     solicitud.codigo = txtCodigoRecibo.Text;
                     solicitud.nombreCliente = txtCliente.Text;
@@ -224,7 +226,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     dataSoli.ItemsSource = detalles;
 
                     GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
-
+                    
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
 
@@ -264,10 +266,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
             CreadorPDF impresion = new CreadorPDF();
             impresion.PrepararImpresionRecibo(aImprimir, fechaSolicitudRecibo, codigo, nombreCliente, totalRecibo);
-            //MessageBox.Show("Se ha generado el archivo de la solicitud.", "Generación de solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-        
         
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {

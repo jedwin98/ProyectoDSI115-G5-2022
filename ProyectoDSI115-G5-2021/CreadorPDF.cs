@@ -434,6 +434,18 @@ namespace ProyectoDSI115_G5_2021
             {
                 tableDetalles.Columns.Add(new TableColumn());
             }
+            //sección para modificar el tamaño de Longitud de las columnas
+            GridLength anchoNombre = new GridLength(164);
+            GridLength anchoPresentacion = new GridLength(82);
+            GridLength anchoCantidad = new GridLength(50);
+            GridLength anchoPrecio = new GridLength(110);
+            GridLength anchoSubTotal = new GridLength(110);
+            tableDetalles.Columns[0].Width = anchoNombre;
+            tableDetalles.Columns[1].Width = anchoPresentacion;
+            tableDetalles.Columns[2].Width = anchoCantidad;
+            tableDetalles.Columns[3].Width = anchoPrecio;
+            tableDetalles.Columns[4].Width = anchoSubTotal;
+
             tableDetalles.RowGroups.Add(new TableRowGroup());
             // Creación de encabezado
             tableDetalles.RowGroups[0].Rows.Add(new TableRow());
