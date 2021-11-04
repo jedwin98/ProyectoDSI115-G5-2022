@@ -430,12 +430,14 @@ namespace ProyectoDSI115_G5_2021
             tableEmpresa.RowGroups.Add(new TableRowGroup());
             tableEmpresa.RowGroups[0].Rows.Add(new TableRow());
             TableRow emp = tableEmpresa.RowGroups[0].Rows[0];
+
             // Agregando logo de la empresa
             BitmapImage bmp = new BitmapImage(new Uri("/Images/fysi.jpg", UriKind.Relative));
             System.Windows.Controls.Image logo = new System.Windows.Controls.Image { Source = bmp };
             logo.Width = 160;
             logo.Height = 98;
             emp.Cells.Add(new TableCell(new BlockUIContainer(logo)));
+
             // Agregando nombre de la empresa
             System.Windows.Documents.Paragraph p = new System.Windows.Documents.Paragraph(new Run("\nFuego y Seguridad Industrial\n"));
             p.Inlines.Add(new Run("Recibo"));
@@ -446,18 +448,20 @@ namespace ProyectoDSI115_G5_2021
             Table tableCabecera = new Table();
             fd.Blocks.Add(tableCabecera);
             tableCabecera.Background = System.Windows.Media.Brushes.White;
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 tableCabecera.Columns.Add(new TableColumn());
             }
+
             // Información de orden
             tableCabecera.RowGroups.Add(new TableRowGroup());
             tableCabecera.RowGroups[0].Rows.Add(new TableRow());
             TableRow actual = tableCabecera.RowGroups[0].Rows[0];
             actual.FontSize = 14;
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Fecha: " + fechaSolicitudRecibo))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("No. " + codigo))));
-            // Información de cliente y razón social
+            // Información de cliente
             tableCabecera.RowGroups[0].Rows.Add(new TableRow());
             actual = tableCabecera.RowGroups[0].Rows[1];
             actual.FontSize = 14;
@@ -474,6 +478,18 @@ namespace ProyectoDSI115_G5_2021
             {
                 tableDetalles.Columns.Add(new TableColumn());
             }
+            //sección para modificar el tamaño de Longitud de las columnas
+            GridLength anchoNombre = new GridLength(164);
+            GridLength anchoPresentacion = new GridLength(82);
+            GridLength anchoCantidad = new GridLength(50);
+            GridLength anchoPrecio = new GridLength(110);
+            GridLength anchoSubTotal = new GridLength(110);
+            tableDetalles.Columns[0].Width = anchoNombre;
+            tableDetalles.Columns[1].Width = anchoPresentacion;
+            tableDetalles.Columns[2].Width = anchoCantidad;
+            tableDetalles.Columns[3].Width = anchoPrecio;
+            tableDetalles.Columns[4].Width = anchoSubTotal;
+
             tableDetalles.RowGroups.Add(new TableRowGroup());
             // Creación de encabezado
             tableDetalles.RowGroups[0].Rows.Add(new TableRow());
@@ -500,15 +516,30 @@ namespace ProyectoDSI115_G5_2021
             p = new System.Windows.Documents.Paragraph(new Run("\n"));
             fd.Blocks.Add(p);
 
-            // Tabla de firmas
-            Table tableFirmas = new Table();
-            fd.Blocks.Add(tableFirmas);
-            tableFirmas.Background = System.Windows.Media.Brushes.White;
-            for (int i = 0; i < 2; i++)
+            // Tabla del total
+            Table tablaTotal = new Table();
+            fd.Blocks.Add(tablaTotal);
+            tablaTotal.Background = System.Windows.Media.Brushes.White;
+            for (int i = 0; i < 5; i++)
             {
-                tableFirmas.Columns.Add(new TableColumn());
+                tablaTotal.Columns.Add(new TableColumn());
             }
-            tableFirmas.RowGroups.Add(new TableRowGroup());
+            tablaTotal.RowGroups.Add(new TableRowGroup());
+            // Cabecera
+            tablaTotal.RowGroups[0].Rows.Add(new TableRow());
+            actual = tablaTotal.RowGroups[0].Rows[0];
+            actual.FontSize = 14;
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Total: "))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("" + totalRecibo))));
+            //agregando espacio en blanco:
+            tablaTotal.RowGroups[0].Rows.Add(new TableRow());
+            actual = tablaTotal.RowGroups[0].Rows[1];
+            actual.FontSize = 14;
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("\n"))));
+            
 
             // Impresión del documento
             MemoryStream s = new System.IO.MemoryStream();
@@ -526,7 +557,7 @@ namespace ProyectoDSI115_G5_2021
             if (printDialog.ShowDialog() ?? false)
             {
                 // Llamar a PrintDocument para la ventana de impresión
-                printDialog.PrintDocument(idpSrc.DocumentPaginator, "Impresión de solicitud");
+                printDialog.PrintDocument(idpSrc.DocumentPaginator, "Impresión de Recibo/Factura");
             }
         }
     }
