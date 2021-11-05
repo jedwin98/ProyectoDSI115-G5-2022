@@ -29,7 +29,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         public SolicitudRecibo(string codigo, string fechaSolicitudRecibo, string nombreCliente, float totalRecibo, List<DetalleRecibo> detalleSolicitudRecibo)
         {
             this.codigo = codigo;
-            //this.solicitante = solicitante;
             this.fechaSolicitudRecibo = fechaSolicitudRecibo;
             this.nombreCliente = nombreCliente;
             this.totalRecibo = totalRecibo;

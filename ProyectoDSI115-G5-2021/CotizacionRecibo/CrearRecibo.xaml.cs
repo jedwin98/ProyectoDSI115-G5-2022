@@ -95,6 +95,19 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             string min = fecha.Minute.ToString();
             string seg = fecha.Second.ToString();
 
+            return hora + min + seg;
+        }
+
+        public string GenerarCodigo()
+        {
+            DateTime fecha = DateTime.Now;
+            string anio = fecha.Year.ToString();
+            string mes = fecha.Month.ToString();
+            string dia = fecha.Day.ToString();
+            string hora = fecha.Hour.ToString();
+            string min = fecha.Minute.ToString();
+            string seg = fecha.Second.ToString();
+
             return anio + mes + dia + hora + min + seg;
         }
 
@@ -164,6 +177,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
                                     GestionMateriales.Material mate = new GestionMateriales.Material();
 
+                                    detalle.codigoRecibo = txtCodigoRecibo.Text;
+                                    detalle.codigo = GenerarCodigo();//Codigo generado cada vez que de en el botón Agregar (Siempre será uno nuevo)
+
                                     mate.precio = txtPrecio.Text;
                                     mate.nombre = txtNombre.Text;
                                     mate.unidad = txtPresentacion.Text;
@@ -226,7 +242,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     dataSoli.ItemsSource = detalles;
 
                     GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
-                    
+                    control.AgregarRecibo(solicitud);
+
+
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
 
@@ -236,6 +254,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     txtPresentacion.Text = "";
                     txtCliente.IsEnabled = true;
                     btnImprimir.IsEnabled = false;
+                    
 
                     existenciaSelected = 0;
                     totalTotal = 0;
