@@ -183,5 +183,60 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             string coti = "C";
             return coti + hora + min + seg;
         }
+
+        private void BtnImprimirCot_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtCliente.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un cliente a la cotización", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                if (txtCodCotizacion.Text == "")
+                {
+                    MessageBox.Show("Debe haber un código de cotización", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    string fecha = labelFecha.Content.ToString();
+                    string codigo = txtCodCotizacion.Text;
+                    string cliente = txtCliente.Text;
+                    float total = totalCotizado;
+
+                    GenerarImpresion(fecha, codigo, cliente, total);
+                    detalles.Clear();
+                    dataCotizacion.ItemsSource = null;
+
+                    txtCodCotizacion.Text = GenerarCodigoCotizacion();
+                    txtCliente.Text = "";
+                    txtTotalCotizacion.Text = "";
+
+                    totalCotizado = 0;
+                }
+            }
+        }
+
+        private void GenerarImpresion(string fechaCot, string codigoCot, string clienteCot, float totalCot)
+        {
+            //Adecuar cabeceras de tablas
+            DataTable aImprimir = new DataTable();
+            aImprimir.Columns.Add("Cantidad");
+            aImprimir.Columns.Add("Concepto");
+            aImprimir.Columns.Add("Precio Unitario");
+            aImprimir.Columns.Add("Subtotal");
+            string[] descripcion = new string[4];
+            for (int i=0; i < detalles.Count(); i++)
+            {
+                descripcion[0] = detalles[i].cantidad.ToString();
+                descripcion[1] = detalles[i].concepto;
+                descripcion[2] = detalles[i].precio.ToString();
+                descripcion[3] = detalles[i].subtotal.ToString();
+
+                //Agregando detalle a la tabla de impresión
+                aImprimir.Rows.Add(new Object[] { descripcion[0], descripcion[1], descripcion[2], descripcion[3] });
+            }
+            CreadorPDF impresion = new CreadorPDF();
+            impresion.PrepararImpresionCotizacion(aImprimir, fechaCot, codigoCot, clienteCot, totalCot);
+        }
     }
 }
