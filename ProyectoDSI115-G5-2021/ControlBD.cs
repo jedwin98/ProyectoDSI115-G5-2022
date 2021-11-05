@@ -26,7 +26,7 @@ namespace ProyectoDSI115_G5_2021
         {
             //cn = new SQLiteConnection(@"Data Source=Z:\FYSIEX.db;Version=3;Compress=True;");     // CONEXION EN UNIDAD DE RED
             //cn = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
-            cn = new SQLiteConnection("data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
+            cn = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
 
         }
 
@@ -1327,26 +1327,28 @@ namespace ProyectoDSI115_G5_2021
             for (int i = 0; i < soliRecibo.detalles.Count(); i++)
             {
                 detalle = soliRecibo.detalles[i];
+
+                Console.WriteLine(detalle.codigo);
+                Console.WriteLine(detalle.codigoRecibo);
+                Console.WriteLine(detalle.material.nombre);
+                Console.WriteLine(detalle.material.cantidad);
+                Console.WriteLine(detalle.material.precio);
+                Console.WriteLine(detalle.subtotal);
+
+
                 try// insertando detalles
                 {
 
                     //  SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT C.CODCLIENTE, C.NOMBRECLIENTE, C.APELLIDOCLIENTE, C.EMPRESACLIENTE, T.NOMBRESERVICIO,T.CODSERVICIO from CLIENTE as C INNER JOIN TIPOSERVICIO AS T WHERE C.CODSERVICIO = T.CODSERVICIO", cn);
-                    SQLiteCommand comando = new SQLiteCommand("INSERT INTO DETALLE_RECIBO " +
-                        "(COD_DETALLERECIBO," +
-                        "COD_RECIBO," +
-                        "NOMBRE_DETALLERECIBO," +
-                        "CANTIDAD_DETALLERECIBO," +
-                        "PRECIO_UNITARIO," +
-                        "SUBTOTAL_DETALLE) " +
-                        "VALUES (@idDetalleR,@idRecibo,@nomMR,@cantR,@preMR,@subTR)", cn);
+                    SQLiteCommand comandoR = new SQLiteCommand("INSERT INTO DETALLE_RECIBO (COD_DETALLERECIBO,COD_RECIBO,NOMBRE_DETALLERECIBO,CANTIDAD_DETALLERECIBO,PRECIO_UNITARIO,SUBTOTAL_DETALLE) VALUES (@idDetalleR,@idRecibo,@nomMR,@cantR,@preMR,@subTR)", cn);
 
-                    comando.Parameters.Add(new SQLiteParameter("@idDetalleR", detalle.codigo));
-                    comando.Parameters.Add(new SQLiteParameter("@idRecibo", detalle.codigoRecibo));
-                    comando.Parameters.Add(new SQLiteParameter("@nomMR", detalle.nombre));
-                    comando.Parameters.Add(new SQLiteParameter("@cantR", detalle.cantidad));
-                    comando.Parameters.Add(new SQLiteParameter("@preMR", detalle.precio));
-                    comando.Parameters.Add(new SQLiteParameter("@subTR", detalle.subtotal));
-                    comando.ExecuteNonQuery();
+                    comandoR.Parameters.Add(new SQLiteParameter("@idDetalleR", detalle.codigo));//Codigo de recibo con el formato HH-MM-SS
+                    comandoR.Parameters.Add(new SQLiteParameter("@idRecibo", detalle.codigoRecibo));//Codigo de recibo con el formato YY-MM-DD-HH-MM-SS
+                    comandoR.Parameters.Add(new SQLiteParameter("@nomMR", detalle.material.nombre));
+                    comandoR.Parameters.Add(new SQLiteParameter("@cantR", detalle.cantidad));
+                    comandoR.Parameters.Add(new SQLiteParameter("@preMR", detalle.material.precio));
+                    comandoR.Parameters.Add(new SQLiteParameter("@subTR", detalle.subtotal));
+                    comandoR.ExecuteNonQuery();
                 }
                 catch (SQLiteException ex)
                 {
