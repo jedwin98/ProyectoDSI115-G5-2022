@@ -1562,6 +1562,56 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+
+        //************************************************* INICIA LISTADO DE RECIBOS **************************************************************************
+
+        public DataTable consultarRecibo()
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT COD_RECIBO, FECHA_RECIBO, CLIENTE_RECIBO, TOTAL_RECIBO FROM RECIBO", cn);
+                da.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Recibos " + ex.Message.ToString());
+            }
+            cn.Close();
+            return dt;
+        }
+
+        public DataTable consultarDetalleRecibo(string codigo)
+        {
+            try
+            {
+                cn.Open();
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter("SELECT COD_DETALLERECIBO, NOMBRE_DETALLERECIBO, CANTIDAD_DETALLERECIBO, PRECIO_UNITARIO, SUBTOTAL_DETALLE FROM DETALLE_RECIBO WHERE COD_RECIBO ="+codigo, cn);
+                adapter.Fill(dt);
+            }
+            
+       /*
+            try
+            {
+                    
+
+                    SQLiteCommand comando = new SQLiteCommand("SELECT COD_DETALLERECIBO, NOMBRE_DETALLERECIBO, CANTIDAD_DETALLERECIBO, PRECIO_UNITARIO, SUBTOTAL_DETALLE FROM DETALLE_RECIBO WHERE COD_RECIBO =@cod ", cn);
+                    comando.Parameters.Add(new SQLiteParameter("@cod", codigo));
+                    adapter.SelectCommand = comando;
+                    adapter.Fill(dt);
+
+            }*/
+            catch(SQLiteException ex)
+            {
+
+                MessageBox.Show("Ha ocurrido un error al cargar la tabla de Detalle de Recibo " + ex.Message.ToString());
+            }
+            cn.Close();
+            return dt;
+        }
+
+        //************************************************* FIN DE LISTADO DE RECIBOS **************************************************************************
+
         /*
 
                 public List<GestionClientes.TipoServicio> consultarTipoServicio()

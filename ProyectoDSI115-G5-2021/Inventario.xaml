@@ -5,29 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
-        Title="FYSIEX - Inventario" Height="566" Width="900" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Inventario" Height="805.999" Width="900" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,-8,1" RenderTransformOrigin="0.612,0.521">
         <Grid.RowDefinitions>
             <RowDefinition Height="55*"/>
             <RowDefinition Height="514*"/>
         </Grid.RowDefinitions>
-        <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Margin="0,0,8,7"/>
+        <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Margin="0,0,8,21"/>
         <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="19,6,0,10" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Width="591"/>
-        <Rectangle  Fill="#FFF1EBEC" Margin="18,34,0,0" Stroke="Black" HorizontalAlignment="Left" Width="209" Height="365" VerticalAlignment="Top" Grid.Row="1"/>
-        <Label  Content="Gestiones" HorizontalAlignment="Left" Margin="70,47,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Height="35" Width="92" Grid.Row="1"/>
-        <Button x:Name="btnVolver" Content="Volver" Margin="19,0,0,21" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" 
-                HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click" Grid.Row="1"/>
-        <Button x:Name="btnMateriales" Margin="43,87,0,0" VerticalAlignment="Top" Height="126" 
-                Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnMateriales_Click" HorizontalAlignment="Left" Width="162" Grid.Row="1">
-            <StackPanel Height="120" Width="147">
-                <Image Height="92" Source="Images/materiales.png"/>
-                <Label Content="Insumos y Materiales" FontSize="14" Height="30" />
+        <Rectangle  Fill="#FFF1EBEC" Margin="18,34,0,0" Stroke="Black" HorizontalAlignment="Left" Width="209" Height="656" VerticalAlignment="Top" Grid.Row="1"/>
+        <Label  Content="ACCIONES" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" Height="35" Width="100" Grid.Row="1"/>
+        <Button x:Name="btnVolver" Margin="56,573,0,0" Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" 
+                HorizontalAlignment="Left" Width="149" Height="111" VerticalAlignment="Top" Click="BtnVolver_Click" Grid.Row="1" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="Images/regreso.png" Stretch="Fill" Height="75" Width="94"/>
+                <Label Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button x:Name="btnProductos"  Height="126" Background="#FFF1EBEC" BorderBrush="Transparent"  Click="BtnProductos_Click" HorizontalAlignment="Left" Width="162" Margin="43,255,0,0" VerticalAlignment="Top" Grid.Row="1">
+        <Button x:Name="btnMateriales" Margin="56,48,0,0" VerticalAlignment="Top" Height="127" 
+                Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnMateriales_Click" HorizontalAlignment="Left" Width="149" Grid.Row="1">
+            <StackPanel Height="120" Width="147">
+                <Image Height="92" Source="Images/materiales.png"/>
+                <Label Content="Gestionar Materiales" FontSize="14" Height="30" FontFamily="Segoe UI Emoji"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnProductos"  Height="126" Background="#FFF1EBEC" BorderBrush="Transparent"  Click="BtnProductos_Click" HorizontalAlignment="Left" Width="149" Margin="56,180,0,0" VerticalAlignment="Top" Grid.Row="1">
             <StackPanel Height="105" Width="154">
                 <Image Height="82" Source="Images/productos.png" Margin="25,0,25,0"/>
-                <Label Content="Productos" FontFamily="Comic Sans MS" FontSize="14" Height="30" Margin="38,0,37,0"/>
+                <Label Content="Gestionar Productos"  FontSize="14" Height="30" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>
         <Rectangle Margin="248,34,31,10" Stroke="Black" RenderTransformOrigin="-0.271,0.283" Grid.Row="1"/>
@@ -42,9 +47,19 @@
             </Label.RenderTransform>
         </Label>
         <Label x:Name="label1" Content="Menú del Inventario..." Margin="0,0,31,0" FontFamily="Comic Sans MS" FontSize="18" FontStyle="Italic" HorizontalAlignment="Right" Width="196" Height="35" VerticalAlignment="Top" Grid.Row="1"/>
-        <Button x:Name="btnReporteInv" Content="Generar Reporte" Margin="0,0,51,21" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="133" Click="BtnReporteInv_Click" Grid.Row="1"/>
+        <Button x:Name="btnReporteInv" Margin="56,442,0,0" FontFamily="Comic Sans MS" FontSize="16" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Left" Width="149" Click="BtnReporteInv_Click" Grid.Row="1" BorderBrush="{x:Null}" Height="126" VerticalAlignment="Top">
+            <StackPanel>
+                <Image Source="Images/pdf.png" Stretch="Fill" Height="84" Margin="10,0" Width="88"/>
+                <Label Content="Generar Reporte" FontSize="14" HorizontalContentAlignment="Center" FontFamily="Segoe UI Emoji"/>
+            </StackPanel>
+        </Button>
         <Button x:Name="btnBusquedaInv" Content="Buscar" Margin="0,48,51,0" VerticalAlignment="Top" Height="30" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="85" Click="BtnBusquedaInv_Click" Grid.Row="1"/>
-        <Button x:Name="btnSolicitar" Content="Solicitudes" Margin="0,0,203,21" Foreground="#FFF7F7F7" Background="#FFC91029" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Right" Width="120" Height="34" VerticalAlignment="Bottom" Click="BtnSolicitar_Click" Grid.Row="1"/>
+        <Button x:Name="btnSolicitar"  Margin="56,311,0,0" Foreground="{x:Null}" Background="{x:Null}" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Left" Width="149" Click="BtnSolicitar_Click" Grid.Row="1" BorderBrush="{x:Null}" Height="126" VerticalAlignment="Top">
+            <StackPanel>
+                <Image Source="Images/solicitud.png" Stretch="Fill" Height="94" Width="110"/>
+                <Label Content="Solicitudes" HorizontalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Emoji"/>
+            </StackPanel>
+        </Button>
         <TextBox x:Name="textBusquedaInve" Height="30" Margin="268,48,150,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"/>
         <DataGrid x:Name="dataInventario" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="268,98,51,83" AutoGenerateColumns="False" Grid.Row="1" SelectionChanged="DataInventario_SelectionChanged" FontSize="14">
             <DataGrid.Columns>

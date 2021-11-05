@@ -1,0 +1,29 @@
+﻿<Window x:Class="ProyectoDSI115_G5_2021.CotizacionRecibo.DetalleRecibos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.CotizacionRecibo"
+        mc:Ignorable="d"
+        Title="DetalleRecibos" Height="462" Width="833" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,-6,0,0" Height="63" VerticalAlignment="Top" />
+        <Label  Content="Detalle del Recibo Seleccionado" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="36" Width="359"/>
+        <DataGrid x:Name="dataRecibos" Margin="133,84,-21,0" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="DataRecibos_SelectionChanged" HorizontalAlignment="Left" Width="680" Height="325" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding COD_DETALLERECIBO}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="110"/>
+                <DataGridTextColumn Binding="{Binding NOMBRE_DETALLERECIBO}" ClipboardContentBinding="{x:Null}" Header="Nombre de Articulo" MinWidth="250"/>
+                <DataGridTextColumn Binding="{Binding CANTIDAD_DETALLERECIBO}" ClipboardContentBinding="{x:Null}" Header="Cantidad" MinWidth="110"/>
+                <DataGridTextColumn Binding="{Binding PRECIO_UNITARIO}" ClipboardContentBinding="{x:Null}" Header="Precio Unitario" MinWidth="110"/>
+                <DataGridTextColumn Binding="{Binding SUBTOTAL_DETALLE}" ClipboardContentBinding="{x:Null}" Header="SubTotal" MinWidth="110"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="btnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}" >
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="73" Width="83"/>
+                <Label Content="Volver" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Window>

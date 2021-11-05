@@ -19,6 +19,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
     {
         private GestionUsuarios.Usuario sesion;
         internal GestionUsuarios.Usuario Sesion { get => sesion; set => sesion = value; }
+        ListadoRecibo lista;
+        Nullable<bool> listam = false;
         ControlBD control;
         DataTable dt = new DataTable();
         DataTable dataTable = new DataTable();
@@ -311,6 +313,17 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             {
 
             }
+        }
+
+        private void btnListaRecibo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            lista = new ListadoRecibo()
+            {
+                WindowState = WindowState.Normal
+            };
+            listam = lista.ShowDialog();
+
         }
 
         private void dgMateriales_MouseDoubleClick(object sender, MouseButtonEventArgs e)

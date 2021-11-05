@@ -28,7 +28,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,124,22,112" >
+        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,124,22,112" SelectionChanged="DataSolicitudes_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding CODIGO_SOLI}"/>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Solicitud Número"  Binding="{Binding COD_REQ}"/>

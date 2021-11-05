@@ -5,19 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionEmpleados"
         mc:Ignorable="d"
-        Title="GestionEmpleados" Height="478" Width="800">
-    <Grid >
+        Title="Gestion de Empleados" Height="576.399" Width="800">
+    <Grid Margin="0,0,0,7" >
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,1,0,0" Height="61" VerticalAlignment="Top" />
 
         <Label  Content="Administración de Empleados" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Label  Content="Gestión de Empleados" HorizontalAlignment="Left" Margin="20,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
-        <Label  Content="Elige la opción que deseas realizar" Margin="0,67,23,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="297"/>
+        <Label  Content="ACCIONES" HorizontalAlignment="Left" Margin="69,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E"/>
+        <Label  Content="Elige la opción que deseas realizar" Margin="0,67,23,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="297"/>
         <Rectangle Margin="234,102,23,10" Stroke="Black"/>
 
 
-        <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,34,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click"/>
-        <TextBox x:Name="textBuscar"  Text="" Margin="250,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
-        <DataGrid  x:Name="dataEmpleados" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,166,36,67" >
+        <Button  x:Name="btnBuscar"  Margin="0,114,36,0"  Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" Width="52" Height="40" VerticalAlignment="Top" Click="BtnBuscar_Click">
+            <StackPanel>
+                <Image Stretch="Fill" Source="/FYSIEX;component/Images/lupa.png" Height="32" Width="34"/>
+            </StackPanel>
+        </Button>
+        <TextBox x:Name="textBuscar"  Text="" Margin="250,120,93,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
+        <DataGrid  x:Name="dataEmpleados" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,166,36,24" >
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_EMPLEADO}"/>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="codArea"  Binding="{Binding COD_AREA}"/>
@@ -32,30 +36,40 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnGenerar"  Content="Generar Reporte" Margin="0,0,34,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="138" Height="30" VerticalAlignment="Bottom" Click="BtnGenerar_Click"/>
 
-
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="329" VerticalAlignment="Top"/>
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="420" VerticalAlignment="Top"/>
         <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,112,0,0" VerticalAlignment="Top" Width="85" Height="90" Click="BtnAgregar_Click">
             <StackPanel Height="80" Width="83">
                 <Image Source="/Images/agregar.png" Height="54" Width="58" Margin="12,0,13,0"/>
-                <Label Content="Agregar" FontFamily="Comic Sans MS" Height="28" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,10,0" />
+                <Label Content="Agregar" FontFamily="Segoe UI Emoji" Height="28" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,10,0" />
             </StackPanel>
         </Button>
         <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="69,202,0,0" VerticalAlignment="Top" Width="85" Height="81" Click="BtnBorrar_Click">
             <StackPanel Height="81" Width="81">
                 <Image Source="/Images/basura.png" Height="54" Width="58"/>
-                <Label Content="Eliminar" FontFamily="Comic Sans MS"  Height="24" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,13,0" />
+                <Label Content="Eliminar" FontFamily="Segoe UI Emoji"  Height="24" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,13,0" />
             </StackPanel>
         </Button>
         <Button  x:Name="btnEditar" Background="#FFF1EBEC" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="69,288,0,0" VerticalAlignment="Top" Width="85" Height="76" Click="BtnEditar_Click">
             <StackPanel>
                 <Image Source="/Images/editar.png" Height="54" Width="58"/>
-                <Label Content="Actualizar" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Bottom"/>
+                <Label Content="Actualizar" FontFamily="Segoe UI Emoji" FontSize="12" VerticalAlignment="Bottom"/>
             </StackPanel>
         </Button>
         <Label  Content="Consultar Empleados" HorizontalAlignment="Left" Margin="250,89,0,9" Background="White" Height="26" VerticalAlignment="Top"/>
-        <Button x:Name="btnVolver" Content="Volver" Margin="69,0,0,24" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
+        <Button x:Name="btnVolver" Margin="69,449,0,0" Background="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Left" Width="85" Height="74" VerticalAlignment="Top" Click="BtnVolver_Click" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="50" Width="61"/>
+                <Label Content="Volver" HorizontalContentAlignment="Center" FontFamily="Segoe UI Emoji"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnGenerar" Margin="56,369,0,0" Background="{x:Null}"  Foreground="{x:Null}" Height="75" VerticalAlignment="Top" Click="BtnGenerar_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="106">
+            <StackPanel>
+                <Image Stretch="Fill" Source="/FYSIEX;component/Images/pdf.png" Height="47" Width="58"/>
+                <Label Content="Generar Reporte" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
 
     </Grid>
 </Window>

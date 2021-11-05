@@ -149,8 +149,11 @@
     </Compile>
     <Compile Include="CotizacionRecibo\DetalleCotizacion.cs" />
     <Compile Include="CotizacionRecibo\DetalleRecibo.cs" />
-    <Compile Include="CotizacionRecibo\Recibo.xaml.cs">
-      <DependentUpon>Recibo.xaml</DependentUpon>
+    <Compile Include="CotizacionRecibo\DetalleRecibos.xaml.cs">
+      <DependentUpon>DetalleRecibos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CotizacionRecibo\ListadoRecibo.xaml.cs">
+      <DependentUpon>ListadoRecibo.xaml</DependentUpon>
     </Compile>
     <Compile Include="CotizacionRecibo\SolicitudRecibo.cs" />
     <Compile Include="GestionMateriales\ActualizarMaterial.xaml.cs">
@@ -216,7 +219,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CotizacionRecibo\Recibo.xaml">
+    <Page Include="CotizacionRecibo\DetalleRecibos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CotizacionRecibo\ListadoRecibo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -463,6 +470,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\bell.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\impresora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lupa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\solicitud.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

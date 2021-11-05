@@ -102,6 +102,10 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             dataDetalles.ItemsSource = detalles.DefaultView;
            // CargarTabla(empleado);
         }
-       
+
+        private void DataSolicitudes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

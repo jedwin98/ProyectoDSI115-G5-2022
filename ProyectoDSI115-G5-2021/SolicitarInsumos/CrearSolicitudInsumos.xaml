@@ -31,7 +31,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid  x:Name="dataMateriales" ItemsSource="{Binding}" MouseDoubleClick="dgMateriales_MouseDoubleClick"  AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,183,40,98" >
+        <DataGrid  x:Name="dataMateriales" ItemsSource="{Binding}" MouseDoubleClick="dgMateriales_MouseDoubleClick"  AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,183,40,98" SelectionChanged="DataMateriales_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre Material"  Binding="{Binding NOMBRE_MATERIAL}"/>

@@ -252,6 +252,10 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
                 }
             }
         }
-        
+
+        private void DataMateriales_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

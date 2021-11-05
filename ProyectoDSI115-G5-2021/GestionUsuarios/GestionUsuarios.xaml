@@ -16,8 +16,12 @@
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Administración de Usuarios" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="39"/>
         <Rectangle Fill="#FFFFFFFF" Margin="209,100,10,10" Stroke="Black"/>
-        <Button x:Name="btnBuscar" Content="Buscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Click="BtnBuscar_Click"/>
-        <TextBox x:Name="cuadroBuscar" TextWrapping="Wrap" Text="" Margin="224,120,171,0" Height="32" VerticalAlignment="Top" MaxLength="50" BorderThickness="1" KeyDown="CuadroBuscar_KeyDown"/>
+        <Button x:Name="btnBuscar" Margin="0,120,23,0" VerticalAlignment="Top"  Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" Height="32" HorizontalAlignment="Right" Width="88" BorderThickness="0" Click="BtnBuscar_Click" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/lupa.png" Stretch="Fill" Height="27" Width="66"/>
+            </StackPanel>
+        </Button>
+        <TextBox x:Name="cuadroBuscar" TextWrapping="Wrap" Text="" Margin="224,120,116,0" Height="32" VerticalAlignment="Top" MaxLength="50" BorderThickness="1" KeyDown="CuadroBuscar_KeyDown"/>
         <DataGrid x:Name="dataUsuarios" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="224,158,23,147" BorderThickness="0" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="80" Header="Usuario" Binding="{Binding COD_USUARIO}" IsReadOnly="True"/>
@@ -29,7 +33,7 @@
                 <DataGridTextColumn MinWidth="200" Header="Apellido Empleado" Binding="{Binding APE_EMPLEADO}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="168" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="319" Margin="19,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
         <Button Background="#FFF1EBEC" x:Name="btnAgregar"  HorizontalAlignment="Left" Margin="52,121,0,0" VerticalAlignment="Top" Width="101" Height="65" Click="BtnAgregar_Click" BorderThickness="0">
             <StackPanel>
                 <Image Name="imgAgregar" Source="/Images/agregar.png" Height="40" Width="54"></Image>
@@ -43,7 +47,12 @@
             </StackPanel>
         </Button>
         <Label Content="Consultar Usuarios" HorizontalAlignment="Left" Margin="250,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,1.038" Height="26" BorderThickness="0" Background="#FFFFFFFF"/>
-        <Button Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="60,0,0,17" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
+        <Button Name="btnVolver" HorizontalAlignment="Left" Margin="52,269,0,0" Width="101" Background="{x:Null}" FontSize="16" Foreground="{x:Null}" Height="65" VerticalAlignment="Top" BorderThickness="0" Click="BtnVolver_Click" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/regreso.png" Stretch="Fill" Height="38" Width="50"/>
+                <Label Content="Volver" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
         <Label Name="labelUsuario" Content="Usuario" HorizontalAlignment="Left" Margin="224,0,0,116" Width="50" Height="26" VerticalAlignment="Bottom"/>
         <Label Name="labelContrasena" Content="Contraseña" Margin="533,0,0,116" HorizontalAlignment="Left" Width="70" Height="26" VerticalAlignment="Bottom"/>
         <Label Name="labelEmail" Content="Correo electrónico" HorizontalAlignment="Left" Margin="224,0,0,56" Height="26" VerticalAlignment="Bottom" Width="108"/>
@@ -61,9 +70,9 @@
         <ComboBox Name="comboEmpleado" Margin="337,0,171,26" IsEnabled="False" SelectionChanged="ComboEmpleado_SelectionChanged"
                   Height="26" VerticalAlignment="Bottom" DropDownClosed="ComboEmpleado_DropDownClosed"
                   ItemsSource="{Binding}" DisplayMemberPath="nombreEmpleado" SelectedValuePath="codEmpleado"/>
-        <Label Content="Gestion de Usuarios" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="185" FontFamily="Comic Sans MS"/>
+        <Label Content="ACCIONES" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FF0E0E0E" Height="34" Width="185" FontFamily="Segoe UI Emoji" HorizontalContentAlignment="Center"/>
         <Label Name="labelContrasenaConfirmar" Content="Confirme contraseña" Margin="483,0,0,86" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="120"/>
-        <Button Name="btnDesbloquear" Content="Desbloquear" HorizontalAlignment="Left" Margin="52,297,0,0" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" VerticalAlignment="Top" Width="101" Height="26" Click="BtnDesbloquear_Click"/>
-        <Button Name="btnCambiarCorreo" Content="Cambiar Correo" HorizontalAlignment="Left" Margin="52,337,0,0" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" VerticalAlignment="Top" Width="101" Height="26" Click="BtnCambiarCorreo_Click"/>
+        <Button Name="btnDesbloquear" Content="Desbloquear" HorizontalAlignment="Left" Margin="52,394,0,0" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" VerticalAlignment="Top" Width="101" Height="26" Click="BtnDesbloquear_Click"/>
+        <Button Name="btnCambiarCorreo" Content="Cambiar Correo" HorizontalAlignment="Left" Margin="52,356,0,0" FontSize="14" Background="#FFC91029" Foreground="#FFF7F7F7" VerticalAlignment="Top" Width="101" Height="26" Click="BtnCambiarCorreo_Click"/>
     </Grid>
 </Window>

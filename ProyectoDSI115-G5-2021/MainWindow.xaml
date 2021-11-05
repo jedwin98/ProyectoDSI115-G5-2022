@@ -70,7 +70,7 @@
         </Button>
         <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="2" Margin="98,29,90,40" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4" Grid.ColumnSpan="2">
             <StackPanel>
-                <Image Source="/Images/empleados.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
+                <Image Source="Images/solicitud.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Insumos" Height="30" VerticalAlignment="Bottom" Width="64" FontSize="14"/>
             </StackPanel>
         </Button>
