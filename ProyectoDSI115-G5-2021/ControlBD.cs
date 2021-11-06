@@ -618,7 +618,7 @@ namespace ProyectoDSI115_G5_2021
                 SQLiteDataReader dr = remitente.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena AND correo_usuario = @email WHERE cod_usuario='U0000'", cn);
+                    SQLiteCommand cambio = new SQLiteCommand("UPDATE usuario SET contrasena_usuario = @contrasena, correo_usuario = @email WHERE cod_usuario='U0000'", cn);
                     cambio.Parameters.Add(new SQLiteParameter("@contrasena", contrasena));
                     cambio.Parameters.Add(new SQLiteParameter("@email", email));
                     cambio.ExecuteNonQuery();

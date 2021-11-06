@@ -132,7 +132,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Solo se permiten numeros en el campo cantidad", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 txtCantidad.Text = "";

@@ -106,21 +106,22 @@ namespace ProyectoDSI115_G5_2021
                 {
                     MessageBox.Show("Ingrese un correo electrónico registrado e intente de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else
+                Random generador = new Random();
+                numeroRandom = generador.Next(1, 999999);
+                string destinatario = control.ObtenerNombre(aRecuperar),
+                    correoEnv = AgenteEmail.GenerarMail(destinatario, numeroRandom),
+                    asunto = "FYSIEX - Código de Seguridad";
+                // Si el correo se envía exitosamente
+                if (AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador, destinatario, asunto))
                 {
-                    // Cambio de visibilidad de los objetos en la ventana.
                     cuadroEmail.SetCurrentValue(IsEnabledProperty, false);
-                    Random generador = new Random();
-                    numeroRandom = generador.Next(1, 999999);
                     control.Bloquear(aRecuperar, "B");
-                    string correoEnv = AgenteEmail.GenerarMail(control.ObtenerNombre(aRecuperar), numeroRandom),
-                        asunto = "FYSIEX - Código de Seguridad";
-                    AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador, asunto);
-                    labelEmail.Margin = new Thickness(161, 300, 0, 0);
-                    cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
-                    labelContrasena.Margin = new Thickness(145, 330, 0, 0);
-                    labelContrasena.Content = "Código de seguridad";
-                    cuadroContrasena.Margin = new Thickness(310, 330, 0, 0);
+                    // Cambio de visibilidad de los objetos en la ventana.
+                    //labelEmail.Margin = new Thickness(161, 300, 0, 0);
+                    //cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
+                    labelContrasena.Margin = new Thickness(343, 431, 0, 0);
+                    labelContrasena.Content = "Código de seguridad:";
+                    //cuadroContrasena.Margin = new Thickness(310, 330, 0, 0);
                     botonInicioSesion.Visibility = Visibility.Hidden;
                     botonOlvide.Visibility = Visibility.Hidden;
                     labelNuevaContrasena.Visibility = Visibility.Visible;
@@ -131,6 +132,8 @@ namespace ProyectoDSI115_G5_2021
                     botonVolver.Visibility = Visibility.Visible;
                     botonSalir.Visibility = Visibility.Hidden;
                     labelHelp.Visibility = Visibility.Visible;
+                    labelClick.Visibility = Visibility.Hidden;
+                    labelOlvidaste.Visibility = Visibility.Hidden;
                 }
             }
         }
@@ -197,13 +200,13 @@ namespace ProyectoDSI115_G5_2021
         {
             cuadroEmail.SetCurrentValue(IsEnabledProperty, true);
             numeroRandom = -1;
-            labelEmail.Margin = oglEmail;
-            cuadroEmail.Margin = ogEmail;
+            //labelEmail.Margin = oglEmail;
+            //cuadroEmail.Margin = ogEmail;
             cuadroEmail.Text = "";
             labelContrasena.Margin = oglContra;
-            labelContrasena.Content = "Contraseña";
-            cuadroContrasena.Margin = ogContra;
-            cuadroContrasena.Password = "";
+            labelContrasena.Content = "Contraseña:";
+            //cuadroContrasena.Margin = ogContra;
+            //cuadroContrasena.Password = "";
             botonInicioSesion.Visibility = Visibility.Visible;
             botonOlvide.Visibility = Visibility.Visible;
             labelNuevaContrasena.Visibility = Visibility.Hidden;
@@ -216,6 +219,8 @@ namespace ProyectoDSI115_G5_2021
             botonVolver.Visibility = Visibility.Hidden;
             botonSalir.Visibility = Visibility.Visible;
             labelHelp.Visibility = Visibility.Hidden;
+            labelClick.Visibility = Visibility.Visible;
+            labelOlvidaste.Visibility = Visibility.Visible;
         }
 
         private void BotonInicioSesion_Click(object sender, RoutedEventArgs e)

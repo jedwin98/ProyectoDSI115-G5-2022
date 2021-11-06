@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             try
             {
                 System.Net.Mail.MailAddress mailAddress = new System.Net.Mail.MailAddress(mail);
-                if (mail.Contains("@hotmail") || mail.Contains("@outlook") || mail.Contains("@gmail"))
+                if (mail.Contains("@hotmail.") || mail.Contains("@outlook.") || mail.Contains("@gmail."))
                 {
                     cuadroEmail.Background = Brushes.White;
                     emailCorrecto = true;
@@ -72,7 +73,7 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
 
         private void BtnRegistrar_Click(object sender, RoutedEventArgs e)
         {
-            bool registro = control.EstablecerRemitente(cuadroEmail.Text, cuadroContrasena.Password);
+            bool registro = control.EstablecerRemitente(cuadroEmail.Text, cuadroContrasena.Password.ToString());
             if (registro)
             {
                 MessageBox.Show("Se ha establecido el remitente del sistema.", "Remitente establecido", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -82,6 +83,11 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             {
                 MessageBox.Show("No se pudo establecer el remitente. Verifique su conexión e intente de nuevo.", "Error al establecer remitente", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            Process.Start(e.Uri.ToString());
         }
     }
 }

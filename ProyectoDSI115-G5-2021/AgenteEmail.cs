@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
-using System.Net.Mail;
 using System.Windows;
+using MimeKit;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 
 namespace ProyectoDSI115_G5_2021
 {
     class AgenteEmail
     {
+        // Puerto de conexión estándar. Defina otro puerto como entero en la respectiva conexión.
+        internal static int DEFAULT_PORT = 587;
         // Genera el cuerpo del mensaje de código a enviar.
         // AUTOR: Félix Eduardo Henríquez Cruz
         public static string GenerarMail(string usuario, int random)
@@ -21,40 +24,39 @@ namespace ProyectoDSI115_G5_2021
             return cuerpo;
         }
 
-        // Prepara el envío de un mensaje de correo. Definir texto, destinatario, remitente y asunto.
+        // Prepara el envío de un mensaje de correo. Definir texto, nombre y corrreo del destinatario, remitente y asunto.
         // AUTOR: Félix Eduardo Henríquez Cruz
-        public static void EnviarMail(string texto, string direccion, Remitente remitente, string asunto)
+        public static bool EnviarMail(string texto, string direccion, Remitente remitente, string destinatario, string asunto)
         {
             try
             {
-                MailMessage mensaje = new MailMessage();
+                MimeMessage mensaje = new MimeMessage();
                 SmtpClient smtp = new SmtpClient();
-                mensaje.From = new MailAddress(remitente.correo);
-                mensaje.To.Add(new MailAddress(direccion));
+                mensaje.From.Add(new MailboxAddress("Mensajero", remitente.correo));
+                mensaje.To.Add(new MailboxAddress(destinatario, direccion));
                 mensaje.Subject = asunto;
-                mensaje.IsBodyHtml = true;
-                mensaje.Body = texto;
-                // Puerto SMTP default. (Recomendado)
-                // En caso de agregar nuevas configuraciones con otro puerto, ajuste en el respectivo apartado.
-                smtp.Port = 587;
+                mensaje.Body = new TextPart("html") {
+                    Text = texto
+                };
                 // Selección basada en dominio de correo.
+                // Configure cada conexión adicional por separado. Para puerto 587, ocupe 'DEFAULT_PORT'.
                 if (remitente.correo.Contains("@hotmail") || remitente.correo.Contains("@outlook"))
                 {
-                    smtp.Host = "smtp-mail.outlook.com"; //Servidor SMTP para Outlook.com
+                    smtp.Connect("smtp-mail.outlook.com", DEFAULT_PORT, SecureSocketOptions.StartTls); // Servidor SMTP para Outlook.com
                 }
                 else if (remitente.correo.Contains("@gmail"))
                 {
-                    smtp.Host = "smtp-relay.gmail.com"; //Servidor SMTP para Gmail
+                    smtp.Connect("smtp.gmail.com", DEFAULT_PORT, SecureSocketOptions.StartTls); // Servidor SMTP para Gmail
                 }
-                smtp.EnableSsl = true;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(remitente.correo, remitente.contrasena);
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Authenticate(remitente.correo, remitente.contrasena);
                 smtp.Send(mensaje);
+                smtp.Disconnect(true);
+                return true;
             }
             catch (Exception)
             {
                 MessageBox.Show("Error al enviar correo. Verifique su conexión o la configuración del remitente e intente de nuevo.");
+                return false;
             }
         }
     }
