@@ -151,14 +151,16 @@ namespace ProyectoDSI115_G5_2021
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("Código");
             dataTable.Columns.Add("Nombre");
+            dataTable.Columns.Add("Presentación");
             dataTable.Columns.Add("Existencia");
-            string[] nombre = new string[3];
+            string[] nombre = new string[4];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 nombre[0] = dt.Rows[i][0].ToString();
                 nombre[1] = dt.Rows[i][1].ToString();
                 nombre[2] = dt.Rows[i][2].ToString();
-                dataTable.Rows.Add(new Object[] { nombre[0], nombre[1], nombre[2]});
+                nombre[3] = dt.Rows[i][3].ToString();
+                dataTable.Rows.Add(new Object[] { nombre[0], nombre[1], nombre[2], nombre[3]});
             }
             return dataTable;
 

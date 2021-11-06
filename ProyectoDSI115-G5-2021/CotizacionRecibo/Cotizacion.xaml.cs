@@ -28,7 +28,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         List<DetalleCotizacion> detalles = new List<DetalleCotizacion>();
 
         private float totalCotizado = 0; //Variable global para guardar el total de lo cotizado
-        private float exitenciaSelected = 0; //variable global de proceso que sirve para validar existencias
 
         public Cotizacion()
         {
@@ -71,9 +70,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
             else
             {
-                txtNombreProducto.Text = row.Row.ItemArray[1].ToString();
+                txtNombreProducto.Text = row.Row.ItemArray[1].ToString() +", "+ row.Row.ItemArray[2].ToString();
                 txtPrecio.Text = row.Row.ItemArray[3].ToString();
-                exitenciaSelected = float.Parse(row.Row.ItemArray[2].ToString());
             }
         }
 
@@ -86,9 +84,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 {
                     DataRowView row = grid.SelectedItem as DataRowView;
 
-                    txtNombreProducto.Text = row.Row.ItemArray[1].ToString();
+                    txtNombreProducto.Text = row.Row.ItemArray[1].ToString() +", "+ row.Row.ItemArray[2].ToString();
                     txtPrecio.Text = row.Row.ItemArray[3].ToString();
-                    exitenciaSelected = float.Parse(row.Row.ItemArray[2].ToString());
                 }
             }
         }
@@ -115,31 +112,22 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                         }
                         else
                         {
-                            if (Convert.ToSingle(txtCantidad.Text) > exitenciaSelected)
-                            {
-                                MessageBox.Show("La cantidad que desea cotizar supera las existencias en inventario", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                                txtCantidad.Text = "";
-                            }
-                            else
-                            {
-                                DetalleCotizacion detalle = new DetalleCotizacion();
-                                detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
-                                detalle.concepto = txtNombreProducto.Text;
-                                detalle.precio = Convert.ToSingle(txtPrecio.Text);
-                                detalle.subtotal = detalle.cantidad * detalle.precio;
+                            DetalleCotizacion detalle = new DetalleCotizacion();
+                            detalle.cantidad = Convert.ToSingle(txtCantidad.Text);
+                            detalle.concepto = txtNombreProducto.Text;
+                            detalle.precio = Convert.ToSingle(txtPrecio.Text);
+                            detalle.subtotal = detalle.cantidad * detalle.precio;
 
-                                detalles.Add(detalle);
-                                dataCotizacion.ItemsSource = null;
-                                dataCotizacion.ItemsSource = detalles;
+                            detalles.Add(detalle);
+                            dataCotizacion.ItemsSource = null;
+                            dataCotizacion.ItemsSource = detalles;
 
-                                txtCantidad.Text = "";
-                                txtNombreProducto.Text = "";
-                                txtPrecio.Text = "";
-                                exitenciaSelected = 0;
+                            txtCantidad.Text = "";
+                            txtNombreProducto.Text = "";
+                            txtPrecio.Text = "";
 
-                                totalCotizado = totalCotizado + detalle.subtotal;
-                                txtTotalCotizacion.Text = "$" + Convert.ToString(totalCotizado);
-                            }
+                            totalCotizado = totalCotizado + detalle.subtotal;
+                            txtTotalCotizacion.Text = "$" + Convert.ToString(totalCotizado);
                         }
                     }
                 }
@@ -163,7 +151,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 txtPrecio.Text = "";
                 txtTotalCotizacion.Text = "";
                 totalCotizado = 0;
-                exitenciaSelected = 0;
                 detalles.Clear();
                 dataCotizacion.ItemsSource = null;
                 dataCotizacion.ItemsSource = detalles;
@@ -195,6 +182,61 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             string seg = fecha.Second.ToString();
             string coti = "C";
             return coti + hora + min + seg;
+        }
+
+        private void BtnImprimirCot_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtCliente.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un cliente a la cotización", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                if (txtCodCotizacion.Text == "")
+                {
+                    MessageBox.Show("Debe haber un código de cotización", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    string fecha = labelFecha.Content.ToString();
+                    string codigo = txtCodCotizacion.Text;
+                    string cliente = txtCliente.Text;
+                    float total = totalCotizado;
+
+                    GenerarImpresion(fecha, codigo, cliente, total);
+                    detalles.Clear();
+                    dataCotizacion.ItemsSource = null;
+
+                    txtCodCotizacion.Text = GenerarCodigoCotizacion();
+                    txtCliente.Text = "";
+                    txtTotalCotizacion.Text = "";
+
+                    totalCotizado = 0;
+                }
+            }
+        }
+
+        private void GenerarImpresion(string fechaCot, string codigoCot, string clienteCot, float totalCot)
+        {
+            //Adecuar cabeceras de tablas
+            DataTable aImprimir = new DataTable();
+            aImprimir.Columns.Add("Cantidad");
+            aImprimir.Columns.Add("Concepto");
+            aImprimir.Columns.Add("Precio Unitario");
+            aImprimir.Columns.Add("Subtotal");
+            string[] descripcion = new string[4];
+            for (int i=0; i < detalles.Count(); i++)
+            {
+                descripcion[0] = detalles[i].cantidad.ToString();
+                descripcion[1] = detalles[i].concepto;
+                descripcion[2] = detalles[i].precio.ToString();
+                descripcion[3] = detalles[i].subtotal.ToString();
+
+                //Agregando detalle a la tabla de impresión
+                aImprimir.Rows.Add(new Object[] { descripcion[0], descripcion[1], descripcion[2], descripcion[3] });
+            }
+            CreadorPDF impresion = new CreadorPDF();
+            impresion.PrepararImpresionCotizacion(aImprimir, fechaCot, codigoCot, clienteCot, totalCot);
         }
     }
 }
