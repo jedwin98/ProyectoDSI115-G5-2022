@@ -25,6 +25,7 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         DataTable dt = new DataTable();
         DataTable dataTable = new DataTable();
         List<DetalleRecibo> detalles = new List<DetalleRecibo>();
+        List<ActualizarExistencia> valorExistencia = new List<ActualizarExistencia>();
 
         string codigoSolicitud { get; set; }
         private float totalTotal = 0;//Variable global para guardar el total de la compra del recibo
@@ -40,6 +41,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
         public void CargarTabla()
         {
+            dt.Clear();
+            dataMateriales.ItemsSource = null;
             control = new ControlBD();
             dt = control.consultarMateriales();
             dt = control.consultarProductosRecibo();
@@ -80,10 +83,12 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
             else
             {
+                txtCodigo.Text = row.Row.ItemArray[0].ToString();
                 txtNombre.Text = row.Row.ItemArray[1].ToString();
                 txtPresentacion.Text = row.Row.ItemArray[2].ToString();
-                existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
+                txtExistencia.Text = row.Row.ItemArray[3].ToString();
                 txtPrecio.Text = row.Row.ItemArray[4].ToString();
+                existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
             }
         }
 
@@ -128,7 +133,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         
         private void BtnLimpiar_Click(object sender, RoutedEventArgs e)
         {
+            txtCodigo.Text = "";
             txtNombre.Text = "";
+            txtExistencia.Text = "";
             txtCantidad.Text = "";
             txtPresentacion.Text = "";
             txtPrecio.Text = "";
@@ -191,10 +198,20 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
                                     detalles.Add(detalle);
 
+                                    ActualizarExistencia ValorExis = new ActualizarExistencia();
+                                    ValorExis.codigo = txtCodigo.Text;
+                                    string captExistencia = txtExistencia.Text;
+                                    string captCantidadSolicitada = txtCantidad.Text;
+                                    ValorExis.valorExistencia = Convert.ToSingle(captExistencia) - Convert.ToSingle(captCantidadSolicitada);
+                                    valorExistencia.Add(ValorExis);
+
+
                                     dataSoli.ItemsSource = null;
                                     dataSoli.ItemsSource = detalles;
-                                    
+
                                     //Limpia los campos luego de agregar un insumo
+                                    txtCodigo.Text = "";
+                                    txtExistencia.Text = "";
                                     txtCantidad.Text = "";
                                     txtPrecio.Text = "";
                                     txtNombre.Text = "";
@@ -246,12 +263,21 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     GenerarImpresion(solicitud.fechaSolicitudRecibo, solicitud.codigo, solicitud.nombreCliente, solicitud.totalRecibo);
                     control.AgregarRecibo(solicitud);
 
-
+                    bool error = false;
+                    for (int i = 0; i < valorExistencia.Count; i++)
+                    {
+                        ActualizarExistencia exis = new ActualizarExistencia();
+                        exis = valorExistencia[i];
+                        error = !control.ActualizarExistencias(exis.codigo, exis.valorExistencia);
+                    }
+                    
                     detalles.Clear();
                     dataSoli.ItemsSource = null;
 
                     txtCodigoRecibo.Text = GenerarCodigoRecibo();//Genera nuevo codigo del Recibo
+                    txtCodigo.Text = "";
                     txtCliente.Text = "";
+                    txtExistencia.Text= "";
                     txtTotalRecibo.Text = "";
                     txtPresentacion.Text = "";
                     txtCliente.IsEnabled = true;
@@ -260,6 +286,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
 
                     existenciaSelected = 0;
                     totalTotal = 0;
+
+                    CargarTabla();//Carga la tabla
+                    valorExistencia.Clear();
                 }
             }
         }
@@ -294,7 +323,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             MessageBoxResult result = MessageBox.Show("¿Está seguro que desea cancelar?\nSe eliminar el historial del recibo", "Confirmacion",MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
+                txtCodigo.Text = "";
                 txtCliente.Text = "";
+                txtExistencia.Text = "";
                 txtCantidad.Text = "";
                 txtPrecio.Text = "";
                 txtNombre.Text = "";
@@ -302,12 +333,14 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 txtTotalRecibo.Text = "";
                 txtCliente.IsEnabled = true;
                 btnImprimir.IsEnabled = false;
-
+                
                 totalTotal = 0;
                 existenciaSelected = 0;
 
                 detalles.Clear();
                 dataSoli.ItemsSource = null;
+
+                valorExistencia.Clear();
             }
             else
             {
@@ -335,11 +368,13 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 {
                     DataRowView row = grid.SelectedItem as DataRowView;
                     // DataRowView row = dataMateriales.SelectedItem as DataRowView;
-                   // DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
-                    
+                    // DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+
+                    txtCodigo.Text = row.Row.ItemArray[0].ToString();
                     txtNombre.Text = row.Row.ItemArray[1].ToString();
-                    txtPrecio.Text = row.Row.ItemArray[4].ToString();
                     txtPresentacion.Text = row.Row.ItemArray[2].ToString();
+                    txtExistencia.Text = row.Row.ItemArray[3].ToString();
+                    txtPrecio.Text = row.Row.ItemArray[4].ToString();
                     existenciaSelected = float.Parse(row.Row.ItemArray[3].ToString());
                 }
             }

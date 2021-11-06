@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="FYSIEX - Historial de Clientes" Height="478" Width="840">
     <Grid >
-        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,1,0,0" Height="61" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Rectangle  Fill="#FFC91029" Stroke="Black" Height="61" VerticalAlignment="Top" Margin="0,-1,0,0" />
 
         <Label  Content="Historial de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="2" Height="41" Width="228"/>
         <Label  Content="Elija el Cliente al que desea ver su historial" Margin="0,67,23,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="384" Grid.Column="1" Height="35"/>
