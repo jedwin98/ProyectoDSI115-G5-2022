@@ -65,6 +65,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding COD_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="110" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding NOMBRE_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Nombre" MinWidth="110" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding UNIDAD_MEDIDA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Presentación" MinWidth="110" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding EXISTENCIA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Cantidad" MinWidth="110" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
