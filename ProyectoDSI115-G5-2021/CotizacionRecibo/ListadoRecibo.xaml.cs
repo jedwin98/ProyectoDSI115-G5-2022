@@ -31,6 +31,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         {
             InitializeComponent();
             ConsultarRecibo();
+            mesesCombo();
+            cmbMeses.SelectedIndex = 0;
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
@@ -43,13 +45,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             recibom = recibo.ShowDialog();
         }
 
-
-
-        private void ConsultarRecibo()
-        {
-            dt = cn.consultarRecibo();
-            dataRecibos.ItemsSource = dt.DefaultView;
-        }
 
         private void DataRecibos_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -76,6 +71,193 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
         private void DataRecibos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void BtnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+
+            BuscarRecibo();
+        }
+
+
+        private void TxtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            cmbMeses.SelectedIndex = 0;
+            chkPresente.IsChecked = false;
+            dt.Clear();
+            BuscarRecibo();
+        }
+
+        private void CmbMeses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string mes = cmbMeses.SelectedItem.ToString();
+            if (mes != "" && chkPresente.IsChecked == true)
+            {
+                ConsultarPorMesAño();
+            }
+            else if (mes == "" && chkPresente.IsChecked == true)
+            {
+                ConsultarPorAño();
+            }else if (mes != "" && chkPresente.IsChecked == false)
+            {
+                ConsultarPorMes();
+            }
+            else
+            {
+                ConsultarRecibo();
+            }
+        }
+
+        private void ChkPresente_Checked(object sender, RoutedEventArgs e)
+        {
+            string mes = cmbMeses.SelectedItem.ToString();
+            if (mes != "" && chkPresente.IsChecked == true)
+            {
+                ConsultarPorMesAño();
+            }else if (mes != "" && chkPresente.IsChecked == false)
+            {
+                ConsultarPorMes();
+            }else if (mes == "" && chkPresente.IsChecked == true)
+            {
+                ConsultarPorAño();
+            }
+            else
+            {
+                ConsultarRecibo();
+            }
+        }
+
+        private void ConsultarRecibo()
+        {
+            dt.Clear();
+            dt = cn.consultarRecibo();
+            dataRecibos.ItemsSource = dt.DefaultView;
+        }
+
+        private void ConsultarPorAño()
+        {
+            string fecha;
+            if (valorCheckbox())
+            {
+                fecha = DateTime.Now.ToString("yyyy");
+                dt.Clear();
+                dt = cn.BuscaFechaActual(fecha);
+                dataRecibos.ItemsSource = dt.DefaultView;
+            }
+            else if (chkPresente.IsChecked == false)
+            {
+                BuscarRecibo();
+            }
+        }
+
+        private void BuscarRecibo()
+        {
+            dt.Clear();
+            dt = cn.BuscarRecibo(txtBuscar.Text);
+            dataRecibos.ItemsSource = dt.DefaultView;
+        }
+
+        private void ConsultarPorMes()
+        {
+            string mes = cmbMeses.SelectedItem.ToString();
+            switch (mes)
+            {
+                case "Enero": mes = "1"; break;
+                case "Febrero": mes = "2"; break;
+                case "Marzo": mes = "3"; break;
+                case "Abril": mes = "4"; break;
+                case "Mayo": mes = "5"; break;
+                case "Junio": mes = "6"; break;
+                case "Julio": mes = "7"; break;
+                case "Agosto": mes = "8"; break;
+                case "Septiembre": mes = "9"; break;
+                case "Octubre": mes = "10"; break;
+                case "Noviembre": mes = "11"; break;
+                case "Diciembre": mes = "12"; break;
+                default: mes = ""; break;
+
+            }
+            if (mes != "")
+            {
+                dt.Clear();
+                dt = cn.BuscarMesRecibo(mes);
+                dataRecibos.ItemsSource = dt.DefaultView;
+            }
+            else
+            {
+                BuscarRecibo();
+            }
+        }
+
+        private void ConsultarPorMesAño()
+        {
+            string mes = cmbMeses.SelectedItem.ToString();
+            string fecha = DateTime.Now.ToString("yyyy");
+
+            if (mes != "" && chkPresente.IsChecked==true)
+            {
+                switch (mes)
+                {
+                    case "Enero": mes = "1"; break;
+                    case "Febrero": mes = "2"; break;
+                    case "Marzo": mes = "3"; break;
+                    case "Abril": mes = "4"; break;
+                    case "Mayo": mes = "5"; break;
+                    case "Junio": mes = "6"; break;
+                    case "Julio": mes = "7"; break;
+                    case "Agosto": mes = "8"; break;
+                    case "Septiembre": mes = "9"; break;
+                    case "Octubre": mes = "10"; break;
+                    case "Noviembre": mes = "11"; break;
+                    case "Diciembre": mes = "12"; break;
+                    default: mes = ""; break;
+
+                }
+                dt.Clear();
+                dt = cn.BuscarMesAñoRecibo(mes, fecha);
+                dataRecibos.ItemsSource = dt.DefaultView;
+            }
+            else if (mes != "")
+            {
+                ConsultarPorMes();
+            }else if (chkPresente.IsChecked == true)
+            {
+                ConsultarPorAño();
+            }
+        }
+
+        private void mesesCombo()
+        {
+            List<string> meses = new List<string>();
+            meses.Add("");
+            meses.Add("Enero");
+            meses.Add("Febrero");
+            meses.Add("Marzo");
+            meses.Add("Abril");
+            meses.Add("Mayo");
+            meses.Add("Junio");
+            meses.Add("Julio");
+            meses.Add("Agosto");
+            meses.Add("Septiembre");
+            meses.Add("Octubre");
+            meses.Add("Noviembre");
+            meses.Add("Diciembre");
+            cmbMeses.ItemsSource = meses;
+            
+        }
+
+        private bool valorCheckbox()
+        {
+            bool valor = false;
+            if(chkPresente.IsChecked == true)
+            {
+                valor = true;
+                return valor;
+            }
+            else
+            {
+                return valor;
+            }
         }
     }
 }

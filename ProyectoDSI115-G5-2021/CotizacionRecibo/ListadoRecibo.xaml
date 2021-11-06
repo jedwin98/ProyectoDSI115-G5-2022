@@ -36,14 +36,14 @@
                 <Label Content="Volver" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalContentAlignment="Center" />
             </StackPanel>
         </Button>
-        <ComboBox Name="cmbMeses" Margin="0,0,215,48" HorizontalAlignment="Right" Width="120" Height="22" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
-        <CheckBox Name="chkPresente" Content="¿Recibos del presente año?" Margin="0,0,10,48" FontSize="14" HorizontalAlignment="Right" Width="187" Height="18" VerticalAlignment="Bottom" Grid.Column="1"/>
-        <Rectangle  Fill="#FFC91029" Stroke="Black" Height="32" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
-        <TextBox Name="txtBuscar" Margin="287,71,10,0" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="24" VerticalAlignment="Top" FontSize="14" />
-        <Button Name="btnBuscar" Height="33" Margin="231,62,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="41" >
+        <ComboBox Name="cmbMeses" Margin="0,0,215,48" HorizontalAlignment="Right" Width="120" Height="22" VerticalAlignment="Bottom" Grid.ColumnSpan="2" SelectionChanged="CmbMeses_SelectionChanged"/>
+        <CheckBox Name="chkPresente" Content="¿Recibos del presente año?" Margin="0,0,10,48" FontSize="14" HorizontalAlignment="Right" Width="187" Height="18" VerticalAlignment="Bottom" Grid.Column="1" Checked="ChkPresente_Checked" Unchecked="ChkPresente_Checked"/>
+        <Rectangle  Fill="#FFC91029" Stroke="Black" Height="39" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
+        <TextBox Name="txtBuscar" Margin="287,71,10,0" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="24" VerticalAlignment="Top" FontSize="14" TextChanged="TxtBuscar_TextChanged" />
+        <Button Name="btnBuscar" Height="33" Margin="231,62,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="41" Click="BtnBuscar_Click" >
             <Image Source="/FYSIEX;component/Images/lupa.png" Stretch="Fill"/>
         </Button>
-        <Label Content="Haga doble clic sobre el registro que desea revisar..." HorizontalAlignment="Left" Margin="10,417,0,0" Foreground="White" FontFamily="Segoe UI Emoji" FontSize="14" Width="345"/>
+        <Label Content="Haga doble clic sobre el registro que desea revisar..." HorizontalAlignment="Left" Margin="10,0,0,7" Foreground="White" FontFamily="Segoe UI Emoji" FontSize="14" Width="345" Height="32" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

@@ -1601,21 +1601,110 @@ namespace ProyectoDSI115_G5_2021
                 adapter.Fill(dt);
             }
             
-       /*
-            try
-            {
-                    
-
-                    SQLiteCommand comando = new SQLiteCommand("SELECT COD_DETALLERECIBO, NOMBRE_DETALLERECIBO, CANTIDAD_DETALLERECIBO, PRECIO_UNITARIO, SUBTOTAL_DETALLE FROM DETALLE_RECIBO WHERE COD_RECIBO =@cod ", cn);
-                    comando.Parameters.Add(new SQLiteParameter("@cod", codigo));
-                    adapter.SelectCommand = comando;
-                    adapter.Fill(dt);
-
-            }*/
             catch(SQLiteException ex)
             {
 
                 MessageBox.Show("Ha ocurrido un error al cargar la tabla de Detalle de Recibo " + ex.Message.ToString());
+            }
+            cn.Close();
+            return dt;
+        }
+        
+        
+        /***************************************************************************************************************
+         * A CONTINUACION SE PRESENTAN DIFERENTES METODOS DE BUSQUEDA PARA BUSCAR RECIBOS*******************************
+        ***************************************************************************************************************/
+
+
+        //BUSCA POR BARRA DE BUSQUEDA
+        public DataTable BuscarRecibo(string nombreRecibo)
+        {
+            List<CotizacionRecibo.ListadoRecibo> recibo = new List<CotizacionRecibo.ListadoRecibo>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_RECIBO, FECHA_RECIBO, CLIENTE_RECIBO, TOTAL_RECIBO FROM RECIBO WHERE COD_RECIBO LIKE @codigo OR CLIENTE_RECIBO LIKE @nombre", cn);
+                comando.Parameters.Add(new SQLiteParameter("@nombre", "%" + nombreRecibo + "%"));
+                comando.Parameters.Add(new SQLiteParameter("@codigo", "%" + nombreRecibo + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar la tabla Recibo " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+        //BUSCA POR AÑO ACTUAL SIN DEFINIR MES
+        public DataTable BuscaFechaActual(string fecha)
+        {
+            List<CotizacionRecibo.ListadoRecibo> recibo = new List<CotizacionRecibo.ListadoRecibo>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_RECIBO, FECHA_RECIBO, CLIENTE_RECIBO, TOTAL_RECIBO FROM RECIBO WHERE FECHA_RECIBO LIKE @fecha ", cn);
+                comando.Parameters.Add(new SQLiteParameter("@fecha", "%" + fecha + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar la tabla Recibo " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+        //BUSCA SOLAMENTE POR MES
+        public DataTable BuscarMesRecibo(string mes)
+        {
+            List<CotizacionRecibo.ListadoRecibo> recibo = new List<CotizacionRecibo.ListadoRecibo>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_RECIBO, FECHA_RECIBO, CLIENTE_RECIBO, TOTAL_RECIBO FROM RECIBO WHERE FECHA_RECIBO LIKE @fecha ", cn);
+                comando.Parameters.Add(new SQLiteParameter("@fecha", "%__" + mes + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar la tabla Recibo " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
+            }
+            cn.Close();
+            return dt;
+        }
+
+        //BUSCA POR MES SELECCIONADO Y AÑO ACTUAL
+        public DataTable BuscarMesAñoRecibo(string mes, string año)
+        {
+            List<CotizacionRecibo.ListadoRecibo> recibo = new List<CotizacionRecibo.ListadoRecibo>();
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+            try
+            {
+                cn.Open();
+                SQLiteCommand comando = new SQLiteCommand("SELECT COD_RECIBO, FECHA_RECIBO, CLIENTE_RECIBO, TOTAL_RECIBO FROM RECIBO WHERE (FECHA_RECIBO LIKE @mes AND FECHA_RECIBO LIKE @fecha) ", cn);
+                comando.Parameters.Add(new SQLiteParameter("@mes", "%__" + mes + "%"));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", "%" + año + "%"));
+                adapter.SelectCommand = comando;
+                adapter.Fill(dt);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al buscar la tabla Recibo " + ex.Message.ToString());
+                Console.WriteLine();
+                cn.Close();
             }
             cn.Close();
             return dt;

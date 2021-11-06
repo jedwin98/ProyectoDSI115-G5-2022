@@ -194,5 +194,10 @@ namespace ProyectoDSI115_G5_2021
         {
 
         }
+
+        private void CheckProducto_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
