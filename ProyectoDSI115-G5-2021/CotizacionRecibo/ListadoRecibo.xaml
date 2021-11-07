@@ -24,7 +24,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="ACCIONES" HorizontalAlignment="Left" FontSize="18" HorizontalContentAlignment="Center" Height="33" Margin="32,62,0,0" VerticalAlignment="Top" Width="143" FontFamily="Segoe UI Emoji"/>
-        <Button Name="btnImprimir" HorizontalAlignment="Left" Margin="42,117,0,0" VerticalAlignment="Top" Width="120" Height="120" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}">
+        <Button Name="btnImprimir" HorizontalAlignment="Left" Margin="42,117,0,0" VerticalAlignment="Top" Width="120" Height="120" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="BtnImprimir_Click">
             <StackPanel>
                 <Image Height="90" Width="90" Source="/FYSIEX;component/Images/pdf.png"/>
                 <Label Content="Crear Reporte" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalContentAlignment="Center" />

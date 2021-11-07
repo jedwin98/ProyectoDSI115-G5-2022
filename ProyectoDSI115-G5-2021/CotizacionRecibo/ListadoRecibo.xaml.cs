@@ -259,5 +259,40 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                 return valor;
             }
         }
+
+        private void BtnImprimir_Click(object sender, RoutedEventArgs e)
+        {
+            CrearPDF();
+        }
+
+
+        private void CrearPDF()
+        {
+            DataTable info = CrearDataTable();
+            CreadorPDF creador = new CreadorPDF(info, "Listado de Recibos");
+        }
+
+        public DataTable CrearDataTable()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Codigo");
+            dataTable.Columns.Add("Fecha de Emisión");
+            dataTable.Columns.Add("Cliente");
+            dataTable.Columns.Add("Total de Compra");
+
+            string[] nombre = new string[4];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                nombre[0] = dt.Rows[i][0].ToString();
+                nombre[1] = dt.Rows[i][1].ToString();
+                nombre[2] = dt.Rows[i][2].ToString();
+                nombre[3] = dt.Rows[i][3].ToString();
+
+                dataTable.Rows.Add(new Object[] { nombre[0], nombre[1], nombre[2], nombre[3] });
+
+
+            }
+            return dataTable;
+        }
     }
 }

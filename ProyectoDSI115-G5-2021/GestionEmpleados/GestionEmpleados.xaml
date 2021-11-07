@@ -66,7 +66,7 @@
         <Button x:Name="btnGenerar" Margin="56,369,0,0" Background="{x:Null}"  Foreground="{x:Null}" Height="75" VerticalAlignment="Top" Click="BtnGenerar_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="106">
             <StackPanel>
                 <Image Stretch="Fill" Source="/FYSIEX;component/Images/pdf.png" Height="47" Width="58"/>
-                <Label Content="Generar Reporte" HorizontalContentAlignment="Center"/>
+                <Label Content="Crear Reporte" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
 

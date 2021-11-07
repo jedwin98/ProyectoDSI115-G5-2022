@@ -10,12 +10,16 @@
         <Rectangle  Fill="#FFC91029" Stroke="Black" Height="61" VerticalAlignment="Top" Margin="0,-1,0,0" />
 
         <Label  Content="Historial de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="2" Height="41" Width="228"/>
-        <Label  Content="Elija el Cliente al que desea ver su historial" Margin="0,67,23,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="384" Grid.Column="1" Height="35"/>
+        <Label  Content="Elija el Cliente al cual desea consultar su historial" Margin="0,62,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="429" Height="35"/>
         <Rectangle Margin="272,102,23,39" Stroke="Black"/>
 
 
-        <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,34,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="88" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click" Grid.Column="1"/>
-        <TextBox x:Name="textBuscar"  Text="" Margin="289,120,143,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
+        <Button  x:Name="btnBuscar" Margin="0,120,34,0"   HorizontalAlignment="Right" Width="40" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/lupa.png" Stretch="Fill" Height="24" Width="27"/>
+            </StackPanel>
+        </Button>
+        <TextBox x:Name="textBuscar"  Text="" Margin="289,120,79,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
         <DataGrid  x:Name="dataClientes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="289,166,34,67" FontSize="14">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding codigo}"/>
@@ -28,15 +32,20 @@
         </DataGrid>
 
 
-        <Rectangle  Fill="#FFF1EBEC" Margin="19,108,0,0" Stroke="Black" Height="192" VerticalAlignment="Top" HorizontalAlignment="Left" Width="194"/>
+        <Rectangle  Fill="#FFF1EBEC" Margin="19,108,0,0" Stroke="Black" Height="250" VerticalAlignment="Top" HorizontalAlignment="Left" Width="194"/>
         <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="94" Height="113" Click="BtnSeleccionar_Click">
             <StackPanel Height="107" Width="84">
                 <Image Source="/Images/verificar.png" Height="77" Width="58" Margin="12,0,13,0"/>
-                <Label Content="Consultar" FontFamily="Comic Sans MS" Height="27" FontSize="14"  HorizontalAlignment="Stretch" Margin="10,0,0,0" />
+                <Label Content="Consultar" FontFamily="Segoe UI Emoji" Height="27" FontSize="14"  HorizontalAlignment="Stretch" Margin="10,0,0,0" />
             </StackPanel>
         </Button>
         <Label  Content="Consultar Clientes" FontSize="14" HorizontalAlignment="Left" Margin="291,88,0,0" Background="White" Height="26" VerticalAlignment="Top" Width="129"/>
-        <Button x:Name="btnVolver" Content="Volver" Margin="69,248,0,0" Background="#FFC91029" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Top" Click="BtnVolver_Click" HorizontalAlignment="Left" Width="94"/>
+        <Button x:Name="btnVolver" Margin="69,248,0,0"  Height="100" VerticalAlignment="Top" Click="BtnVolver_Click" HorizontalAlignment="Left" Width="94" Background="{x:Null}" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="66" Width="75"/>
+                <Label Content="Volver" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalContentAlignment="Center" />
+            </StackPanel>
+        </Button>
 
     </Grid>
 

@@ -63,7 +63,7 @@
         <Button x:Name="btnGenerar"  Margin="50,369,0,0" Background="{x:Null}"  Foreground="{x:Null}" Height="85" VerticalAlignment="Top" Click="BtnGenerar_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="111">
             <StackPanel>
                 <Image Source="/FYSIEX;component/Images/pdf.png" Stretch="Fill" Height="59" Width="76"/>
-                <Label Content="Generar Informe" HorizontalAlignment="Center" FontFamily="Segoe UI Emoji"/>
+                <Label Content="Crear Reporte" HorizontalAlignment="Center" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>
 

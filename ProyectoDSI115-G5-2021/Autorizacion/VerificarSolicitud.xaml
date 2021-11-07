@@ -36,7 +36,7 @@
         </Button>
         <Button Background="#FFF1EBEC" x:Name="btnImprimir"  HorizontalAlignment="Left" Margin="52,288,0,0" VerticalAlignment="Top" Width="101" Height="84" Click="BtnImprimir_Click" BorderThickness="0">
             <StackPanel>
-                <Image x:Name="imgImprimir" Source="/FYSIEX;component/Images/imprimir.png" Height="60" Width="60"/>
+                <Image x:Name="imgImprimir" Source="/FYSIEX;component/Images/impresora.png" Height="60" Width="60"/>
                 <Label x:Name="labelImprimir" Content="Imprimir" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
