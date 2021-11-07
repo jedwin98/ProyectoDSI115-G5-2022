@@ -151,6 +151,7 @@
       <DependentUpon>VerificarSolicitud.xaml</DependentUpon>
     </Compile>
     <Compile Include="ControlBDS3.cs" />
+    <Compile Include="CotizacionRecibo\ActualizarExistencia.cs" />
     <Compile Include="CotizacionRecibo\Cotizacion.xaml.cs">
       <DependentUpon>Cotizacion.xaml</DependentUpon>
     </Compile>

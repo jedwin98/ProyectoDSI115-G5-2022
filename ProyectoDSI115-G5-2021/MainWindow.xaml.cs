@@ -254,7 +254,7 @@ namespace ProyectoDSI115_G5_2021
             {
                 cotizacion = new CotizacionRecibo.Cotizacion
                 {
-                    WindowState = WindowState.Maximized
+                    WindowState = WindowState.Normal
                 };
                 //Aunque la función bloquea las acciones en esta ventana
                 //Se tiene esta variable que se define al cerrar la ventana
@@ -272,7 +272,7 @@ namespace ProyectoDSI115_G5_2021
             {
                 recibo = new CotizacionRecibo.CrearRecibo
                 {
-                    WindowState = WindowState.Maximized
+                    WindowState = WindowState.Normal
                 };
                 //Aunque la función bloquea las acciones en esta ventana
                 //Se tiene esta variable que se define al cerrar la ventana
