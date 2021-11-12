@@ -107,6 +107,42 @@ namespace ProyectoDSI115_G5_2021.Historial
         {
             CreadorPDF impresion = new CreadorPDF();
             // Adecuar cabeceras de tablas.
+
+            //  aImprimir.Columns.Add("Observaciones");
+            SolicitudInsumos tempSoli = new SolicitudInsumos();
+            DateTime hoy = DateTime.Now;
+            string fecha = hoy.ToShortDateString();
+            Console.WriteLine("\n" + solicituds.Count().ToString());
+              string[] descripcion = new string[4];
+               
+                DataTable aImprimir = new DataTable();
+                aImprimir.Columns.Add("Código de Solicitud");
+                aImprimir.Columns.Add("Fecha");
+                aImprimir.Columns.Add("Elaborado por");
+                aImprimir.Columns.Add("Aprobado por");
+                for (int i = 0; i < solicituds.Count(); i++)
+                {
+                tempSoli = solicituds[i];
+                descripcion[0] = tempSoli.codigoReq;
+                    descripcion[1] = tempSoli.fechaSolicitud;
+                    descripcion[2] = tempSoli.solicitante.nombre;
+                    descripcion[3] = tempSoli.autorizador.nombre;
+                    // Agregando detalle a la tabla de la impresión.
+                    aImprimir.Rows.Add(new Object[] { descripcion[0], descripcion[1], descripcion[2], descripcion[3] });
+                }
+                Console.WriteLine("pasó xaml");
+                impresion.ImpresionSolicitud(aImprimir, txtNombres.Text, txtRazon.Text, tempSoli.codigo, fecha, 1);
+                
+                
+                //MessageBox.Show("Se ha generado el archivo de la solicitud.", "Generación de solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
+            
+            Console.Write("Salio");
+        }
+
+        /*private void GenerarImpresion()
+        {
+            CreadorPDF impresion = new CreadorPDF();
+            // Adecuar cabeceras de tablas.
             
             //  aImprimir.Columns.Add("Observaciones");
            
@@ -143,36 +179,8 @@ namespace ProyectoDSI115_G5_2021.Historial
             }
             Console.Write("Salio");
         }
-      /*  private void GenerarImpresion()
-        {
-            CreadorPDF impresion = new CreadorPDF();
-            // Adecuar cabeceras de tablas.
-
-            //  aImprimir.Columns.Add("Observaciones");
-            string[] descripcion = new string[4];
-            for (int solicitudes = 0; solicitudes < solicituds.Count(); solicitudes++)
-            {
-                DataTable aImprimir = new DataTable();
-                aImprimir.Columns.Add("Código de Material");
-                aImprimir.Columns.Add("Descripción");
-                aImprimir.Columns.Add("Presentación");
-                aImprimir.Columns.Add("Cantidad");
-                for (int i = 0; i < detalles.Count(); i++)
-                {
-                    descripcion[0] = detalles[i].material.codigo;
-                    descripcion[1] = detalles[i].material.nombre;
-                    descripcion[2] = detalles[i].material.unidad;
-                    descripcion[3] = detalles[i].cantidad.ToString();
-                    // Agregando detalle a la tabla de la impresión.
-                    aImprimir.Rows.Add(new Object[] { descripcion[0], descripcion[1], descripcion[2], descripcion[3] });
-                }
-
-                impresion.ImpresionSolicitud(aImprimir, solicitudSelected.solicitante.nombre, solicitudSelected.autorizador.nombre, txtNombres.Text, txtRazon.Text, solicitudSelected.codigo, solicitudSelected.codigoReq, solicitudSelected.fechaSolicitud, solicitudes - solicituds.Count());
-                aImprimir = null;
-                //MessageBox.Show("Se ha generado el archivo de la solicitud.", "Generación de solicitud", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }*/
-
+     
+    */
 
     }
 }
