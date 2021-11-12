@@ -29,19 +29,13 @@ namespace ProyectoDSI115_G5_2021
         GestionClientes.GestionClientes gc;
         GestionEmpleados.GestionEmpleados ge;
         GestionUsuarios.GestionUsuarios gu;
-        Inventario verInventario;
         Historial.HistorialCliente historial;
         CotizacionRecibo.Cotizacion cotizacion;
-        //CotizacionRecibo.Recibo recibo;
-        //Historial.Historial historial;
-        //CotizacionRecibo.Cotizacion cotizacion;
         CotizacionRecibo.CrearRecibo recibo;
-
-
-
+        Inventario verInventario;
+        
         Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false, cot = false;
-
-
+        
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
         //AUTOR: FRANCISCO ESCOBAR
         SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
@@ -51,11 +45,8 @@ namespace ProyectoDSI115_G5_2021
         public MainWindow()
         {
             InitializeComponent();
-            
-            
         }
-
-
+        
         //SOBREESCRIBO EL EVENTO CUANDO LA VENTANA PRINCIPAL ESTA ACTIVADA
         //AUTOR: FRANCISCO ESCOBAR
         private void MainWindows_Activated(object sender, System.EventArgs e)
@@ -67,7 +58,6 @@ namespace ProyectoDSI115_G5_2021
         //AUTOR: FRANCISCO ESCOBAR
         public void GenerarNotificacion()
         {
-            
             if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
             {
                 imgBurbuja.Visibility = Visibility.Hidden;
@@ -80,7 +70,6 @@ namespace ProyectoDSI115_G5_2021
                     imgBurbuja.Visibility = Visibility.Visible;
                     lblContador.Visibility = Visibility.Visible;
                     lblContador.Content = notificaciones.ToString();
-
                 }
                 else
                 {
@@ -90,6 +79,7 @@ namespace ProyectoDSI115_G5_2021
                 }
             }
         }
+
         //REALIZA EL PROCESO DE CREAR UN OBJETO DATA TABLE Y CUENTA LAS FILAS DE LA TABLA
         //LUEGO ASIGNA ESE VALOR A UNA VARIABLE Y ESTA SE RETORNA
         //AUTOR: FRANCISCO ESCOBAR
@@ -105,7 +95,6 @@ namespace ProyectoDSI115_G5_2021
            filas = data.Rows.Count;
            con.Close();
            return filas;
-
         }
 
         private void BtnUsuarios_Click(object sender, RoutedEventArgs e)
@@ -265,9 +254,10 @@ namespace ProyectoDSI115_G5_2021
                 MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        //MODIFICAR ESTE CODIGO
+        //CREADOR DE BOTÓN: Gustavo Ernesto H. Corvera
         private void BtnRecibo_Click(object sender, RoutedEventArgs e)
         {
+            //Autorizado para gerencia y administración.
             if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
             {
                 recibo = new CotizacionRecibo.CrearRecibo

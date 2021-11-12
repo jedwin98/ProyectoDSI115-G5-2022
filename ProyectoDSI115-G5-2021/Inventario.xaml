@@ -12,7 +12,7 @@
             <RowDefinition Height="514*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Margin="0,0,8,21"/>
-        <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="19,6,0,10" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Width="591"/>
+        <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="18,6,0,21" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Width="592"/>
         <Rectangle  Fill="#FFF1EBEC" Margin="18,34,0,0" Stroke="Black" HorizontalAlignment="Left" Width="209" Height="656" VerticalAlignment="Top" Grid.Row="1"/>
         <Label  Content="ACCIONES" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" Height="35" Width="100" Grid.Row="1"/>
         <Button x:Name="btnVolver" Margin="56,573,0,0" Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" 
@@ -36,7 +36,7 @@
             </StackPanel>
         </Button>
         <Rectangle Margin="248,34,31,10" Stroke="Black" RenderTransformOrigin="-0.271,0.283" Grid.Row="1"/>
-        <Label x:Name="label" Content="Inventario" Margin="284,15,0,409" FontSize="16" Background="White" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Width="81" Grid.Row="1">
+        <Label x:Name="label" Content="Inventario" Margin="280,15,0,652" FontSize="16" Background="White" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Width="81" Grid.Row="1">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -63,10 +63,10 @@
         <TextBox x:Name="textBusquedaInve" Height="30" Margin="268,48,150,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"/>
         <DataGrid x:Name="dataInventario" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="268,98,51,83" AutoGenerateColumns="False" Grid.Row="1" SelectionChanged="DataInventario_SelectionChanged" FontSize="14">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding COD_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="110" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding NOMBRE_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Nombre" MinWidth="110" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding UNIDAD_MEDIDA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Presentación" MinWidth="110" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding EXISTENCIA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Cantidad" MinWidth="110" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding COD_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="120" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding NOMBRE_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Nombre" MinWidth="160" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding UNIDAD_MEDIDA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Presentación" MinWidth="160" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding EXISTENCIA_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Cantidad" MinWidth="120" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <CheckBox x:Name="checkProducto" Content="Productos" HorizontalAlignment="Left" Margin="268,0,0,48" IsChecked="True" Height="19" VerticalAlignment="Bottom" Click="CheckProducto_Click" Width="100" Grid.Row="1" FontSize="16" Checked="CheckProducto_Checked"/>

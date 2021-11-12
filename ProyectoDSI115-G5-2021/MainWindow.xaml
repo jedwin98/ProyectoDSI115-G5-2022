@@ -43,50 +43,50 @@
         <Label Content="CONSULTAS Y GESTIONES" Grid.Column="2" Margin="10,157,21,0" RenderTransformOrigin="-0.079,0.154" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" FontFamily="Segoe UI Emoji" Height="38" VerticalAlignment="Top" Grid.Row="1"/>
         <Rectangle Grid.Column="1" Fill="#FFF1EBEC" Margin="160,20,171,32" Stroke="Black" StrokeThickness="0" Grid.Row="4" Grid.ColumnSpan="5"/>
         <Label Content="SOLICITUDES" Grid.Column="2" Margin="72,71,107,0" RenderTransformOrigin="-0.079,0.154" Grid.Row="3" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" FontFamily="Segoe UI Emoji" Height="39" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Button Background="{x:Null}" Name="btnClientes" Grid.Column="1" Margin="170,6,199,65" BorderThickness="0" Click="BtnClientes_Click" Grid.Row="1" Foreground="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2">
+        <Button Background="{x:Null}" Name="btnClientes" Grid.Column="1" Margin="170,6,199,65" BorderThickness="0" Click="BtnClientes_Click" Grid.Row="1" Foreground="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2" Cursor="Hand">
             <StackPanel>
                 <Image Source="/Images/cliente.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Clientes" Height="30" VerticalAlignment="Bottom" Width="134" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Background="{x:Null}" Name="btnEmpleados" Grid.Column="2" Margin="81,6,85,65" BorderThickness="0" Click="BtnEmpleados_Click" Grid.Row="1" Grid.ColumnSpan="2">
+        <Button Background="{x:Null}" Name="btnEmpleados" Grid.Column="2" Margin="81,6,85,65" BorderThickness="0" Click="BtnEmpleados_Click" Grid.Row="1" Grid.ColumnSpan="2" Cursor="Hand">
             <StackPanel>
                 <Image Source="/Images/empleados.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Empleados" Height="30" VerticalAlignment="Bottom" Width="153" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Background="{x:Null}" Name="btnUsuarios" Grid.Column="3" Margin="83,6,200,65" BorderThickness="0" Click="BtnUsuarios_Click" Grid.Row="1" Grid.ColumnSpan="3">
+        <Button Background="{x:Null}" Name="btnUsuarios" Grid.Column="3" Margin="83,6,200,65" BorderThickness="0" Click="BtnUsuarios_Click" Grid.Row="1" Grid.ColumnSpan="3" Cursor="Hand">
             <StackPanel>
                 <Image Source="/Images/usuario.png" Margin="30,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Administrar Usuarios" Height="30" VerticalAlignment="Bottom" Width="138" FontSize="14" Margin="0"/>
             </StackPanel>
         </Button>
         <Image Margin="103,0,270,10" Source="Images/fysi.jpg" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
-        <Button Grid.Column="1" Margin="260,9,123,54" Grid.Row="2" FontSize="14" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <Button Grid.Column="1" Margin="260,9,123,54" Grid.Row="2" FontSize="14" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click" Grid.ColumnSpan="2" Grid.RowSpan="2" Cursor="Hand">
             <StackPanel Width="135">
                 <Image Source="Images/inventario.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Height="90"/>
                 <Label Content="Inventario" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="2" Margin="98,29,90,40" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4" Grid.ColumnSpan="2">
+        <Button Background="{x:Null}" Name="btnInsumos" Grid.Column="2" Margin="98,29,90,40" BorderThickness="0" Click="BtnInsumos_Click" Grid.Row="4" Grid.ColumnSpan="2" Cursor="Hand">
             <StackPanel>
                 <Image Source="Images/solicitud.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Width="90" Height="90"/>
                 <Label Content="Insumos" Height="30" VerticalAlignment="Bottom" Width="64" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Name="btnCotizacion" Grid.Column="1" Margin="182,29,200,40" Grid.Row="4" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnCotizacion_Click" Grid.ColumnSpan="2">
+        <Button Name="btnCotizacion" Grid.Column="1" Margin="182,29,200,40" Grid.Row="4" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" Click="BtnCotizacion_Click" Grid.ColumnSpan="2" Cursor="Hand">
             <StackPanel>
                 <Image Source="Images/cotizacion.png" Margin="10,0" Height="90" Width="90" MaxHeight="150" MaxWidth="150"/>
                 <Label Content="Cotizaciones" Height="30" VerticalAlignment="Bottom" Width="90" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Name="btnRecibo" Grid.Column="3" Margin="96,29,219,40" Grid.Row="4" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Click="BtnRecibo_Click" Grid.ColumnSpan="3">
+        <Button Name="btnRecibo" Grid.Column="3" Margin="96,29,219,40" Grid.Row="4" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}" Click="BtnRecibo_Click" Grid.ColumnSpan="3" Cursor="Hand">
             <StackPanel>
                 <Image Source="Images/recibo.png" Margin="10,0" Height="90" Width="90" MaxHeight="150" MaxWidth="150"/>
                 <Label Content="Recibo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="52" Height="30" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Button Name="btnHistorial" Grid.Column="3" Margin="9,10,60,54" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="BtnHistorial_Click" Grid.RowSpan="2" Grid.ColumnSpan="2">
+        <Button Name="btnHistorial" Grid.Column="3" Margin="9,10,60,54" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="BtnHistorial_Click" Grid.RowSpan="2" Grid.ColumnSpan="2" Cursor="Hand">
             <StackPanel>
                 <Image Source="Images/historial.png" Margin="10,0" Height="90" Width="90" MaxHeight="150" MaxWidth="150"/>
                 <Label Content="Historiales" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14"/>

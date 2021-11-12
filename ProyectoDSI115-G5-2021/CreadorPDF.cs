@@ -458,6 +458,7 @@ namespace ProyectoDSI115_G5_2021
             tableCabecera.RowGroups[0].Rows.Add(new TableRow());
             TableRow actual = tableCabecera.RowGroups[0].Rows[0];
             actual.FontSize = 14;
+            actual.FontWeight = FontWeights.Bold;
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Fecha: " + fechaSolicitudRecibo))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("No. " + codigo))));
@@ -465,6 +466,7 @@ namespace ProyectoDSI115_G5_2021
             tableCabecera.RowGroups[0].Rows.Add(new TableRow());
             actual = tableCabecera.RowGroups[0].Rows[1];
             actual.FontSize = 14;
+            actual.FontWeight = FontWeights.Bold;
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Cliente: " + nombreCliente))));
             // Salto de línea
             p = new System.Windows.Documents.Paragraph(new Run("\n"));
@@ -479,10 +481,10 @@ namespace ProyectoDSI115_G5_2021
                 tableDetalles.Columns.Add(new TableColumn());
             }
             //sección para modificar el tamaño de Longitud de las columnas
-            GridLength anchoNombre = new GridLength(164);
-            GridLength anchoPresentacion = new GridLength(82);
-            GridLength anchoCantidad = new GridLength(50);
-            GridLength anchoPrecio = new GridLength(110);
+            GridLength anchoNombre = new GridLength(175);
+            GridLength anchoPresentacion = new GridLength(200);
+            GridLength anchoCantidad = new GridLength(100);
+            GridLength anchoPrecio = new GridLength(100);
             GridLength anchoSubTotal = new GridLength(110);
             tableDetalles.Columns[0].Width = anchoNombre;
             tableDetalles.Columns[1].Width = anchoPresentacion;
@@ -534,6 +536,12 @@ namespace ProyectoDSI115_G5_2021
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Total: "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("" + totalRecibo))));
+
+            tablaTotal.Columns[0].Width = anchoNombre;
+            tablaTotal.Columns[1].Width = anchoPresentacion;
+            tablaTotal.Columns[2].Width = anchoCantidad;
+            tablaTotal.Columns[3].Width = anchoPrecio;
+            tablaTotal.Columns[4].Width = anchoSubTotal;
             //agregando espacio en blanco:
             tablaTotal.RowGroups[0].Rows.Add(new TableRow());
             actual = tablaTotal.RowGroups[0].Rows[1];
