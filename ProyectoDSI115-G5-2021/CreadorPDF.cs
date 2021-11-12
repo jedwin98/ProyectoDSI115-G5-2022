@@ -238,7 +238,7 @@ namespace ProyectoDSI115_G5_2021
 
         // Crea una impresión de una solicitud elegida desde el historial del cliente.
         // AUTOR: Gabriel 
-        public void ImpresionSolicitud(DataTable dataTable, string nombreSolicitante, string autorizador, string cliente, string empresaR, string codigoSolicitud, string numeroOrden, string fecha, int paginasRestantes)
+        public void ImpresionSolicitud(DataTable dataTable, string cliente, string empresaR, string codigoSolicitud, string fecha, int paginasRestantes)
         {
             // Preparando impresión por medio de FlowDocument
 
@@ -261,7 +261,7 @@ namespace ProyectoDSI115_G5_2021
             emp.Cells.Add(new TableCell(new BlockUIContainer(logo)));
             // Agregando nombre de la empresa
             System.Windows.Documents.Paragraph p = new System.Windows.Documents.Paragraph(new Run("\nFuego y Seguridad Industrial\n"));
-            p.Inlines.Add(new Run("Solicitud de Extracción"));
+            p.Inlines.Add(new Run("Historial del Cliente"));
             p.FontSize = 20;
             emp.Cells.Add(new TableCell(p));
 
@@ -278,8 +278,8 @@ namespace ProyectoDSI115_G5_2021
             tableCabecera.RowGroups[0].Rows.Add(new TableRow());
             TableRow actual = tableCabecera.RowGroups[0].Rows[0];
             actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Fecha de ingreso: " + fecha))));
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Orden #" + numeroOrden))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Fecha de impresion: " + fecha))));
+         //   actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Orden #" + numeroOrden))));
             // Información de cliente y razón social
             tableCabecera.RowGroups[0].Rows.Add(new TableRow());
             actual = tableCabecera.RowGroups[0].Rows[1];
@@ -297,7 +297,7 @@ namespace ProyectoDSI115_G5_2021
             for (int i = 0; i < dataTable.Columns.Count; i++)
             {
                 tableDetalles.Columns.Add(new TableColumn());
-            }
+            }           
             tableDetalles.RowGroups.Add(new TableRowGroup());
             // Creación de encabezado
             tableDetalles.RowGroups[0].Rows.Add(new TableRow());
@@ -324,41 +324,6 @@ namespace ProyectoDSI115_G5_2021
             p = new System.Windows.Documents.Paragraph(new Run("\n"));
             todo.Blocks.Add(p);
 
-            // Tabla de firmas
-            Table tableFirmas = new Table();
-            todo.Blocks.Add(tableFirmas);
-            tableFirmas.Background = System.Windows.Media.Brushes.White;
-            for (int i = 0; i < 2; i++)
-            {
-                tableFirmas.Columns.Add(new TableColumn());
-            }
-            tableFirmas.RowGroups.Add(new TableRowGroup());
-            // Cabecera
-            tableFirmas.RowGroups[0].Rows.Add(new TableRow());
-            actual = tableFirmas.RowGroups[0].Rows[0];
-            actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Solicitante: "+nombreSolicitante))));
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Autorizador: "+ autorizador))));
-            //agregando espacio en blanco:
-            tableFirmas.RowGroups[0].Rows.Add(new TableRow());
-            actual = tableFirmas.RowGroups[0].Rows[1];
-            actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("\n"))));
-            //agregando espacio de observaciones
-            tableFirmas.RowGroups[0].Rows.Add(new TableRow());
-            actual = tableFirmas.RowGroups[0].Rows[2];
-            actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Observaciones:"))));
-            //agregando espacio en blanco:
-            tableFirmas.RowGroups[0].Rows.Add(new TableRow());
-            actual = tableFirmas.RowGroups[0].Rows[3];
-            actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("\n"))));
-            //agregando espacio en blanco:
-            tableFirmas.RowGroups[0].Rows.Add(new TableRow());
-            actual = tableFirmas.RowGroups[0].Rows[4];
-            actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("\n"))));
             Console.Write(paginasRestantes.ToString());
             paginas.Add(todo);
             if (paginasRestantes == 1)
