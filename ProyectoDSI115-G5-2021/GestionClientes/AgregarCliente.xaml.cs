@@ -17,7 +17,6 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         public AgregarCliente()
         {
             InitializeComponent();
-          //  llenarComboBox();
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -29,7 +28,6 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             else
             {
                 Cliente cliente = new Cliente();
-                //   TipoServicio selecteditem = (TipoServicio)cmbServicio.SelectedItem;
                 string respuesta;
                 cliente.codigo = txtId.Text;
                 cliente.nombres = txtNombre.Text;
@@ -41,13 +39,10 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 respuesta = control.AgregarCliente(cliente);
                 MessageBox.Show(respuesta);
 
+                this.Close();
             }
-        
-          
-
          }
      
-
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
            /* GestionClientes nueva = new GestionClientes() {
@@ -66,20 +61,18 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             };
             nueva.Show();
             */
-
         }
 
         private void TxtTelefono_TextChanged(object sender, TextChangedEventArgs e)
         {
-           
-
         }
+
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if(e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-        e.Handled = false;
-    else
-        e.Handled = true;
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }
