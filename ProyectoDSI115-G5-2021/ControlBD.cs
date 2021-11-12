@@ -1529,7 +1529,7 @@ namespace ProyectoDSI115_G5_2021
         //************************************** FIN DE CONSULTAR INVENTARIO  ************************************************************************
 
         //************************************** INICIA CREAR COTIZACION *****************************************************************************
-
+        //Autor: Edwin Antonio Jimenez Palma
         public DataTable consultarInve()
         {
             try

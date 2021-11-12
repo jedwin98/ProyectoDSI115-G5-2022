@@ -161,6 +161,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
         }
 
+        //Modulo para generar la fecha actual del sistema
+        //Autor: Edwin Antonio Jimenez Palma
         public string GenerarFecha()
         {
             DateTime fecha = DateTime.Now;
@@ -174,6 +176,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             return dia + "/" + mes + "/" + anio;
         }
 
+        //Módulo que genera el código de la cotización
+        //Autor: Edwin Antonio Jimenez Palma
         public string GenerarCodigoCotizacion()
         {
             DateTime fecha = DateTime.Now;
@@ -216,6 +220,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
             }
         }
 
+        //Módulo que prepara la tabla de detalle a imprimir 
+        //Autor: Edwin Antonio Jimenez Palma
         private void GenerarImpresion(string fechaCot, string codigoCot, string clienteCot, float totalCot)
         {
             //Adecuar cabeceras de tablas
