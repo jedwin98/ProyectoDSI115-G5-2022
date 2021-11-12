@@ -283,7 +283,6 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     txtCliente.IsEnabled = true;
                     btnImprimir.IsEnabled = false;
                     
-
                     existenciaSelected = 0;
                     totalTotal = 0;
 
