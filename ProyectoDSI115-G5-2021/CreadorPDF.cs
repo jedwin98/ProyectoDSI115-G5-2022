@@ -625,7 +625,7 @@ namespace ProyectoDSI115_G5_2021
             }
             //sección para modificar el tamaño de Longitud de las columnas
             GridLength anchoCantidad = new GridLength(100);
-            GridLength anchoConcepto = new GridLength(200);
+            GridLength anchoConcepto = new GridLength(250);
             GridLength anchoPrecio = new GridLength(150);
             GridLength anchoSubTotal = new GridLength(150);
             tableDetalles.Columns[0].Width = anchoCantidad;
