@@ -597,10 +597,10 @@ namespace ProyectoDSI115_G5_2021
                 tableDetalles.Columns.Add(new TableColumn());
             }
             //sección para modificar el tamaño de Longitud de las columnas
-            GridLength anchoCantidad = new GridLength(50);
-            GridLength anchoConcepto = new GridLength(164);
-            GridLength anchoPrecio = new GridLength(110);
-            GridLength anchoSubTotal = new GridLength(110);
+            GridLength anchoCantidad = new GridLength(100);
+            GridLength anchoConcepto = new GridLength(250);
+            GridLength anchoPrecio = new GridLength(150);
+            GridLength anchoSubTotal = new GridLength(150);
             tableDetalles.Columns[0].Width = anchoCantidad;
             tableDetalles.Columns[1].Width = anchoConcepto;
             tableDetalles.Columns[2].Width = anchoPrecio;
@@ -649,7 +649,7 @@ namespace ProyectoDSI115_G5_2021
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Total: "))));
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("" + totalCotizacion))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("" + "$"+totalCotizacion))));
             //agregando espacio en blanco:
             tablaTotal.RowGroups[0].Rows.Add(new TableRow());
             actual = tablaTotal.RowGroups[0].Rows[1];

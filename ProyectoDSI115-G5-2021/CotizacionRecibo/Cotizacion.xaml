@@ -16,7 +16,7 @@
             <ColumnDefinition Width="175*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="White" Margin="0,19,10,63" Stroke="Black" Grid.Column="1" Grid.Row="1"/>
-        <Label x:Name="label1_Copy" Content="Agregar a la cotización" Margin="164,0,155,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="18" Grid.Column="1" Height="41" Grid.Row="1" Background="White"/>
+        <Label x:Name="label1_Copy" Content="Agregar a la cotización" Margin="35,0,0,0" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="18" Grid.Column="1" Height="41" Grid.Row="1" Background="White" HorizontalAlignment="Left" Width="206"/>
         <Button x:Name="btnVolver" Content="Regresar" HorizontalAlignment="Left" Margin="29,0,0,13" Width="101" Click="BtnVolver_Click" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Grid.Row="1" Height="36" VerticalAlignment="Bottom"/>
         <Rectangle Fill="#FFC91029" Height="66" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.469" Grid.ColumnSpan="2"/>
         <Label x:Name="label" HorizontalAlignment="Left" Margin="29,10,0,0" VerticalAlignment="Top" Height="47" Width="177" FontFamily="Comic Sans MS" FontSize="26" FontWeight="Bold" Foreground="White" Content="Cotización"/>
