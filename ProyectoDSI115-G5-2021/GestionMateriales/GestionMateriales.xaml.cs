@@ -42,12 +42,16 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         // ******** METODOS PARA BOTONES ***************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
+            cargarTabla();
             this.Close();
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarMaterial ag = new AgregarMaterial();
+            AgregarMaterial ag = new AgregarMaterial()
+            {
+                WindowState = WindowState.Normal
+            };
 
             ag.ShowDialog();
             cargarTabla();
@@ -57,7 +61,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         {
             ActualizarMaterial ac = new ActualizarMaterial()
             {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
             string fecha;
@@ -78,7 +82,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
 
                 ac.Show();
                 cargarTabla();
-                this.Close();
+
+                //this.Close();
             }
         }
 
@@ -86,7 +91,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         {
             EliminarMaterial ec = new EliminarMaterial()
             {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
             string fecha;
@@ -107,7 +112,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
 
                 ec.Show();
                 cargarTabla();
-                this.Close();
+
+                //this.Close();
             }
         }
 

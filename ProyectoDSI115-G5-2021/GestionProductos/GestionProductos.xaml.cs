@@ -40,11 +40,15 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         // ******** METODOS PARA BOTONES ***************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            
+            this.Close();cargarTabla();
         }
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarProducto ag = new AgregarProducto();
+            AgregarProducto ag = new AgregarProducto()
+            {
+                WindowState = WindowState.Normal
+            };
 
             ag.ShowDialog();
             cargarTabla();
@@ -54,7 +58,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         {
             ActualizarProducto ac = new ActualizarProducto()
             {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
             string fecha;
@@ -77,7 +81,8 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
 
                 ac.Show();
                 cargarTabla();
-                this.Close();
+
+                //this.Close();
             }
         }
 
@@ -85,7 +90,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         {
             EliminarProducto ec = new EliminarProducto()
             {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
             string fecha;
@@ -108,7 +113,8 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
 
                 ec.Show();
                 cargarTabla();
-                this.Close();
+
+                //this.Close();
             }
         }
 
