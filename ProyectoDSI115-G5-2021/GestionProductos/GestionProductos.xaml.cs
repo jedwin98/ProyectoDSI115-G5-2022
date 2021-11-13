@@ -48,7 +48,6 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
 
             ag.ShowDialog();
             cargarTabla();
-          
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
@@ -77,6 +76,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
                 fecha = row.Row.ItemArray[6].ToString();
 
                 ac.Show();
+                cargarTabla();
                 this.Close();
             }
         }
@@ -107,6 +107,7 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
                 fecha = row.Row.ItemArray[6].ToString();
 
                 ec.Show();
+                cargarTabla();
                 this.Close();
             }
         }

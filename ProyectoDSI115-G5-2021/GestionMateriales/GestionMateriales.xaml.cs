@@ -34,6 +34,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         {
             dt.Clear();
             dataMateriales.ItemsSource = null;
+
             dt = control.consultarMateriales();
             dataMateriales.ItemsSource = dt.DefaultView;
         }
@@ -43,13 +44,13 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         {
             this.Close();
         }
+
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             AgregarMaterial ag = new AgregarMaterial();
 
             ag.ShowDialog();
             cargarTabla();
-            
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
@@ -76,6 +77,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 fecha = row.Row.ItemArray[5].ToString();
 
                 ac.Show();
+                cargarTabla();
                 this.Close();
             }
         }
@@ -104,6 +106,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 fecha = row.Row.ItemArray[5].ToString();
 
                 ec.Show();
+                cargarTabla();
                 this.Close();
             }
         }

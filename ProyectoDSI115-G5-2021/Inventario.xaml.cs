@@ -40,6 +40,7 @@ namespace ProyectoDSI115_G5_2021
             InitializeComponent();
             codigoEmpleado = codE;
             tipo = tipoUsuario;
+
             if (checkProducto.IsChecked == true && checkMaterial.IsChecked == true)
                 cargarTabla();
             else if (checkProducto.IsChecked == true && checkMaterial.IsChecked == false)
@@ -48,7 +49,6 @@ namespace ProyectoDSI115_G5_2021
                 cargarTablaMat();
             else
                 MessageBox.Show("Marque una de las oociones para ver en el inventario");
-
         }
 
         public void cargarTabla()
