@@ -28,11 +28,6 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         //*************************** METODO DE BOTONES ***************************************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            GestionMateriales gestionMateriales = new GestionMateriales()
-            {
-                WindowState = WindowState.Maximized
-            };
-            gestionMateriales.Show();
             this.Close();
         }
 
@@ -44,11 +39,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
             {
                 string respuesta = control.EliminarMaterial(txtCodigo.Text);
                 MessageBox.Show(respuesta, "Eliminar Empleado", MessageBoxButton.OK, MessageBoxImage.Information);
-                txtCodigo.Text = null;
-                txtNombre.Text = null;
-                txtCantidad.Text = null;
-                txtUnidad.Text = null;
-                txtPrecio.Text = null;
+
+                this.Close();
             }
         }
     }

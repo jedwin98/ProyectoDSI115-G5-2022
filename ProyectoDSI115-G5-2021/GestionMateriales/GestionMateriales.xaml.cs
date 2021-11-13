@@ -80,10 +80,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ac.txtPrecio.Text = row.Row.ItemArray[4].ToString();
                 fecha = row.Row.ItemArray[5].ToString();
 
-                ac.Show();
+                ac.ShowDialog();
                 cargarTabla();
-
-                //this.Close();
             }
         }
 
@@ -110,10 +108,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ec.txtPrecio.Text = row.Row.ItemArray[4].ToString();
                 fecha = row.Row.ItemArray[5].ToString();
 
-                ec.Show();
+                ec.ShowDialog();
                 cargarTabla();
-
-                //this.Close();
             }
         }
 
