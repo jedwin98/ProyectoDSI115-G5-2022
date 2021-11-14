@@ -36,6 +36,7 @@ namespace ProyectoDSI115_G5_2021
         CotizacionRecibo.CrearRecibo recibo;
         Inventario verInventario;
         Reproductor rep;
+        int i = 0;
 
         Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false, cot = false, repp= false;
 
@@ -51,6 +52,7 @@ namespace ProyectoDSI115_G5_2021
         public MainWindow()
         {
             InitializeComponent();
+            
         }
         
         //SOBREESCRIBO EL EVENTO CUANDO LA VENTANA PRINCIPAL ESTA ACTIVADA
@@ -250,8 +252,13 @@ namespace ProyectoDSI115_G5_2021
 
         private void Logo_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            rep = new Reproductor();
-            rep.Show();
+            i = i + 1;
+            if (i == 5)
+            {
+                rep = new Reproductor();
+                rep.Show();
+                i = 0;
+            }
         }
 
         private void BtnEmpleados_Click(object sender, RoutedEventArgs e)

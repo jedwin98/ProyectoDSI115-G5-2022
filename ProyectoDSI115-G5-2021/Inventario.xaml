@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
-        Title="FYSIEX - Inventario" Height="805.999" Width="900" WindowStartupLocation="CenterScreen"
+        Title="FYSIEX - Inventario" Height="720" Width="900" WindowStartupLocation="CenterScreen"
         Activated="Inventario_Activated">
     <Grid Margin="0,0,-8,1" RenderTransformOrigin="0.612,0.521">
         <Grid.ColumnDefinitions>
@@ -18,14 +18,12 @@
             <RowDefinition Height="81*"/>
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Margin="0,0,8,0" Grid.ColumnSpan="3" Height="54" VerticalAlignment="Top" Grid.RowSpan="2"/>
-        <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="7,6,0,720" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Width="592" Grid.Column="1" Grid.RowSpan="2"/>
         <Rectangle  Fill="#FFF1EBEC" Margin="7,36,0,0" Stroke="Black" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="190" Height="535" VerticalAlignment="Top"/>
         <Label  Content="ACCIONES" HorizontalAlignment="Left" Margin="51,5,0,0" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" Width="100" Grid.Column="1" Height="49" VerticalAlignment="Top" Grid.Row="1"/>
-        <Button x:Name="btnVolver" Margin="27,0,0,21" Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" 
-                HorizontalAlignment="Left" Width="149" Click="BtnVolver_Click" BorderBrush="{x:Null}" Grid.Column="1" Grid.Row="1" Height="112" VerticalAlignment="Bottom">
-            <StackPanel>
-                <Image Source="Images/regreso.png" Stretch="Fill" Height="82" Margin="25,0,25,0"/>
-                <Label Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnVolver" Margin="27,0,0,10" Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" 
+                HorizontalAlignment="Left" Width="149" Click="BtnVolver_Click" BorderBrush="{x:Null}" Grid.Column="1" Grid.Row="1" Height="67" VerticalAlignment="Bottom">
+            <StackPanel Height="69">
+                <Image Source="Images/regreso.png" Stretch="Fill" Height="69" Margin="25,0,25,0"/>
             </StackPanel>
         </Button>
         <Button x:Name="btnMateriales" Margin="27,50,0,0" 
@@ -77,5 +75,6 @@
         </DataGrid>
         <CheckBox x:Name="checkProducto" Content="Productos" HorizontalAlignment="Left" Margin="235,0,0,42" IsChecked="True" Click="CheckProducto_Click" Width="100" FontSize="16" Checked="CheckProducto_Checked" Grid.Column="1" Height="19" VerticalAlignment="Bottom" Grid.Row="1"/>
         <CheckBox x:Name="checkMaterial" Content="Materiales e Insumos" HorizontalAlignment="Left" Margin="235,0,0,15" IsChecked="True" Click="CheckMaterial_Click" Width="180" FontSize="16" Grid.Column="1" Height="22" VerticalAlignment="Bottom" Grid.Row="1"/>
+        <Label  Grid.Column="1" HorizontalAlignment="Left" Margin="14,0,0,0" Content="Inventario de Productos y Materiales"  FontSize="21" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic"/>
     </Grid>
 </Window>

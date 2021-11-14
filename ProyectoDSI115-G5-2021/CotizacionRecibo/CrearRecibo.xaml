@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.CotizacionRecibo"
         mc:Ignorable="d"
-        Title="Recibo" Height="708.75" Width="1242.4" WindowStartupLocation="CenterScreen">
+        Title="Recibo" Height="708.75" Width="1242.4" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,2,-1" Height="679" VerticalAlignment="Top" >
         <Grid.RowDefinitions>
             <RowDefinition Height="28*"/>

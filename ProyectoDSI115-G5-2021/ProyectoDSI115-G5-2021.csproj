@@ -511,6 +511,12 @@
   <ItemGroup>
     <Resource Include="Images\lista.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\notificacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\burbuja-de-dialogo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
