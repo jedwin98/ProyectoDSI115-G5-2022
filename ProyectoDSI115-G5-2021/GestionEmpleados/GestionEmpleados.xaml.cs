@@ -69,7 +69,7 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                 cargo.nombreCargo = row.Row.ItemArray[4].ToString();
                 EliminarEmpleado ae = new EliminarEmpleado(area.codigoArea, cargo.codigoCargo)//se tienen que enviar los id para colocar los valores por defecto en los combo
                 {
-                    WindowState = WindowState.Maximized
+                    WindowState = WindowState.Normal
                 };
                 ae.txtId.Text = row.Row.ItemArray[0].ToString();
                 
@@ -79,8 +79,9 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                 ae.datePicker1.SelectedDate = Convert.ToDateTime(fecha);          
                 ae.txtEstado.Text = row.Row.ItemArray[8].ToString();
                
-                ae.Show();
-                this.Close();
+                ae.ShowDialog();
+                CargarTabla();
+                //this.Close();
                 
             }
            
@@ -113,7 +114,7 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                 cargo.nombreCargo = row.Row.ItemArray[4].ToString();
                 ActualizarEmpleado ae = new ActualizarEmpleado(area.codigoArea, cargo.codigoCargo)
                 {
-                    WindowState = WindowState.Maximized
+                    WindowState = WindowState.Normal
                 };
                 ae.txtId.Text = row.Row.ItemArray[0].ToString();
 
@@ -123,8 +124,9 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                 ae.datePicker1.SelectedDate = Convert.ToDateTime(fecha);
                 ae.txtEstado.Text = row.Row.ItemArray[8].ToString();
 
-                ae.Show();
-                this.Close();
+                ae.ShowDialog();
+                CargarTabla();
+                //this.Close();
 
             }
             

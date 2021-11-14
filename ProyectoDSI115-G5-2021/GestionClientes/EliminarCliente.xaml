@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
-        Title="EliminarCliente" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+        Title="EliminarCliente" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
 
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
@@ -30,13 +30,8 @@
         </Button>
 
         <Label Content="Editar Cliente" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
-        <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="100" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnVolver_Click_1">
-              <StackPanel>
-                    <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="65" Width="60"/>
-                    <Label Content="Volver" HorizontalContentAlignment="Center" FontFamily="Segoe UI Emoji"/>
-                </StackPanel>
-            </Button>
-            <Label Content="ID Cliente:" HorizontalAlignment="Left" Margin="321,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
+        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click"/>
+        <Label Content="ID Cliente:" HorizontalAlignment="Left" Margin="321,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
         <Label Content="Nombre del Encargado:" HorizontalAlignment="Left" Margin="321,156,0,0" VerticalAlignment="Top"/>
         <Label Content="Apellido del Encargado:" HorizontalAlignment="Left" Margin="321,194,0,0" VerticalAlignment="Top"/>
         <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="321,231,0,0" VerticalAlignment="Top"/>
