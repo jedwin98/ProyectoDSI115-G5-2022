@@ -5,38 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
-        Title="AgregarCliente" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="AgregarCliente" Height="419.492" Width="669.386" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
         <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
         <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Width="194"/>
-        <Label Content="Elige la Opción que deseas realizar" Margin="472,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
-        <Rectangle Margin="250,108,23,10" Stroke="Black"/>
-        <TextBox x:Name="txtId" MaxLength="7" TextWrapping="Wrap" Text="" Margin="461,125,107,0" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNombre" MaxLength="50" TextWrapping="Wrap" Text="" Margin="461,158,107,0" Height="24" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtApellido" MaxLength="50" TextWrapping="Wrap" Text="" Margin="461,196,107,0" Height="24" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEmpresa" MaxLength="300" TextWrapping="Wrap" Text="" Margin="461,232,107,0" Height="24" VerticalAlignment="Top"/>
+        <Label Content="Elige la Opción que deseas realizar" Margin="0,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
+        
+        <Rectangle Margin="200,108,20,20" Stroke="Black"/>
+        <Label Content="Agregar nuevo Cliente" HorizontalAlignment="Left" Margin="225,94,0,0" VerticalAlignment="Top" Background="White"/>
 
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="235" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
-        <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,121,0,0" VerticalAlignment="Top" Width="85" Height="100" Click="BtnGuardar_Click">
-            <StackPanel>
-                <Image Source="/Images/disquete.png" Height="69" Width="60"/>
+        <Label Content="ID Cliente:" HorizontalAlignment="Left" Margin="225,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
+        <TextBox x:Name="txtId" MaxLength="7" TextWrapping="Wrap" Text="" Margin="400,130,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
+        <Label Content="Nombre del Encargado:" HorizontalAlignment="Left" Margin="225,165,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNombre" MaxLength="50" TextWrapping="Wrap" Text="" Margin="400,165,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
+        <Label Content="Apellido del Encargado:" HorizontalAlignment="Left" Margin="225,200,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtApellido" MaxLength="50" TextWrapping="Wrap" Text="" Margin="400,200,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
+        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="225,235,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmpresa" MaxLength="300" TextWrapping="Wrap" Text="" Margin="400,235,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
+        <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="225,270,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtTelefono" MaxLength="15" KeyDown="OnKeyDownHandler" TextWrapping="Wrap" Height="25" Text="" Margin="400,270,0,0" VerticalAlignment="Top" TextChanged="TxtTelefono_TextChanged" HorizontalAlignment="Left" Width="223"/>
+        <Label Content="Correo Electrónico:" HorizontalAlignment="Left" Margin="225,305,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCorreo" MaxLength="100" TextWrapping="Wrap" Height="25" Text="" Margin="400,305,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
+        
+        <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="Activo" Margin="401,37,167,64" Grid.Row="1"/>
+
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="20,108,0,20" Stroke="Black" Width="155"/>
+        <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="110" Height="110" Click="BtnGuardar_Click">
+            <StackPanel Height="100" Width="100">
+                <Image Source="/Images/disquete.png" Height="70" Width="70"/>
                 <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>
 
-        <Label Content="Agregar nuevo Cliente" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
-        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="30" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnVolver_Click"/>
-        <Label Content="ID Cliente:" HorizontalAlignment="Left" Margin="321,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
-        <Label Content="Nombre del Encargado:" HorizontalAlignment="Left" Margin="321,156,0,0" VerticalAlignment="Top"/>
-        <Label Content="Apellido del Encargado:" HorizontalAlignment="Left" Margin="321,194,0,0" VerticalAlignment="Top"/>
-        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="321,230,0,0" VerticalAlignment="Top"/>
-        <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="321,265,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="Activo" Margin="401,37,167,64" Grid.Row="1"/>
-
-        <TextBox x:Name="txtTelefono" MaxLength="15" KeyDown="OnKeyDownHandler" TextWrapping="Wrap" Height="25" Text="" Margin="461,270,107,0" VerticalAlignment="Top" TextChanged="TxtTelefono_TextChanged"/>
-        <Label Content="Correo Electrónico:" HorizontalAlignment="Left" Margin="321,304,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCorreo" MaxLength="100" TextWrapping="Wrap" Height="25" Text="" Margin="461,304,107,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="40,0,0,30" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}" Width="110" Height="110" VerticalAlignment="Bottom">
+            <StackPanel Height="100" Width="100">
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="70" Width="70" />
+                <Label  Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

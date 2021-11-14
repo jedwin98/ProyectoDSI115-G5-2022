@@ -52,16 +52,16 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            /*
             GestionEmpleados nueva = new GestionEmpleados()
             {
                 WindowState = WindowState.Maximized
 
             };
             nueva.Show();
-
-
+            */
         }
+
         public void CargarCombos(string idA, string idC)
         {
             cargos = control.ConsultarCargo();
@@ -88,8 +88,6 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                     cmbCargo.SelectedIndex = i;
                 }
             }
-
-
         }
 
     }

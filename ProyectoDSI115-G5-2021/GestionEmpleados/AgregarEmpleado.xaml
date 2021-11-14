@@ -5,46 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionEmpleados"
         mc:Ignorable="d"
-        Title="AgregarEmpleado" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="AgregarEmpleado" Height="419.492" Width="669.386" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
     <Grid>
-
-
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
         <Label Content="Administración de Empleados" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
         <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="0,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
-        <Rectangle Margin="250,108,23,10" Stroke="Black"/>
-        <TextBox x:Name="txtId" MaxLength="7" TextWrapping="Wrap" Text="" Margin="489,125,79,0" Height="26" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNombre" MaxLength="50" TextWrapping="Wrap" Text="" Margin="489,158,79,0" Height="24" VerticalAlignment="Top" />
-        <TextBox x:Name="txtApellido" MaxLength="50"  TextWrapping="Wrap" Text="" Margin="489,196,79,0" Height="24" VerticalAlignment="Top"/>
+        
+        <Rectangle Margin="200,108,20,20" Stroke="Black"/>
+        <Label Content="Agregar nuevo Empleado" HorizontalAlignment="Left" Margin="225,94,0,0" VerticalAlignment="Top" Background="White"/>
 
-
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="247" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
-        <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="100" Click="BtnGuardar_Click">
-            <StackPanel>
-                <Image Source="/Images/disquete.png" Height="69" Width="76"/>
-                <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Segoe UI Emoji"/>
-            </StackPanel>
-
-
-        </Button>
-
-        <Label Content="Agregar nuevo Empleado" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
-        <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="69,243,0,0" VerticalAlignment="Top" Width="85" Height="100" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}">
-            <StackPanel>
-                <Image Source="/FYSIEX;component/Images/regreso.png" Height="67" Width="71" />
-                <Label  Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
-            </StackPanel>
-        </Button>
-        <Label Content="ID Empleado:" HorizontalAlignment="Left" Margin="323,127,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
-        <Label Content="Nombres del Empleado:" HorizontalAlignment="Left" Margin="323,158,0,0" VerticalAlignment="Top"/>
-        <Label Content="Apellidos del Empleado:" HorizontalAlignment="Left" Margin="323,196,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fecha de Contratación:" HorizontalAlignment="Left" Margin="323,232,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="Activo" Margin="401,37,167,64" Grid.Row="1"/>
-        <DatePicker Name="datePicker1" Margin="489,232,79,0" Height="24" VerticalAlignment="Top"/>
-        <Label Content="Cargo del Empleado:" HorizontalAlignment="Left" Margin="323,273,0,0" VerticalAlignment="Top"/>
-        <Label Content="Area de Trabajo:" HorizontalAlignment="Left" Margin="323,304,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbCargo"  HorizontalAlignment="Left" Margin="489,273,0,0" VerticalAlignment="Top" Width="224">
+        <Label Content="ID Empleado:" HorizontalAlignment="Left" Margin="225,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
+        <TextBox x:Name="txtId" MaxLength="7" TextWrapping="Wrap" Text="" Margin="400,130,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"/>
+        <Label Content="Nombres del Empleado:" HorizontalAlignment="Left" Margin="225,165,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNombre" MaxLength="50" TextWrapping="Wrap" Text="" Margin="400,165,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224" />
+        <Label Content="Apellidos del Empleado:" HorizontalAlignment="Left" Margin="225,200,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtApellido" MaxLength="50"  TextWrapping="Wrap" Text="" Margin="400,200,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"/>
+        <Label Content="Fecha de Contratación:" HorizontalAlignment="Left" Margin="225,235,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="datePicker1" Margin="400,235,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"/>
+        <Label Content="Cargo del Empleado:" HorizontalAlignment="Left" Margin="225,270,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbCargo"  HorizontalAlignment="Left" Margin="400,270,0,0" VerticalAlignment="Top" Width="224">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -53,7 +34,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox x:Name="cmbArea" Text="{Binding nombreArea}" HorizontalAlignment="Left" Margin="489,308,0,0" VerticalAlignment="Top" Width="224" RenderTransformOrigin="0.5,0.5">
+        <Label Content="Area de Trabajo:" HorizontalAlignment="Left" Margin="225,305,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbArea" Text="{Binding nombreArea}" HorizontalAlignment="Left" Margin="400,305,0,0" VerticalAlignment="Top" Width="224" RenderTransformOrigin="0.5,0.5">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -62,5 +44,21 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        
+        <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="Activo" Margin="401,37,167,64" Grid.Row="1"/>
+        
+        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="20,108,0,20" Stroke="Black" Width="155"/>
+        <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="110" Height="110" Click="BtnGuardar_Click">
+            <StackPanel Height="100" Width="100">
+                <Image Source="/Images/disquete.png" Height="70" Width="70"/>
+                <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Segoe UI Emoji"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="40,0,0,30" Width="110" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}" Height="110" VerticalAlignment="Bottom">
+            <StackPanel Height="100" Width="100">
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="70" Width="70" />
+                <Label  Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>

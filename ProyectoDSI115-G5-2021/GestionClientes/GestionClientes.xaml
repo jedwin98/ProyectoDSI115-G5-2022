@@ -42,7 +42,7 @@
         </Button>
         <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="70,222,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="BtnBorrar_Click">
             <StackPanel Height="100" Width="90">
-                <Image Source="/Images/basura.png" Height="70" Width="70" Cursor="Hand" Margin="12,0,11,0"/>
+                <Image Source="/Images/basura.png" Height="70" Width="70" Cursor="Hand" Margin="10,0,11,0"/>
                 <Label Content="Eliminar" FontFamily="Comic Sans MS"  Height="24" FontSize="12"  HorizontalAlignment="Stretch" Margin="14,0,14,0" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
