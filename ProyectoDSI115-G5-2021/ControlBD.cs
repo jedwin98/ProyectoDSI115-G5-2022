@@ -172,6 +172,8 @@ namespace ProyectoDSI115_G5_2021
             return tipos;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Selección de empleados sin cuenta activa disponibles para Combobox de Agregar Usuario.
         public List<EmpleadoItem> ConsultarEmpleadosLista()
         {
             //Se usa una versión reducida de empleado para este caso
@@ -198,6 +200,8 @@ namespace ProyectoDSI115_G5_2021
             return empleados;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Llenado de tabla de usuarios activos.
         public DataTable ConsultarUsuarios()
         {
             //Inicializando tabla de datos
@@ -219,6 +223,8 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Agregar usuario con la información obtenida del formulario.
         public String AgregarUsuario(Usuario usuario, string contra)
         {
             try
@@ -244,6 +250,8 @@ namespace ProyectoDSI115_G5_2021
             return "Usuario registrado correctamente";
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Verificación de correos ya registrados.
         public bool VerificarCorreo(string correo)
         {
             bool valido = false;
@@ -272,6 +280,8 @@ namespace ProyectoDSI115_G5_2021
             return valido;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Proceso de inicio de sesión.
         public Usuario CrearSesion(string usuario, string contrasena)
         {
             //Se selecciona al usuario a partir del correo obtenido
@@ -489,7 +499,8 @@ namespace ProyectoDSI115_G5_2021
             return dt;
          }
 
-
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Eliminación de usuario seleccionado en Gestión de Usuarios.
         public String EliminarUsuario(String usuario)
         {
             try
@@ -528,6 +539,9 @@ namespace ProyectoDSI115_G5_2021
             return true;
         }
         */
+
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Comando para cambio de contraseña.
         public bool CambiarContrasenaEmail(String email, String contrasena)
         {
             try
@@ -547,6 +561,8 @@ namespace ProyectoDSI115_G5_2021
             return true;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Comando para obtener resultados de búsqueda.
         public DataTable BuscarUsuario(string clave)
         {
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -567,6 +583,8 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Busca un usuario que desea cambiar su contraseña.
         public bool BuscarUsuarioActivo(string email)
         {
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -589,6 +607,8 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Obtener credenciales de remitente para servicio de correo.
         public Remitente ObtenerServicio()
         {
             cn.Open();
@@ -608,6 +628,7 @@ namespace ProyectoDSI115_G5_2021
             return res;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
         // Proceso de establecimiento de remitente para el servicio de correo del sistema.
         public bool EstablecerRemitente(string email, string contrasena)
         {
@@ -641,6 +662,8 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Nombre del destinatario para agregar en el correo a enviar.
         public string ObtenerNombre(string email)
         {
             try
@@ -664,6 +687,8 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Restringe al usuario de acceder a varias instancias de Cambiar Contraseña en diferentes computadoras.
         public void Bloquear(string email, string estado)
         {
             try
@@ -682,6 +707,8 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Libera la restricción del usuario en Cambio de Contraseña, si ha terminado correcta o incorrectamente.
         public void Desbloquear(string email)
         {
             try
@@ -699,6 +726,8 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Libera la restricción en casos de fallas externas.
         public void AjustarEstado(string id)
         {
             try
@@ -1038,7 +1067,10 @@ namespace ProyectoDSI115_G5_2021
          //   MessageBox.Show(dt.Rows[1][1].ToString());
             return dt;
         }
-        public DataTable ConsultarSolicitudes()//felix
+
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Consulta las solicitudes realizadas.
+        public DataTable ConsultarSolicitudes()
         {
             try
             {
@@ -1055,6 +1087,8 @@ namespace ProyectoDSI115_G5_2021
             return dt;
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Consulta al empleado que autorizó la solicitud.
         public string ObtenerEmpleadoAutorizador(string codigoSolicitud)
         {
             try
@@ -1078,6 +1112,8 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Actualiza el estado de una solicitud.
         public bool ActualizarEstadoSolicitud(string codigoSolicitud, string nuevoEstado, string empleadoEncargado)
         {
             try
@@ -1098,6 +1134,8 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Actualiza las existencias de la solicitud.
         public bool ActualizarExistencias(string codigoMP, float nuevaExistencia)
         {
             try
@@ -1107,14 +1145,14 @@ namespace ProyectoDSI115_G5_2021
                 char mop = cCodigo[0];
                 if (mop.ToString().Equals("M"))
                 {
-                    SQLiteCommand cambio = new SQLiteCommand("UPDATE MATERIAL SET EXISTENCIA_MATERIAL = @existencia WHERE COD_MATERIAL = @codigo", cn);
+                    SQLiteCommand cambio = new SQLiteCommand("UPDATE MATERIAL SET EXISTENCIA_MATERIAL = EXISTENCIA_MATERIAL - @existencia WHERE COD_MATERIAL = @codigo", cn);
                     cambio.Parameters.Add(new SQLiteParameter("@existencia", nuevaExistencia));
                     cambio.Parameters.Add(new SQLiteParameter("@codigo", codigoMP));
                     cambio.ExecuteNonQuery();
                 }
                 if (mop.ToString().Equals("P"))
                 {
-                    SQLiteCommand cambio = new SQLiteCommand("UPDATE PRODUCTO SET EXISTENCIA_PRODUCTO = @existencia WHERE COD_PRODUCTO = @codigo", cn);
+                    SQLiteCommand cambio = new SQLiteCommand("UPDATE PRODUCTO SET EXISTENCIA_PRODUCTO = EXISTENCIA_PRODUCTO - @existencia WHERE COD_PRODUCTO = @codigo", cn);
                     cambio.Parameters.Add(new SQLiteParameter("@existencia", nuevaExistencia));
                     cambio.Parameters.Add(new SQLiteParameter("@codigo", codigoMP));
                     cambio.ExecuteNonQuery();
@@ -1129,9 +1167,10 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        // Autor: Félix Eduardo Henríquez Cruz
+        // Obtiene los detalles de una solicitud.
         public DataTable ConsultarDetalleSolicitudes(string codigoSolicitud)
         {
-
             dt.Clear();
             SQLiteDataAdapter adapter = new SQLiteDataAdapter();
             try

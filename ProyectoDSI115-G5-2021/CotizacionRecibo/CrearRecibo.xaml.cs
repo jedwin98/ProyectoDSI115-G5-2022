@@ -202,7 +202,8 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                                     ValorExis.codigo = txtCodigo.Text;
                                     string captExistencia = txtExistencia.Text;
                                     string captCantidadSolicitada = txtCantidad.Text;
-                                    ValorExis.valorExistencia = Convert.ToSingle(captExistencia) - Convert.ToSingle(captCantidadSolicitada);
+                                    //ValorExis.valorExistencia = Convert.ToSingle(captExistencia) - Convert.ToSingle(captCantidadSolicitada);
+                                    ValorExis.valorExistencia = Convert.ToSingle(captCantidadSolicitada);
                                     valorExistencia.Add(ValorExis);
 
 

@@ -39,6 +39,7 @@ namespace ProyectoDSI115_G5_2021.Autorizacion
             if (estadoSolicitud.Equals("Pendiente"))
             {
                 btnImprimir.SetCurrentValue(IsEnabledProperty, false);
+                imgImprimir.SetCurrentValue(OpacityProperty, 0.35);
                 // Se revisa cada entrada para verificar que no se superen las existencias.
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -48,16 +49,20 @@ namespace ProyectoDSI115_G5_2021.Autorizacion
                     if (existencia < cantidad)
                     {
                         btnAprobar.SetCurrentValue(IsEnabledProperty, false);
+                        imgAprobar.SetCurrentValue(OpacityProperty, 0.35);
                     }
                 }
             }
             else
             {
                 btnAprobar.SetCurrentValue(IsEnabledProperty, false);
+                imgAprobar.SetCurrentValue(OpacityProperty, 0.35);
                 btnDenegar.SetCurrentValue(IsEnabledProperty, false);
+                imgDenegar.SetCurrentValue(OpacityProperty, 0.35);
                 if (estadoSolicitud.Equals("Denegado"))
                 {
                     btnImprimir.SetCurrentValue(IsEnabledProperty, false);
+                    imgImprimir.SetCurrentValue(OpacityProperty, 0.35);
                 }
                 else
                 {
@@ -69,44 +74,68 @@ namespace ProyectoDSI115_G5_2021.Autorizacion
 
         private void BtnDenegar_Click(object sender, RoutedEventArgs e)
         {
+            dt = control.ConsultarDetalleSolicitudes(codigoSolicitud);
+            dataDetalles.ItemsSource = dt.DefaultView;
             // Actualizar estado
             if (control.ActualizarEstadoSolicitud(codigoSolicitud, "Denegado", sesion.codigoEmpleado))
             {
                 btnAprobar.SetCurrentValue(IsEnabledProperty, false);
+                imgAprobar.SetCurrentValue(OpacityProperty, 0.35);
                 btnDenegar.SetCurrentValue(IsEnabledProperty, false);
+                imgDenegar.SetCurrentValue(OpacityProperty, 0.35);
             }
             else
             {
                 MessageBox.Show("Ocurrió un error al actualizar el estado de la solicitud.", "Error al actualizar estado", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            dt = control.ConsultarDetalleSolicitudes(codigoSolicitud);
+            dataDetalles.ItemsSource = dt.DefaultView;
         }
 
         private void BtnAprobar_Click(object sender, RoutedEventArgs e)
         {
+            dt = control.ConsultarDetalleSolicitudes(codigoSolicitud);
+            dataDetalles.ItemsSource = dt.DefaultView;
             // Actualizar estado
-            bool error = false;
-            for (int i = 0; i < dt.Rows.Count; i++)
+            bool error = false, actual = true;
+            while (actual)
             {
-                float existencia = float.Parse(dt.Rows[i][6].ToString()),
-                    cantidad = float.Parse(dt.Rows[i][5].ToString());
-                error = !control.ActualizarExistencias(dt.Rows[i][1].ToString(), existencia - cantidad);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    float existencia = float.Parse(dt.Rows[i][6].ToString()),
+                        cantidad = float.Parse(dt.Rows[i][5].ToString());
+                    if (existencia < cantidad) { actual = false; }
+                }
             }
-            if (control.ActualizarEstadoSolicitud(codigoSolicitud, "Aprobado", sesion.codigoEmpleado) && !error)
+            if (actual)
             {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    float cantidad = float.Parse(dt.Rows[i][5].ToString());
+                    error = !control.ActualizarExistencias(dt.Rows[i][1].ToString(), cantidad);
+                }
+                if (control.ActualizarEstadoSolicitud(codigoSolicitud, "Aprobado", sesion.codigoEmpleado) && !error)
+                {
 
-                btnAprobar.SetCurrentValue(IsEnabledProperty, false);
-                btnDenegar.SetCurrentValue(IsEnabledProperty, false);
-                btnImprimir.SetCurrentValue(IsEnabledProperty, true);
-                autorizador = sesion.empleado;
+                    btnAprobar.SetCurrentValue(IsEnabledProperty, false);
+                    imgAprobar.SetCurrentValue(OpacityProperty, 0.35);
+                    btnDenegar.SetCurrentValue(IsEnabledProperty, false);
+                    imgDenegar.SetCurrentValue(OpacityProperty, 0.35);
+                    btnImprimir.SetCurrentValue(IsEnabledProperty, true);
+                    imgImprimir.SetCurrentValue(OpacityProperty, 1.0);
+                    autorizador = sesion.empleado;
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrió un error al actualizar el estado de la solicitud.", "Error al actualizar estado", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Ocurrió un error al actualizar el estado de la solicitud.", "Error al actualizar estado", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Durante el proceso, se realizaron otras extracciones que impiden realizar la extracción actual. Verifique las existencias.", "Error al actualizar estado", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            if (error)
-            {
-                MessageBox.Show("Ocurrió un error al actualizar el estado de la solicitud.", "Error al actualizar estado", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            dt = control.ConsultarDetalleSolicitudes(codigoSolicitud);
+            dataDetalles.ItemsSource = dt.DefaultView;
             // Mostrar diálogo de impresión
             MessageBoxResult imprimir = MessageBox.Show("Se aprobó la solicitud. ¿Desea imprimir la solicitud?", "Solicitud Aprobada", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (imprimir == MessageBoxResult.Yes)

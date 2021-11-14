@@ -263,6 +263,19 @@ namespace ProyectoDSI115_G5_2021.GestionUsuarios
             comboEmpleado.SetCurrentValue(IsEnabledProperty, valor);
             comboRoles.SetCurrentValue(IsEnabledProperty, valor);
             btnBorrar.SetCurrentValue(IsEnabledProperty, !valor);
+            btnVolver.SetCurrentValue(IsEnabledProperty, !valor);
+            btnCambiarCorreo.SetCurrentValue(IsEnabledProperty, !valor);
+            btnDesbloquear.SetCurrentValue(IsEnabledProperty, !valor);
+            if (valor)
+            {
+                imgBorrar.SetCurrentValue(OpacityProperty, 0.35);
+                imgVolver.SetCurrentValue(OpacityProperty, 0.35);
+            }
+            else
+            {
+                imgBorrar.SetCurrentValue(OpacityProperty, 1.0);
+                imgVolver.SetCurrentValue(OpacityProperty, 1.0);
+            }
         }
 
         // Verifica validez de correo registrado. Necesario para habilitar guardado.
