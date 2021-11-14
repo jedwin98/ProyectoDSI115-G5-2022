@@ -17,6 +17,8 @@ using ProyectoDSI115_G5_2021.GestionUsuarios;
 using System.Data.SqlClient;
 using System.Data;
 using System.Data.SQLite;
+using System.Media;
+
 
 namespace ProyectoDSI115_G5_2021
 {
@@ -33,29 +35,88 @@ namespace ProyectoDSI115_G5_2021
         CotizacionRecibo.Cotizacion cotizacion;
         CotizacionRecibo.CrearRecibo recibo;
         Inventario verInventario;
-        
+
+        //RECORDAR BORRAR ESTO
+        private SoundPlayer _soundPlayer;
+
         Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false, cot = false;
-        
+
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
         //AUTOR: FRANCISCO ESCOBAR
         SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
-        
+        //SQLiteConnection con = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
+
+        System.Windows.Threading.DispatcherTimer dispatcher = new System.Windows.Threading.DispatcherTimer(); //OBJETO PARA EJECUTAR CADA CIERTO TIEMPO UN METODO
+
         internal Usuario Sesion { get => sesion; set => sesion = value; }
 
         public MainWindow()
         {
             InitializeComponent();
+            _soundPlayer = new SoundPlayer(@"C:\FYSIEX\music\take_on_me.wav");
         }
         
         //SOBREESCRIBO EL EVENTO CUANDO LA VENTANA PRINCIPAL ESTA ACTIVADA
         //AUTOR: FRANCISCO ESCOBAR
         private void MainWindows_Activated(object sender, System.EventArgs e)
         {
+            //INICIA SIN SONIDO, SEGUIDO DEL MISMO METODO PERO CON SONIDO
             GenerarNotificacion();
+            //Ejecutando Metodo cada 5 segundos
+            // AL ATRIBUTO TICK LE ASIGNAMOS EL EVENTO DISPATCHERTIMER_TICK EN EL CUAL VA TODO EL CODIGO A EJECUTAR
+            dispatcher.Tick += new EventHandler(dispatcherTimer_Tick);
+            //ASIGNAMOS HORA SEGUN EL PATRON TIMESPAN (HORA, MINUTO, SEGUNDO)
+            dispatcher.Interval = new TimeSpan(0,0,5);
+            //INICIAMOS EL METODO
+            dispatcher.Start();
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            //ACA SE INGRESA  TODO EL CODIGO QUE SE QUIERE EJECUTAR CADA CIERTO TIEMPO
+            GenerarNotificacionSonido();
+            
         }
 
         //MUESTRA U OCULTA LOS CONTROLES SI EXISTEN O NO NOTIFICACIONES
         //AUTOR: FRANCISCO ESCOBAR
+
+        
+        //EL METODO ACTUAL GENERA UNA NOTIFICACION Y MANDA UN SONIDO DE ALERTA
+        public void GenerarNotificacionSonido()
+        {
+            if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
+            {
+                imgBurbuja.Visibility = Visibility.Hidden;
+                lblContador.Visibility = Visibility.Hidden;
+
+                int notificaciones = ContarRegistros();
+
+                if (notificaciones != 0)
+                {
+                    imgBurbuja.Visibility = Visibility.Visible;
+                    lblContador.Visibility = Visibility.Visible;
+                    lblContador.Content = notificaciones.ToString();
+                    SystemSounds.Beep.Play();
+                    dispatcher.Stop();
+
+                    //Añadiendo mas tiempo para alertar de la solicitud
+                    dispatcher.Interval = new TimeSpan(0, 0, 30);
+                    dispatcher.Start();
+                    //NOTA: No se detendra el sonido hasta verificar la solicitud existente
+
+                }
+                else
+                {
+                    imgBurbuja.Visibility = Visibility.Hidden;
+                    lblContador.Visibility = Visibility.Hidden;
+                    lblContador.Content = "0";
+                }
+
+            }
+        }
+
+        //UNICAMENTE PARA PRECARGARSE AL ACTIVAR LA VENTANA
         public void GenerarNotificacion()
         {
             if (sesion.tipoUsuario.codTipoUsuario.Equals("A") || sesion.tipoUsuario.codTipoUsuario.Equals("G"))
@@ -70,6 +131,7 @@ namespace ProyectoDSI115_G5_2021
                     imgBurbuja.Visibility = Visibility.Visible;
                     lblContador.Visibility = Visibility.Visible;
                     lblContador.Content = notificaciones.ToString();
+
                 }
                 else
                 {
@@ -77,6 +139,7 @@ namespace ProyectoDSI115_G5_2021
                     lblContador.Visibility = Visibility.Hidden;
                     lblContador.Content = "0";
                 }
+
             }
         }
 
@@ -188,6 +251,22 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
+        private void Reproductor_Click(object sender, RoutedEventArgs e)
+        {
+            if (reproductor.Content.ToString() == "Play")
+            {
+                
+                
+                _soundPlayer.Play();
+                reproductor.Content = "Stop";
+            }
+            else
+            {
+                _soundPlayer.Stop();
+                reproductor.Content = "Play";
+            }
+        }
+
         private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
         {
             if (sesion.tipoUsuario.codTipoUsuario.Equals("G"))
@@ -273,8 +352,6 @@ namespace ProyectoDSI115_G5_2021
                 MessageBox.Show("No posee los permisos necesarios para entrar.", "Error de acceso", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
 
     }
 }

@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionMateriales"
         mc:Ignorable="d"
-        Title="FYSIEX - Gestion de Insumos y Materiales" Height="526" Width="931" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Gestion de Insumos y Materiales" Height="611" Width="931" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Gestión de Insumos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="332" VerticalAlignment="Top"/>
-        <Button x:Name="btnVolver" Content="Volver" Margin="19,0,0,10" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Height="30" VerticalAlignment="Bottom" Click="BtnVolver_Click"/>
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="438" VerticalAlignment="Top"/>
+        <Button x:Name="btnVolver" Margin="67,433,0,0" FontSize="16" HorizontalAlignment="Left" Width="85" Height="100" VerticalAlignment="Top" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="65" Width="69"/>
+                <Label  Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
         <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="35,108,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Button Name="BtnAgregar" HorizontalAlignment="Left" Margin="47,144,0,0" VerticalAlignment="Top" Width="131" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnAgregar_Click">
             <StackPanel Width="133">

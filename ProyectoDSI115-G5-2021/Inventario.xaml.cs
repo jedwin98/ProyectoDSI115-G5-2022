@@ -35,6 +35,9 @@ namespace ProyectoDSI115_G5_2021
 
         ControlBD control = new ControlBD();
         DataTable dt = new DataTable();
+
+        System.Windows.Threading.DispatcherTimer dispatcher = new System.Windows.Threading.DispatcherTimer(); //OBJETO PARA EJECUTAR CADA CIERTO TIEMPO UN METODO
+
         public Inventario(string tipoUsuario, string codE)
         {
             InitializeComponent();
@@ -49,6 +52,27 @@ namespace ProyectoDSI115_G5_2021
                 cargarTablaMat();
             else
                 MessageBox.Show("Marque una de las oociones para ver en el inventario");
+        }
+
+        //SOBREESCRIBO EL EVENTO CUANDO LA VENTANA PRINCIPAL ESTA ACTIVADA
+        //AUTOR: FRANCISCO ESCOBAR
+        private void Inventario_Activated(object sender, System.EventArgs e)
+        {
+
+            //Ejecutando Metodo cada 5 minutos
+
+            // AL ATRIBUTO TICK LE ASIGNAMOS EL EVENTO DISPATCHERTIMER_TICK EN EL CUAL VA TODO EL CODIGO A EJECUTAR
+            dispatcher.Tick += new EventHandler(dispatcherTimer_Tick);
+            //ASIGNAMOS HORA SEGUN EL PATRON TIMESPAN (HORA, MINUTO, SEGUNDO)
+            dispatcher.Interval = new TimeSpan(0, 0, 5);
+            //INICIAMOS EL METODO
+            dispatcher.Start();
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            //ACA SE INGRESA  TODO EL CODIGO QUE SE QUIERE EJECUTAR CADA CIERTO TIEMPO
+            BuscarInventario();
         }
 
         public void cargarTabla()

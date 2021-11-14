@@ -29,12 +29,37 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
         internal Usuario Sesion { get => sesion; set => sesion = value; }
         public string codigoEmpleado { get; set; }
 
+
+        System.Windows.Threading.DispatcherTimer dispatcherInv = new System.Windows.Threading.DispatcherTimer(); //OBJETO PARA EJECUTAR CADA CIERTO TIEMPO UN METODO
+
         public VerSolicitudes(string codE)
         {
             InitializeComponent();
             codigoEmpleado = codE;
           // MessageBox.Show(codE);
             CargarTabla(codE);
+        }
+
+        //SOBREESCRIBO EL EVENTO ACTIVATED
+        //AUTOR: FRANCISCO ESCOBAR
+        private void VerSolicitudes_Activated(object sender, System.EventArgs e)
+        {
+
+            //Ejecutando Metodo cada 10 segundos
+
+            // AL ATRIBUTO TICK LE ASIGNAMOS EL EVENTO DISPATCHERTIMER_TICK EN EL CUAL VA TODO EL CODIGO A EJECUTAR
+            dispatcherInv.Tick += new EventHandler(dispatcherTimer_Tick);
+            //ASIGNAMOS HORA SEGUN EL PATRON TIMESPAN (HORA, MINUTO, SEGUNDO)
+            dispatcherInv.Interval = new TimeSpan(0, 0, 1);
+            //INICIAMOS EL METODO
+            dispatcherInv.Start();
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            //ACA SE INGRESA  TODO EL CODIGO QUE SE QUIERE EJECUTAR CADA CIERTO TIEMPO
+
+            CargarTabla(codigoEmpleado);
         }
 
         private void BtnNueva_Click(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.SolicitarInsumos"
         mc:Ignorable="d"
-        Title="VerSolicitudes" Height="481.5" Width="1101.15"  >
+        Title="VerSolicitudes" Height="481.5" Width="1101.15" Activated="VerSolicitudes_Activated" >
     <Grid Margin="0,0,2,1" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="506*"/>
@@ -39,7 +39,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnVolver" Content="Volver" Margin="37,0,0,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="101" Height="41" VerticalAlignment="Bottom" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902"/>
-        <Button x:Name="btnNueva" Content="Crear Nueva Solicitud" Margin="0,0,22,37" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="41" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="206" Click="BtnNueva_Click" />
+        <Button x:Name="btnNueva" Content="Crear Nueva Solicitud" Margin="0,0,22,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="206" Click="BtnNueva_Click" />
         <Button x:Name="btnVer" Content="Ver>>" Margin="15,212,10,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnSeleccionar_Click" Height="36" VerticalAlignment="Top" Grid.Column="1"/>
         <Button x:Name="btnLimpiar" Content="Limpiar" Margin="0,0,191,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" Click="BtnCancelar_Click" Grid.Column="2"/>
 

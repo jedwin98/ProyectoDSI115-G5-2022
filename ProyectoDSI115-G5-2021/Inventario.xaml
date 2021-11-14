@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021"
         mc:Ignorable="d"
-        Title="FYSIEX - Inventario" Height="805.999" Width="900" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Inventario" Height="805.999" Width="900" WindowStartupLocation="CenterScreen"
+        Activated="Inventario_Activated">
     <Grid Margin="0,0,-8,1" RenderTransformOrigin="0.612,0.521">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
