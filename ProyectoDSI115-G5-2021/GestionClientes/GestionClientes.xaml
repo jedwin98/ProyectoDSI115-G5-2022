@@ -33,7 +33,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,102,0,10" Stroke="Black" Width="194"/>
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,102,0,0" Stroke="Black" Width="194" Height="445" VerticalAlignment="Top"/>
         <Button  x:Name="btnAgrear" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="70,112,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="BtnAgregar_Click">
             <StackPanel Height="100" Width="90">
                 <Image Source="/Images/agregar.png" Height="70" Width="70" Cursor="Hand"/>
@@ -53,7 +53,7 @@
             </StackPanel>
         </Button>
         <Label  Content="Consultar Clientes" HorizontalAlignment="Left" Margin="250,89,0,0" Background="White" Height="26" VerticalAlignment="Top"/>
-        <Button x:Name="btnVolver" Margin="70,0,0,22" Background="{x:Null}"  Foreground="{x:Null}" HorizontalAlignment="Left" Width="100" Click="BtnVolver_Click" BorderBrush="{x:Null}" Height="100" VerticalAlignment="Bottom">
+        <Button x:Name="btnVolver" Margin="70,0,0,10" Background="{x:Null}"  Foreground="{x:Null}" HorizontalAlignment="Left" Width="100" Click="BtnVolver_Click" BorderBrush="{x:Null}" Height="100" VerticalAlignment="Bottom">
             <StackPanel Height="100" Width="90">
                 <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="70" Width="70"/>
                 <Label Content="Volver" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center"/>

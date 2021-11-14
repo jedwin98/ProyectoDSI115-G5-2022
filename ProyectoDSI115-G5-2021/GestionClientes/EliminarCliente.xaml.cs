@@ -66,5 +66,10 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         {
             this.Close(); 
         }
+
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
