@@ -51,19 +51,11 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                     datePicker1.SelectedDate = null;
                     cmbArea.SelectedItem = null;
                     cmbCargo.SelectedItem = null;
+
+                    this.Close();
                 }
 
             }
-        }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-            /*GestionEmpleados nueva = new GestionEmpleados()
-            {
-                WindowState = WindowState.Maximized
-                
-            };
-            nueva.Show();*/
         }
 
         public void CargarCombos(string idA, string idC)
