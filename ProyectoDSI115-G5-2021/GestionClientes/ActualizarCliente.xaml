@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
-        Title="ActualizarCliente" Height="450" Width="800" Closing="Window_Closing">
+        Title="ActualizarCliente" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle Fill="#FFC91029" Stroke="Black" Height="61" VerticalAlignment="Top"/>
         <Label Content="Administración de Clientes" Margin="37,10,463,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
@@ -21,7 +21,7 @@
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="235" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
         <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" Width="85" Height="100" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Click="BtnActualizar_Click">
             <StackPanel>
-                <Image Source="/Images/disquete.png" Height="69" Width="76"></Image>
+                <Image Source="/Images/disquete.png" Height="69" Width="60"></Image>
                 <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
 
@@ -31,7 +31,7 @@
         <Label Content="Editar Cliente" Margin="266,94,0,0" Background="White" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
         <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="69,225,0,0" VerticalAlignment="Top" Width="85" Height="100" Background="{x:Null}" BorderBrush="{x:Null}"   Foreground="#FFF7F7F7" Click="BtnVolver_Click">
             <StackPanel>
-                <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="66" Width="60"/>
+                <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="65" Width="60"/>
                 <Label Content="Volver" HorizontalContentAlignment="Center" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>

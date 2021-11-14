@@ -46,12 +46,13 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                     txtEmpresa.Text = null;
                     txtCorreo.Text = null;
                     txtTelefono.Text = null;
+
+                    MessageBox.Show("Resultado de la actualizacion", "Cliente Eliminado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
                 }
             }
-
         }
-
-       
+        
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             GestionClientes nueva = new GestionClientes()
@@ -59,15 +60,11 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 WindowState = WindowState.Maximized
             };
             nueva.Show();
-           
-
         }
 
         private void BtnVolver_Click_1(object sender, RoutedEventArgs e)
         {
-            
-            this.Close();
-            
+            this.Close(); 
         }
     }
 }

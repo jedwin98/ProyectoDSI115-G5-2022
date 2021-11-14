@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionProductos"
         mc:Ignorable="d"
-        Title="FYSIEX - Eliminar Producto" Height="481.462" Width="800">
+        Title="FYSIEX - Eliminar Producto" Height="481.462" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,1,0,0" Height="61" VerticalAlignment="Top" />
 

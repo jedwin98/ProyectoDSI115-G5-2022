@@ -34,6 +34,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         {
             dt.Clear();
             dataMateriales.ItemsSource = null;
+
             dt = control.consultarMateriales();
             dataMateriales.ItemsSource = dt.DefaultView;
         }
@@ -41,22 +42,26 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         // ******** METODOS PARA BOTONES ***************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
+            cargarTabla();
             this.Close();
         }
+
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            AgregarMaterial ag = new AgregarMaterial();
+            AgregarMaterial ag = new AgregarMaterial()
+            {
+                WindowState = WindowState.Normal
+            };
 
             ag.ShowDialog();
             cargarTabla();
-            
         }
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
             ActualizarMaterial ac = new ActualizarMaterial()
             {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
             string fecha;
@@ -75,8 +80,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ac.txtPrecio.Text = row.Row.ItemArray[4].ToString();
                 fecha = row.Row.ItemArray[5].ToString();
 
-                ac.Show();
-                this.Close();
+                ac.ShowDialog();
+                cargarTabla();
             }
         }
 
@@ -84,7 +89,7 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         {
             EliminarMaterial ec = new EliminarMaterial()
             {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
             string fecha;
@@ -103,8 +108,8 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
                 ec.txtPrecio.Text = row.Row.ItemArray[4].ToString();
                 fecha = row.Row.ItemArray[5].ToString();
 
-                ec.Show();
-                this.Close();
+                ec.ShowDialog();
+                cargarTabla();
             }
         }
 

@@ -18,17 +18,12 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
     /// Lógica de interacción para ActualizarCliente.xaml
     /// </summary>
     public partial class ActualizarCliente : Window
-
     {
-
         ControlBD control = new ControlBD();
         public ActualizarCliente()
         {
-            InitializeComponent();
-           
+            InitializeComponent();      
         }
-
-        
 
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
@@ -48,16 +43,13 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
                 String resultaod = control.ActualizarCliente(clien);
                 MessageBox.Show(resultaod, "Resultado de la actualizacion", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                this.Close();
             }
-
-           
-
-
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
-        {
-                                  
+        {                    
             this.Close();
         }
 
@@ -69,9 +61,8 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             };
             
             nueva.Show();
-            
-
         }
+
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)

@@ -40,6 +40,7 @@ namespace ProyectoDSI115_G5_2021
             InitializeComponent();
             codigoEmpleado = codE;
             tipo = tipoUsuario;
+
             if (checkProducto.IsChecked == true && checkMaterial.IsChecked == true)
                 cargarTabla();
             else if (checkProducto.IsChecked == true && checkMaterial.IsChecked == false)
@@ -48,14 +49,14 @@ namespace ProyectoDSI115_G5_2021
                 cargarTablaMat();
             else
                 MessageBox.Show("Marque una de las oociones para ver en el inventario");
-
         }
 
         public void cargarTabla()
         {
+            dt.Clear();
+            dataInventario.ItemsSource = null;
             dt = control.consultarInventario();
             dataInventario.ItemsSource = dt.DefaultView;
-            
         }
 
         public void cargarTablaProd()
@@ -85,6 +86,7 @@ namespace ProyectoDSI115_G5_2021
                     WindowState = WindowState.Maximized
                 };
                 gma = gm.ShowDialog();
+                cargarTabla();
             }
             else
             {
@@ -101,6 +103,7 @@ namespace ProyectoDSI115_G5_2021
                     WindowState = WindowState.Maximized
                 };
                 gpa = gp.ShowDialog();
+                cargarTabla();
             }
             else
             {
