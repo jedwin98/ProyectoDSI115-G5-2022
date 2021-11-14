@@ -35,11 +35,9 @@ namespace ProyectoDSI115_G5_2021
         CotizacionRecibo.Cotizacion cotizacion;
         CotizacionRecibo.CrearRecibo recibo;
         Inventario verInventario;
+        Reproductor rep;
 
-        //RECORDAR BORRAR ESTO
-        private SoundPlayer _soundPlayer;
-
-        Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false, cot = false;
+        Nullable<bool> gca = false, gea = false, gua = false, inv = false, rb = false, cot = false, repp= false;
 
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
         //AUTOR: FRANCISCO ESCOBAR
@@ -53,7 +51,6 @@ namespace ProyectoDSI115_G5_2021
         public MainWindow()
         {
             InitializeComponent();
-            _soundPlayer = new SoundPlayer(@"C:\FYSIEX\music\take_on_me.wav");
         }
         
         //SOBREESCRIBO EL EVENTO CUANDO LA VENTANA PRINCIPAL ESTA ACTIVADA
@@ -251,20 +248,10 @@ namespace ProyectoDSI115_G5_2021
             }
         }
 
-        private void Reproductor_Click(object sender, RoutedEventArgs e)
+        private void Logo_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (reproductor.Content.ToString() == "Play")
-            {
-                
-                
-                _soundPlayer.Play();
-                reproductor.Content = "Stop";
-            }
-            else
-            {
-                _soundPlayer.Stop();
-                reproductor.Content = "Play";
-            }
+            rep = new Reproductor();
+            rep.Show();
         }
 
         private void BtnEmpleados_Click(object sender, RoutedEventArgs e)

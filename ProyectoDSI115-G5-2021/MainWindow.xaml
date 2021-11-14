@@ -61,7 +61,7 @@
                 <Label Content="Administrar Usuarios" Height="30" VerticalAlignment="Bottom" Width="138" FontSize="14" Margin="0"/>
             </StackPanel>
         </Button>
-        <Image Margin="103,0,270,10" Source="Images/fysi.jpg" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <Image Margin="103,0,270,10" Source="Images/fysi.jpg" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" MouseRightButtonDown="Logo_MouseRightButtonDown"/>
         <Button Grid.Column="1" Margin="260,9,123,54" Grid.Row="2" FontSize="14" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnInventario_Click" Grid.ColumnSpan="2" Grid.RowSpan="2" Cursor="Hand">
             <StackPanel Width="135">
                 <Image Source="Images/inventario.png" Margin="10,0" MaxWidth="150" MaxHeight="150" Height="90"/>
@@ -95,7 +95,5 @@
         <Image Grid.Column="2" Margin="0,32,110,0" Grid.Row="4" Source="Images/burbuja.png" Name="imgBurbuja" HorizontalAlignment="Right" Width="29" Height="23" VerticalAlignment="Top" Grid.ColumnSpan="2" Visibility="Hidden"/>
         <Label Name="lblContador" Content="0" Margin="205,27,108,136" Grid.Column="2" Grid.Row="4" Foreground="White" FontSize="16" Height="32" VerticalAlignment="Center" Grid.ColumnSpan="2" Visibility="Hidden"/>
         <Rectangle Fill="#FFC91029" Stroke="Black" Grid.ColumnSpan="7" StrokeThickness="0" Margin="0,182,0,-4" Grid.Row="4" Grid.RowSpan="2"/>
-        <Button Name="reproductor" Content="play" HorizontalAlignment="Left" Margin="140,0,0,0" VerticalAlignment="Top" Width="74" Grid.Column="5" Grid.Row="5" Click="Reproductor_Click"/>
-
     </Grid>
 </Window>
