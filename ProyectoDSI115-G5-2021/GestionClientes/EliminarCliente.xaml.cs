@@ -55,16 +55,21 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            GestionClientes nueva = new GestionClientes()
+            /*GestionClientes nueva = new GestionClientes()
             {
                 WindowState = WindowState.Maximized
             };
-            nueva.Show();
+            nueva.Show();*/
         }
 
         private void BtnVolver_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close(); 
+        }
+
+        private void BtnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

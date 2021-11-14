@@ -71,8 +71,9 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
                 ac.txtEstado.Text = row.Row.ItemArray[6].ToString();
 
-                ac.Show();
-                this.Close();
+                ac.ShowDialog();
+                cargarTabla();
+                //this.Close();
             }
         }
 
@@ -107,8 +108,9 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 //arreglar lo de servicio
 
                 ec.txtEstado.Text = row.Row.ItemArray[6].ToString();
-                ec.Show();
-                this.Close();
+                ec.ShowDialog();
+                cargarTabla();
+                //this.Close();
             }
         }
 

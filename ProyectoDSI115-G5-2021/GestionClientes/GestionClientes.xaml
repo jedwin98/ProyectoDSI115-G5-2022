@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
-        Title="Gestion de Clientes" Height="594.667" Width="884.667">
+        Title="Gestion de Clientes" Height="705" Width="1118.667">
     <Grid >
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,1,0,0" Height="61" VerticalAlignment="Top" />
 
         <Label  Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
         <Label  Content="ACCIONES" HorizontalAlignment="Left" Margin="20,67,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" Width="193" HorizontalContentAlignment="Center"/>
         <Label  Content="Elige la opción que deseas realizar" Margin="0,67,23,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="297"/>
-        <Rectangle Margin="234,102,23,10" Stroke="Black"/>
+        <Rectangle Margin="234,102,20,10" Stroke="Black"/>
 
 
         <Button  x:Name="btnBuscar" Margin="0,115,34,0"  Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" HorizontalAlignment="Right" Width="51" Height="38" VerticalAlignment="Top" Click="BtnBuscar_Click" BorderBrush="{x:Null}">
@@ -21,49 +21,49 @@
             </StackPanel>
         </Button>
         <TextBox x:Name="textBuscar"  Text="" Margin="250,120,90,0" Height="30" VerticalAlignment="Top"  KeyDown="OnKeyDownHandler"/>
-        <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,166,34,67" >
+        <DataGrid  x:Name="dataClientes" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,166,34,29" >
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Razón social"  Binding="{Binding EMPRESA_CLIENTE}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding COD_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="150" IsReadOnly="True" Header="Nombres"  Binding="{Binding NOMBRE_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="150" IsReadOnly="True" Header="Apellidos"  Binding="{Binding APELLIDO_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="160" IsReadOnly="True" Header="Razón social"  Binding="{Binding EMPRESA_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Teléfono"  Binding="{Binding TELEFONO_CLIENTE}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Correo" Binding="{Binding CORREO_CLIENTE}"/>
+                <DataGridTextColumn MinWidth="150" IsReadOnly="True" Header="Correo" Binding="{Binding CORREO_CLIENTE}"/>
                 <DataGridTextColumn Visibility="Hidden" MinWidth="110" Header="Estado"  Binding="{Binding ESTADO_CLIENTE}"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,102,0,0" Stroke="Black" Width="194" Height="452" VerticalAlignment="Top"/>
-        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,112,0,0" VerticalAlignment="Top" Width="85" Height="85" Click="BtnAgregar_Click">
-            <StackPanel Height="75" Width="83">
-                <Image Source="/Images/agregar.png" Height="54" Width="58" Cursor="Hand"/>
-                <Label Content="Agregar" FontFamily="Comic Sans MS" Height="28" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,10,0" />
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,102,0,0" Stroke="Black" Width="194" Height="445" VerticalAlignment="Top"/>
+        <Button  x:Name="btnAgrear" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="70,112,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="BtnAgregar_Click">
+            <StackPanel Height="100" Width="90">
+                <Image Source="/Images/agregar.png" Height="70" Width="70" Cursor="Hand"/>
+                <Label Content="Agregar" FontFamily="Comic Sans MS" Height="28" FontSize="12"  HorizontalAlignment="Stretch" Margin="18,0,18,0" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="69,202,0,0" VerticalAlignment="Top" Width="85" Height="81" Click="BtnBorrar_Click">
-            <StackPanel Height="81" Width="81">
-                <Image Source="/Images/basura.png" Height="54" Width="58" Cursor="Hand"/>
-                <Label Content="Eliminar" FontFamily="Comic Sans MS"  Height="24" FontSize="12"  HorizontalAlignment="Stretch" Margin="15,0,13,0" />
+        <Button  x:Name="btnBorrar" Background="#FFF1EBEC" BorderBrush="Transparent"   HorizontalAlignment="Left" Margin="70,222,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="BtnBorrar_Click">
+            <StackPanel Height="100" Width="90">
+                <Image Source="/Images/basura.png" Height="70" Width="70" Cursor="Hand" Margin="12,0,11,0"/>
+                <Label Content="Eliminar" FontFamily="Comic Sans MS"  Height="24" FontSize="12"  HorizontalAlignment="Stretch" Margin="14,0,14,0" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button  x:Name="btnEditar" Background="#FFF1EBEC" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="69,288,0,0" VerticalAlignment="Top" Width="85" Height="76" Click="BtnEditar_Click">
-            <StackPanel>
-                <Image Source="/Images/editar.png" Height="54" Width="58" Cursor="Hand"/>
-                <Label Content="Actualizar" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Bottom"/>
+        <Button  x:Name="btnEditar" Background="#FFF1EBEC" BorderBrush="Transparent"  HorizontalAlignment="Left" Margin="70,332,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="BtnEditar_Click">
+            <StackPanel Height="100" Width="90">
+                <Image Source="/Images/editar.png" Height="70" Width="70" Cursor="Hand" Margin="12,0,11,0"/>
+                <Label Content="Actualizar" FontFamily="Comic Sans MS" FontSize="12" VerticalAlignment="Bottom" Margin="11,0" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
         <Label  Content="Consultar Clientes" HorizontalAlignment="Left" Margin="250,89,0,0" Background="White" Height="26" VerticalAlignment="Top"/>
-        <Button x:Name="btnVolver" Margin="65,459,0,0" Background="{x:Null}"  Foreground="{x:Null}" HorizontalAlignment="Left" Width="89" Click="BtnVolver_Click" BorderBrush="{x:Null}" Height="82" VerticalAlignment="Top">
-            <StackPanel>
-                <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="59" Width="58"/>
-                <Label Content="Volver" FontFamily="Segoe UI Emoji" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnVolver" Margin="70,0,0,10" Background="{x:Null}"  Foreground="{x:Null}" HorizontalAlignment="Left" Width="100" Click="BtnVolver_Click" BorderBrush="{x:Null}" Height="100" VerticalAlignment="Bottom">
+            <StackPanel Height="100" Width="90">
+                <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="70" Width="70"/>
+                <Label Content="Volver" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
 
-        <Button x:Name="btnGenerar"  Margin="50,369,0,0" Background="{x:Null}"  Foreground="{x:Null}" Height="85" VerticalAlignment="Top" Click="BtnGenerar_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="111">
-            <StackPanel>
-                <Image Source="/FYSIEX;component/Images/pdf.png" Stretch="Fill" Height="59" Width="58" Cursor="Hand"/>
-                <Label Content="Crear Reporte" HorizontalAlignment="Center" FontFamily="Segoe UI Emoji"/>
+        <Button x:Name="btnGenerar"  Margin="70,442,0,0" Background="{x:Null}"  Foreground="{x:Null}" Height="100" VerticalAlignment="Top" Click="BtnGenerar_Click" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="100">
+            <StackPanel Height="100" Width="90">
+                <Image Source="/FYSIEX;component/Images/pdf.png" Stretch="Fill" Height="70" Width="70" Cursor="Hand"/>
+                <Label Content="Crear Reporte" HorizontalAlignment="Center" FontFamily="Comic Sans MS"/>
             </StackPanel>
         </Button>
 
