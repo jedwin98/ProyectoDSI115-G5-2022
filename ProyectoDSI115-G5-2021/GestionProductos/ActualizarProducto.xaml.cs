@@ -30,11 +30,6 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         // +-+-+-+-+-+-+-+-+-+-+ METODO DE BOTONES +-+-+-+-+-+-+-+-+-+-+
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            GestionProductos gestionProductos = new GestionProductos()
-            {
-                WindowState = WindowState.Maximized
-            };
-            gestionProductos.Show();
             this.Close();
         }
 
@@ -50,6 +45,15 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
                 Producto producto = new Producto(txtCodigo.Text, txtNombre.Text, txtCantidad.Text, txtUnidad.Text, txtMarca.Text,txtPrecio.Text,  fecha, true);
                 String respuesta = control.ActualizarProducto(producto);
                 MessageBox.Show(respuesta, "Resultado del Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                txtCodigo.Text = null;
+                txtNombre.Text = null;
+                txtCantidad.Text = null;
+                txtUnidad.Text = null;
+                txtPrecio.Text = null;
+                txtMarca.Text = null;
+
+                this.Close();
             }
         }
         // +-+-+-+-+-+-+-+-+-+-+ FIN METODO DE BOTONES +-+-+-+-+-+-+-+-+-+-+

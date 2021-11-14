@@ -5,15 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
-        Title="AgregarCliente" Height="450" Width="800" Closing="Window_Closing">
-
+        Title="AgregarCliente" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
 
     <Grid>
-
-
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
         <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Label Content="ACCIONES" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" Width="194" HorizontalContentAlignment="Center"/>
+        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Width="194"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="472,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E"/>
         <Rectangle Margin="250,108,23,10" Stroke="Black"/>
         <TextBox x:Name="txtId" MaxLength="7" TextWrapping="Wrap" Text="" Margin="461,125,107,0" Height="26" VerticalAlignment="Top"/>
@@ -21,15 +18,12 @@
         <TextBox x:Name="txtApellido" MaxLength="50" TextWrapping="Wrap" Text="" Margin="461,196,107,0" Height="24" VerticalAlignment="Top"/>
         <TextBox x:Name="txtEmpresa" MaxLength="300" TextWrapping="Wrap" Text="" Margin="461,232,107,0" Height="24" VerticalAlignment="Top"/>
 
-
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="235" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
         <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,121,0,0" VerticalAlignment="Top" Width="85" Height="100" Click="BtnGuardar_Click">
             <StackPanel>
-                <Image Source="/Images/disquete.png" Height="69" Width="76"/>
+                <Image Source="/Images/disquete.png" Height="69" Width="60"/>
                 <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
-
-
         </Button>
 
         <Label Content="Agregar nuevo Cliente" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>

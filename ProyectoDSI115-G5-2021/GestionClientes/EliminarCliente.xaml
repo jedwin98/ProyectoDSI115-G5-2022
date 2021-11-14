@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionClientes"
         mc:Ignorable="d"
-        Title="EliminarCliente" Height="450" Width="800" Closing="Window_Closing">
+        Title="EliminarCliente" Height="450" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
         <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Label Content="Acciones" HorizontalContentAlignment="Center" Margin="19,70,579,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" Width="194"/>
+        <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Width="194"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="472,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E"/>
         <Rectangle Margin="250,108,20,10" Stroke="Black" Grid.RowSpan="2"/>
         <TextBox x:Name="txtId" IsEnabled="False" TextWrapping="Wrap" Text="" Margin="461,125,107,0" Height="26" VerticalAlignment="Top"/>
@@ -22,7 +22,7 @@
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="247" Margin="19,108,0,0" Stroke="Black" VerticalAlignment="Top" Width="194"/>
         <Button x:Name="btnEliminar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="69,120,0,0" VerticalAlignment="Top" Width="85" Height="100" Click="BtnEliminar_Click">
             <StackPanel>
-                <Image Source="/Images/basura.png" Height="79" Width="76"/>
+                <Image Source="/Images/basura.png" Height="79" Width="60"/>
                 <TextBlock HorizontalAlignment="Stretch" Width="44" FontFamily="Segoe UI Emoji"><Run Text="Eliminar"/></TextBlock>
             </StackPanel>
 
@@ -32,7 +32,7 @@
         <Label Content="Editar Cliente" HorizontalAlignment="Left" Margin="266,94,0,0" VerticalAlignment="Top" Background="White"/>
         <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="69,232,0,0" VerticalAlignment="Top" Width="85" Height="100" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnVolver_Click_1">
               <StackPanel>
-                    <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="66" Width="60"/>
+                    <Image Stretch="Fill" Source="/FYSIEX;component/Images/regreso.png" Height="65" Width="60"/>
                     <Label Content="Volver" HorizontalContentAlignment="Center" FontFamily="Segoe UI Emoji"/>
                 </StackPanel>
             </Button>

@@ -47,7 +47,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
             ActualizarCliente ac = new ActualizarCliente() {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
 
@@ -74,7 +74,6 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 ac.Show();
                 this.Close();
             }
-
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
@@ -89,7 +88,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         private void BtnBorrar_Click(object sender, RoutedEventArgs e)
         {
             EliminarCliente ec = new EliminarCliente() {
-                WindowState = WindowState.Maximized
+                WindowState = WindowState.Normal
             };
 
             DataRowView row = dataClientes.SelectedItem as DataRowView;
@@ -111,9 +110,6 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 ec.Show();
                 this.Close();
             }
-
-
-
         }
 
         private void BtnBuscar_Click(object sender, RoutedEventArgs e)
@@ -121,6 +117,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
 
             BuscarCliente();
         }
+
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -128,6 +125,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
                 BuscarCliente();
             }
         }
+
         private void BuscarCliente()
         {
             dt.Clear();
@@ -140,6 +138,7 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
         {
             this.Close();
         }
+
         public DataTable CrearDataTable()
         {
             DataTable dataTable = new DataTable();

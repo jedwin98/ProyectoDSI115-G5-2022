@@ -28,11 +28,6 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
         //*************************** METODO DE BOTONES ***************************************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            GestionProductos gestionProductos = new GestionProductos()
-            {
-                WindowState = WindowState.Maximized
-            };
-            gestionProductos.Show();
             this.Close();
         }
 
@@ -50,6 +45,8 @@ namespace ProyectoDSI115_G5_2021.GestionProductos
                 txtUnidad.Text = null;
                 txtPrecio.Text = null;
                 txtMarca.Text = null;
+
+                this.Close();
             }
         }
     }

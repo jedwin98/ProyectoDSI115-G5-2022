@@ -30,7 +30,6 @@ namespace ProyectoDSI115_G5_2021.GestionMateriales
         //*************************** METODO DE BOTONES ***************************************//
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-           
             this.Close();
         }
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
