@@ -53,16 +53,6 @@ namespace ProyectoDSI115_G5_2021.GestionClientes
             this.Close();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //clean up code
-            /*GestionClientes nueva = new GestionClientes() {
-                WindowState = WindowState.Maximized
-            };
-            
-            nueva.Show();*/
-        }
-
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
