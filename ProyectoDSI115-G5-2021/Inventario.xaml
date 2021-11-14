@@ -65,7 +65,7 @@
                 <Label Content="Solicitudes" HorizontalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>
-        <TextBox x:Name="textBusquedaInve" Margin="235,50,114,0" TextWrapping="Wrap" Grid.Column="1" Height="30" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="textBusquedaInve" Margin="235,50,114,0" TextWrapping="Wrap" Grid.Column="1" Height="30" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
         <DataGrid x:Name="dataInventario" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="235,95,24,75" AutoGenerateColumns="False" SelectionChanged="DataInventario_SelectionChanged" FontSize="14" Grid.Column="1" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding COD_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="120" IsReadOnly="True"/>

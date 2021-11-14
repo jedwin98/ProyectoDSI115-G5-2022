@@ -100,7 +100,7 @@ namespace ProyectoDSI115_G5_2021
             {
                 gp = new GestionProductos.GestionProductos()
                 {
-                    WindowState = WindowState.Normal
+                    WindowState = WindowState.Maximized
                 };
                 gpa = gp.ShowDialog();
                 cargarTabla();
