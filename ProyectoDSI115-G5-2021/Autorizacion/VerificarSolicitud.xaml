@@ -5,38 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.Autorizacion"
         mc:Ignorable="d"
-        Title="VerificarSolicitud" Height="484" Width="800">
+        Title="VerificarSolicitud" Height="730" Width="810">
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Aprobar Solicitudes" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="39"/>
-        <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Height="337" Margin="16,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="169"/>
-        <Button x:Name="btnVolver" Content="Volver" HorizontalAlignment="Left" Margin="60,0,0,35" Width="85" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="30" VerticalAlignment="Bottom" BorderThickness="0" Click="BtnVolver_Click"/>
-        <Label Content="Seleccione el estado de la solicitud" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Height="34"/>
-        <DataGrid x:Name="dataDetalles" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AutoGenerateColumns="False" Margin="210,100,16,16">
+        <Rectangle  Fill="#FFF1EBEC" Margin="20,100,0,0" Stroke="Black" Height="440" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150"/>
+        <Button x:Name="btnVolver" Margin="40,0,0,20" Click="BtnVolver_Click" HorizontalAlignment="Left" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Height="120" VerticalAlignment="Bottom">
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="90" Width="90"/>
+                <Label Content="Volver" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalContentAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Label Content="Seleccione el estado de la solicitud" Margin="0,65,15,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Height="34"/>
+        <DataGrid x:Name="dataDetalles" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AutoGenerateColumns="False" Margin="185,100,16,16">
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" Header="Detalle" Binding="{Binding COD_DETALLE}" IsReadOnly="True"/>
-                <DataGridTextColumn MinWidth="70" Header="Código" Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="100" Header="Código" Binding="{Binding COD_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="150" Header="Material" Binding="{Binding NOMBRE_MATERIAL}"/>
                 <DataGridTextColumn MinWidth="150" Header="Presentación" Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="80" Header="Cantidad" Binding="{Binding CANTIDAD_DETALLE}"/>
-                <DataGridTextColumn MinWidth="80" Header="Existencias" Binding="{Binding EXISTENCIA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="90" Header="Cantidad" Binding="{Binding CANTIDAD_DETALLE}"/>
+                <DataGridTextColumn MinWidth="90" Header="Existencias" Binding="{Binding EXISTENCIA_MATERIAL}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Background="#FFF1EBEC" x:Name="btnAprobar"  HorizontalAlignment="Left" Margin="52,110,0,0" VerticalAlignment="Top" Width="101" Height="84" Click="BtnAprobar_Click" BorderThickness="0">
+        <Button Background="#FFF1EBEC" x:Name="btnAprobar"  HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="110" Height="120" Click="BtnAprobar_Click" BorderThickness="0">
             <StackPanel>
-                <Image x:Name="imgAprobar" Source="/FYSIEX;component/Images/aprobar.png" Height="60" Width="60"/>
+                <Image x:Name="imgAprobar" Source="/FYSIEX;component/Images/aprobar.png" Height="90" Width="90"/>
                 <Label x:Name="labelAprobar" Content="Aprobar" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button Background="#FFF1EBEC" x:Name="btnDenegar"  HorizontalAlignment="Left" Margin="52,199,0,0" VerticalAlignment="Top" Width="101" Height="84" Click="BtnDenegar_Click" BorderThickness="0">
+        <Button Background="#FFF1EBEC" x:Name="btnDenegar"  HorizontalAlignment="Left" Margin="40,260,0,0" VerticalAlignment="Top" Width="110" Height="120" Click="BtnDenegar_Click" BorderThickness="0">
             <StackPanel>
-                <Image x:Name="imgDenegar" Source="/FYSIEX;component/Images/denegar.png" Height="60" Width="60"/>
+                <Image x:Name="imgDenegar" Source="/FYSIEX;component/Images/denegar.png" Height="90" Width="90"/>
                 <Label x:Name="labelDenegar" Content="Denegar" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button Background="#FFF1EBEC" x:Name="btnImprimir"  HorizontalAlignment="Left" Margin="52,288,0,0" VerticalAlignment="Top" Width="101" Height="84" Click="BtnImprimir_Click" BorderThickness="0">
+        <Button Background="#FFF1EBEC" x:Name="btnImprimir"  HorizontalAlignment="Left" Margin="40,400,0,0" VerticalAlignment="Top" Width="110" Height="120" Click="BtnImprimir_Click" BorderThickness="0">
             <StackPanel>
-                <Image x:Name="imgImprimir" Source="/FYSIEX;component/Images/impresora.png" Height="60" Width="60"/>
+                <Image x:Name="imgImprimir" Source="/FYSIEX;component/Images/impresora.png" Height="90" Width="90"/>
                 <Label x:Name="labelImprimir" Content="Imprimir" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>

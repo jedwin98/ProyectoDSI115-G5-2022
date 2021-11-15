@@ -5,25 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.Historial"
         mc:Ignorable="d"
-        Title="Detalles del Historial del Cliente" Height="571.5" Width="868.5">
-    <Grid Margin="0,0,2,5" >
+        Title="Detalles del Historial del Cliente" Height="670" Width="740"  WindowStartupLocation="CenterScreen" MaxHeight="670" MaxWidth="740">
+    <Grid Margin="0,0,0,0" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="81*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="295*"/>
-            <RowDefinition Height="241*"/>
+            <RowDefinition Height="185*"/>
+            <RowDefinition Height="203*"/>
+            <RowDefinition Height="251*"/>
         </Grid.RowDefinitions>
 
 
-        <Rectangle  Fill="#FFF1EBEC" Margin="20,84,0,0" Stroke="Black" Height="369" VerticalAlignment="Top" HorizontalAlignment="Left" Width="186" Grid.RowSpan="2"/>
-        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" Margin="62,84,0,0" VerticalAlignment="Top" Height="114" Click="BtnSeleccionar_Click" HorizontalAlignment="Left" Width="94">
-            <StackPanel Height="107" Width="84">
-                <Image Source="/Images/verificar.png" Height="77" Width="58" Margin="12,0,13,0"/>
+
+        <Rectangle  Fill="#FFF1EBEC" Margin="20,80,0,8" Stroke="Black" HorizontalAlignment="Left" Width="150" Grid.RowSpan="2"/>
+        <Button  x:Name="btnAgregar" Background="#FFF1EBEC" BorderBrush="Transparent" Margin="40,100,0,0" VerticalAlignment="Top" Height="120" Click="BtnSeleccionar_Click" HorizontalAlignment="Left" Width="110" Grid.RowSpan="2">
+            <StackPanel>
+                <Image Source="/Images/verificar.png" Height="90" Width="90"/>
                 <Label Content="Consultar" FontFamily="Segoe UI Emoji" Height="27" FontSize="13"  HorizontalAlignment="Stretch" Margin="10,0,0,0" />
             </StackPanel>
         </Button>
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,-6,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="2" />
 
-        <Label  Content="Historial de Clientes"  HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="299" Grid.ColumnSpan="2"/>
-        <DataGrid  x:Name="dataDetalles" ItemsSource="{Binding}" FontSize="14" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="284,10,34,10" Grid.Row="1" >
+        <Label  Content="Historial de Clientes"  HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="299"/>
+        <DataGrid  x:Name="dataDetalles" ItemsSource="{Binding}" FontSize="14" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="190,8,20,20" Grid.Row="2" Grid.ColumnSpan="2" >
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="110" Header="Código Material"  Binding="{Binding material.codigo}"/>
                 <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding material.nombre }"/>
@@ -33,7 +39,7 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" FontSize="14" AlternationCount="2" Margin="284,180,34,7" >
+        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" FontSize="14" AlternationCount="2" Margin="190,8,20,8" Grid.Row="1" Grid.ColumnSpan="2" >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" MinWidth="170" Header="Código"  Binding="{Binding codigo}"/>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="120" Header="Némero de Solicitud"  Binding="{Binding codigoReq}"/>
@@ -44,17 +50,17 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="btnVolver" Margin="62,29,0,0" Height="114" VerticalAlignment="Top" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902" HorizontalAlignment="Left" Width="94" Grid.Row="1" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="btnVolver" Margin="40,0,0,20" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902" HorizontalAlignment="Left" Width="110" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" Height="120" VerticalAlignment="Bottom">
             <StackPanel>
-                <Image Source="/FYSIEX;component/Images/regreso.png" Height="86" Width="73" />
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="90" Width="90" />
                 <Label Content="Volver" FontSize="14" FontFamily="Segoe UI Emoji" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
 
-        <Rectangle Fill="#FFFFFF" Height="91" Margin="284,84,38,0" Stroke="Black" VerticalAlignment="Top"/>
-        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="301,102,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
-        <Label Content="Teléfono:" Margin="601,101,199,0" VerticalAlignment="Top" RenderTransformOrigin="0.431,0.269" Height="26"/>
-        <Label Content="Nombre del Responsable:" HorizontalAlignment="Left" Margin="303,138,0,0" VerticalAlignment="Top" Height="26" Width="146" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Fill="#FFFFFF" Margin="190,80,20,8" Stroke="Black" Grid.ColumnSpan="2"/>
+        <Label Content="Razón Social:" Margin="200,99,209,60"/>
+        <Label Content="Teléfono:" Margin="10,99,162,60" RenderTransformOrigin="0.431,0.269" Grid.Column="1"/>
+        <Label Content="Nombre del Responsable:" Margin="200,134,152,25" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -64,13 +70,13 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TextBox x:Name="txtRazon" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="385,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="197"/>
-        <TextBox x:Name="txtTel" IsEnabled="False" Height="23" Margin="659,102,49,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNombres" IsEnabled="False" Height="23" Margin="455,139,53,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <Label Content="Datos del Cliente:" Background="White" HorizontalAlignment="Left" Margin="301,71,0,0" VerticalAlignment="Top" Height="26" Width="103"/>
-        <Button  x:Name="btnImprimir" Background="#FFF1EBEC" BorderBrush="Transparent" Margin="62,205,0,0" VerticalAlignment="Top" Height="114" Click="BtnImprimir_Click" HorizontalAlignment="Left" Width="94" Grid.RowSpan="2">
-            <StackPanel Height="107" Width="84">
-                <Image Source="/FYSIEX;component/Images/impresora.png" Height="77" Width="58" Margin="12,0,13,0"/>
+        <TextBox x:Name="txtRazon" IsEnabled="False" Margin="285,100,10,62" TextWrapping="Wrap" Text=""/>
+        <TextBox x:Name="txtTel" IsEnabled="False" Margin="77,100,40,62" TextWrapping="Wrap" Text="" Grid.Column="1"/>
+        <TextBox x:Name="txtNombres" IsEnabled="False" Margin="351,135,40,27" TextWrapping="Wrap" Text="" Grid.ColumnSpan="2"/>
+        <Label Content="Datos del Cliente:" Background="White" HorizontalAlignment="Left" Margin="200,67,0,0" VerticalAlignment="Top" Height="26" Width="103"/>
+        <Button  x:Name="btnImprimir" Background="#FFF1EBEC" BorderBrush="Transparent" Margin="40,62,0,0" VerticalAlignment="Top" Height="120" Click="BtnImprimir_Click" HorizontalAlignment="Left" Width="110" Grid.Row="1">
+            <StackPanel>
+                <Image Source="/FYSIEX;component/Images/impresora.png" Height="90" Width="90"/>
                 <Label Content="Imprimir" FontFamily="Segoe UI Emoji" Height="27" FontSize="13"  HorizontalAlignment="Stretch" Margin="10,0" />
             </StackPanel>
         </Button>

@@ -5,35 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionProductos"
         mc:Ignorable="d"
-        Title="FYSIEX - Eliminar Producto" Height="481.462" Width="800" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Eliminar Producto" Height="481.462" Width="730" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,1,0,0" Height="61" VerticalAlignment="Top" />
-
         <Label  Content="Gestion de Producto" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
-        <Rectangle Margin="250,81,23,60" Stroke="Black"/>
-        <Label Content="Eliminar Producto" HorizontalAlignment="Left" Margin="266,67,0,0" VerticalAlignment="Top" Background="White" Height="26"/>
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="21,81,0,0" Stroke="Black" Width="204" Height="247" VerticalAlignment="Top"/>
-        <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="38,81,0,0" VerticalAlignment="Top" FontSize="16" Height="33" Width="167"/>
-        <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Height="43" VerticalAlignment="Bottom"/>
-        <Label Content="ATENCIÓN: Confirma que los datos coincidan con el producto que quieres borrar." Margin="10,0,0,13" VerticalAlignment="Bottom" FontSize="14" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="26" HorizontalAlignment="Left" Width="571"/>
-        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="66,119,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnEliminar_Click">
+
+        <Rectangle Margin="210,81,15,60" Stroke="Black"/>
+        <Label Content="Eliminar Producto" HorizontalAlignment="Left" Margin="225,67,0,0" VerticalAlignment="Top" Background="White" Height="26"/>
+
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="15,80,0,60" Stroke="Black" Width="180"/>
+        <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="25,80,0,0" VerticalAlignment="Top" FontSize="16" Height="33" Width="161"/>
+        <Button x:Name="btnGuardar" HorizontalAlignment="Left" Margin="45,120,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnEliminar_Click">
             <StackPanel>
-                <Image  Source="/FYSIEX;component/Images/basura.png" Height="81" Width="92"/>
+                <Image  Source="/FYSIEX;component/Images/basura.png" Height="90" Width="90"/>
                 <Label Content="Borrar" FontSize="14" Width="64" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button x:Name="btnVolver" Content="Volver" Margin="79,275,0,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="85" Click="BtnVolver_Click" Height="30" VerticalAlignment="Top"/>
-        <Label Content="Codigo:" HorizontalAlignment="Left" Margin="315,129,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Nombre del Producto:" HorizontalAlignment="Left" Margin="315,158,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="315,214,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label Content="Presentación del Producto:" HorizontalAlignment="Left" Margin="315,186,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="501,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
-        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="501,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" IsEnabled="False"/>
-        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="501,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
-        <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="501,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" IsEnabled="False"/>
-        <Label Content="Precio" HorizontalAlignment="Left" Margin="315.371,243,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="501.371,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
-        <Label Content="Marca" HorizontalAlignment="Left" Margin="315.371,272,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <TextBox x:Name="txtMarca" HorizontalAlignment="Left" Height="23" Margin="501.371,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
+        <Button Name="btnVolver" HorizontalAlignment="Left" Margin="45,250,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnVolver_Click">
+            <StackPanel>
+                <Image  Source="/FYSIEX;component/Images/regreso.png" Height="90" Width="90"/>
+                <Label Content="Guardar" FontSize="14" Width="64" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <Label Content="Codigo:" HorizontalAlignment="Left" Margin="248,120,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txtCodigo" HorizontalAlignment="Left" Height="23" Margin="433,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
+        <Label Content="Nombre del Producto:" HorizontalAlignment="Left" Margin="248,150,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="433,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" IsEnabled="False"/>
+        <Label Content="Presentación del Producto:" HorizontalAlignment="Left" Margin="248,180,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txtUnidad" HorizontalAlignment="Left" Height="23" Margin="433,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" IsEnabled="False"/>
+        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="248,210,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txtCantidad" HorizontalAlignment="Left" Height="23" Margin="433,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
+        <Label Content="Precio" HorizontalAlignment="Left" Margin="248,240,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txtPrecio" HorizontalAlignment="Left" Height="23" Margin="433,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="248,270,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <TextBox x:Name="txtMarca" HorizontalAlignment="Left" Height="23" Margin="433,270,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" IsEnabled="False"/>
+
+        <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Height="43" VerticalAlignment="Bottom"/>
+        <Label Content="ATENCIÓN: Confirma que los datos coincidan con el producto que quieres borrar." Margin="0,0,10,10" VerticalAlignment="Bottom" FontSize="14" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="26" HorizontalAlignment="Right" Width="571"/>
     </Grid>
 </Window>
