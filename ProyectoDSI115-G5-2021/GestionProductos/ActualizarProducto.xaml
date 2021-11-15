@@ -13,7 +13,7 @@
 
         <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="15,80,0,60" Stroke="Black" Width="180"/>
         <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="25,80,0,0" VerticalAlignment="Top" FontSize="16" Height="33" Width="161"/>
-        <Button Name="btnGuardar" HorizontalAlignment="Left" Margin="45,120,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnGuardar_Click">
+        <Button Name="btnActualizar" HorizontalAlignment="Left" Margin="45,120,0,0" VerticalAlignment="Top" Width="115" Height="115" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnActualizar_Click">
             <StackPanel>
                 <Image  Source="/Images/disquete.png" Height="90" Width="90"/>
                 <Label Content="Guardar" FontSize="14" Width="64" HorizontalContentAlignment="Center" FontFamily="Comic Sans MS"/>

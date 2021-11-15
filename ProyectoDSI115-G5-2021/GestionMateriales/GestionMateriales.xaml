@@ -5,51 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.GestionMateriales"
         mc:Ignorable="d"
-        Title="FYSIEX - Gestion de Insumos y Materiales" Height="611" Width="931" WindowStartupLocation="CenterScreen">
+        Title="FYSIEX - Gestion de Insumos y Materiales" Height="700" Width="1170" WindowStartupLocation="CenterScreen">
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top" StrokeThickness="0"/>
         <Label Content="Gestión de Insumos y Materiales" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Height="39" Width="591"/>
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,108,0,0" Stroke="Black" Width="194" Height="438" VerticalAlignment="Top"/>
-        <Button x:Name="btnVolver" Margin="67,433,0,0" FontSize="16" HorizontalAlignment="Left" Width="85" Height="100" VerticalAlignment="Top" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+
+        <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="25,60,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="20,95,0,0" Stroke="Black" Width="170" Height="410" VerticalAlignment="Top"/>
+
+        <Button x:Name="btnVolver" Margin="50,0,0,20"  HorizontalAlignment="Left" Width="110" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}" Height="120" VerticalAlignment="Bottom">
             <StackPanel>
-                <Image Source="/FYSIEX;component/Images/regreso.png" Height="65" Width="69"/>
+                <Image Source="/FYSIEX;component/Images/regreso.png" Height="90" Width="90"/>
                 <Label  Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Label Content="Acciones Disponibles" HorizontalAlignment="Left" Margin="35,108,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button Name="BtnAgregar" HorizontalAlignment="Left" Margin="47,144,0,0" VerticalAlignment="Top" Width="131" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnAgregar_Click">
-            <StackPanel Width="133">
-                <Image Source="/Images/agregar.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
+
+        <Button Name="BtnAgregar" HorizontalAlignment="Left" Margin="50,110,0,0" VerticalAlignment="Top" Width="110" Height="120" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnAgregar_Click">
+            <StackPanel>
+                <Image Source="/Images/agregar.png" Height="90" Width="90"/>
                 <Label Content="Agregar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button Name="BtnActualizar" HorizontalAlignment="Left" Margin="35,237,0,0" VerticalAlignment="Top" Width="150" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnEditar_Click">
+        <Button Name="BtnActualizar" HorizontalAlignment="Left" Margin="50,240,0,0" VerticalAlignment="Top" Width="110" Height="120" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnEditar_Click">
             <StackPanel>
-                <Image Source="/Images/editar.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
+                <Image Source="/Images/editar.png" Height="90" Width="90"/>
                 <Label Content="Actualizar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button Name="BtnBorrar" HorizontalAlignment="Left" Margin="47,325,0,0" VerticalAlignment="Top" Width="131" Height="88" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnBorrar_Click">
+        <Button Name="BtnBorrar" HorizontalAlignment="Left" Margin="50,370,0,0" VerticalAlignment="Top" Width="110" Height="120" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnBorrar_Click">
             <StackPanel>
-                <Image Source="/Images/basura.png" Height="61" Width="67" RenderTransformOrigin="-0.859,-1.812"/>
+                <Image Source="/Images/basura.png" Height="90" Width="90"/>
                 <Label Content="Borrar" FontSize="14" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Rectangle Margin="234,102,10,10" Stroke="Black"/>
-        <Label Content="Materiales" HorizontalAlignment="Left" Margin="249,86,0,0" VerticalAlignment="Top" FontSize="16" Background="White"/>
-        <DataGrid  x:Name="dataMateriales" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="250,165,23,20" RenderTransformOrigin="0.515,0.282" >
+
+        <Rectangle Margin="210,95,20,20" Stroke="Black"/>
+        <Label Content="Materiales" HorizontalAlignment="Left" Margin="230,80,0,0" VerticalAlignment="Top" FontSize="16" Background="White"/>
+        <Label  Content="Elige la opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
+        
+        <TextBox x:Name="txtBuscar"  Text="" Margin="230,120,158,0" Height="30" VerticalAlignment="Top" KeyDown="OnKeyDownHandler"/>
+        <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,40,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="110" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click"/>
+
+        <DataGrid  x:Name="dataMateriales" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="230,165,40,40" RenderTransformOrigin="0.515,0.282" >
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Nombre del Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="100" IsReadOnly="True" Header="Precio (USD$)" Binding="{Binding PRECIO_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="100"  IsReadOnly="True" Header="Fecha de Modificación"  Binding="{Binding FECHA_MODF_MATERIAL}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="150" IsReadOnly="True" Header="Nombre del Material"  Binding="{Binding NOMBRE_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="150" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="120" IsReadOnly="True" Header="Cantidad en Existencia"  Binding="{Binding EXISTENCIA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="80" IsReadOnly="True" Header="Precio (USD$)" Binding="{Binding PRECIO_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="140"  IsReadOnly="True" Header="Fecha de Modificación"  Binding="{Binding FECHA_MODF_MATERIAL}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button  x:Name="btnBuscar" Content="Buscar" Margin="0,120,21,0"  Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Right" Width="110" Height="30" VerticalAlignment="Top" Click="BtnBuscar_Click"/>
-        <TextBox x:Name="txtBuscar"  Text="" Margin="250,120,158,0" Height="30" VerticalAlignment="Top" KeyDown="OnKeyDownHandler"/>
-        <Label  Content="Elige la opción que deseas realizar" Margin="0,66,10,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
+
+        
+        
 
 
     </Grid>
