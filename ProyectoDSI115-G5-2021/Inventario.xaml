@@ -19,10 +19,9 @@
         </Grid.RowDefinitions>
         <Rectangle Fill="#FFC91029" Stroke="Black" StrokeThickness="0" Margin="0,0,8,0" Grid.ColumnSpan="3" Height="54" VerticalAlignment="Top" Grid.RowSpan="2"/>
         <Label Content="Inventario de Productos y Materiales" HorizontalAlignment="Left" Margin="7,6,0,720" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" FontStyle="Italic" Width="592" Grid.Column="1" Grid.RowSpan="2"/>
-        <Rectangle  Fill="#FFF1EBEC" Margin="7,36,0,0" Stroke="Black" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="190" Height="535" VerticalAlignment="Top"/>
+        <Rectangle  Fill="#FFF1EBEC" Margin="7,28,0,0" Stroke="Black" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Width="190" Height="555" VerticalAlignment="Top"/>
         <Label  Content="ACCIONES" HorizontalAlignment="Left" Margin="51,5,0,0" FontSize="18" FontFamily="Segoe UI Emoji" Foreground="#FF0E0E0E" Width="100" Grid.Column="1" Height="49" VerticalAlignment="Top" Grid.Row="1"/>
-        <Button x:Name="btnVolver" Margin="27,0,0,21" Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" 
-                HorizontalAlignment="Left" Width="149" Click="BtnVolver_Click" BorderBrush="{x:Null}" Grid.Column="1" Grid.Row="1" Height="112" VerticalAlignment="Bottom">
+        <Button x:Name="btnVolver" Margin="27,0,0,21" Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" HorizontalAlignment="Left" Width="149" Click="BtnVolver_Click" BorderBrush="{x:Null}" Grid.Column="1" Grid.Row="1" Height="112" VerticalAlignment="Bottom">
             <StackPanel>
                 <Image Source="Images/regreso.png" Stretch="Fill" Height="82" Margin="25,0,25,0"/>
                 <Label Content="Volver" FontFamily="Segoe UI Emoji" FontSize="14" HorizontalContentAlignment="Center"/>
@@ -59,14 +58,18 @@
                 <Label Content="Generar Reporte" FontSize="14" HorizontalContentAlignment="Center" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>
-        <Button x:Name="btnBusquedaInv" Content="Buscar" Margin="0,50,24,0" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BtnBusquedaInv_Click" Grid.Column="1" Height="30" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Right" Width="85"/>
+        <Button  x:Name="BtnBusquedaInv" Margin="0,48,24,0"  Background="{x:Null}" FontSize="16" FontFamily="Comic Sans MS" Foreground="{x:Null}" HorizontalAlignment="Right" Width="51" Height="38" VerticalAlignment="Top" Click="BtnBusquedaInv_Click" BorderBrush="{x:Null}" Grid.Column="1" Grid.Row="1">
+            <StackPanel>
+                <Image Stretch="Fill" Source="/FYSIEX;component/Images/lupa.png" Height="35" Width="38"/>
+            </StackPanel>
+        </Button>
         <Button x:Name="btnSolicitar"  Margin="27,313,0,0" Foreground="{x:Null}" Background="{x:Null}" FontFamily="Comic Sans MS" FontSize="16" HorizontalAlignment="Left" Width="149" Click="BtnSolicitar_Click" BorderBrush="{x:Null}" Grid.Column="1" Grid.Row="1" Height="127" VerticalAlignment="Top">
             <StackPanel>
                 <Image Source="Images/solicitud.png" Stretch="Fill" Height="82" Margin="25,0,25,0"/>
                 <Label Content="Solicitudes" HorizontalContentAlignment="Center" FontSize="14" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>
-        <TextBox x:Name="textBusquedaInve" Margin="235,50,114,0" TextWrapping="Wrap" Grid.Column="1" Height="30" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
+        <TextBox x:Name="textBusquedaInve" Margin="235,50,90,0" TextWrapping="Wrap" Grid.Column="1" Height="30" VerticalAlignment="Top" Grid.Row="1" FontSize="14"/>
         <DataGrid x:Name="dataInventario" ItemsSource="{Binding}" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="235,95,24,75" AutoGenerateColumns="False" SelectionChanged="DataInventario_SelectionChanged" FontSize="14" Grid.Column="1" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding COD_MATERIAL}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="150" IsReadOnly="True"/>

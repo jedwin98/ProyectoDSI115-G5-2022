@@ -29,7 +29,7 @@
         <TextBox x:Name="txtCorreo" MaxLength="100" TextWrapping="Wrap" Height="25" Text="" Margin="400,305,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
 
         <TextBox x:Name="txtEstado" TextWrapping="Wrap" Visibility="Hidden" Text="Activo" Margin="401,37,167,64" Grid.Row="1"/>
-        
+
         <Rectangle Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="20,108,0,20" Stroke="Black" Width="155"/>
         <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="110" Height="110" Click="BtnActualizar_Click">
             <StackPanel Height="100" Width="100">

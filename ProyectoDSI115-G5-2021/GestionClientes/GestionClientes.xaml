@@ -33,7 +33,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,102,0,0" Stroke="Black" Width="194" Height="445" VerticalAlignment="Top"/>
+        <Rectangle  Fill="#FFF1EBEC" HorizontalAlignment="Left" Margin="19,102,0,0" Stroke="Black" Width="194" Height="457" VerticalAlignment="Top"/>
         <Button  x:Name="btnAgrear" Background="#FFF1EBEC" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="70,112,0,0" VerticalAlignment="Top" Width="100" Height="100" Click="BtnAgregar_Click">
             <StackPanel Height="100" Width="90">
                 <Image Source="/Images/agregar.png" Height="70" Width="70" Cursor="Hand"/>
