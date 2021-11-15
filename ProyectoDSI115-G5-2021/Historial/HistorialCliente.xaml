@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.Historial"
         mc:Ignorable="d"
-        Title="FYSIEX - Historial de Clientes" Height="480" Width="915">
+        Title="FYSIEX - Historial de Clientes" Height="480" Width="910">
     <Grid >
         <Rectangle  Fill="#FFC91029" Stroke="Black" Height="61" VerticalAlignment="Top" Margin="0,-1,0,0" />
         <Label  Content="Historial de Clientes" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="2" Height="41" Width="228"/>
