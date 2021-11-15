@@ -5,43 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoDSI115_G5_2021.SolicitarInsumos"
         mc:Ignorable="d"
-        Title="VerSolicitudes" Height="481.5" Width="1101.15" Activated="VerSolicitudes_Activated" >
-    <Grid Margin="0,0,2,1" >
+        Title="VerSolicitudes" Height="600" Width="1100" Activated="VerSolicitudes_Activated" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,0" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="506*"/>
-            <ColumnDefinition Width="93*"/>
-            <ColumnDefinition Width="492*"/>
+            <ColumnDefinition Width="505*"/>
+            <ColumnDefinition Width="82*"/>
+            <ColumnDefinition Width="497*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,0,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="3" />
+        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,0,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="4" />
 
-        <Label  Content="Solicitudes de Insumos" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="299"/>
-        <Label  Content="Solicitudes" Margin="163,65,173,0" VerticalAlignment="Top" FontSize="26" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Height="46" RenderTransformOrigin="0.517,-0.326"/>
-        <Label  Content="Contenido de la Solicitud" Margin="114,65,93,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Grid.Column="2" Height="41"/>
-        <DataGrid  x:Name="dataDetalles" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="29,124,33,112" Grid.Column="2" >
+        <Label  Content="Solicitudes de Insumos" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="299"/>
+        <Label  Content="Solicitudes" Margin="173,65,173,0" VerticalAlignment="Top" FontSize="26" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Height="46" RenderTransformOrigin="0.517,-0.326" HorizontalContentAlignment="Center"/>
+        <Label  Content="Contenido de la Solicitud" Margin="100,65,100,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Grid.Column="2" Height="41" HorizontalContentAlignment="Center"/>
+        <DataGrid  x:Name="dataDetalles" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="5,115,10,70" Grid.Column="2" >
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="70" Header="Código Material"  Binding="{Binding COD_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding NOMBRE_MATERIAL }"/>
-                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
-                <DataGridTextColumn MinWidth="140" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding CANTIDAD_DETALLE}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="110" Header="Código Material"  Binding="{Binding COD_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="130" IsReadOnly="True" Header="Nombre de Material"  Binding="{Binding NOMBRE_MATERIAL }"/>
+                <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Presentación"  Binding="{Binding UNIDAD_MEDIDA_MATERIAL}"/>
+                <DataGridTextColumn MinWidth="120" IsReadOnly="True" Header="Cantidad Solicitada"  Binding="{Binding CANTIDAD_DETALLE}"/>
 
 
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="37,124,22,112" SelectionChanged="DataSolicitudes_SelectionChanged" >
+        <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" AlternationCount="2" Margin="20,115,5,70" SelectionChanged="DataSolicitudes_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" MinWidth="100" Header="Código"  Binding="{Binding CODIGO_SOLI}"/>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Solicitud Número"  Binding="{Binding COD_REQ}"/>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="100" Header="Cliente"  Binding="{Binding EMPRESA_CLIENTE}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="110" Header="Solicitud Número"  Binding="{Binding COD_REQ}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="120" Header="Cliente"  Binding="{Binding EMPRESA_CLIENTE}"/>
                 <DataGridTextColumn MinWidth="110" IsReadOnly="True" Header="Fecha de solicitud"  Binding="{Binding FECHA_SOLICITUD}"/>
                 <DataGridTextColumn MinWidth="130" IsReadOnly="True" Header="Estado de la Solicitud"  Binding="{Binding ESTADO_SOLICITUD}"/>
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnVolver" Content="Volver" Margin="37,0,0,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="101" Height="41" VerticalAlignment="Bottom" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902"/>
-        <Button x:Name="btnNueva" Content="Crear Nueva Solicitud" Margin="0,0,22,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="206" Click="BtnNueva_Click" />
-        <Button x:Name="btnVer" Content="Ver>>" Margin="15,212,10,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnSeleccionar_Click" Height="36" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button x:Name="btnLimpiar" Content="Limpiar" Margin="0,0,191,42" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="110" Click="BtnCancelar_Click" Grid.Column="2"/>
+        <Button x:Name="btnVolver" Content="Volver" Margin="20,0,0,20" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" HorizontalAlignment="Left" Width="101" Height="36" VerticalAlignment="Bottom" Click="BtnVolver_Click" RenderTransformOrigin="0.515,0.902"/>
+        <Button x:Name="btnNueva" Content="Crear Nueva Solicitud" Margin="0,0,5,20" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="206" Click="BtnNueva_Click" />
+        <Button x:Name="btnVer" Content="Ver >>" Margin="10,212,10,0" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Click="BtnSeleccionar_Click" Height="36" VerticalAlignment="Top" Grid.Column="1"/>
+        <Button x:Name="btnLimpiar" Content="Limpiar" Margin="0,0,10,20" Background="#FFC91029" FontSize="16" FontFamily="Comic Sans MS" Foreground="#FFF7F7F7" Height="36" VerticalAlignment="Bottom" Click="BtnCancelar_Click" Grid.Column="2" HorizontalAlignment="Right" Width="101"/>
 
 
 

@@ -281,6 +281,9 @@ namespace ProyectoDSI115_G5_2021.CotizacionRecibo
                     txtExistencia.Text= "";
                     txtTotalRecibo.Text = "";
                     txtPresentacion.Text = "";
+                    txtNombre.Text = "";
+                    txtPrecio.Text = "";
+                    txtCantidad.Text = "";
                     txtCliente.IsEnabled = true;
                     btnImprimir.IsEnabled = false;
                     
