@@ -42,26 +42,15 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                 String respuesta = control.ActualizarEmpleado(empleado);
                 MessageBox.Show(respuesta, "Resultado de la actualización de datos", MessageBoxButton.OK, MessageBoxImage.Information);
 
+                this.Close();
             }
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
 
-            GestionEmpleados nueva = new GestionEmpleados()
-            {
-                WindowState = WindowState.Maximized
-
-            };
-            nueva.Show();
-
-
-        }
         public void CargarCombos(string idA, string idC)
         {
             cargos = control.ConsultarCargo();
@@ -88,9 +77,6 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
                     cmbCargo.SelectedIndex = i;
                 }
             }
-
-
         }
-
     }
 }

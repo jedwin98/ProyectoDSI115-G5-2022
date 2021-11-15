@@ -13,7 +13,7 @@
             <ColumnDefinition Width="492*"/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,-6,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="3" />
+        <Rectangle  Fill="#FFC91029" Stroke="Black" Margin="0,0,0,0" Height="66" VerticalAlignment="Top" Grid.ColumnSpan="3" />
 
         <Label  Content="Solicitudes de Insumos" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Height="45" Width="299"/>
         <Label  Content="Solicitudes" Margin="163,65,173,0" VerticalAlignment="Top" FontSize="26" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Height="46" RenderTransformOrigin="0.517,-0.326"/>
