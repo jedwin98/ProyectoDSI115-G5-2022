@@ -98,14 +98,11 @@ namespace ProyectoDSI115_G5_2021.Autorizacion
             dataDetalles.ItemsSource = dt.DefaultView;
             // Actualizar estado
             bool error = false, actual = true;
-            while (actual)
+            for (int j = 0; j < dt.Rows.Count; j++)
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    float existencia = float.Parse(dt.Rows[i][6].ToString()),
-                        cantidad = float.Parse(dt.Rows[i][5].ToString());
-                    if (existencia < cantidad) { actual = false; }
-                }
+                float existencia = float.Parse(dt.Rows[j][6].ToString()),
+                    cantidad = float.Parse(dt.Rows[j][5].ToString());
+                if (existencia < cantidad) { actual = false; }
             }
             if (actual)
             {
@@ -124,6 +121,12 @@ namespace ProyectoDSI115_G5_2021.Autorizacion
                     btnImprimir.SetCurrentValue(IsEnabledProperty, true);
                     imgImprimir.SetCurrentValue(OpacityProperty, 1.0);
                     autorizador = sesion.empleado;
+                    // Mostrar diálogo de impresión
+                    MessageBoxResult imprimir = MessageBox.Show("Se aprobó la solicitud. ¿Desea imprimir la solicitud?", "Solicitud Aprobada", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (imprimir == MessageBoxResult.Yes)
+                    {
+                        GenerarImpresion();
+                    }
                 }
                 else
                 {
@@ -136,12 +139,6 @@ namespace ProyectoDSI115_G5_2021.Autorizacion
             }
             dt = control.ConsultarDetalleSolicitudes(codigoSolicitud);
             dataDetalles.ItemsSource = dt.DefaultView;
-            // Mostrar diálogo de impresión
-            MessageBoxResult imprimir = MessageBox.Show("Se aprobó la solicitud. ¿Desea imprimir la solicitud?", "Solicitud Aprobada", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (imprimir == MessageBoxResult.Yes)
-            {
-                GenerarImpresion();
-            }
         }
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
