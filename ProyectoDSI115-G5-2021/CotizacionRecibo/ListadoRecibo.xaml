@@ -20,7 +20,7 @@
                 <DataGridTextColumn Binding="{Binding COD_RECIBO}" ClipboardContentBinding="{x:Null}" Header="Código" MinWidth="110"/>
                 <DataGridTextColumn Binding="{Binding FECHA_RECIBO}" ClipboardContentBinding="{x:Null}" Header="Fecha de Emisión" MinWidth="110"/>
                 <DataGridTextColumn Binding="{Binding CLIENTE_RECIBO}" ClipboardContentBinding="{x:Null}" Header="Cliente" MinWidth="191"/>
-                <DataGridTextColumn Binding="{Binding TOTAL_RECIBO}" ClipboardContentBinding="{x:Null}" Header="Total de Compra" MinWidth="110"/>
+                <DataGridTextColumn Binding="{Binding TOTAL_RECIBO}" ClipboardContentBinding="{x:Null}" Header="Total de Compra ($)" MinWidth="150"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="ACCIONES" HorizontalAlignment="Left" FontSize="18" HorizontalContentAlignment="Center" Height="33" Margin="32,65,0,0" VerticalAlignment="Top" Width="143" FontFamily="Segoe UI Emoji"/>
@@ -39,10 +39,8 @@
         <ComboBox Name="cmbMeses" Margin="0,0,230,48" HorizontalAlignment="Right" Width="120" Height="22" VerticalAlignment="Bottom" Grid.ColumnSpan="2" SelectionChanged="CmbMeses_SelectionChanged"/>
         <CheckBox Name="chkPresente" Content="¿Recibos del presente año?" Margin="0,0,15,48" FontSize="14" HorizontalAlignment="Right" Width="187" Height="18" VerticalAlignment="Bottom" Grid.Column="1" Checked="ChkPresente_Checked" Unchecked="ChkPresente_Checked"/>
         <Rectangle  Fill="#FFC91029" Stroke="Black" Height="39" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
-        <TextBox Name="txtBuscar" Margin="287,75,15,0" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="24" VerticalAlignment="Top" FontSize="14" TextChanged="TxtBuscar_TextChanged" />
-        <Button Name="btnBuscar" Height="33" Margin="231,70,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="41" Click="BtnBuscar_Click" >
-            <Image Source="/FYSIEX;component/Images/lupa.png" Stretch="Fill"/>
-        </Button>
+        <TextBox Name="txtBuscar" Margin="190,74,56,0" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="24" VerticalAlignment="Top" FontSize="14" TextChanged="TxtBuscar_TextChanged" />
+        <Image Source="/FYSIEX;component/Images/lupa.png" Stretch="Fill" Margin="0,69,15,0" RenderTransformOrigin="0.574,0.472" Grid.Column="1" HorizontalAlignment="Right" Width="36" Height="36" VerticalAlignment="Top"/>
         <Label Content="Haga doble clic sobre el registro que desea revisar..." HorizontalAlignment="Left" Margin="10,0,0,7" Foreground="White" FontFamily="Segoe UI Emoji" FontSize="14" Width="345" Height="32" VerticalAlignment="Bottom"/>
 
     </Grid>

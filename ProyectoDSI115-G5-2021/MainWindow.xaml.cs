@@ -42,8 +42,8 @@ namespace ProyectoDSI115_G5_2021
 
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
         //AUTOR: FRANCISCO ESCOBAR
-        SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
-        //SQLiteConnection con = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
+        //SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
+        SQLiteConnection con = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
 
         System.Windows.Threading.DispatcherTimer dispatcher = new System.Windows.Threading.DispatcherTimer(); //OBJETO PARA EJECUTAR CADA CIERTO TIEMPO UN METODO
 
@@ -69,7 +69,7 @@ namespace ProyectoDSI115_G5_2021
             //INICIAMOS EL METODO
             dispatcher.Start();
         }
-
+        
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             //ACA SE INGRESA  TODO EL CODIGO QUE SE QUIERE EJECUTAR CADA CIERTO TIEMPO
@@ -100,7 +100,7 @@ namespace ProyectoDSI115_G5_2021
                     dispatcher.Stop();
 
                     //Añadiendo mas tiempo para alertar de la solicitud
-                    dispatcher.Interval = new TimeSpan(0, 0, 30);
+                    dispatcher.Interval = new TimeSpan(0, 0, 3);
                     dispatcher.Start();
                     //NOTA: No se detendra el sonido hasta verificar la solicitud existente
 

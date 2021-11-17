@@ -92,8 +92,8 @@
                 <Label Content="Historiales" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="14"/>
             </StackPanel>
         </Button>
-        <Image Grid.Column="2" Margin="189,20,0,0" Grid.Row="4" Source="Images/notificacion.png" Name="imgBurbuja" HorizontalAlignment="Left" Width="45" Height="42" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-        <Label Name="lblContador" Content="10" Margin="206,13,101,152" Grid.Column="2" Grid.Row="4" Foreground="White" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+        <Image Grid.Column="2" Margin="189,20,0,0" Grid.Row="4" Source="Images/notificacion.png" Name="imgBurbuja" HorizontalAlignment="Left" Width="45" Height="42" VerticalAlignment="Top" Grid.ColumnSpan="2" Visibility="Hidden"/>
+        <Label Name="lblContador" Content="0" Margin="206,12,101,153" Grid.Column="2" Grid.Row="4" Foreground="White" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Visibility="Hidden"/>
         <Rectangle Fill="#FFC91029" Stroke="Black" Grid.ColumnSpan="7" StrokeThickness="0" Margin="0,182,0,-4" Grid.Row="4" Grid.RowSpan="2"/>
     </Grid>
 </Window>

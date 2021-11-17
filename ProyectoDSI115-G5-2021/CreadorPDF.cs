@@ -496,12 +496,12 @@ namespace ProyectoDSI115_G5_2021
             tablaTotal.RowGroups[0].Rows.Add(new TableRow());
             actual = tablaTotal.RowGroups[0].Rows[0];
             actual.FontSize = 14;
-            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
+            actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("F.__________________Recibido. "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run(" "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("Total: "))));
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("" + totalRecibo))));
-
+            
             tablaTotal.Columns[0].Width = anchoNombre;
             tablaTotal.Columns[1].Width = anchoPresentacion;
             tablaTotal.Columns[2].Width = anchoCantidad;
@@ -513,6 +513,7 @@ namespace ProyectoDSI115_G5_2021
             actual.FontSize = 14;
             actual.Cells.Add(new TableCell(new System.Windows.Documents.Paragraph(new Run("\n"))));
             
+
 
             // Impresión del documento
             MemoryStream s = new System.IO.MemoryStream();
