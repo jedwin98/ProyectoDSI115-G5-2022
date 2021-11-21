@@ -105,35 +105,39 @@ namespace ProyectoDSI115_G5_2021
                 if (!recuperable)
                 {
                     MessageBox.Show("Ingrese un correo electrónico registrado e intente de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    cuadroEmail.Text = "";
                 }
-                Random generador = new Random();
-                numeroRandom = generador.Next(1, 999999);
-                string destinatario = control.ObtenerNombre(aRecuperar),
-                    correoEnv = AgenteEmail.GenerarMail(destinatario, numeroRandom),
-                    asunto = "FYSIEX - Código de Seguridad";
-                // Si el correo se envía exitosamente
-                if (AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador, destinatario, asunto))
+                else
                 {
-                    cuadroEmail.SetCurrentValue(IsEnabledProperty, false);
-                    control.Bloquear(aRecuperar, "B");
-                    // Cambio de visibilidad de los objetos en la ventana.
-                    //labelEmail.Margin = new Thickness(161, 300, 0, 0);
-                    //cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
-                    labelContrasena.Margin = new Thickness(343, 431, 0, 0);
-                    labelContrasena.Content = "Código de seguridad:";
-                    //cuadroContrasena.Margin = new Thickness(310, 330, 0, 0);
-                    botonInicioSesion.Visibility = Visibility.Hidden;
-                    botonOlvide.Visibility = Visibility.Hidden;
-                    labelNuevaContrasena.Visibility = Visibility.Visible;
-                    cuadroNuevaContrasena.Visibility = Visibility.Visible;
-                    labelRestaurarContrasena.Visibility = Visibility.Visible;
-                    cuadroRestaurarContrasena.Visibility = Visibility.Visible;
-                    botonRestaurarContrasena.Visibility = Visibility.Visible;
-                    botonVolver.Visibility = Visibility.Visible;
-                    botonSalir.Visibility = Visibility.Hidden;
-                    labelHelp.Visibility = Visibility.Visible;
-                    labelClick.Visibility = Visibility.Hidden;
-                    labelOlvidaste.Visibility = Visibility.Hidden;
+                    Random generador = new Random();
+                    numeroRandom = generador.Next(1, 999999);
+                    string destinatario = control.ObtenerNombre(aRecuperar),
+                        correoEnv = AgenteEmail.GenerarMail(destinatario, numeroRandom),
+                        asunto = "FYSIEX - Código de Seguridad";
+                    // Si el correo se envía exitosamente
+                    if (AgenteEmail.EnviarMail(correoEnv, aRecuperar, recuperador, destinatario, asunto))
+                    {
+                        cuadroEmail.SetCurrentValue(IsEnabledProperty, false);
+                        control.Bloquear(aRecuperar, "B");
+                        // Cambio de visibilidad de los objetos en la ventana.
+                        //labelEmail.Margin = new Thickness(161, 300, 0, 0);
+                        //cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
+                        labelContrasena.Margin = new Thickness(343, 431, 0, 0);
+                        labelContrasena.Content = "Código de seguridad:";
+                        //cuadroContrasena.Margin = new Thickness(310, 330, 0, 0);
+                        botonInicioSesion.Visibility = Visibility.Hidden;
+                        botonOlvide.Visibility = Visibility.Hidden;
+                        labelNuevaContrasena.Visibility = Visibility.Visible;
+                        cuadroNuevaContrasena.Visibility = Visibility.Visible;
+                        labelRestaurarContrasena.Visibility = Visibility.Visible;
+                        cuadroRestaurarContrasena.Visibility = Visibility.Visible;
+                        botonRestaurarContrasena.Visibility = Visibility.Visible;
+                        botonVolver.Visibility = Visibility.Visible;
+                        botonSalir.Visibility = Visibility.Hidden;
+                        labelHelp.Visibility = Visibility.Visible;
+                        labelClick.Visibility = Visibility.Hidden;
+                        labelOlvidaste.Visibility = Visibility.Hidden;
+                    }
                 }
             }
         }
