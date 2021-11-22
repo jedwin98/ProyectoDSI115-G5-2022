@@ -1711,7 +1711,7 @@ namespace ProyectoDSI115_G5_2021
             {
                 cn.Open();
                 SQLiteCommand comando = new SQLiteCommand("SELECT COD_RECIBO, FECHA_RECIBO, CLIENTE_RECIBO, TOTAL_RECIBO FROM RECIBO WHERE FECHA_RECIBO LIKE @fecha ", cn);
-                comando.Parameters.Add(new SQLiteParameter("@fecha", "%__" + mes + "%"));
+                comando.Parameters.Add(new SQLiteParameter("@fecha", "%/" + mes + "/%"));
                 adapter.SelectCommand = comando;
                 adapter.Fill(dt);
             }

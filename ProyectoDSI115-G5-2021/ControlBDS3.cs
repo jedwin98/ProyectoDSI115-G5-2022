@@ -20,8 +20,8 @@ namespace ProyectoDSI115_G5_2021
         public ControlBDS3()
         {
             //cn = new SQLiteConnection(@"Data Source=Z:\FYSIEX.db;Version=3;Compress=True;");     // CONEXION EN UNIDAD DE RED
-            cn = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
-            //cn = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
+            //cn = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
+            cn = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");   //CONEXION NORMAL
 
         }
 
