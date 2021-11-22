@@ -86,6 +86,7 @@ namespace ProyectoDSI115_G5_2021
         {
             // Ping antes de iniciar el proceso
             bool conectado = RealizarPing();
+            cuadroContrasena.Password = "";
             if (cuadroEmail.Text.Equals(""))
             {
                 // Campo de correo vacío
@@ -122,7 +123,7 @@ namespace ProyectoDSI115_G5_2021
                         // Cambio de visibilidad de los objetos en la ventana.
                         //labelEmail.Margin = new Thickness(161, 300, 0, 0);
                         //cuadroEmail.Margin = new Thickness(310, 300, 0, 0);
-                        labelContrasena.Margin = new Thickness(343, 431, 0, 0);
+                        //labelContrasena.Margin = new Thickness(343, 431, 0, 0);
                         labelContrasena.Content = "Código de seguridad:";
                         //cuadroContrasena.Margin = new Thickness(310, 330, 0, 0);
                         botonInicioSesion.Visibility = Visibility.Hidden;

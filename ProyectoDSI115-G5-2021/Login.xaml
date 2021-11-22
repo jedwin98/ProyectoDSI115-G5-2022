@@ -12,19 +12,19 @@
             <ColumnDefinition Width="627*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Fill="#FFC91029" HorizontalAlignment="Left" Height="59" Stroke="Black" VerticalAlignment="Top" Width="1274" Margin="0,632,0,0" Grid.ColumnSpan="2"/>
-        <Label x:Name="labelEmail" Content="Correo electrónico:" Margin="0,386,140,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="-0.206,0.086" HorizontalAlignment="Right" Width="165"/>
+        <Label x:Name="labelEmail" Content="Correo electrónico:" Margin="0,386,144,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="-0.206,0.086" HorizontalAlignment="Right"/>
         <TextBox x:Name="cuadroEmail" Height="26" Margin="514,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" IsTabStop="False" MaxLength="50" HorizontalAlignment="Left" Width="415" Grid.ColumnSpan="2"/>
-        <Label x:Name="labelContrasena" Content="Contraseña:" Margin="399,426,0,0" FontSize="18" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104"/>
+        <Label x:Name="labelContrasena" Content="Contraseña:" Margin="0,426,144,0" FontSize="18" Height="34" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <PasswordBox x:Name="cuadroContrasena" Margin="514,434,0,0" VerticalAlignment="Top" Height="26" FontSize="18" MaxLength="50" HorizontalAlignment="Left" Width="415" KeyDown="CuadroContrasena_KeyDown" Grid.ColumnSpan="2"/>
         <Button x:Name="botonInicioSesion" Content="Ingresar" Margin="15,478,0,0" VerticalAlignment="Top" FontSize="18" Height="47" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BotonInicioSesion_Click" HorizontalAlignment="Left" Width="118" Grid.Column="1"/>
         <Button x:Name="botonOlvide" Content="Cambiar contraseña" HorizontalAlignment="Left" Margin="145,601,0,0" VerticalAlignment="Top" Width="150" Height="26" FontSize="14" Click="OlvideButton_Click" Grid.Column="1"/>
         <Button x:Name="botonSalir" Content="Salir" Height="47" Margin="514,478,15,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="2.02,0.564" Click="BotonSalir_Click"/>
-        <Label x:Name="labelNuevaContrasena" Content="Nueva contraseña:" Margin="351,470,0,0" FontSize="18" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Visibility="Hidden"/>
+        <Label x:Name="labelNuevaContrasena" Content="Nueva contraseña:" Margin="0,470,144,0" FontSize="18" HorizontalAlignment="Right" Height="29" VerticalAlignment="Top" Visibility="Hidden"/>
         <PasswordBox x:Name="cuadroNuevaContrasena" HorizontalAlignment="Left" Margin="514,474,0,0" VerticalAlignment="Top" Width="415" Height="26" FontSize="18" MaxLength="50" Visibility="Hidden" Grid.ColumnSpan="2"/>
-        <Button x:Name="botonRestaurarContrasena" Content="Cambiar" HorizontalAlignment="Left" Margin="15,550,0,0" VerticalAlignment="Top" Width="118" Height="47" FontSize="18" IsTabStop="False" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BotonRestaurarContrasena_Click" RenderTransformOrigin="1.066,0.596" Visibility="Hidden" Grid.Column="1"/>
-        <Label x:Name="labelRestaurarContrasena" Content="Confirme su contraseña:" HorizontalAlignment="Left" Margin="306,510,0,0" VerticalAlignment="Top" FontSize="18" Visibility="Hidden"/>
+        <Button x:Name="botonRestaurarContrasena" Content="Cambiar" HorizontalAlignment="Left" Margin="15,554,0,0" VerticalAlignment="Top" Width="118" Height="47" FontSize="18" IsTabStop="False" Background="#FFC91029" Foreground="#FFF7F7F7" Click="BotonRestaurarContrasena_Click" RenderTransformOrigin="1.066,0.596" Visibility="Hidden" Grid.Column="1"/>
+        <Label x:Name="labelRestaurarContrasena" Content="Confirme su contraseña:" HorizontalAlignment="Right" Margin="0,510,144,0" VerticalAlignment="Top" FontSize="18" Visibility="Hidden"/>
         <PasswordBox x:Name="cuadroRestaurarContrasena" HorizontalAlignment="Left" Margin="514,514,0,0" VerticalAlignment="Top" Width="415" Height="29" FontSize="18" MaxLength="50" Visibility="Hidden" Grid.ColumnSpan="2"/>
-        <Button x:Name="botonVolver" Content="Volver" HorizontalAlignment="Left" Margin="514,550,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18" RenderTransformOrigin="2.02,0.564" Click="BotonVolver_Click" Visibility="Hidden"/>
+        <Button x:Name="botonVolver" Content="Volver" HorizontalAlignment="Left" Margin="514,554,0,0" VerticalAlignment="Top" Height="47" Width="104" FontSize="18" RenderTransformOrigin="2.02,0.564" Click="BotonVolver_Click" Visibility="Hidden"/>
         <Image Margin="500,100,500,350" Source="Images/fysi.jpg" Stretch="Fill" Grid.ColumnSpan="2"/>
         <Image Height="121" Margin="360,220,170,0" VerticalAlignment="Top" Source="Images/cff.jpg" Stretch="Fill"/>
         <Image Height="72" Margin="130,269,245,0" VerticalAlignment="Top" Source="Images/hf.jpg" Grid.Column="1"/>
