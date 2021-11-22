@@ -42,8 +42,8 @@
         <DataGrid  x:Name="dataSolicitudes" MouseDoubleClick="dgDetalles_MouseDoubleClick" ItemsSource="{Binding}" AutoGenerateColumns="False" AlternatingRowBackground="#FFEA4A4A" FontSize="14" AlternationCount="2" Margin="190,8,20,8" Grid.Row="1" Grid.ColumnSpan="2" >
             <DataGrid.Columns>
                 <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" MinWidth="170" Header="Código"  Binding="{Binding codigo}"/>
-                <DataGridTextColumn IsReadOnly="True" MinWidth="120" Header="Némero de Solicitud"  Binding="{Binding codigoReq}"/>
-                <DataGridTextColumn MinWidth="120" IsReadOnly="True" Header="Fecha de solicitud"  Binding="{Binding fechaSolicitud}"/>
+                <DataGridTextColumn IsReadOnly="True" MinWidth="140" Header="Número de Solicitud"  Binding="{Binding codigoReq}"/>
+                <DataGridTextColumn MinWidth="130" IsReadOnly="True" Header="Fecha de solicitud"  Binding="{Binding fechaSolicitud}"/>
                 <DataGridTextColumn MinWidth="120" IsReadOnly="True" Header="Elaborado por"  Binding="{Binding solicitante.nombre}"/>
                 <DataGridTextColumn IsReadOnly="True" MinWidth="120" Header="Aprobado por"  Binding="{Binding autorizador.nombre}"/>
 

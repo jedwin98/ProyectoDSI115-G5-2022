@@ -8,7 +8,7 @@
         Title="ActualizarCliente" Height="419.492" Width="669.386" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Rectangle Fill="#FFC91029" Stroke="Black" Height="61" VerticalAlignment="Top"/>
-        <Label Content="Administración de Clientes" Margin="37,10,463,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
+        <Label Content="Administración de Clientes" Margin="20,10,20,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
         <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Width="194"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="0,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
 
@@ -16,7 +16,7 @@
         <Label Content="Actualizar Cliente" Margin="225,94,0,0" Background="White" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
 
         <Label Content="ID Cliente:" HorizontalAlignment="Left" Margin="225,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.641,0.269"/>
-        <TextBox x:Name="txtId" MaxLength="7" TextWrapping="Wrap" Text="" Margin="400,130,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
+        <TextBox x:Name="txtId" IsEnabled="False" MaxLength="7" TextWrapping="Wrap" Text="" Margin="400,130,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
         <Label Content="Nombre del Encargado:" HorizontalAlignment="Left" Margin="225,165,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNombre" MaxLength="50" TextWrapping="Wrap" Text="" Margin="400,165,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="223"/>
         <Label Content="Apellido del Encargado:" HorizontalAlignment="Left" Margin="225,200,0,0" VerticalAlignment="Top"/>
