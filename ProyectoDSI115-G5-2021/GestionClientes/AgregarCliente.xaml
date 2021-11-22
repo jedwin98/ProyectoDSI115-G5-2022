@@ -9,7 +9,7 @@
 
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
-        <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
+        <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Width="624"/>
         <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Width="194"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="0,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
 

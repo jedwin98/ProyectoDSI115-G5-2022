@@ -8,7 +8,7 @@
         Title="EliminarCliente" Height="419.492" Width="669.386" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Rectangle Fill="#FFC91029" Height="61" Stroke="Black" VerticalAlignment="Top"/>
-        <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White"/>
+        <Label Content="Administración de Clientes" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="White" Width="623"/>
         <Label Content="Acciones disponibles" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" Width="194"/>
         <Label Content="Elige la Opción que deseas realizar" Margin="0,67,20,0" VerticalAlignment="Top" FontSize="18" FontFamily="Comic Sans MS" Foreground="#FF0E0E0E" HorizontalAlignment="Right" Width="300"/>
 
@@ -34,7 +34,7 @@
         <Button x:Name="btnEliminar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="110" Height="110" Click="BtnEliminar_Click">
             <StackPanel Height="100" Width="100">
                 <Image Source="/Images/basura.png" Height="70" Width="70"/>
-                <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Segoe UI Emoji"/>
+                <Label HorizontalAlignment="Stretch" Content="Eliminar" Width="57" FontFamily="Segoe UI Emoji"/>
             </StackPanel>
         </Button>
         <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="40,0,0,30" Width="110" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}" Height="110" VerticalAlignment="Bottom">
