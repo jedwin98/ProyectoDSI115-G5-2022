@@ -50,7 +50,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             // AL ATRIBUTO TICK LE ASIGNAMOS EL EVENTO DISPATCHERTIMER_TICK EN EL CUAL VA TODO EL CODIGO A EJECUTAR
             dispatcherInv.Tick += new EventHandler(dispatcherTimer_Tick);
             //ASIGNAMOS HORA SEGUN EL PATRON TIMESPAN (HORA, MINUTO, SEGUNDO)
-            dispatcherInv.Interval = new TimeSpan(0, 0, 1);
+            dispatcherInv.Interval = new TimeSpan(0, 0, 10);
             //INICIAMOS EL METODO
             dispatcherInv.Start();
         }
@@ -128,9 +128,6 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
            // CargarTabla(empleado);
         }
 
-        private void DataSolicitudes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }
