@@ -42,8 +42,8 @@ namespace ProyectoDSI115_G5_2021
 
         //CREADO ESPECIFICAMENTE PARA GENERAR NOTIFICACIONES 
         //AUTOR: FRANCISCO ESCOBAR
-        SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
-        //SQLiteConnection con = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
+        //SQLiteConnection con = new SQLiteConnection(@"data source=C:/FYSIEX/FYSIEX.db");
+        SQLiteConnection con = new SQLiteConnection(@"data source=//KATYA\fysiex\FYSIEX.db;Version=3;Compress=True;");      //CONEXION EN RED
 
         System.Windows.Threading.DispatcherTimer dispatcher = new System.Windows.Threading.DispatcherTimer(); //OBJETO PARA EJECUTAR CADA CIERTO TIEMPO UN METODO
 

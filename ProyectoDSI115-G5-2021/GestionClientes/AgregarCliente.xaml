@@ -25,7 +25,7 @@
         <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="225,235,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtEmpresa" MaxLength="300" TextWrapping="Wrap" Text="" Margin="400,235,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"/>
         <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="225,270,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtTelefono" MaxLength="15" KeyDown="OnKeyDownHandler" TextWrapping="Wrap" Height="25" Text="" Margin="400,270,0,0" VerticalAlignment="Top" TextChanged="TxtTelefono_TextChanged" HorizontalAlignment="Left" Width="224"/>
+        <TextBox x:Name="txtTelefono" MaxLength="20" KeyDown="OnKeyDownHandler" TextWrapping="Wrap" Height="25" Text="" Margin="400,270,0,0" VerticalAlignment="Top" TextChanged="TxtTelefono_TextChanged" HorizontalAlignment="Left" Width="224"/>
         <Label Content="Correo Electrónico:" HorizontalAlignment="Left" Margin="225,305,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCorreo" MaxLength="100" TextWrapping="Wrap" Height="25" Text="" Margin="400,305,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="224"/>
 
