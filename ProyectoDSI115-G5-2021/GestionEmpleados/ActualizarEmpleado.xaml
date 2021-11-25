@@ -50,7 +50,7 @@
         <Button x:Name="btnGuardar" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" Margin="40,120,0,0" VerticalAlignment="Top" Width="110" Height="110" Click="BtnActualizar_Click">
             <StackPanel Height="100" Width="100">
                 <Image Source="/Images/disquete.png" Height="70" Width="70"/>
-                <Label HorizontalAlignment="Stretch" Content="Guardar" Width="57" FontFamily="Segoe UI Emoji"/>
+                <Label HorizontalAlignment="Stretch" Content="Actualizar" FontFamily="Segoe UI Emoji" Margin="22,0,15,0"/>
             </StackPanel>
         </Button>
         <Button x:Name="btnVolver" HorizontalAlignment="Left" Margin="40,0,0,30" Width="110" Click="BtnVolver_Click" Background="{x:Null}" BorderBrush="{x:Null}" Height="110" VerticalAlignment="Bottom">

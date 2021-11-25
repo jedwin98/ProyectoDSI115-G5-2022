@@ -52,7 +52,7 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
             DataRowView row = dataEmpleados.SelectedItem as DataRowView;
             if (row == null)
             {
-                MessageBox.Show("Debe seleccionar un cliente primero", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Debe seleccionar un Empleado primero", "Seleccione un Empleado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {   /*
@@ -97,7 +97,7 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
             DataRowView row = dataEmpleados.SelectedItem as DataRowView;
             if (row == null)
             {
-                MessageBox.Show("Debe seleccionar un cliente primero", "Seleccione un cliente", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Debe seleccionar un Empleado primero", "Seleccione un Empleado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {   /*
