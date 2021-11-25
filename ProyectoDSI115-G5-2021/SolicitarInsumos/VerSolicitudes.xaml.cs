@@ -82,7 +82,7 @@ namespace ProyectoDSI115_G5_2021.SolicitarInsumos
             DataRowView row = dataSolicitudes.SelectedItem as DataRowView;
             if (row == null)
             {
-                MessageBox.Show("Seleccione primero un material", "Seleccione un material", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Seleccione primero una Solicitud", "Seleccione una Solicitud", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
             else
