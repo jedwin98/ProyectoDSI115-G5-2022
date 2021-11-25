@@ -55,7 +55,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="label7" Content="Total:" Grid.Column="3" Margin="0,0,116,78" FontSize="14" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="44"/>
-        <TextBox x:Name="txtTotalCotizacion" Grid.Column="3" Margin="0,0,20,78" TextWrapping="Wrap" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91"/>
+        <TextBox x:Name="txtTotalCotizacion" Grid.Column="3" Margin="0,0,20,78" TextWrapping="Wrap" Height="29" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="91" IsEnabled="false"/>
         <Button x:Name="btnCancelarCot" Content="Cancelar" Grid.Column="3" HorizontalAlignment="Right" Margin="0,0,125,10" Width="104" FontFamily="Comic Sans MS" FontSize="16" Background="#FFC91029" Foreground="White" Height="36" VerticalAlignment="Bottom" Click="BtnCancelarCot_Click"/>
         <Button x:Name="btnImprimirCot" Content="Imprimir" Grid.Column="3" Margin="0,0,10,10" Background="#FFC91029" Foreground="White" FontFamily="Comic Sans MS" FontSize="16" Height="36" VerticalAlignment="Bottom" Click="BtnImprimirCot_Click" HorizontalAlignment="Right" Width="97"/>
         <Label x:Name="label8" Content="Fecha:" Grid.Column="3" HorizontalAlignment="Left" Margin="20,0,0,78" FontSize="14" Height="29" VerticalAlignment="Bottom" Width="49"/>

@@ -52,7 +52,11 @@ namespace ProyectoDSI115_G5_2021.GestionEmpleados
             DataRowView row = dataEmpleados.SelectedItem as DataRowView;
             if (row == null)
             {
+<<<<<<< Updated upstream
                 MessageBox.Show("Debe seleccionar un Empleado primero", "Seleccione un Empleado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+=======
+                MessageBox.Show("Debe seleccionar un empleado primero", "Seleccione un empleado", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+>>>>>>> Stashed changes
             }
             else
             {   /*
